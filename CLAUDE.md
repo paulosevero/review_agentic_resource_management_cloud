@@ -58,15 +58,24 @@ The review covers agentic AI systems whose autonomous loop drives resource manag
 `<Hierarchical list, filled by /01-research-questions. The authoritative machine-readable form lives in protocols/screening.yaml; this section is its prose mirror. Each RQ has 1–3 sub-RQs covering dimensions of the same phenomenon (Padrão 1 — thematic decomposition).>`
 
 - **RQ1:** How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum infrastructures?
-  - *(sub-RQs to be filled at Level 2; RQ1 will host the safety/guardrails sub-RQ — HITL, validators, sandboxing.)*
+  - **RQ1.1:** Architectural patterns of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical; ReAct/Plan-and-Execute/Reflexion).
+  - **RQ1.2:** Coupling to infrastructure via tools/APIs/MCP (tool surface, action grammar, integration with Kubernetes/orchestrators).
+  - **RQ1.3:** Safety and guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback).
 - **RQ2:** Which classes of resource management decisions are delegated to agentic AI systems, and under what operational conditions?
-  - *(sub-RQs to be filled at Level 2.)*
+  - **RQ2.1:** Classes of resource management decisions delegated.
+  - **RQ2.2:** Operational conditions and autonomy level (advisory/supervised/autonomous).
 - **RQ3:** What reasoning processes and grounding mechanisms do agentic AI systems employ to translate observed system state into resource management actions?
-  - *(sub-RQs to be filled at Level 2.)*
+  - **RQ3.1:** Reasoning processes (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).
+  - **RQ3.2:** Grounding mechanisms (telemetry, RAG over runbooks/docs, episodic memory, vector DBs, knowledge graphs).
+  - **RQ3.3:** Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, infrastructure ontologies).
 - **RQ4:** How is the behavior of agentic AI systems for resource management evaluated?
-  - *(sub-RQs to be filled at Level 2; RQ4 will host the safety/governance metrics sub-RQ — rate of unsafe actions, human interventions, compliance.)*
+  - **RQ4.1:** Evaluation methodologies and environments (simulation, real testbed, production, synthetic benchmarks, real traces).
+  - **RQ4.2:** Resource-management performance metrics (latency, cost, energy, SLA, utilization, throughput).
+  - **RQ4.3:** Agent/inference overhead metrics (token usage, inference latency, monetary cost per decision, model size/footprint, agent-loop throughput).
+  - **RQ4.4:** Safety and governance metrics (rate of unsafe/invalid actions, frequency of human intervention, audit coverage, policy compliance).
 - **RQ5:** What open challenges, unresolved tensions, and promising future directions emerge from the synthesis of the included literature?
-  - *(sub-RQs to be filled at Level 2; RQ5 will host the governance/accountability/auditability gaps sub-RQ.)*
+  - **RQ5.1:** Unresolved methodological and technical tensions (inference cost vs. decision latency, hallucination in critical environments, transferability across infrastructures).
+  - **RQ5.2:** Governance, accountability, and auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability).
 
 ## 4. Search String
 

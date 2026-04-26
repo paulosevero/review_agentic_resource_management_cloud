@@ -13,19 +13,47 @@ pattern: thematic_decomposition
 research_questions:
   - id: RQ1
     text: "How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum infrastructures?"
-    sub_rqs: []
+    sub_rqs:
+      - id: RQ1.1
+        text: "Architectural patterns of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical; ReAct/Plan-and-Execute/Reflexion)."
+      - id: RQ1.2
+        text: "Coupling to infrastructure via tools/APIs/MCP (tool surface, action grammar, integration with Kubernetes/orchestrators)."
+      - id: RQ1.3
+        text: "Safety and guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback)."
   - id: RQ2
     text: "Which classes of resource management decisions are delegated to agentic AI systems, and under what operational conditions?"
-    sub_rqs: []
+    sub_rqs:
+      - id: RQ2.1
+        text: "Classes of resource management decisions delegated."
+      - id: RQ2.2
+        text: "Operational conditions and autonomy level (advisory/supervised/autonomous)."
   - id: RQ3
     text: "What reasoning processes and grounding mechanisms do agentic AI systems employ to translate observed system state into resource management actions?"
-    sub_rqs: []
+    sub_rqs:
+      - id: RQ3.1
+        text: "Reasoning processes (CoT, ToT, ReAct, planning + reflection, debate, self-consistency)."
+      - id: RQ3.2
+        text: "Grounding mechanisms (telemetry, RAG over runbooks/docs, episodic memory, vector DBs, knowledge graphs)."
+      - id: RQ3.3
+        text: "Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, infrastructure ontologies)."
   - id: RQ4
     text: "How is the behavior of agentic AI systems for resource management evaluated?"
-    sub_rqs: []
+    sub_rqs:
+      - id: RQ4.1
+        text: "Evaluation methodologies and environments (simulation, real testbed, production, synthetic benchmarks, real traces)."
+      - id: RQ4.2
+        text: "Resource-management performance metrics (latency, cost, energy, SLA, utilization, throughput)."
+      - id: RQ4.3
+        text: "Agent/inference overhead metrics (token usage, inference latency, monetary cost per decision, model size/footprint, agent-loop throughput)."
+      - id: RQ4.4
+        text: "Safety and governance metrics (rate of unsafe/invalid actions, frequency of human intervention, audit coverage, policy compliance)."
   - id: RQ5
     text: "What open challenges, unresolved tensions, and promising future directions emerge from the synthesis of the included literature?"
-    sub_rqs: []
+    sub_rqs:
+      - id: RQ5.1
+        text: "Unresolved methodological and technical tensions (inference cost vs. decision latency, hallucination in critical environments, transferability across infrastructures)."
+      - id: RQ5.2
+        text: "Governance, accountability, and auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability)."
 
 inclusion_criteria: []
 
