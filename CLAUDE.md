@@ -19,7 +19,7 @@ This file is the authoritative protocol for this review. It declares the theme, 
 - **Topic:** `Agentic AI (LLM-based agents) for resource management decisions in Cloud, Edge, Fog, and the Edge-Cloud Continuum`
 - **Repo:** `/Users/paulosouza/Documents/Carreira/Pesquisa/Código/review_agentic_resource_management_cloud`
 - **Created:** `2026-04-25`
-- **Current stage:** `00-new-review`
+- **Current stage:** `01-research-questions`
 
 ## 1. Locks (machine-readable)
 
@@ -28,7 +28,7 @@ Agents use this block to decide whether a given stage can run. A stage can only 
 ```yaml
 locks:
   00-new-review:                locked    # pending | locked
-  01-research-questions:        pending
+  01-research-questions:        iterating
   02-search-string:             pending
   03-parse-references-metadata: pending
   04-title-screening:           pending
@@ -40,7 +40,16 @@ locks:
 
 ## 2. Theme
 
-`<1–2 paragraphs describing the domain, its practical relevance, and the boundary of what this review covers and does not cover. Filled by /01-research-questions.>`
+Resource management in cloud, edge, fog, and continuum infrastructures has historically relied on heuristics, control-theoretic policies, mixed-integer formulations, and reinforcement learning agents bound to narrow action spaces. The recent emergence of agentic AI — LLM-backed systems that perceive, reason, plan, invoke tools, and act over multi-step horizons — opens a qualitatively different design space: scheduling, placement, scaling, admission control, energy management, and fault response can now be expressed as goal-conditioned dialog with an autonomous agent rather than as fixed decision rules. This review synthesizes how that shift is being operationalized across the cloud-edge continuum, what classes of decisions are being delegated to such agents, what reasoning machinery and grounding mechanisms underlie those decisions, and how the resulting systems are evaluated.
+
+The review covers agentic AI systems whose autonomous loop drives resource management decisions, regardless of whether the underlying infrastructure is centralized cloud, edge, fog, or a continuum. Out of scope: pre-LLM RL/MARL agents that lack the agentic loop (perception → reasoning → tool use → action over multi-step horizons), classical optimization or heuristic schedulers without an LLM-backed reasoning component, and works where the LLM is used purely as an offline analytics or recommendation tool detached from the control loop.
+
+**Scope decisions accepted at Level 1:**
+
+- **Boundary A — Agentic loop required.** The system must implement the autonomous perception–reasoning–tool-use–action loop. RL/MARL papers without an LLM-driven reasoning step are excluded.
+- **Boundary B — Resource management as the closed loop.** The agent's actions must affect resource management decisions (scheduling, placement, scaling, admission, energy, fault response, etc.). LLMs used only for monitoring, log summarization, or offline recommendation are excluded.
+- **Boundary C — Infrastructure scope.** Cloud, edge, fog, and the edge-cloud continuum are all in scope. HPC clusters, embedded single-device systems, and pure end-user device contexts are out of scope unless they appear as edge nodes in a continuum architecture.
+- **Safety, governance, and accountability** are not a separate RQ; they are distributed across sub-RQs under RQ1 (guardrails design), RQ4 (safety/governance evaluation metrics), and RQ5 (open governance gaps). This decision is logged at Level 2.
 
 **Screening doctrine.** When in doubt at title or abstract stages, include. A false positive costs one extra read at the next stage; a false negative loses a relevant paper forever. This asymmetry is operationalized via the per-stage thresholds in `protocols/screening.yaml.stage_allocation` (permissive early, strict late) and the abstract-stage `insufficient_evidence` rule in `agents/_screening-protocol.md §5.2`. The adversarial sub-agent architecture (two opposed sub-agents + deterministic consolidator + human override in the spreadsheet) is specified in `agents/_screening-protocol.md`.
 
@@ -48,13 +57,16 @@ locks:
 
 `<Hierarchical list, filled by /01-research-questions. The authoritative machine-readable form lives in protocols/screening.yaml; this section is its prose mirror. Each RQ has 1–3 sub-RQs covering dimensions of the same phenomenon (Padrão 1 — thematic decomposition).>`
 
-- **RQ1:** `<...>`
-  - **RQ1.1:** `<sub-RQ text>`
-  - **RQ1.2:** `<sub-RQ text>`
-- **RQ2:** `<...>`
-  - **RQ2.1:** `<...>`
-- **RQ3:** `<...>`
-  - **RQ3.1:** `<...>`
+- **RQ1:** How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum infrastructures?
+  - *(sub-RQs to be filled at Level 2; RQ1 will host the safety/guardrails sub-RQ — HITL, validators, sandboxing.)*
+- **RQ2:** Which classes of resource management decisions are delegated to agentic AI systems, and under what operational conditions?
+  - *(sub-RQs to be filled at Level 2.)*
+- **RQ3:** What reasoning processes and grounding mechanisms do agentic AI systems employ to translate observed system state into resource management actions?
+  - *(sub-RQs to be filled at Level 2.)*
+- **RQ4:** How is the behavior of agentic AI systems for resource management evaluated?
+  - *(sub-RQs to be filled at Level 2; RQ4 will host the safety/governance metrics sub-RQ — rate of unsafe actions, human interventions, compliance.)*
+- **RQ5:** What open challenges, unresolved tensions, and promising future directions emerge from the synthesis of the included literature?
+  - *(sub-RQs to be filled at Level 2; RQ5 will host the governance/accountability/auditability gaps sub-RQ.)*
 
 ## 4. Search String
 

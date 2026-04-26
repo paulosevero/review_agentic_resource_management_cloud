@@ -1,0 +1,36 @@
+# protocols/screening.yaml
+# Authoritative machine-readable form of the screening protocol.
+# Built incrementally across the five levels of stage 01:
+#   Level 1 — research questions (this commit).
+#   Level 2 — sub-RQs.
+#   Level 3 — inclusion criteria (typed, refs).
+#   Level 4 — weights, stage_allocation, models.
+#   Level 5 — validation + lock.
+# The validator (scripts/validate_protocol.py) is executed only at Level 5.
+
+pattern: thematic_decomposition
+
+research_questions:
+  - id: RQ1
+    text: "How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum infrastructures?"
+    sub_rqs: []
+  - id: RQ2
+    text: "Which classes of resource management decisions are delegated to agentic AI systems, and under what operational conditions?"
+    sub_rqs: []
+  - id: RQ3
+    text: "What reasoning processes and grounding mechanisms do agentic AI systems employ to translate observed system state into resource management actions?"
+    sub_rqs: []
+  - id: RQ4
+    text: "How is the behavior of agentic AI systems for resource management evaluated?"
+    sub_rqs: []
+  - id: RQ5
+    text: "What open challenges, unresolved tensions, and promising future directions emerge from the synthesis of the included literature?"
+    sub_rqs: []
+
+inclusion_criteria: []
+
+stage_allocation: {}
+
+models: {}
+
+seed_global: 20260425
