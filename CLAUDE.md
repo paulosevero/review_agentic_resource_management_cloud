@@ -19,7 +19,7 @@ This file is the authoritative protocol for this review. It declares the theme, 
 - **Topic:** `Agentic AI (LLM-based agents) for resource management decisions in Cloud, Edge, Fog, and the Edge-Cloud Continuum`
 - **Repo:** `/Users/paulosouza/Documents/Carreira/Pesquisa/Código/review_agentic_resource_management_cloud`
 - **Created:** `2026-04-25`
-- **Current stage:** `<last locked stage, e.g., 05-abstract-screening; updated at every [NN] lock commit>`
+- **Current stage:** `00-new-review`
 
 ## 1. Locks (machine-readable)
 
@@ -27,7 +27,7 @@ Agents use this block to decide whether a given stage can run. A stage can only 
 
 ```yaml
 locks:
-  00-new-review:                pending   # pending | locked
+  00-new-review:                locked    # pending | locked
   01-research-questions:        pending
   02-search-string:             pending
   03-parse-references-metadata: pending
