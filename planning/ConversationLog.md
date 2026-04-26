@@ -233,3 +233,515 @@ RQ4. How is the behavior of agentic AI systems for resource management evaluated
 RQ5. What open challenges, unresolved tensions, and promising future directions emerge from the synthesis of the included literature?
 
 **Aguardo:** `pronto`/`done`/`confirmo` para persistir em `protocols/screening.yaml` + CLAUDE.md §3, commitar `[01] level-1: rqs proposed`, e abrir Level 2 (sub-RQs) com a distribuição safety/governance acima.
+
+# User
+
+confirmo
+
+# Claude
+
+Level 1 fechado — commit `572c097` pushed para `origin/main`. Hook pós-commit regenerou `spreadsheet.xlsx` sem bloquear.
+
+**Level 2 — Sub-RQs (proposta do subagente para crítica):**
+
+RQ1 — Arquitetura:
+- RQ1.1 — Quais padrões arquiteturais organizam o loop perceber-raciocinar-agir? (single-agent vs multi-agent vs hierarchical; ReAct/Plan-and-Execute/Reflexion)
+- RQ1.2 — Como o agente é acoplado à infraestrutura via ferramentas/APIs/MCP? (tool surface, action grammar, integração com Kubernetes/orchestrators)
+- RQ1.3 — *(safety/guardrails)* Quais mecanismos de segurança restringem ações do agente? (HITL, action validators, sandboxing, policy gates, rollback)
+
+RQ2 — Decisões delegadas:
+- RQ2.1 — Quais classes de decisão de resource management são delegadas? (scheduling/placement, autoscaling, admission control, energy/thermal, fault response, migration, configuration tuning)
+- RQ2.2 — Sob quais condições operacionais o agente atua? (steady-state vs incident response; síncrono vs assíncrono; nível de autonomia — advisory/supervised/autonomous)
+
+RQ3 — Raciocínio e grounding:
+- RQ3.1 — Quais processos de raciocínio são empregados? (CoT, ToT, ReAct, planning + reflection, debate, self-consistency)
+- RQ3.2 — Quais mecanismos de grounding ancoram o agente no estado real do sistema? (telemetria, RAG sobre runbooks/docs, memória episódica, vector DBs, knowledge graphs)
+- RQ3.3 — Como conhecimento de domínio é incorporado? (fine-tuning, prompting estruturado, exemplos few-shot, ontologias de infraestrutura)
+
+RQ4 — Avaliação:
+- RQ4.1 — Quais metodologias e ambientes de avaliação são usados? (simulação, testbed real, produção, benchmarks sintéticos, traces reais)
+- RQ4.2 — Quais métricas de desempenho de resource management são reportadas? (latência, custo, energia, SLA, utilização, throughput)
+- RQ4.3 — *(safety/governance)* Quais métricas avaliam segurança e governança? (taxa de ações inseguras/inválidas, frequência de intervenção humana, cobertura de auditoria, conformidade com políticas)
+
+RQ5 — Desafios abertos e direções futuras:
+- RQ5.1 — Quais tensões metodológicas e técnicas permanecem não resolvidas? (custo de inferência vs latência de decisão, alucinação em ambientes críticos, transferibilidade entre infraestruturas)
+- RQ5.2 — *(governance/accountability)* Quais lacunas de governança, accountability e auditabilidade emergem? (rastreabilidade de decisões, atribuição de responsabilidade, requisitos regulatórios, explicabilidade)
+
+**Pontos que o subagente sugere revisar antes do commit:**
+
+1. RQ1.2 (tool surface) — separar em "API design" vs "integração com orchestrators reais", ou manter unificado?
+2. RQ2.2 — o eixo *nível de autonomia* (advisory/supervised/autonomous) é forte candidato a virar eixo principal da taxonomia. Confirmar que cabe em RQ2 e não em RQ1?
+3. RQ3.3 — possível overlap com RQ1.2 (prompting estruturado é tool design? ou raciocínio?). Fundir em RQ3.2 se preferir?
+4. RQ4 — apenas 3 sub-RQs; separar avaliação funcional (decisão foi boa?) de operacional (sistema funcionou?)?
+5. RQ5 — enxuto (2 sub-RQs); pode crescer em stage 08 na síntese.
+
+**Aguardo:** crítica/ajustes nas sub-RQs ou `pronto`/`done`/`confirmo` para commit `[01] level-2: sub-rqs proposed`. "Voltar para RQs" reabre Level 1.
+
+# User
+
+Em RQ4, eu adicionaria também métricas de desempenho específicas dos modelos (e.g., uso de tokens, tempo de inferência, etc.). Não sei exatamente onde encaixar isso. Mostre sugestões.
+
+Sobre os pontos que você levantou:
+
+1. RQ1.2: Eu acho que podemos manter unificado. Depois no texto podemos criar subseções para cada um dos aspectos se for necessário.
+2. RQ2.2: Eu acho que o nível de autonomia é um aspecto importante, mas não sei se é o mais importante para ser um eixo principal da taxonomia. Talvez seja melhor manter como um sub-RQ dentro de RQ2, e depois no texto podemos destacar a importância desse aspecto.
+3. RQ3.3: Não acho que haja um grande overlap.
+4. RQ4: Eu acho que é melhor manter a avaliação funcional e operacional juntas, pois elas estão inter-relacionadas. Podemos criar subseções para cada uma delas no texto se for necessário.
+5. RQ5: Concordo que é melhor manter enxuto por enquanto. Podemos expandir no stage 08 se necessário.
+
+# Claude
+
+Confirmadas as 5 respostas — RQ1/RQ2/RQ3/RQ5 ficam como estão.
+
+**Três opções de alocação para métricas específicas do modelo (tokens, inference time, custo por decisão, model size, agent-loop latency):**
+
+**Opção A — sub-RQ dedicada (RQ4.3 nova; safety/governance vira RQ4.4).** Separação limpa entre métricas de sistema (RQ4.2) e métricas do agente — são fenômenos distintos com instrumentação distinta (profiler de sistema vs. logs de provider LLM). Permite tabela comparativa nítida na taxonomia (stage 07). Desvantagem: RQ4 cresce para 4 sub-RQs (assimetria com as outras RQs).
+
+**Opção B — alargar RQ4.2 para "performance and overhead metrics".** Mantém RQ4 em 3 sub-RQs, simétrico. Desvantagem: mistura dois eixos de avaliação que respondem a perguntas diferentes ("o sistema gerenciado é eficiente?" vs. "o agente que gerencia é caro?"). Na extração (stage 09) seria preciso separar mesmo assim, diluindo a análise temática.
+
+**Opção C — desdobrar RQ4.2 em RQ4.2a / RQ4.2b.** Mesmo eixo, duas facetas com numeração composta. Risco: convenção de numeração que não existe no resto do protocolo; o validador `scripts/validate_protocol.py` provavelmente espera padrão `RQ<n>.<m>` plano.
+
+**Recomendação do subagente: Opção A.** Para um review estilo TPDS/CSUR, o custo do agente é um eixo de avaliação distintivo deste subdomínio (gerência de recursos com LLM-in-the-loop). Tratá-lo como sub-RQ de primeira classe deixa a taxonomia explícita sobre o trade-off central da área: qualidade de decisão versus overhead de inferência. A Opção B obscurece exatamente o ponto que diferencia esta literatura de gerência de recursos clássica.
+
+**Aguardo:** escolha entre A, B ou C.
+
+# User
+
+A
+
+# Claude
+
+Option A aplicada. Estrutura final do Level 2 (em EN-US, para `protocols/screening.yaml`):
+
+**RQ1 — Architecture**
+- RQ1.1 — Architectural patterns of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical; ReAct/Plan-and-Execute/Reflexion).
+- RQ1.2 — Coupling to infrastructure via tools/APIs/MCP (tool surface, action grammar, integration with Kubernetes/orchestrators).
+- RQ1.3 — Safety and guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback).
+
+**RQ2 — Decisions delegated**
+- RQ2.1 — Classes of resource management decisions delegated.
+- RQ2.2 — Operational conditions and autonomy level (advisory/supervised/autonomous).
+
+**RQ3 — Reasoning and grounding**
+- RQ3.1 — Reasoning processes (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).
+- RQ3.2 — Grounding mechanisms (telemetry, RAG over runbooks/docs, episodic memory, vector DBs, knowledge graphs).
+- RQ3.3 — Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, infrastructure ontologies).
+
+**RQ4 — Evaluation**
+- RQ4.1 — Evaluation methodologies and environments (simulation, real testbed, production, synthetic benchmarks, real traces).
+- RQ4.2 — Resource-management performance metrics (latency, cost, energy, SLA, utilization, throughput).
+- RQ4.3 — Agent/inference overhead metrics (token usage, inference latency, monetary cost per decision, model size/footprint, agent-loop throughput).
+- RQ4.4 — Safety and governance metrics (rate of unsafe/invalid actions, frequency of human intervention, audit coverage, policy compliance).
+
+**RQ5 — Open challenges and future directions**
+- RQ5.1 — Unresolved methodological and technical tensions (inference cost vs. decision latency, hallucination in critical environments, transferability across infrastructures).
+- RQ5.2 — Governance, accountability, and auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability).
+
+**Aguardo:** `pronto`/`done`/`confirmo` para fechar Level 2 (commit `[01] level-2: sub-rqs proposed`) e abrir Level 3 (critérios IC/EC: `thematic_rq` ternário, `thematic_sub_rq` ponderado, `qa` ponderado).
+
+# User
+
+confirmo
+
+# Claude
+
+Level 2 fechado — commit `448f447` pushed para `origin/main`. Hook regenerou `spreadsheet.xlsx`. Level 3 aberto.
+
+**Critérios gerais (gates de elegibilidade — EC binários, antes do scoring temático):**
+
+- G1 — Tipo de estudo. Pesquisa primária; excluir survey, mapping study, editorial, abstract-only, poster, tutorial, demo sem avaliação, capítulo de livro.
+- G2 — Idioma inglês.
+- G3 — Acessibilidade do texto integral.
+- G4 — Janela temporal: **2022 ou 2023?** (2022 = ChatGPT release; 2023 = mais conservador, alinhado a ReAct/AutoGPT).
+- G5 — Peer review: **aceitar arXiv preprints com flag** ou exigir peer review estrito?
+
+**`thematic_rq` (ternário, estágio 04 — title screening, +1/0/-1):**
+
+- T1 [RQ1] — título sugere arquitetura de sistema agentic AI baseado em LLM aplicado a resource management.
+- T2 [RQ2] — título indica decisões de RM (scheduling, placement, scaling, admission, energy, fault response) delegadas a agente.
+- T3 [RQ3] — título menciona mecanismos de raciocínio/planning/grounding (RAG, memory, telemetry, knowledge) em contexto de infra.
+- T4 [RQ4] — título indica avaliação experimental/benchmarking/estudo empírico em cloud/edge/fog/continuum.
+- T5 [RQ5] — título sinaliza desafios/limitações/direções futuras.
+
+Nota do subagente: T5 é menos seletivo no título (papers raramente sinalizam "challenges" no título). Sugestão: tratá-lo como opcional/baixa prioridade no título e dar peso normal só no abstract via `thematic_sub_rq`.
+
+**`thematic_sub_rq` (ponderado, estágios 05/06):** S1–S14, um por sub-RQ, mapeados a RQ1.1–RQ5.2 (cobertura bottom-up verificada — nenhum sub-RQ órfão).
+
+**`qa` (quality assessment, ponderado, estágio 06):**
+
+- Q1 [RQ1, RQ2] — descrição reproduzível do sistema (arquitetura, prompts, tool definitions, modelo LLM, hyperparâmetros).
+- Q2 [RQ4] — avaliação metodologicamente sólida (baselines explícitos, ≥1 baseline competitivo, justificativa, stats).
+- Q3 [RQ4.1, RQ4.2] — setup experimental reproduzível (workload, traces, infra, seeds, n. de execuções).
+- Q4 [RQ1, RQ2, RQ3, RQ4] — artefatos públicos (código, prompts, datasets, traces) ou justificativa explícita.
+
+**Pontos de decisão antes do commit do Level 3:**
+
+1. Janela temporal (G4): 2022 ou 2023?
+2. Preprints (G5): aceitar arXiv ou peer review estrito?
+3. T5 no título — manter ou tratar challenges/futures como sinal só no abstract?
+4. Q4 (artefatos) — gate de qualidade com peso ou apenas observação sem peso na extração?
+5. Algum critério faltando/redundante/mal-fraseado?
+
+# User
+
+Vou responder ponto a ponto.
+
+## Gates gerais de elegibilidade
+
+G1: Concordo. G2: Concordo. G3: retirar (verificação manual). G4: janela ampliada para desde 2017 (Transformer). G5: focar somente em Scopus (peer-reviewed) por hora; arXiv pode vir em revisão futura.
+
+## thematic_rq
+
+Reformular para 3 critérios mais amplos (recall-preserving) cobrindo: (1) Agentic AI ou LLM (broad), (2) Resource management (broad), (3) Cloud/edge/fog/continuum (broad). Filtragem fina deixa para abstract/full-text.
+
+## QA
+
+Q1: reformular para "descrição do design do sistema com detalhes suficientes para entender" — sem exigir reprodutibilidade estrita; protótipos/PoCs valem. Q2: reformular para "existe avaliação" — presença, não rigor. Q3 e Q4: remover (reprodutibilidade vai para a discussão de RQ5; artefatos públicos são bônus).
+
+# Claude
+
+Level 3 revisado com sua orientação.
+
+**Gates (4):**
+- G1 — pesquisa primária em conferência/journal peer-reviewed.
+- G2 — inglês.
+- G4 — publicado desde 2017 (Transformer); janela ampla intencional, bulk relevante esperado em 2022+.
+- G5 — Scopus apenas (sem arXiv).
+
+**`thematic_rq` (3 critérios amplos, recall-preserving, ternário ±1/0):**
+- T1 — Agentic AI / LLM signal (agents, agentic, LLM, large language model, autonomous AI, intelligent control, conversational AI, foundation model). Refs: [RQ1–RQ5].
+- T2 — Resource-management signal (resource management, placement, scheduling, allocation, autoscaling, migration, routing, slicing, orchestration, capacity planning, governance, infrastructure management). Refs: [RQ2].
+- T3 — Distributed-infrastructure signal (cloud, edge, fog, continuum, serverless, FaaS, Kubernetes, MEC, datacenter). Refs: [RQ1–RQ5].
+
+**`thematic_sub_rq`:** S1–S14 inalterados (mapeamento integral RQ1.1–RQ5.2).
+
+**QA (2):**
+- Q1 — "The paper describes the design of an agentic AI system for resource management with sufficient detail to understand how the system works." Refs: [RQ1, RQ2].
+- Q2 — "The paper presents an evaluation of the proposed agentic AI system." Refs: [RQ4].
+
+**Cobertura bottom-up:** todas as RQs e sub-RQs cobertas; sem gaps.
+
+**Nota para Level 4 (thresholds):** com 3 critérios amplos no título, o threshold do stage 04 deve ser definido com intenção recall-preserving. Opções: (a) AND — todos os três ≥0; (b) soma ≥ 2 (permite um sinal ausente/ambíguo); (c) T2 ≥ 0 obrigatório + pelo menos um de T1/T3 positivo. Default sugerido pelo subagente: (b).
+
+**Aguardo:** `pronto`/`done`/`confirmo` para fechar Level 3 (commit `[01] level-3: criteria proposed`) e abrir Level 4 (pesos + thresholds).
+
+# User
+
+confirmo
+
+# Claude
+
+Level 3 fechado. Level 4 (pesos + thresholds) aberto.
+
+**4.1 Threshold de title (T1+T2+T3 ∈ [−3, +3]):**
+- (a) sum ≥ 3 — strict (recall baixo).
+- (b) sum ≥ 2 — recall-preserving **(recomendado)**, com regra dura: qualquer T = −1 derruba o paper mesmo com sum ≥ 2.
+- (c) sum ≥ 1 — permissive (infla pool de abstract).
+
+**4.2 Pesos `thematic_sub_rq` (S1–S14):**
+- S1 (RQ1.1) 0.9 | S2 (RQ1.2) 0.8 | S3 (RQ1.3) 0.7
+- S4 (RQ2.1) 0.9 | S5 (RQ2.2) 0.6
+- S6 (RQ3.1) 0.9 | S7 (RQ3.2) 0.8 | S8 (RQ3.3) 0.6
+- S9 (RQ4.1) 0.7 | S10 (RQ4.2) 0.8 | **S11 (RQ4.3) 1.0** | **S12 (RQ4.4) 1.0**
+- S13 (RQ5.1) 0.4 | S14 (RQ5.2) 0.4
+
+Justificativa: S11/S12 = 1.0 porque RQ4.3 (overhead do agente) e RQ4.4 (safety/governance metrics) são as dimensões mais distintivas desta revisão e raramente reportadas — quando aparecem, são especialmente valiosas. RQ5.x = 0.4 porque RQs prospectivas têm sinal fraco no abstract, melhor avaliadas no full-text.
+
+**4.3 Thresholds:**
+- Abstract (stage 05): score ≥ **0.35** sobre os 14 S-criteria (normalizado).
+- Full-text (stage 06): score ≥ **0.55** **e** Q1 ∧ Q2 = pass binário.
+
+**4.4 QA:** Q1 = 0.6, Q2 = 0.4. **QA é gate binário** no full-text — paper precisa Q1=pass ∧ Q2=pass para sobreviver, independente do score thematic. Justificativa: paper conceitual sem evaluation ou sem detalhe de design não alimenta a taxonomia em stage 07.
+
+**4.5 Escada de threshold (recall-preserving → strict):**
+- title → sum ≥ 2 de 3 (permissive)
+- abstract → score ≥ 0.35 (moderate)
+- full-text → score ≥ 0.55 ∧ Q1 ∧ Q2 (strict)
+
+**Pontos para crítica:**
+1. S11/S12 = 1.0 (peso "extra" para privilegiar dimensões distintivas — aceitável?).
+2. Abstract threshold 0.35 (frouxo demais? apertado demais?).
+3. QA como gate binário vs. peso ponderado.
+4. Regra dura: T = −1 explícito derruba paper mesmo com sum ≥ 2.
+
+**Aguardo:** crítica/ajustes ou `pronto`/`done`/`confirmo` para commit `[01] level-4: weights proposed` e abertura do Level 5 (validação + lock).
+
+# User
+
+Não sei se entendi a dinâmica dos pesos.
+
+# Claude
+
+Três famílias, três mecânicas distintas — cada estágio responde a uma pergunta diferente.
+
+| Família | Estágio | Saída por critério | Consolidação |
+|---|---|---|---|
+| `thematic_rq` | 04 (título) | +1 / 0 / −1 | soma simples ∈ [−3,+3], threshold ≥ 2, hard-rule no −1 |
+| `thematic_sub_rq` | 05 (abstract) e 06 (full-text) | sᵢ ∈ {0,1} | score normalizado Σwᵢsᵢ / Σwᵢ ∈ [0,1] |
+| `qa` | 06 apenas | pass / fail | AND-gate binário (não pondera) |
+
+**Estágio 04 (título):** score = T1+T2+T3 ∈ [−3,+3]. Inclui se soma ≥ 2 **e** nenhum Tᵢ = −1. Hard-rule no −1 evita que dois +1 "salvem" um título com rejeição explícita em outra RQ.
+
+**Estágio 05 (abstract):** sub-agente devolve sᵢ ∈ {0,1} para cada Sᵢ. Score = Σwᵢsᵢ / Σwᵢ. Denominador é soma de **todos** os pesos (não só dos ativos) — papers raros são penalizados pela ausência. Threshold ≥ 0.35.
+
+**Exemplos numéricos:**
+
+A — paper rico (S1, S2, S4, S6, S7, S9, S10 = 1):
+- Σwᵢsᵢ = 0.9+0.8+0.9+0.9+0.8+0.7+0.8 = 5.8
+- Σwᵢ = 10.1
+- score ≈ 0.574 → **INCLUI**
+
+B — paper raso (só S4 + S10):
+- score = 1.7 / 10.1 ≈ 0.168 → **EXCLUI**
+
+C — paper que hit nas distintivas (S1, S4, S10, S11, S12):
+- score = 4.6 / 10.1 ≈ 0.455 → **INCLUI**
+
+D — mesma quantidade de hits mas em prospectivos fracos (S1, S4, S10, S13, S14):
+- score = 3.4 / 10.1 ≈ 0.337 → **EXCLUI** (borderline)
+
+C e D têm o mesmo número de critérios disparados, decisões opostas — é exatamente isso que pesos assimétricos fazem: "evidência sobre overhead de agentes" vale mais que "discussão de governance gaps" para esta revisão.
+
+**Estágio 06 (full-text):** mesma fórmula, threshold ≥ 0.55. Mais o AND-gate de QA: Q1 ∧ Q2 precisam ambas passar. QA é binário (não pondera) porque score temático responde "tópico no escopo?" e QA responde "artefato utilizável como evidência?" — perguntas diferentes, não devem se compensar.
+
+**Onde os números vivem em `protocols/screening.yaml`:**
+- `inclusion_criteria[].weight` — peso wᵢ (null para `thematic_rq`).
+- `inclusion_criteria[].type` — `thematic_rq | thematic_sub_rq | qa`.
+- `stage_allocation.title.threshold` = 2 (soma absoluta), `scale` = ternary.
+- `stage_allocation.abstract.threshold` = 0.35, `scale` = weighted.
+- `stage_allocation.full_text.threshold` = 0.55, `qa_gate` = AND sobre critérios qa.
+
+**Como deseja prosseguir?**
+
+1. **Manter** os números propostos (pesos + thresholds 2 / 0.35 / 0.55).
+2. **Ajustar** pesos ou thresholds específicos — diga quais.
+3. **Ver esquemas alternativos**: (a) pesos uniformes (todos = 0.7); (b) RQ1/RQ3 dominantes (+0.2 em sub-RQs dessas); (c) thresholds mais rígidos no abstract (0.45) para reduzir o funil para o full-text.
+
+# User
+
+Mostre-me os esquemas alternativos e as implicações potenciais de escolher cada um deles.
+
+# Claude
+
+Quatro esquemas lado a lado (Σ = soma de S1–S14; Q1/Q2 são gates binários, fora do score normalizado):
+
+| Sub-RQ | S0 default | S1 uniforme | S2 RQ1/RQ3 dom. | S3 gate apertado |
+|---|---|---|---|---|
+| S1 | 0.9 | 0.7 | 1.0 | 0.9 |
+| S2 | 0.8 | 0.7 | 1.0 | 0.8 |
+| S3 | 0.7 | 0.7 | 0.9 | 0.7 |
+| S4 | 0.9 | 0.7 | 0.9 | 0.9 |
+| S5 | 0.6 | 0.7 | 0.6 | 0.6 |
+| S6 | 0.9 | 0.7 | 1.0 | 0.9 |
+| S7 | 0.8 | 0.7 | 1.0 | 0.8 |
+| S8 | 0.6 | 0.7 | 0.8 | 0.6 |
+| S9 | 0.7 | 0.7 | 0.7 | 0.7 |
+| S10 | 0.8 | 0.7 | 0.8 | 0.8 |
+| S11 | 1.0 | 0.7 | 1.0 | 1.0 |
+| S12 | 1.0 | 0.7 | 1.0 | 1.0 |
+| S13 | 0.4 | 0.7 | 0.4 | 0.4 |
+| S14 | 0.4 | 0.7 | 0.4 | 0.4 |
+| Σ | 10.1 | 9.8 | 11.3 | 10.1 |
+| thr abstract | 0.35 | 0.35 | 0.35 | 0.45 |
+
+**Implicações:**
+
+- S0 (default) — eleva S11/S12 (overhead, safety) como dimensões distintivas. Funil moderado. Taxonomia em stage 07 ganha eixos fortes de custo operacional + garantias de segurança.
+- S1 (uniforme) — sem direcionamento editorial; perde a capacidade de destacar no screening o que é distintivo. Taxonomia "achatada".
+- S2 (RQ1/RQ3 dominante) — survey design-and-reasoning-centric. **Armadilha:** ao inflar Σ para 11.3, S11/S12 (mantidos em 1.0) perdem peso relativo — saem de 9.9% (em S0) para 8.8% (em S2). Afoga exatamente as dimensões que motivaram RQ4.3.
+- S3 (gate apertado) — mesmos pesos, thr abstract 0.45. Reduz carga de full-text. Risco: papers superficiais no abstract mas ricos no full-text são cortados cedo.
+
+**Exemplos numéricos (passa em abstract?):**
+
+| Paper | Sub-RQs ativos | S0 | S1 | S2 | S3 |
+|---|---|---|---|---|---|
+| A | S1,S2,S4,S6,S7,S9,S10 | 0.574 ✓ | 0.500 ✓ | 0.584 ✓ | 0.574 ✓ |
+| B | S4,S10 | 0.168 ✗ | 0.143 ✗ | 0.150 ✗ | 0.168 ✗ |
+| C | S1,S4,S10,S11,S12 | 0.455 ✓ | 0.357 ✓ | 0.416 ✓ | 0.455 ✓ |
+| D | S1,S4,S10,S13,S14 | 0.337 ✗ | 0.357 ✓ | 0.310 ✗ | 0.337 ✗ |
+
+Paper C (distintivo) passa em todos os esquemas. Paper D (artefatos/reprodutibilidade) só passa em S1 (uniforme). Paper A é robusto. Paper B é sanidade do título.
+
+**Recomendação do subagente:** **S0**. A revisão é especificamente sobre o que é distintivo de agentes LLM em RM (overhead, safety) — essas dimensões são as duas maiores frações individuais do vetor S0 (≈9.9% cada). S2, embora pareça atraente para taxonomia TPDS-style, afoga o que motivou RQ4.3.
+
+**Sobre S3 (threshold apertado):** ortogonal aos pesos. Decisão pode ser adiada até stage 03, quando o N inicial do Scopus estiver concreto.
+
+**Aguardando escolha:** S0, S1, S2, S3 — ou customização adicional.
+
+# User
+
+Prefiro S1, que é a abordagem mais permissiva, assim eu posso cortar manualmente os trabalhos irrelevantes que eu achar.
+
+# Claude
+
+S1 (pesos uniformes) aplicado. Filosofia editorial: recall > precision na triagem; poda manual final pelo usuário.
+
+**`thematic_sub_rq` (uniforme):** S1–S14 = 0.7 cada. Σ = 9.8.
+
+**Thresholds:**
+- Title (stage 04): soma T1+T2+T3 ≥ 2; hard rule qualquer Tᵢ = −1 → exclude.
+- Abstract (stage 05): score normalizado ≥ 0.35 (≈ 5+ sub-RQs ativas de 14).
+- Full-text (stage 06): score normalizado ≥ 0.55 ∧ gate binário Q1 ∧ Q2.
+
+**QA (binário, pesos para completude no YAML):** Q1 = 0.6, Q2 = 0.4. Gate AND no stage 06.
+
+**Aguardo:** `pronto`/`done`/`confirmo` para fechar Level 4 (commit `[01] level-4: weights proposed`) e abrir Level 5 (validação top-down/bottom-up + lock final do stage 01).
+
+# User
+
+confirmo
+
+# Claude
+
+**Pare. Conflito estrutural com a schema detectado antes do commit do Level 4.**
+
+O subagente inspecionou `scripts/validate_protocol.py` e `templates/protocols-schema.md` e identificou que o que foi commitado no Level 3 (`2899d1c`) não passa pelo validador. Os problemas:
+
+1. **IDs de critério.** Schema exige padrão `^C\d+$` (C1, C2, ...). Nossos IDs atuais (G1, G2, G4, G5, T1, T2, T3, S1..S14, Q1, Q2) falham.
+2. **Tipo `gate` não existe.** Schema só aceita `{thematic_rq, thematic_sub_rq, qa}`. Os 4 gates G1/G2/G4/G5 (peer-review, inglês, ≥2017, Scopus) precisam sair do `inclusion_criteria` e virar prose em CLAUDE.md §5 ou em `agents/_screening-protocol.md` como pre-filters.
+3. **Threshold deve estar em (0,1) estrito.** "Title sum ≥ 2 de 3" precisa ser representado como threshold normalizado **0.67** (≈ 2/3). 0.35 e 0.55 estão OK.
+4. **Hard-rules e AND gates fora da schema.** "Qualquer T = −1 exclui" e "Q1 ∧ Q2 AND-gate" não são campos da schema — vão para `agents/_screening-protocol.md` (consumido pelos consolidadores em stages 04/06).
+5. **Nomes canônicos:** `criteria_types` (não `criteria`) e `scale` (não `rule`):
+
+```yaml
+stage_allocation:
+  title:     {criteria_types: [thematic_rq],         scale: ternary,  threshold: 0.67}
+  abstract:  {criteria_types: [thematic_sub_rq],     scale: weighted, threshold: 0.35}
+  full_text: {criteria_types: [thematic_sub_rq, qa], scale: weighted, threshold: 0.55}
+```
+
+**Estado atual:** subagente já aplicou pesos S1..S14 = 0.7 e Q1=0.6/Q2=0.4 no YAML mantendo IDs antigos. `stage_allocation` e `models` ainda `{}`. **Nada commitado.**
+
+**Decisão necessária:** reabrir Level 3 com `[01] checkpoint: revisit criteria` para (a) re-IDar G/T/S/Q → C1..C23 e (b) tirar os 4 gates do YAML, movendo-os para CLAUDE.md §5 + screening protocol como hard pre-filters. Sem isso, o validador rejeita e Level 5 não fecha.
+
+Subagente não vai silently reescrever o que foi confirmado no Level 3 — é o tipo de ação proibida pelo contrato.
+
+**Aguardo:** `reabrir` / `manter e investigar alternativa` / outra orientação.
+
+# User
+
+1. **ID e nomenclatura.** Não seria possível simplesmente renomear os IDs para que G/T/S/Q se encaixem no formato exigido pelo schema? Por exemplo, G1 → C1, G2 → C2, ..., T1 → Cn, T2 → Cn+1, etc. Assim manteríamos a estrutura atual e atenderíamos aos requisitos do schema sem precisar mover os gates para outro lugar.
+2. **Tipo `gate`.** Não sei como resolver isso. Sugira alternativas.
+3. **Thresholds.** Concordo que uma alternativa seria normalizar o "sum ≥ 2 de 3" para 0.67.
+4. **Hard-rules e AND-gates.** Não sei como resolver isso. Sugira alternativas.
+5. **Nomes canônicos.** Se trata-se somente de uma questão de nomenclatura, podemos simplesmente renomear os campos.
+
+Não seria possível simplesmente modificar o protocolo para aceitar os tipos e formatos que já definimos?
+
+# Claude
+
+Análise do plugin pelo subagente:
+
+**Schema fixo no plugin:** IDs `^C\d+$`, tipos `{thematic_rq, thematic_sub_rq, qa}`, stage_allocation `{title, abstract, full_text}`, criteria_types por estágio também fixos. Sem campo `extra_rules`.
+
+**`agents/_screening-protocol.md` é do plugin** (compartilhado entre reviews) — sem placeholder para hard rules custom. Consolidadores leem apenas `protocols/screening.yaml` + JSONs dos sub-agentes; não leem texto livre.
+
+**Respostas:**
+
+1. **Renomeação Sxx/Txx → Cxx (Q1):** OK. Schema valida só o pattern do `id`. Semântica preservada em `text` (ex.: `id: C5, text: "[T1] The paper discusses agentic AI / LLM-based decision-making for resource management."`).
+
+2. **Gates G1–G5 (Q2):** três alternativas.
+   - **Alpha (recomendada):** G2/G4/G5 em `CLAUDE.md §4` como filtros de query Scopus (`LANGUAGE("English")`, `PUBYEAR > 2016`, `SRCTYPE("j" OR "p")`). G1 (não-survey) em `CLAUDE.md §5` como filtro determinístico no stage 03 via `doc-type` do Scopus, mais critério `thematic_rq` reforçando no título.
+   - **Beta:** apenas G1 vira critério; G2/G4/G5 ficam em §4.
+   - **Gamma:** modificar plugin (tipo `gate` + slot `pre_screening`). Quebra contrato com consolidadores — não recomendado.
+
+3. **Threshold 0.67 (Q3):** OK.
+
+4. **Hard-rules (Q4) — problema real.** Alternativas:
+   - **Alpha:** transformar T=−1 em score 0 no critério correspondente. Imperfeito — não substitui hard exclude; falha em casos limítrofes.
+   - **Beta:** AND-gate Q1∧Q2 → pesos altos + threshold alto. Imperfeito também.
+   - **Gamma:** fork local do plugin (`scripts/consolidate_screening.py`).
+   - **Mais honesta:** documentar T=−1 e Q1∧Q2 em `CLAUDE.md §5` como regras de revisão humana aplicadas no spreadsheet via coluna `My Final Decision`. O consolidador automático não as aplica; você aplica manualmente no review humano final de cada estágio.
+
+5. **Renomeação de campos (Q5):** OK como pura tradução.
+
+**Pergunta principal — modificar o plugin?** Subagente desencoraja. Contrato schema → consolidador → spreadsheet é apertado; modificar schema requer também modificar `consolidate_screening.py` e `regenerate_spreadsheet.py`. Alto custo de manutenção e divergência de upstream. Vale fork **se** a perda semântica em Q4 for inaceitável.
+
+**Caminho proposto:**
+
+1. Renomear todos os IDs para `C1..C23` (S→C, T→C, Q→C, prefixo semântico no `text`).
+2. Mover G2/G4/G5 para `CLAUDE.md §4` (filtros Scopus). G1 para `CLAUDE.md §5` (filtro determinístico no stage 03).
+3. Adicionar critério `thematic_rq` reforçando G1 no título (anti-survey check).
+4. Threshold título: 0.67.
+5. Hard rules T=−1 e Q1∧Q2 em `CLAUDE.md §5` como regras de revisão humana (não automatizadas).
+6. Renomeação de campos.
+
+Edits específicos quando confirmado:
+- `protocols/screening.yaml` — reescrever `inclusion_criteria` com IDs Cxx, ajustar `stage_allocation.title.threshold: 0.67`.
+- `CLAUDE.md §4` — bloco de filtros Scopus.
+- `CLAUDE.md §5` — bloco "Parse-time filters" (G1) e "Manual review rules" (T=−1, Q1∧Q2).
+
+**Aguardo:** `pronto`/`done`/`confirmo` para o caminho proposto, ou peça detalhamento do fork do plugin se preferir preservar Q4 com rigor automático.
+
+# User
+
+1. Concordo, podemos renomear os IDs para C1..C23.
+2. Concordo parcialmente. SRCTYPE e LANGUAGE no Scopus dependem de indexação perfeita. Único filtro seguro: PUBYEAR > 2016. Tipo de documento e idioma → triagem manual.
+3. Discordo. Triagem manual de não-primários.
+4. Concordo, threshold 0.67.
+5. Não seria possível modificar a escala? -1 → 0, 0 → 0.5, +1 → 1.
+6. Concordo.
+
+# Claude
+
+**Descoberta importante:** o plugin **já implementa nativamente** o remapeamento que você propôs em (5). Em `_screening-subagent.md` linha 52, o título usa escala {0, 0.5, 1} e `final_score = unweighted mean`. O nome "ternary" no schema refere-se ao conjunto {0, 0.5, 1}, não ao sinal. **Sua proposta é exatamente o que o plugin faz.**
+
+**Tabela (3 critérios, threshold 0.67):**
+
+| C1,C2,C3 | mean | decisão |
+|---|---|---|
+| 1,1,1 | 1.000 | INCLUDE |
+| 1,1,0.5 | 0.833 | INCLUDE |
+| 1,1,0 | 0.667 | borderline (≥ inclui) |
+| 1,0.5,0.5 | 0.667 | borderline |
+| 1,0.5,0 | 0.500 | EXCLUDE |
+| 0,0,0 | 0.000 | EXCLUDE |
+
+Comportamento monotônico, sem hard rules separadas.
+
+**Sobre QA no full-text:** consolidador faz `final_score = (Σ wᵢ · scoreᵢ) / (Σ wᵢ)` sobre UNIÃO de `thematic_sub_rq + qa`. Não há AND-gate; apenas threshold. Trade-off: paper que falha Q2 mas é sólido nas demais dimensões passa. (Você já aceitou recall > precision com poda manual.)
+
+**Caminho atualizado:**
+
+1. Renomear T1..T3, S1..S14, Q1..Q2 → C1..C19.
+2. Scopus query: apenas `PUBYEAR > 2016`. Remover `LANGUAGE` e `SRCTYPE`.
+3. G1, G2, G5 fora de `inclusion_criteria` — em CLAUDE.md §5 como manual review rules.
+4. Title threshold 0.67. `scale: ternary` permanece (já é {0, 0.5, 1}).
+5. Sem regras textuais hard.
+6. Field renaming: nomes do schema já são canônicos.
+
+**Estrutura final (19 critérios):**
+- C1, C2, C3 — `thematic_rq`, weight=null (antigos T1..T3).
+- C4..C17 — `thematic_sub_rq`, weight=0.7 cada (S1 uniforme).
+- C18, C19 — `qa`, weight 0.6 e 0.4.
+
+**ATENÇÃO — divergência:** o subagente sugeriu thresholds `abstract: 0.6` e `full_text: 0.6`, mas em Level 4 você confirmou `abstract: 0.35` e `full_text: 0.55`. Antes do commit, decida: manter 0.35/0.55 (Level 4 original) ou aceitar 0.6/0.6 (proposta nova)?
+
+**Aguardo:**
+1. Confirmação do caminho atualizado (`pronto`/`done`/`confirmo`).
+2. Decisão sobre thresholds: 0.35/0.55 ou 0.6/0.6?
+
+# User
+
+Manter 0.35 / 0.55 (Level 4 confirmado).
+
+# Claude
+
+Caminho consolidado pelo subagente. Aguardando confirmação textual única para aplicar todo o conjunto.
+
+**Renomeação:** T1..T3 → C1..C3 (`thematic_rq`, weight=null); S1..S14 → C4..C17 (`thematic_sub_rq`, weight=0.7 uniforme); Q1 → C18 (`qa`, weight=0.6); Q2 → C19 (`qa`, weight=0.4). 19 critérios. Prefixos `[T1]`, `[S1]`, `[Q1]` preservados em `text`.
+
+**Gates removidos de `inclusion_criteria`:** G1/G2/G5 → CLAUDE.md §5 (revisão manual stages 04/05); G4 → CLAUDE.md §4 como filtro Scopus `PUBYEAR > 2016`.
+
+**`stage_allocation`:**
+- title: scale ternary, threshold 0.67.
+- abstract: scale weighted, threshold 0.35.
+- full_text: scale weighted, threshold 0.55.
+
+**Sem hard rules textuais.** Threshold + média não-ponderada fazem o gating.
+
+**CLAUDE.md:** §4 ganha filtro Scopus; §5 ganha bloco "Manual review rules" (G1, G2, G5 — coluna `My Final Decision`).
+
+**Commit único:** `[01] checkpoint: revisit criteria` consolidando renomeação + remoção de gates + thresholds + pesos Level 4 + filtro Scopus + manual rules. Em seguida: Level 5 (validador + lock).
+
+**Aguardo:** `pronto`/`done`/`confirmo` para aplicar todo o conjunto.

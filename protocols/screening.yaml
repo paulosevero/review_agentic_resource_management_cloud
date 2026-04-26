@@ -1,12 +1,12 @@
 # protocols/screening.yaml
 # Authoritative machine-readable form of the screening protocol.
 # Built incrementally across the five levels of stage 01:
-#   Level 1 — research questions (this commit).
+#   Level 1 — research questions.
 #   Level 2 — sub-RQs.
 #   Level 3 — inclusion criteria (typed, refs).
 #   Level 4 — weights, stage_allocation, models.
 #   Level 5 — validation + lock.
-# The validator (scripts/validate_protocol.py) is executed only at Level 5.
+# The validator (scripts/validate_protocol.py) is executed at Level 5.
 
 pattern: thematic_decomposition
 
@@ -56,131 +56,130 @@ research_questions:
         text: "Governance, accountability, and auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability)."
 
 inclusion_criteria:
-  # ---- Hard gates (binary; applied before scoring at title/abstract; full-text re-checks G1, G2, G4, G5) ----
-  - id: G1
-    type: gate
-    refs: [RQ1, RQ2, RQ3, RQ4, RQ5]
-    text: "Peer-reviewed venue (journal, conference, or workshop indexed in Scopus). Excludes editorials, keynotes, posters, tutorials, panels, books, theses, and grey literature."
-    weight: null
-  - id: G2
-    type: gate
-    refs: [RQ1, RQ2, RQ3, RQ4, RQ5]
-    text: "Written in English."
-    weight: null
-  - id: G4
-    type: gate
-    refs: [RQ1, RQ2, RQ3, RQ4, RQ5]
-    text: "Published in 2017 or later (Transformer era; pre-LLM RL/MARL agentic loops technically possible)."
-    weight: null
-  - id: G5
-    type: gate
-    refs: [RQ1, RQ2, RQ3, RQ4, RQ5]
-    text: "Indexed in Scopus."
-    weight: null
-
-  # ---- Thematic — RQ-level (ternary at title stage; +1 satisfies, 0 unclear, −1 violates) ----
-  - id: T1
+  # ---- Thematic — RQ-level (ternary at title stage) ----
+  - id: C1
     type: thematic_rq
-    refs: [RQ1, RQ3]
-    text: "The paper signals an agentic AI / LLM-based agent component (perceive-reason-act loop, LLM-driven planning, tool/function calling, multi-agent LLM orchestration, ReAct/Plan-and-Execute/Reflexion-style reasoning)."
+    refs: [RQ1, RQ2, RQ3, RQ4, RQ5]
+    text: "[T1] The title indicates an agentic AI system or LLM-based decision-making mechanism (agents, agentic, LLM, large language model, autonomous AI, intelligent control, conversational AI, foundation model, or related terms)."
     weight: null
-  - id: T2
+  - id: C2
     type: thematic_rq
-    refs: [RQ2, RQ4]
-    text: "The paper signals a resource management decision (scheduling, placement, scaling, admission control, energy/power management, fault response, load balancing, migration, provisioning, orchestration)."
+    refs: [RQ2]
+    text: "[T2] The title mentions a resource management decision (resource management, placement, scheduling, allocation, autoscaling, migration, routing, slicing, orchestration, capacity planning, governance, infrastructure management, or related)."
     weight: null
-  - id: T3
+  - id: C3
     type: thematic_rq
-    refs: [RQ1, RQ2]
-    text: "The paper signals a distributed-infrastructure context (cloud, edge, fog, edge-cloud continuum, Kubernetes, multi-cluster, datacenter)."
+    refs: [RQ1, RQ2, RQ3, RQ4, RQ5]
+    text: "[T3] The title mentions cloud, edge, fog, continuum, serverless, FaaS, Kubernetes, MEC, datacenter, or related distributed-infrastructure terms."
     weight: null
 
   # ---- Thematic — sub-RQ-level (weighted at abstract and full-text stages) ----
-  - id: S1
+  - id: C4
     type: thematic_sub_rq
     refs: [RQ1.1]
-    text: "The abstract or full text describes the architectural pattern of the agent loop (single-agent, multi-agent, hierarchical) or names a reasoning pattern (ReAct, Plan-and-Execute, Reflexion, debate)."
-    weight: null
-  - id: S2
+    text: "[S1] The paper describes the architectural pattern of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical; ReAct, Plan-and-Execute, Reflexion, or variants)."
+    weight: 0.7
+  - id: C5
     type: thematic_sub_rq
     refs: [RQ1.2]
-    text: "The paper describes how the agent couples to infrastructure (tools, APIs, MCP, function calling, action grammar, integration with Kubernetes or another orchestrator)."
-    weight: null
-  - id: S3
+    text: "[S2] The paper specifies how the agent couples to infrastructure (tools, APIs, MCP, integration with Kubernetes/orchestrators) and describes the action grammar."
+    weight: 0.7
+  - id: C6
     type: thematic_sub_rq
     refs: [RQ1.3]
-    text: "The paper describes safety or guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback, dry-run, simulation-before-act)."
-    weight: null
-  - id: S4
+    text: "[S3] The paper describes safety/guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback) or explicitly justifies their absence."
+    weight: 0.7
+  - id: C7
     type: thematic_sub_rq
     refs: [RQ2.1]
-    text: "The paper specifies the class of resource management decisions delegated to the agent (e.g., scheduling, placement, scaling, admission, energy, fault response)."
-    weight: null
-  - id: S5
+    text: "[S4] The paper identifies the classes of resource management decisions delegated to the agent (scheduling, placement, scaling, admission, energy, fault response, etc.)."
+    weight: 0.7
+  - id: C8
     type: thematic_sub_rq
     refs: [RQ2.2]
-    text: "The paper specifies operational conditions and the agent's autonomy level (advisory, supervised, autonomous; closed-loop vs human-in-the-loop)."
-    weight: null
-  - id: S6
+    text: "[S5] The paper characterizes operational conditions and the level of autonomy of the agent (advisory, supervised, autonomous)."
+    weight: 0.7
+  - id: C9
     type: thematic_sub_rq
     refs: [RQ3.1]
-    text: "The paper describes the reasoning process used by the agent (CoT, ToT, ReAct, planning + reflection, debate, self-consistency, structured reasoning)."
-    weight: null
-  - id: S7
+    text: "[S6] The paper articulates the reasoning process employed (CoT, ToT, ReAct, planning + reflection, debate, self-consistency)."
+    weight: 0.7
+  - id: C10
     type: thematic_sub_rq
     refs: [RQ3.2]
-    text: "The paper describes grounding mechanisms (telemetry ingestion, RAG over runbooks/docs, episodic memory, vector DB, knowledge graph)."
-    weight: null
-  - id: S8
+    text: "[S7] The paper describes grounding mechanisms (telemetry ingestion, RAG over runbooks/docs, episodic memory, vector DBs, knowledge graphs)."
+    weight: 0.7
+  - id: C11
     type: thematic_sub_rq
     refs: [RQ3.3]
-    text: "The paper describes how domain knowledge is incorporated (fine-tuning, structured prompting, few-shot exemplars, infrastructure ontologies)."
-    weight: null
-  - id: S9
+    text: "[S8] The paper describes how domain knowledge is incorporated into the agent (fine-tuning, structured prompting, few-shot, infrastructure ontologies)."
+    weight: 0.7
+  - id: C12
     type: thematic_sub_rq
     refs: [RQ4.1]
-    text: "The paper describes the evaluation methodology and environment (simulation, real testbed, production, synthetic benchmark, real trace, dataset name)."
-    weight: null
-  - id: S10
+    text: "[S9] The paper describes the evaluation methodology and experimental environment (simulation, real testbed, production, synthetic benchmarks, real traces)."
+    weight: 0.7
+  - id: C13
     type: thematic_sub_rq
     refs: [RQ4.2]
-    text: "The paper reports resource-management performance metrics (latency, cost, energy, SLA violations, utilization, throughput, makespan)."
-    weight: null
-  - id: S11
+    text: "[S10] The paper reports resource-management performance metrics (latency, cost, energy, SLA, utilization, throughput)."
+    weight: 0.7
+  - id: C14
     type: thematic_sub_rq
     refs: [RQ4.3]
-    text: "The paper reports agent or inference overhead metrics (token usage, inference latency, monetary cost per decision, model size, agent-loop throughput, decision frequency)."
-    weight: null
-  - id: S12
+    text: "[S11] The paper reports agent/inference overhead metrics (token usage, inference latency, monetary cost per decision, model footprint, agent-loop throughput)."
+    weight: 0.7
+  - id: C15
     type: thematic_sub_rq
     refs: [RQ4.4]
-    text: "The paper reports safety and governance metrics (rate of unsafe/invalid actions, frequency of human intervention, audit coverage, policy compliance, hallucination rate)."
-    weight: null
-  - id: S13
+    text: "[S12] The paper reports safety/governance metrics (rate of unsafe/invalid actions, frequency of human intervention, audit coverage, policy compliance)."
+    weight: 0.7
+  - id: C16
     type: thematic_sub_rq
     refs: [RQ5.1]
-    text: "The paper articulates unresolved methodological or technical tensions (inference cost vs decision latency, hallucination in critical environments, transferability across infrastructures)."
-    weight: null
-  - id: S14
+    text: "[S13] The paper discusses unresolved methodological/technical tensions (inference cost vs. decision latency, hallucination, transferability)."
+    weight: 0.7
+  - id: C17
     type: thematic_sub_rq
     refs: [RQ5.2]
-    text: "The paper articulates governance, accountability, or auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability)."
-    weight: null
+    text: "[S14] The paper discusses governance, accountability, or auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability)."
+    weight: 0.7
 
-  # ---- Quality assessment (weighted at full-text stage) ----
-  - id: Q1
+  # ---- Quality assessment (weighted; applied at full-text stage) ----
+  - id: C18
     type: qa
-    refs: [RQ1, RQ3]
-    text: "The paper provides a sufficiently detailed description of the agent design (model identity or family, prompt/tool surface, reasoning pattern, decision flow) to enable conceptual reproducibility."
-    weight: null
-  - id: Q2
+    refs: [RQ1, RQ2]
+    text: "[Q1] The paper describes the design of an agentic AI system for resource management with sufficient detail to understand how the system works."
+    weight: 0.6
+  - id: C19
     type: qa
     refs: [RQ4]
-    text: "The paper presents an empirical evaluation (qualitative or quantitative) of the agent in a resource-management setting, beyond a purely conceptual proposal."
-    weight: null
+    text: "[Q2] The paper presents an evaluation of the proposed agentic AI system."
+    weight: 0.4
 
-stage_allocation: {}
+stage_allocation:
+  title:
+    criteria_types: [thematic_rq]
+    scale: ternary
+    threshold: 0.67
+  abstract:
+    criteria_types: [thematic_sub_rq]
+    scale: weighted
+    threshold: 0.35
+  full_text:
+    criteria_types: [thematic_sub_rq, qa]
+    scale: weighted
+    threshold: 0.55
 
-models: {}
+models:
+  title:
+    sub_agent_1: claude-haiku-4-5
+    sub_agent_2: claude-haiku-4-5
+  abstract:
+    sub_agent_1: claude-sonnet-4-6
+    sub_agent_2: claude-sonnet-4-6
+  full_text:
+    sub_agent_1: claude-opus-4-7
+    sub_agent_2: claude-opus-4-7
 
 seed_global: 20260425

@@ -89,46 +89,57 @@ The review covers agentic AI systems whose autonomous loop drives resource manag
 
 **Notes on per-database adaptation:** `<If the string had to be adapted to each database's syntax, record the adaptations here. Filled by /02-search-string.>`
 
+**Pre-decided database filters (locked at stage 01):**
+
+- **Scopus** — apply temporal-window filter `PUBYEAR > 2016` (Transformer-era boundary; pre-LLM agentic loops out of scope). The full Boolean query is produced by `/02-search-string`; this filter is a fixed clause appended to whatever string that stage emits for Scopus.
+
 ## 5. Inclusion Criteria (typed)
 
-Criteria are typed (`gate` / `thematic_rq` / `thematic_sub_rq` / `qa`) and weighted, declared once at stage 01, and locked alongside the rest of `protocols/screening.yaml`. This section is the readable mirror; the authoritative definition lives in the YAML. Each criterion is anchored to one or more RQ or sub-RQ ids via `refs`. When the protocol is reopened (`[01] checkpoint: revisit criteria`), this section is regenerated from the updated YAML.
+Criteria are typed (`thematic_rq` / `thematic_sub_rq` / `qa`) and weighted, declared once at stage 01, and locked alongside the rest of `protocols/screening.yaml`. This section is the readable mirror; the authoritative definition lives in the YAML. Each criterion is anchored to one or more RQ or sub-RQ ids via `refs`. When the protocol is reopened (`[01] checkpoint: revisit criteria`), this section is regenerated from the updated YAML.
 
-### Hard gates (binary; pre-scoring at title/abstract; full-text re-checks)
+Hard gates (peer-review, language, year, indexing) are not encoded as criteria in v2. Year is enforced via a database-side filter (see §4); language, document type, and source quality are enforced via the manual-review rules block below.
 
-- **G1** — refs: `[all RQs]` — Peer-reviewed venue (journal, conference, workshop) indexed in Scopus. Excludes editorials, keynotes, posters, tutorials, panels, books, theses, grey literature.
-- **G2** — refs: `[all RQs]` — Written in English.
-- **G4** — refs: `[all RQs]` — Published in 2017 or later (Transformer era).
-- **G5** — refs: `[all RQs]` — Indexed in Scopus.
+### `thematic_rq` (ternary at stage 04 — title screening; weight: null)
 
-### `thematic_rq` (ternary at stage 04: +1 / 0 / −1)
-
-- **T1** — refs: `[RQ1, RQ3]` — Agentic AI / LLM-based agent component signal (perceive-reason-act loop, LLM-driven planning, tool/function calling, multi-agent LLM, ReAct/Plan-and-Execute/Reflexion).
-- **T2** — refs: `[RQ2, RQ4]` — Resource management decision signal (scheduling, placement, scaling, admission, energy, fault response, load balancing, migration, provisioning, orchestration).
-- **T3** — refs: `[RQ1, RQ2]` — Distributed-infrastructure context signal (cloud, edge, fog, continuum, Kubernetes, multi-cluster, datacenter).
+- **C1 — [T1]** — refs: `[RQ1, RQ2, RQ3, RQ4, RQ5]` — The title indicates an agentic AI system or LLM-based decision-making mechanism (agents, agentic, LLM, large language model, autonomous AI, intelligent control, conversational AI, foundation model, or related terms).
+- **C2 — [T2]** — refs: `[RQ2]` — The title mentions a resource management decision (resource management, placement, scheduling, allocation, autoscaling, migration, routing, slicing, orchestration, capacity planning, governance, infrastructure management, or related).
+- **C3 — [T3]** — refs: `[RQ1, RQ2, RQ3, RQ4, RQ5]` — The title mentions cloud, edge, fog, continuum, serverless, FaaS, Kubernetes, MEC, datacenter, or related distributed-infrastructure terms.
 
 ### `thematic_sub_rq` (weighted, applies at stages 05 and 06)
 
-- **S1** — refs: `[RQ1.1]` — Architectural pattern of the agent loop / reasoning pattern named.
-- **S2** — refs: `[RQ1.2]` — Coupling to infrastructure (tools, APIs, MCP, function calling, K8s integration).
-- **S3** — refs: `[RQ1.3]` — Safety / guardrail mechanisms (HITL, validators, sandboxing, policy gates, rollback).
-- **S4** — refs: `[RQ2.1]` — Class of resource management decisions delegated.
-- **S5** — refs: `[RQ2.2]` — Operational conditions and autonomy level.
-- **S6** — refs: `[RQ3.1]` — Reasoning process (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).
-- **S7** — refs: `[RQ3.2]` — Grounding mechanisms (telemetry, RAG, episodic memory, vector DB, KG).
-- **S8** — refs: `[RQ3.3]` — Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, ontologies).
-- **S9** — refs: `[RQ4.1]` — Evaluation methodology and environment.
-- **S10** — refs: `[RQ4.2]` — Resource-management performance metrics.
-- **S11** — refs: `[RQ4.3]` — Agent / inference overhead metrics.
-- **S12** — refs: `[RQ4.4]` — Safety and governance metrics.
-- **S13** — refs: `[RQ5.1]` — Unresolved methodological / technical tensions.
-- **S14** — refs: `[RQ5.2]` — Governance / accountability / auditability gaps.
+- **C4 — [S1]** — refs: `[RQ1.1]` — weight: 0.7 — Architectural pattern of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical; ReAct, Plan-and-Execute, Reflexion, or variants).
+- **C5 — [S2]** — refs: `[RQ1.2]` — weight: 0.7 — Coupling to infrastructure (tools, APIs, MCP, integration with Kubernetes/orchestrators) and action grammar.
+- **C6 — [S3]** — refs: `[RQ1.3]` — weight: 0.7 — Safety/guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback) or explicit justification of their absence.
+- **C7 — [S4]** — refs: `[RQ2.1]` — weight: 0.7 — Classes of resource management decisions delegated to the agent.
+- **C8 — [S5]** — refs: `[RQ2.2]` — weight: 0.7 — Operational conditions and level of autonomy (advisory, supervised, autonomous).
+- **C9 — [S6]** — refs: `[RQ3.1]` — weight: 0.7 — Reasoning process employed (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).
+- **C10 — [S7]** — refs: `[RQ3.2]` — weight: 0.7 — Grounding mechanisms (telemetry, RAG, episodic memory, vector DBs, knowledge graphs).
+- **C11 — [S8]** — refs: `[RQ3.3]` — weight: 0.7 — Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, infrastructure ontologies).
+- **C12 — [S9]** — refs: `[RQ4.1]` — weight: 0.7 — Evaluation methodology and experimental environment.
+- **C13 — [S10]** — refs: `[RQ4.2]` — weight: 0.7 — Resource-management performance metrics.
+- **C14 — [S11]** — refs: `[RQ4.3]` — weight: 0.7 — Agent/inference overhead metrics.
+- **C15 — [S12]** — refs: `[RQ4.4]` — weight: 0.7 — Safety/governance metrics.
+- **C16 — [S13]** — refs: `[RQ5.1]` — weight: 0.7 — Unresolved methodological/technical tensions.
+- **C17 — [S14]** — refs: `[RQ5.2]` — weight: 0.7 — Governance, accountability, or auditability gaps.
 
-### `qa` (weighted, applies at stage 06)
+### `qa` (weighted, applies at stage 06 — full-text screening)
 
-- **Q1** — refs: `[RQ1, RQ3]` — Sufficient agent-design detail for conceptual reproducibility.
-- **Q2** — refs: `[RQ4]` — Empirical evaluation (qualitative or quantitative) beyond a purely conceptual proposal.
+- **C18 — [Q1]** — refs: `[RQ1, RQ2]` — weight: 0.6 — Agentic-AI-for-resource-management design described with sufficient detail to understand how the system works.
+- **C19 — [Q2]** — refs: `[RQ4]` — weight: 0.4 — Evaluation of the proposed agentic AI system is presented.
 
-Weights are filled at Level 4.
+### Stage allocation and thresholds (locked at Level 4)
+
+- **Title (stage 04):** types `[thematic_rq]`, scale `ternary`, threshold `0.67`.
+- **Abstract (stage 05):** types `[thematic_sub_rq]`, scale `weighted`, threshold `0.35`.
+- **Full-text (stage 06):** types `[thematic_sub_rq, qa]`, scale `weighted`, threshold `0.55`.
+
+### Manual review rules
+
+Hard gates that are easier to enforce by reading the record's metadata than by an LLM judgment. Applied during stages 04 and 05 via the `My Final Decision` column of the per-stage spreadsheet, which overrides the automatic screening decision.
+
+1. **Document type.** Exclude surveys, systematic reviews, mapping studies, editorials, posters, abstracts-only, tutorials, demos without evaluation, and book chapters.
+2. **Language.** Exclude papers not written in English.
+3. **Source quality.** Exclude non-peer-reviewed records (e.g., arXiv-only, preprint-only, unpublished technical reports).
 
 ## 6. Reserved
 
