@@ -1,0 +1,64 @@
+---
+id: "paper-2941"
+title: "Next-Gen Datacenter and Campus Optics: Technology Choices beyond 200 Gbps per Lane IM-DD"
+authors: ["Zhou, Xiang", "Mao, Erji", "Lam, Cedric Fung", "Liu, Hong"]
+year: 2026
+venue: "Journal of Lightwave Technology"
+venue_type: "journal"
+doi: "10.1109/JLT.2026.3654031"
+url: "https://www.scopus.com/pages/publications/105028189530?origin=resultslist"
+publisher: "Institute of Electrical and Electronics Engineers Inc."
+pages: "845--860"
+keywords: ["Coherent detection", "Coherent PAM", "Datacenter", "Direct detection", "DSP", "Heterodyne", "Heterodyne-SSB", "IM-DD", "Modulation format", "PoFo", "Polarization-folding", "Single sideband coherent detection", "SSB", "Time-diversity coherent detection"]
+language: "English"
+source:
+  databases: ["Scopus"]
+  exports: ["scopus-2026-04-26.bib"]
+  dedup:
+    merged_from: []
+    merge_reason: ""
+status:
+  "04-title-screening": pending
+  "05-abstract-screening": pending
+  "06-full-text-screening": pending
+  "07-taxonomy": pending
+  "08-analysis": pending
+---
+
+# paper-2941 — Next-Gen Datacenter and Campus Optics: Technology Choices beyond 200 Gbps per Lane IM-DD
+
+## Metadata
+
+- **Authors:** Zhou, Xiang and Mao, Erji and Lam, Cedric Fung and Liu, Hong
+- **Year:** 2026
+- **Venue:** Journal of Lightwave Technology
+- **DOI:** 10.1109/JLT.2026.3654031
+- **URL:** https://www.scopus.com/pages/publications/105028189530?origin=resultslist
+- **Publisher:** Institute of Electrical and Electronics Engineers Inc.
+- **Pages:** 845--860
+- **Language:** English
+- **Keywords:** Coherent detection; Coherent PAM; Datacenter; Direct detection; DSP; Heterodyne; Heterodyne-SSB; IM-DD; Modulation format; PoFo; Polarization-folding; Single sideband coherent detection; SSB; Time-diversity coherent detection
+
+### Abstract
+
+The rapid emergence of large language model (LLM) enabled machine-learning applications is fueling an explosive growth in datacenter and campus scale network bandwidth demand. This tutorial examines the progress and scaling limitations of intensity modulation and direct detection (IM-DD) based optical technologies and explores how optimized coherent technology, such as the newly proposed 2-dimensional (2D) polarization-folding (PoFo) time-diversity approach, as well as a novel Heterodyne single sideband (H-SSB) coherent detection technology, can address some of these challenges. © 1983-2012 IEEE.
+
+## 04 — Title Screening
+
+<!-- Populated by /04-title-screening -->
+
+## 05 — Abstract Screening
+
+<!-- Populated by /05-abstract-screening -->
+
+## 06 — Full-Text Screening
+
+<!-- Populated by /06-full-text-screening -->
+
+## 07 — Taxonomy
+
+<!-- Populated by /07-taxonomy-development -->
+
+## 08 — Analysis
+
+<!-- Populated by /08-analysis -->

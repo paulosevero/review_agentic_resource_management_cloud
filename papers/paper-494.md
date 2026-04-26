@@ -1,0 +1,64 @@
+---
+id: "paper-494"
+title: "Learning Mean-Field Control for Delayed Information Load Balancing in Large Queuing Systems"
+authors: ["Tahir, Anam", "Cui, Kai", "Koeppl, Heinz"]
+year: 2022
+venue: "ACM International Conference Proceeding Series"
+venue_type: "conference"
+doi: "10.1145/3545008.3545025"
+url: "https://www.scopus.com/pages/publications/85138543215?origin=resultslist"
+publisher: "Association for Computing Machinery"
+pages: ""
+keywords: ["load balancing", "mean-field control", "parallel systems", "reinforcement learning"]
+language: "English"
+source:
+  databases: ["Scopus"]
+  exports: ["scopus-2026-04-26.bib"]
+  dedup:
+    merged_from: []
+    merge_reason: ""
+status:
+  "04-title-screening": pending
+  "05-abstract-screening": pending
+  "06-full-text-screening": pending
+  "07-taxonomy": pending
+  "08-analysis": pending
+---
+
+# paper-494 — Learning Mean-Field Control for Delayed Information Load Balancing in Large Queuing Systems
+
+## Metadata
+
+- **Authors:** Tahir, Anam and Cui, Kai and Koeppl, Heinz
+- **Year:** 2022
+- **Venue:** ACM International Conference Proceeding Series
+- **DOI:** 10.1145/3545008.3545025
+- **URL:** https://www.scopus.com/pages/publications/85138543215?origin=resultslist
+- **Publisher:** Association for Computing Machinery
+- **Pages:** 
+- **Language:** English
+- **Keywords:** load balancing; mean-field control; parallel systems; reinforcement learning
+
+### Abstract
+
+Recent years have seen a great increase in the capacity and parallel processing power of data centers and cloud services. To fully utilize the said distributed systems, optimal load balancing for parallel queuing architectures must be realized. Existing state-of-the-art solutions fail to consider the effect of communication delays on the behaviour of very large systems with many clients. In this work, we consider a multi-agent load balancing system, with delayed information, consisting of many clients (load balancers) and many parallel queues. In order to obtain a tractable solution, we model this system as a mean-field control problem with enlarged state-action space in discrete time through exact discretization. Subsequently, we apply policy gradient reinforcement learning algorithms to find an optimal load balancing solution. Here, the discrete-time system model incorporates a synchronization delay under which the queue state information is synchronously broadcasted and updated at all clients. We then provide theoretical performance guarantees for our methodology in large systems. Finally, using experiments, we prove that our approach is not only scalable but also shows good performance when compared to the state-of-the-art power-of-d variant of the Join-the-Shortest-Queue (JSQ) and other policies in the presence of synchronization delays.  © 2022 Owner/Author.
+
+## 04 — Title Screening
+
+<!-- Populated by /04-title-screening -->
+
+## 05 — Abstract Screening
+
+<!-- Populated by /05-abstract-screening -->
+
+## 06 — Full-Text Screening
+
+<!-- Populated by /06-full-text-screening -->
+
+## 07 — Taxonomy
+
+<!-- Populated by /07-taxonomy-development -->
+
+## 08 — Analysis
+
+<!-- Populated by /08-analysis -->

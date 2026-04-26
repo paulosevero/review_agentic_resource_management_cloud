@@ -1,0 +1,64 @@
+---
+id: "paper-1608"
+title: "Cognitive UAV-Assisted Offloading for Mobile Edge Computing Based on Multi-Agent Deep Reinforcement Learning"
+authors: ["Guo, Shaoai", "Li, Zan", "Yan, Junjie", "Zhao, Xiaohui"]
+year: 2025
+venue: "IEEE Wireless Communications and Networking Conference, WCNC"
+venue_type: "conference"
+doi: "10.1109/WCNC61545.2025.10978764"
+url: "https://www.scopus.com/pages/publications/105006436403?origin=resultslist"
+publisher: "Institute of Electrical and Electronics Engineers Inc."
+pages: ""
+keywords: ["cognitive radio", "mobile edge computing", "multi-agent deep reinforcement learning", "UAV-assisted offloading"]
+language: "English"
+source:
+  databases: ["Scopus"]
+  exports: ["scopus-2026-04-26.bib"]
+  dedup:
+    merged_from: []
+    merge_reason: ""
+status:
+  "04-title-screening": pending
+  "05-abstract-screening": pending
+  "06-full-text-screening": pending
+  "07-taxonomy": pending
+  "08-analysis": pending
+---
+
+# paper-1608 — Cognitive UAV-Assisted Offloading for Mobile Edge Computing Based on Multi-Agent Deep Reinforcement Learning
+
+## Metadata
+
+- **Authors:** Guo, Shaoai and Li, Zan and Yan, Junjie and Zhao, Xiaohui
+- **Year:** 2025
+- **Venue:** IEEE Wireless Communications and Networking Conference, WCNC
+- **DOI:** 10.1109/WCNC61545.2025.10978764
+- **URL:** https://www.scopus.com/pages/publications/105006436403?origin=resultslist
+- **Publisher:** Institute of Electrical and Electronics Engineers Inc.
+- **Pages:** 
+- **Language:** English
+- **Keywords:** cognitive radio; mobile edge computing; multi-agent deep reinforcement learning; UAV-assisted offloading
+
+### Abstract
+
+Considering the limited spectrum and incomplete coverage of communication infrastructures for mobile edge computing (MEC), we present a cognitive unmanned aerial vehicle (UAV)-assisted MEC system, where UAVs share licensed spectrum with primary user (PU) for computation offloading. A joint trajectory design, power control, and computation task allocation (JTPAC) problem is formulated to minimize the long term system cost under the constraint of PU communication rate. To solve this complicated problem, we transform it into a partially observable Markov decision process (POMDP) based optimization and propose a multi-agent deep deterministic policy gradient (MADDPG)-based JTPAC algorithm. Simulation results show that the proposed algorithm achieves lower system cost compared to the benchmark algorithms and the PU communication rate can be guaranteed under different situations. © 2025 IEEE.
+
+## 04 — Title Screening
+
+<!-- Populated by /04-title-screening -->
+
+## 05 — Abstract Screening
+
+<!-- Populated by /05-abstract-screening -->
+
+## 06 — Full-Text Screening
+
+<!-- Populated by /06-full-text-screening -->
+
+## 07 — Taxonomy
+
+<!-- Populated by /07-taxonomy-development -->
+
+## 08 — Analysis
+
+<!-- Populated by /08-analysis -->

@@ -30,7 +30,7 @@ locks:
   00-new-review:                locked    # pending | locked
   01-research-questions:        locked
   02-search-string:             locked
-  03-parse-references-metadata: pending
+  03-parse-references-metadata: locked
   04-title-screening:           pending
   05-abstract-screening:        pending
   06-full-text-screening:       pending
@@ -143,7 +143,7 @@ AND
 
 **Target databases:** Scopus only. Web of Science, IEEE Xplore, and ACM Digital Library were explicitly excluded by the user.
 
-**Search executed on:** `<YYYY-MM-DD, filled when the user runs /03-parse-references-metadata and reports the date of the manual search>`
+**Search executed on:** `2026-04-26`
 
 **Notes on per-database adaptation:**
 

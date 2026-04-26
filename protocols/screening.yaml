@@ -183,3 +183,17 @@ models:
     sub_agent_2: claude-opus-4-7
 
 seed_global: 20260425
+
+corpus:
+  search_date: "2026-04-26"
+  databases:
+    - name: Scopus
+      export_file: "scopus-2026-04-26.bib"
+      raw_records: 2950
+      after_dedup: 2949
+      merged: 1
+      dedup_methods:
+        - doi_exact: 1
+        - title_year_author: 0
+  total_unique: 2949
+  paper_id_range: "paper-001 to paper-2949"
