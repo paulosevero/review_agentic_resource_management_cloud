@@ -745,3 +745,141 @@ Caminho consolidado pelo subagente. Aguardando confirmação textual única para
 **Commit único:** `[01] checkpoint: revisit criteria` consolidando renomeação + remoção de gates + thresholds + pesos Level 4 + filtro Scopus + manual rules. Em seguida: Level 5 (validador + lock).
 
 **Aguardo:** `pronto`/`done`/`confirmo` para aplicar todo o conjunto.
+
+# User
+
+## Context
+
+Stage 02 of a rapid-review on "Agentic AI for resource management in Cloud/Edge/Fog".
+
+**Review directory:** `/Users/paulosouza/Documents/Carreira/Pesquisa/Código/review_agentic_resource_management_cloud`
+
+A previous subagent made a bad `[02] lock` commit (`a40c2c7`) that used a truncated, inconsistent string instead of the agreed merged string. The user has asked to revert that commit and redo with the correct full string.
+
+[... steps and correct §4 content provided in task ...]
+
+# Claude
+
+Feito. Resumo:
+
+- Reset do commit corrompido `a40c2c7` via `git reset --hard HEAD~1`
+- CLAUDE.md §4 reescrito com a string completa (base + query Scopus-ready com `TITLE-ABS-KEY` e `PUBYEAR > 2016`)
+- `locks.02-search-string` atualizado para `locked`
+- Commit `a6a79eb` — `[02] lock: search string finalized for Scopus`
+- Force-push para `origin/02-search-string` concluído com sucesso
+
+Agora o próximo passo é executar a busca manualmente no Scopus, exportar os resultados para `raw/exports/` no formato `scopus-YYYY-MM-DD.bib` (ou `.ris`/`.csv`), e então invocar `/03-parse-references-metadata`.
+
+Confirme com `pronto`/`done`/`confirmo` quando os exports estiverem no lugar.
+
+# User
+
+a) Reverter o commit e refazer com a string merged completa (draft-v2).
+
+Inclusive, mostre-me aqui a string completa.
+
+# Claude
+
+Aqui está a string completa (draft-v2, fusão dos dois conjuntos):
+
+```
+TITLE-ABS-KEY(
+  (
+    "agentic AI" OR "AgenticAI" OR "agentic system" OR "agentic systems" OR
+    "agentic workflow" OR "agentic workflows" OR "agentic framework" OR
+    "agentic approach" OR "agentic method" OR "agentic LLM" OR "agentic LLMs" OR
+    "AI agent" OR "AI agents" OR "AI-powered agent" OR "AI-powered agents" OR
+    "LLM agent" OR "LLM agents" OR "LLM-agent" OR "LLM-agents" OR
+    "LLM-driven agent" OR "LLM-driven agents" OR "LLM-driven" OR
+    "LLM-enabled agent" OR "LLM-enabled agents" OR "LLM-enabled" OR
+    "LLM-powered agent" OR "LLM-powered agents" OR "LLM-powered" OR
+    "LLM-based agent" OR "LLM-based agents" OR "LLM-based" OR
+    "agent-based LLM" OR "LLM" OR "LLMs" OR
+    "large language model" OR "large language models" OR
+    "language model" OR "language models" OR
+    "language agent" OR "language agents" OR
+    "foundation model" OR "foundation models" OR
+    "foundational model" OR "foundational models" OR
+    "foundation model agent" OR "foundation model agents" OR
+    "foundational model agent" OR "foundational model agents" OR
+    "generative AI" OR "generative artificial intelligence" OR "GenAI" OR
+    "generative AI agent" OR "generative agent" OR "GenAI agent" OR
+    "autonomous agent" OR "autonomous agents" OR "autonomous AI" OR
+    "multi-agent system" OR "multi-agent systems" OR "multi agent" OR "multiagent" OR
+    "intelligent agent" OR "intelligent agents" OR
+    "cognitive agent" OR "reasoning agent" OR "reasoning agents" OR
+    "artificial intelligence agent" OR "artificial intelligence agents"
+  )
+  AND
+  (
+    "resource management" OR "resource allocation" OR "resource scheduling" OR
+    "resource optimization" OR "resource provisioning" OR "resource orchestration" OR
+    "resource control" OR "resource governance" OR
+    "workload scheduling" OR "workload orchestration" OR
+    "task scheduling" OR "job scheduling" OR
+    "service placement" OR "container placement" OR "placement" OR "placing" OR
+    "migration" OR "migrating" OR "relocation" OR "relocating" OR
+    "scheduling" OR "allocation" OR "allocating" OR "provisioning" OR
+    "orchestration" OR "orchestrating" OR "optimization" OR "optimizing" OR
+    "scaling" OR "autoscaling" OR "auto-scaling" OR
+    "load balancing" OR "routing" OR "slicing" OR "network slicing" OR
+    "admission control" OR "energy management" OR
+    "fault tolerance" OR "capacity planning" OR
+    "infrastructure orchestration" OR "infrastructure management"
+  )
+  AND
+  (
+    "cloud computing" OR "data center" OR "data centers" OR
+    "data centre" OR "data centres" OR
+    "datacenter" OR "datacenters" OR "datacentre" OR "datacentres" OR
+    "edge computing" OR "fog computing" OR
+    "edge-cloud continuum" OR "cloud-edge continuum" OR
+    "mobile edge computing" OR "MEC" OR
+    "serverless" OR "FaaS" OR "function as a service" OR
+    "Kubernetes" OR "microservices" OR
+    "Infrastructure as a Service" OR "IaaS" OR
+    "Platform as a Service" OR "PaaS" OR
+    "Software as a Service" OR "SaaS"
+  )
+) AND PUBYEAR > 2016
+```
+
+Stage 02 encerrado. Commit `a6a79eb` em `main` no remoto. `locks.02-search-string: locked`.
+
+Próximo passo: execute a busca manualmente no Scopus, exporte os resultados para `raw/exports/scopus-YYYY-MM-DD.bib` (ou `.ris`/`.csv`), e então invoque `/03-parse-references-metadata`.
+
+# User
+
+Use only `scopus-2026-04-26.bib` and ignore the `[raw]-scopus-2026-04-26.bib` file entirely. The search date is confirmed as 2026-04-26. Proceed with parsing, deduplication, and materializing all paper-NNN.md files. Then lock the stage and commit.
+
+# Claude
+
+Stage 03 complete. Summary:
+
+- Parsed `scopus-2026-04-26.bib`: 2950 raw records
+- Deduplication: 1 merged by exact DOI (`boukhobza2025design` and `boukhobza2025special` share DOI `10.1145/3742872.3758334`); 0 duplicates among the 43 no-DOI records
+- Materialized `papers/paper-001.md` through `papers/paper-2949.md` from `plugin/templates/paper.md.template`
+- Corpus stats recorded in `protocols/screening.yaml`
+- Search date `2026-04-26` recorded in CLAUDE.md §4
+- Stage locked (`03-parse-references-metadata: locked`)
+- Commit `[03] lock` created (commit `9bc9a7a`)
+
+Next: `/04-title-screening`
+
+# User
+
+Percebi que o arquivo da Scopus estava errado. Agora sim, pode começar a execução de /rapid-review:03-parse-references-metadata.
+
+[resposta ao agente: Use só `scopus-2026-04-26.bib` e ignore o arquivo que começa com `[raw]-`.]
+
+# Claude
+
+Stage 03 concluído. Resumo:
+
+- Importados: 2.950 registros de `scopus-2026-04-26.bib`
+- Duplicatas removidas: 1 (DOI `10.1145/3742872.3758334` apareceu duas vezes — mantido `boukhobza2025design`, descartado `boukhobza2025special`)
+- Registros únicos: 2.949
+- Arquivos gerados: `papers/paper-001.md` → `papers/paper-2949.md`
+- Commit: `9bc9a7a` — `[03] lock`
+
+Próximo passo: `/04-title-screening`

@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": exclude
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.4166
+    threshold_used: 0.67
+    machine_decision: "exclude"
+    disagreement_type: "agreement_exclude"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-1094 — Understanding Performance Implications of LLM Inference on CPUs
@@ -45,7 +54,34 @@ The remarkable performance of LLMs has led to their application in a wide range 
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Understanding Performance Implications of LLM Inference on CPUs
+
+### Machine Screening
+
+- **Final Score:** 0.4166 (threshold: 0.67)
+- **Machine Decision:** exclude
+- **Disagreement Type:** agreement_exclude
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=1.0 C2=0.5 C3=0.0
+- **Final Score:** 0.5
+- **Decision:** exclude
+- **Evidence Excerpt:** Understanding Performance Implications of LLM Inference on CPUs
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource management signal); C3=0 (no infra signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=1.0 C2=0.0 C3=0.0
+- **Final Score:** 0.3333
+- **Decision:** exclude
+- **Evidence Excerpt:** Understanding Performance Implications of LLM Inference on CPUs
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=0 (no resource management signal); C3=0 (no infra signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

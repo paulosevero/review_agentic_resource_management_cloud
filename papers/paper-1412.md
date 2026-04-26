@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": include
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.75
+    threshold_used: 0.67
+    machine_decision: "include"
+    disagreement_type: "strong_disagreement"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-1412 — Llama-Recipe - Fine-Tuned Meta's Llama LLM, PBOM and NFT Enabled 5G Network-Slice Orchestration and End-to-End Supply-Chain Verification Platform
@@ -45,7 +54,34 @@ Modern 5G networks offer a network-sliced infrastructure where each network slic
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Llama-Recipe - Fine-Tuned Meta's Llama LLM, PBOM and NFT Enabled 5G Network-Slice Orchestration and End-to-End Supply-Chain Verification Platform
+
+### Machine Screening
+
+- **Final Score:** 0.75 (threshold: 0.67)
+- **Machine Decision:** include
+- **Disagreement Type:** strong_disagreement
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=1.0 C2=1.0 C3=0.5
+- **Final Score:** 0.8333
+- **Decision:** include
+- **Evidence Excerpt:** Llama-Recipe - Fine-Tuned Meta's Llama LLM, PBOM and NFT Enabled 5G Network-Slice Orchestration and End-to-End Supply-Chain Verification Platform
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=0.5 (infra/cloud-edge signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=1.0 C2=1.0 C3=0.0
+- **Final Score:** 0.6667
+- **Decision:** exclude
+- **Evidence Excerpt:** Llama-Recipe - Fine-Tuned Meta's Llama LLM, PBOM and NFT Enabled 5G Network-Slice Orchestration and End-to-End Supply-Chain Verification Platform
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=0 (no infra signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

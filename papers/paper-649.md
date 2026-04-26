@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": exclude
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.3333
+    threshold_used: 0.67
+    machine_decision: "exclude"
+    disagreement_type: "agreement_exclude"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-649 — Multi-cloud service provision based on decision tree and two-layer Restricted Monte Carlo Tree Search
@@ -45,7 +54,34 @@ Compared with traditional service provision methods, cloud computing has many ad
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Multi-cloud service provision based on decision tree and two-layer Restricted Monte Carlo Tree Search
+
+### Machine Screening
+
+- **Final Score:** 0.3333 (threshold: 0.67)
+- **Machine Decision:** exclude
+- **Disagreement Type:** agreement_exclude
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=0.0 C2=0.0 C3=1.0
+- **Final Score:** 0.3333
+- **Decision:** exclude
+- **Evidence Excerpt:** Multi-cloud service provision based on decision tree and two-layer Restricted Monte Carlo Tree Search
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=0 (no resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=0.0 C2=0.0 C3=1.0
+- **Final Score:** 0.3333
+- **Decision:** exclude
+- **Evidence Excerpt:** Multi-cloud service provision based on decision tree and two-layer Restricted Monte Carlo Tree Search
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=0 (no resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

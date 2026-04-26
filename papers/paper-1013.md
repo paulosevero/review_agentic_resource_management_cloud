@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": include
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.6667
+    threshold_used: 0.67
+    machine_decision: "include"
+    disagreement_type: "doctrine_override_c3_absent"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-1013 — Computing over the Sky: Joint UAV Trajectory and Task Offloading Scheme Based on Optimization-Embedding Multi-Agent Deep Reinforcement Learning
@@ -45,7 +54,34 @@ Unmanned aerial vehicle (UAV)-assisted mobile edge computing (MEC) has emerged t
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Computing over the Sky: Joint UAV Trajectory and Task Offloading Scheme Based on Optimization-Embedding Multi-Agent Deep Reinforcement Learning
+
+### Machine Screening
+
+- **Final Score:** 0.6667 (threshold: 0.67)
+- **Machine Decision:** include
+- **Disagreement Type:** doctrine_override_c3_absent
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=1.0 C2=1.0 C3=0.0
+- **Final Score:** 0.6667
+- **Decision:** exclude
+- **Evidence Excerpt:** Computing over the Sky: Joint UAV Trajectory and Task Offloading Scheme Based on Optimization-Embedding Multi-Agent Deep Reinforcement Learning
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=0 (no infra signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=1.0 C2=1.0 C3=0.0
+- **Final Score:** 0.6667
+- **Decision:** exclude
+- **Evidence Excerpt:** Computing over the Sky: Joint UAV Trajectory and Task Offloading Scheme Based on Optimization-Embedding Multi-Agent Deep Reinforcement Learning
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=0 (no infra signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

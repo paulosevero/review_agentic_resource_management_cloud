@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": exclude
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.5
+    threshold_used: 0.67
+    machine_decision: "exclude"
+    disagreement_type: "agreement_exclude"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-234 — Virtual network functions placement in 5G architecture: A survey and a multi-agent approach
@@ -45,7 +54,34 @@ New needs required by emerging communication obligations necessitate a fifth-gen
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Virtual network functions placement in 5G architecture: A survey and a multi-agent approach
+
+### Machine Screening
+
+- **Final Score:** 0.5 (threshold: 0.67)
+- **Machine Decision:** exclude
+- **Disagreement Type:** agreement_exclude
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=1.0 C2=0.5 C3=0.5
+- **Final Score:** 0.6667
+- **Decision:** exclude
+- **Evidence Excerpt:** Virtual network functions placement in 5G architecture: A survey and a multi-agent approach
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource management signal); C3=0.5 (infra/cloud-edge signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=1.0 C2=0.0 C3=0.0
+- **Final Score:** 0.3333
+- **Decision:** exclude
+- **Evidence Excerpt:** Virtual network functions placement in 5G architecture: A survey and a multi-agent approach
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=0 (no resource management signal); C3=0 (no infra signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

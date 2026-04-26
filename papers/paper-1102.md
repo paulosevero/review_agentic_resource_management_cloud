@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": exclude
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.4166
+    threshold_used: 0.67
+    machine_decision: "exclude"
+    disagreement_type: "agreement_exclude"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-1102 — Intelligent Heterogeneous Aerial Edge Computing for Advanced 5G Access
@@ -45,7 +54,34 @@ In the context of the Internet of Things (IoT), aerial computing platforms (ACPs
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Intelligent Heterogeneous Aerial Edge Computing for Advanced 5G Access
+
+### Machine Screening
+
+- **Final Score:** 0.4166 (threshold: 0.67)
+- **Machine Decision:** exclude
+- **Disagreement Type:** agreement_exclude
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=0.5 C2=0.0 C3=1.0
+- **Final Score:** 0.5
+- **Decision:** exclude
+- **Evidence Excerpt:** Intelligent Heterogeneous Aerial Edge Computing for Advanced 5G Access
+- **Rationale:** C1=0.5 (agentic/LLM signal in title); C2=0 (no resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=0.0 C2=0.0 C3=1.0
+- **Final Score:** 0.3333
+- **Decision:** exclude
+- **Evidence Excerpt:** Intelligent Heterogeneous Aerial Edge Computing for Advanced 5G Access
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=0 (no resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": exclude
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.6667
+    threshold_used: 0.67
+    machine_decision: "exclude"
+    disagreement_type: "agreement_exclude"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-2124 — A NEW M-DDPG ALGORITHM FOR COMPUTING TASK SCHEDULING AND RESOURCE ALLOCATION IN EDGE ENVIRONMENTS
@@ -45,7 +54,34 @@ The rapid expansion of wireless communication and the Internet of Things (IoT) h
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** A NEW M-DDPG ALGORITHM FOR COMPUTING TASK SCHEDULING AND RESOURCE ALLOCATION IN EDGE ENVIRONMENTS
+
+### Machine Screening
+
+- **Final Score:** 0.6667 (threshold: 0.67)
+- **Machine Decision:** exclude
+- **Disagreement Type:** agreement_exclude
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=0.0 C2=1.0 C3=1.0
+- **Final Score:** 0.6667
+- **Decision:** exclude
+- **Evidence Excerpt:** A NEW M-DDPG ALGORITHM FOR COMPUTING TASK SCHEDULING AND RESOURCE ALLOCATION IN EDGE ENVIRONMENTS
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=0.0 C2=1.0 C3=1.0
+- **Final Score:** 0.6667
+- **Decision:** exclude
+- **Evidence Excerpt:** A NEW M-DDPG ALGORITHM FOR COMPUTING TASK SCHEDULING AND RESOURCE ALLOCATION IN EDGE ENVIRONMENTS
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

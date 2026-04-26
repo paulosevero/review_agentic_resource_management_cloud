@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": exclude
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.3333
+    threshold_used: 0.67
+    machine_decision: "exclude"
+    disagreement_type: "agreement_exclude"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-1200 — Split task offloading algorithm for satellite-ground integrated networks based on deep deterministic policy gradient; [基于深度确定性策略梯度的星地融合网络可拆分任务卸载算法]
@@ -45,7 +54,34 @@ To address the prolonged task offloading delay in low earth orbit satellite netw
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Split task offloading algorithm for satellite-ground integrated networks based on deep deterministic policy gradient; [基于深度确定性策略梯度的星地融合网络可拆分任务卸载算法]
+
+### Machine Screening
+
+- **Final Score:** 0.3333 (threshold: 0.67)
+- **Machine Decision:** exclude
+- **Disagreement Type:** agreement_exclude
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=0.0 C2=1.0 C3=0.0
+- **Final Score:** 0.3333
+- **Decision:** exclude
+- **Evidence Excerpt:** Split task offloading algorithm for satellite-ground integrated networks based on deep deterministic policy gradient; [基于深度确定性策略梯度的星地融合网络可拆分任务卸载算法]
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=1.0 (resource management signal); C3=0 (no infra signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=0.0 C2=1.0 C3=0.0
+- **Final Score:** 0.3333
+- **Decision:** exclude
+- **Evidence Excerpt:** Split task offloading algorithm for satellite-ground integrated networks based on deep deterministic policy gradient; [基于深度确定性策略梯度的星地融合网络可拆分任务卸载算法]
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=1.0 (resource management signal); C3=0 (no infra signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

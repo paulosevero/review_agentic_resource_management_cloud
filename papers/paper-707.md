@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": include
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 1.0
+    threshold_used: 0.67
+    machine_decision: "include"
+    disagreement_type: "agreement_include"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-707 — Multi-agent QoS-aware autonomic resource provisioning framework for elastic BPM in containerized multi-cloud environment
@@ -45,7 +54,34 @@ Cloud computing enables businesses to improve their market competitiveness, enab
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Multi-agent QoS-aware autonomic resource provisioning framework for elastic BPM in containerized multi-cloud environment
+
+### Machine Screening
+
+- **Final Score:** 1.0 (threshold: 0.67)
+- **Machine Decision:** include
+- **Disagreement Type:** agreement_include
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=1.0 C2=1.0 C3=1.0
+- **Final Score:** 1.0
+- **Decision:** include
+- **Evidence Excerpt:** Multi-agent QoS-aware autonomic resource provisioning framework for elastic BPM in containerized multi-cloud environment
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=1.0 C2=1.0 C3=1.0
+- **Final Score:** 1.0
+- **Decision:** include
+- **Evidence Excerpt:** Multi-agent QoS-aware autonomic resource provisioning framework for elastic BPM in containerized multi-cloud environment
+- **Rationale:** C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 

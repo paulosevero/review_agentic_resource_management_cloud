@@ -18,11 +18,20 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": pending
+  "04-title-screening": exclude
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
   "08-analysis": pending
+screening:
+  "04-title-screening":
+    final_score: 0.4166
+    threshold_used: 0.67
+    machine_decision: "exclude"
+    disagreement_type: "agreement_exclude"
+    human_decision: ""
+    human_justification: ""
+
 ---
 
 # paper-2750 — Space-air-ground integrated network-empowered mobile edge computing: MASAC-based URLLC-aware energy optimization; [空天地协同赋能移动边缘计算: 基于 MASAC 的URLLC 感知能耗优化]
@@ -45,7 +54,34 @@ To fulfill the flexible, efficient, and random access demands as well as quality
 
 ## 04 — Title Screening
 
-<!-- Populated by /04-title-screening -->
+**Title:** Space-air-ground integrated network-empowered mobile edge computing: MASAC-based URLLC-aware energy optimization; [空天地协同赋能移动边缘计算: 基于 MASAC 的URLLC 感知能耗优化]
+
+### Machine Screening
+
+- **Final Score:** 0.4166 (threshold: 0.67)
+- **Machine Decision:** exclude
+- **Disagreement Type:** agreement_exclude
+
+### Sub-Agent 1 (Inclusivist)
+
+- **Scores:** C1=0.0 C2=0.5 C3=1.0
+- **Final Score:** 0.5
+- **Decision:** exclude
+- **Evidence Excerpt:** Space-air-ground integrated network-empowered mobile edge computing: MASAC-based URLLC-aware energy optimization; [空天地协同赋能移动边缘计算: 基于 MASAC 的URLLC 感知能耗优化]
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=0.5 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Sub-Agent 2 (Exclusivist)
+
+- **Scores:** C1=0.0 C2=0.0 C3=1.0
+- **Final Score:** 0.3333
+- **Decision:** exclude
+- **Evidence Excerpt:** Space-air-ground integrated network-empowered mobile edge computing: MASAC-based URLLC-aware energy optimization; [空天地协同赋能移动边缘计算: 基于 MASAC 的URLLC 感知能耗优化]
+- **Rationale:** C1=0 (no agentic/LLM signal); C2=0 (no resource management signal); C3=1.0 (infra/cloud-edge signal)
+
+### Human Review
+
+- **My Final Decision:** _(fill in spreadsheet)_
+- **My Justification:** _(fill in spreadsheet)_
 
 ## 05 — Abstract Screening
 
