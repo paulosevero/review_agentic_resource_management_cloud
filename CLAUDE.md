@@ -91,22 +91,44 @@ The review covers agentic AI systems whose autonomous loop drives resource manag
 
 ## 5. Inclusion Criteria (typed)
 
-Criteria are typed (`thematic_rq` / `thematic_sub_rq` / `qa`) and weighted, declared once at stage 01, and locked alongside the rest of `protocols/screening.yaml`. This section is the readable mirror; the authoritative definition lives in the YAML. Each criterion is anchored to one or more RQ or sub-RQ ids via `refs`. When the protocol is reopened (`[01] checkpoint: revisit criteria`), this section is regenerated from the updated YAML.
+Criteria are typed (`gate` / `thematic_rq` / `thematic_sub_rq` / `qa`) and weighted, declared once at stage 01, and locked alongside the rest of `protocols/screening.yaml`. This section is the readable mirror; the authoritative definition lives in the YAML. Each criterion is anchored to one or more RQ or sub-RQ ids via `refs`. When the protocol is reopened (`[01] checkpoint: revisit criteria`), this section is regenerated from the updated YAML.
 
-### `thematic_rq` (ternary, applies at stage 04)
+### Hard gates (binary; pre-scoring at title/abstract; full-text re-checks)
 
-- **C1** — refs: `[RQ1]` — `<criterion text>` — weight: `null`
-- **C2** — refs: `[RQ2]` — `<...>` — weight: `null`
+- **G1** — refs: `[all RQs]` — Peer-reviewed venue (journal, conference, workshop) indexed in Scopus. Excludes editorials, keynotes, posters, tutorials, panels, books, theses, grey literature.
+- **G2** — refs: `[all RQs]` — Written in English.
+- **G4** — refs: `[all RQs]` — Published in 2017 or later (Transformer era).
+- **G5** — refs: `[all RQs]` — Indexed in Scopus.
+
+### `thematic_rq` (ternary at stage 04: +1 / 0 / −1)
+
+- **T1** — refs: `[RQ1, RQ3]` — Agentic AI / LLM-based agent component signal (perceive-reason-act loop, LLM-driven planning, tool/function calling, multi-agent LLM, ReAct/Plan-and-Execute/Reflexion).
+- **T2** — refs: `[RQ2, RQ4]` — Resource management decision signal (scheduling, placement, scaling, admission, energy, fault response, load balancing, migration, provisioning, orchestration).
+- **T3** — refs: `[RQ1, RQ2]` — Distributed-infrastructure context signal (cloud, edge, fog, continuum, Kubernetes, multi-cluster, datacenter).
 
 ### `thematic_sub_rq` (weighted, applies at stages 05 and 06)
 
-- **C3** — refs: `[RQ1.1]` — `<criterion text>` — weight: `0.4`
-- **C4** — refs: `[RQ1.2]` — `<...>` — weight: `0.3`
-- **C5** — refs: `[RQ2.1]` — `<...>` — weight: `0.4`
+- **S1** — refs: `[RQ1.1]` — Architectural pattern of the agent loop / reasoning pattern named.
+- **S2** — refs: `[RQ1.2]` — Coupling to infrastructure (tools, APIs, MCP, function calling, K8s integration).
+- **S3** — refs: `[RQ1.3]` — Safety / guardrail mechanisms (HITL, validators, sandboxing, policy gates, rollback).
+- **S4** — refs: `[RQ2.1]` — Class of resource management decisions delegated.
+- **S5** — refs: `[RQ2.2]` — Operational conditions and autonomy level.
+- **S6** — refs: `[RQ3.1]` — Reasoning process (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).
+- **S7** — refs: `[RQ3.2]` — Grounding mechanisms (telemetry, RAG, episodic memory, vector DB, KG).
+- **S8** — refs: `[RQ3.3]` — Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, ontologies).
+- **S9** — refs: `[RQ4.1]` — Evaluation methodology and environment.
+- **S10** — refs: `[RQ4.2]` — Resource-management performance metrics.
+- **S11** — refs: `[RQ4.3]` — Agent / inference overhead metrics.
+- **S12** — refs: `[RQ4.4]` — Safety and governance metrics.
+- **S13** — refs: `[RQ5.1]` — Unresolved methodological / technical tensions.
+- **S14** — refs: `[RQ5.2]` — Governance / accountability / auditability gaps.
 
 ### `qa` (weighted, applies at stage 06)
 
-- **C6** — refs: `[RQ1, RQ2]` — `<reproducibility / methodological / reporting criterion>` — weight: `0.2`
+- **Q1** — refs: `[RQ1, RQ3]` — Sufficient agent-design detail for conceptual reproducibility.
+- **Q2** — refs: `[RQ4]` — Empirical evaluation (qualitative or quantitative) beyond a purely conceptual proposal.
+
+Weights are filled at Level 4.
 
 ## 6. Reserved
 
