@@ -19,7 +19,7 @@ This file is the authoritative protocol for this review. It declares the theme, 
 - **Topic:** `Agentic AI (LLM-based agents) for resource management decisions in Cloud, Edge, Fog, and the Edge-Cloud Continuum`
 - **Repo:** `/Users/paulosouza/Documents/Carreira/Pesquisa/Código/review_agentic_resource_management_cloud`
 - **Created:** `2026-04-25`
-- **Current stage:** `01-research-questions`
+- **Current stage:** `04-title-screening`
 
 ## 1. Locks (machine-readable)
 
@@ -31,7 +31,7 @@ locks:
   01-research-questions:        locked
   02-search-string:             locked
   03-parse-references-metadata: locked
-  04-title-screening:           pending
+  04-title-screening:           locked
   05-abstract-screening:        pending
   06-full-text-screening:       pending
   07-taxonomy-development:      pending   # has intermediate `iterating` state during inductive loop
