@@ -29,7 +29,7 @@ Agents use this block to decide whether a given stage can run. A stage can only 
 locks:
   00-new-review:                locked    # pending | locked
   01-research-questions:        locked
-  02-search-string:             pending
+  02-search-string:             locked
   03-parse-references-metadata: pending
   04-title-screening:           pending
   05-abstract-screening:        pending
@@ -79,19 +79,141 @@ The review covers agentic AI systems whose autonomous loop drives resource manag
 
 ## 4. Search String
 
+**Base Boolean string:**
+
 ```
-<Boolean search string produced by /02-search-string, with operators in uppercase and terms quoted when needed.>
+(
+  "agentic AI" OR "AgenticAI" OR "agentic system" OR "agentic systems" OR
+  "agentic workflow" OR "agentic workflows" OR "agentic framework" OR
+  "agentic approach" OR "agentic method" OR "agentic LLM" OR "agentic LLMs" OR
+  "AI agent" OR "AI agents" OR "AI-powered agent" OR "AI-powered agents" OR
+  "LLM agent" OR "LLM agents" OR "LLM-agent" OR "LLM-agents" OR
+  "LLM-driven agent" OR "LLM-driven agents" OR "LLM-driven" OR
+  "LLM-enabled agent" OR "LLM-enabled agents" OR "LLM-enabled" OR
+  "LLM-powered agent" OR "LLM-powered agents" OR "LLM-powered" OR
+  "LLM-based agent" OR "LLM-based agents" OR "LLM-based" OR
+  "agent-based LLM" OR "LLM" OR "LLMs" OR
+  "large language model" OR "large language models" OR
+  "language model" OR "language models" OR
+  "language agent" OR "language agents" OR
+  "foundation model" OR "foundation models" OR
+  "foundational model" OR "foundational models" OR
+  "foundation model agent" OR "foundation model agents" OR
+  "foundational model agent" OR "foundational model agents" OR
+  "generative AI" OR "generative artificial intelligence" OR "GenAI" OR
+  "generative AI agent" OR "generative agent" OR "GenAI agent" OR
+  "autonomous agent" OR "autonomous agents" OR "autonomous AI" OR
+  "multi-agent system" OR "multi-agent systems" OR "multi agent" OR "multiagent" OR
+  "intelligent agent" OR "intelligent agents" OR
+  "cognitive agent" OR "reasoning agent" OR "reasoning agents" OR
+  "artificial intelligence agent" OR "artificial intelligence agents"
+)
+AND
+(
+  "resource management" OR "resource allocation" OR "resource scheduling" OR
+  "resource optimization" OR "resource provisioning" OR "resource orchestration" OR
+  "resource control" OR "resource governance" OR
+  "workload scheduling" OR "workload orchestration" OR
+  "task scheduling" OR "job scheduling" OR
+  "service placement" OR "container placement" OR "placement" OR "placing" OR
+  "migration" OR "migrating" OR "relocation" OR "relocating" OR
+  "scheduling" OR "allocation" OR "allocating" OR "provisioning" OR
+  "orchestration" OR "orchestrating" OR "optimization" OR "optimizing" OR
+  "scaling" OR "autoscaling" OR "auto-scaling" OR
+  "load balancing" OR "routing" OR "slicing" OR "network slicing" OR
+  "admission control" OR "energy management" OR
+  "fault tolerance" OR "capacity planning" OR
+  "infrastructure orchestration" OR "infrastructure management"
+)
+AND
+(
+  "cloud computing" OR "data center" OR "data centers" OR
+  "data centre" OR "data centres" OR
+  "datacenter" OR "datacenters" OR "datacentre" OR "datacentres" OR
+  "edge computing" OR "fog computing" OR
+  "edge-cloud continuum" OR "cloud-edge continuum" OR
+  "mobile edge computing" OR "MEC" OR
+  "serverless" OR "FaaS" OR "function as a service" OR
+  "Kubernetes" OR "microservices" OR
+  "Infrastructure as a Service" OR "IaaS" OR
+  "Platform as a Service" OR "PaaS" OR
+  "Software as a Service" OR "SaaS"
+)
 ```
 
-**Target databases:** `<Scopus, Web of Science, IEEE Xplore, ACM Digital Library, ...>`
+**Target databases:** Scopus only. Web of Science, IEEE Xplore, and ACM Digital Library were explicitly excluded by the user.
 
 **Search executed on:** `<YYYY-MM-DD, filled when the user runs /03-parse-references-metadata and reports the date of the manual search>`
 
-**Notes on per-database adaptation:** `<If the string had to be adapted to each database's syntax, record the adaptations here. Filled by /02-search-string.>`
+**Notes on per-database adaptation:**
+
+- **Scopus** — field: `TITLE-ABS-KEY`; temporal filter: `PUBYEAR > 2016` (pre-decided at stage 01). Full Scopus-ready query:
+
+```
+TITLE-ABS-KEY(
+  (
+    "agentic AI" OR "AgenticAI" OR "agentic system" OR "agentic systems" OR
+    "agentic workflow" OR "agentic workflows" OR "agentic framework" OR
+    "agentic approach" OR "agentic method" OR "agentic LLM" OR "agentic LLMs" OR
+    "AI agent" OR "AI agents" OR "AI-powered agent" OR "AI-powered agents" OR
+    "LLM agent" OR "LLM agents" OR "LLM-agent" OR "LLM-agents" OR
+    "LLM-driven agent" OR "LLM-driven agents" OR "LLM-driven" OR
+    "LLM-enabled agent" OR "LLM-enabled agents" OR "LLM-enabled" OR
+    "LLM-powered agent" OR "LLM-powered agents" OR "LLM-powered" OR
+    "LLM-based agent" OR "LLM-based agents" OR "LLM-based" OR
+    "agent-based LLM" OR "LLM" OR "LLMs" OR
+    "large language model" OR "large language models" OR
+    "language model" OR "language models" OR
+    "language agent" OR "language agents" OR
+    "foundation model" OR "foundation models" OR
+    "foundational model" OR "foundational models" OR
+    "foundation model agent" OR "foundation model agents" OR
+    "foundational model agent" OR "foundational model agents" OR
+    "generative AI" OR "generative artificial intelligence" OR "GenAI" OR
+    "generative AI agent" OR "generative agent" OR "GenAI agent" OR
+    "autonomous agent" OR "autonomous agents" OR "autonomous AI" OR
+    "multi-agent system" OR "multi-agent systems" OR "multi agent" OR "multiagent" OR
+    "intelligent agent" OR "intelligent agents" OR
+    "cognitive agent" OR "reasoning agent" OR "reasoning agents" OR
+    "artificial intelligence agent" OR "artificial intelligence agents"
+  )
+  AND
+  (
+    "resource management" OR "resource allocation" OR "resource scheduling" OR
+    "resource optimization" OR "resource provisioning" OR "resource orchestration" OR
+    "resource control" OR "resource governance" OR
+    "workload scheduling" OR "workload orchestration" OR
+    "task scheduling" OR "job scheduling" OR
+    "service placement" OR "container placement" OR "placement" OR "placing" OR
+    "migration" OR "migrating" OR "relocation" OR "relocating" OR
+    "scheduling" OR "allocation" OR "allocating" OR "provisioning" OR
+    "orchestration" OR "orchestrating" OR "optimization" OR "optimizing" OR
+    "scaling" OR "autoscaling" OR "auto-scaling" OR
+    "load balancing" OR "routing" OR "slicing" OR "network slicing" OR
+    "admission control" OR "energy management" OR
+    "fault tolerance" OR "capacity planning" OR
+    "infrastructure orchestration" OR "infrastructure management"
+  )
+  AND
+  (
+    "cloud computing" OR "data center" OR "data centers" OR
+    "data centre" OR "data centres" OR
+    "datacenter" OR "datacenters" OR "datacentre" OR "datacentres" OR
+    "edge computing" OR "fog computing" OR
+    "edge-cloud continuum" OR "cloud-edge continuum" OR
+    "mobile edge computing" OR "MEC" OR
+    "serverless" OR "FaaS" OR "function as a service" OR
+    "Kubernetes" OR "microservices" OR
+    "Infrastructure as a Service" OR "IaaS" OR
+    "Platform as a Service" OR "PaaS" OR
+    "Software as a Service" OR "SaaS"
+  )
+) AND PUBYEAR > 2016
+```
 
 **Pre-decided database filters (locked at stage 01):**
 
-- **Scopus** — apply temporal-window filter `PUBYEAR > 2016` (Transformer-era boundary; pre-LLM agentic loops out of scope). The full Boolean query is produced by `/02-search-string`; this filter is a fixed clause appended to whatever string that stage emits for Scopus.
+- **Scopus** — apply temporal-window filter `PUBYEAR > 2016` (Transformer-era boundary; pre-LLM agentic loops out of scope). The full Boolean query above is the Scopus-specific form with this filter appended.
 
 ## 5. Inclusion Criteria (typed)
 
