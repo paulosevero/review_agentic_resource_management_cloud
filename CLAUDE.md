@@ -28,7 +28,7 @@ Agents use this block to decide whether a given stage can run. A stage can only 
 ```yaml
 locks:
   00-new-review:                locked    # pending | locked
-  01-research-questions:        iterating
+  01-research-questions:        locked
   02-search-string:             pending
   03-parse-references-metadata: pending
   04-title-screening:           pending
