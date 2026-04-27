@@ -1,0 +1,12 @@
+[
+  {
+    "paper_id": "paper-034",
+    "title": "Elastic & Load-Spike Proof One-to-Many Negotiation to Improve the Service Acceptability of an Open SaaS Provider",
+    "abstract_preview": "Service acceptability rate and user satisfaction are becoming key factors to avoid client churn and secure the success of any Software as a Service (SaaS) provider. Nevertheless, the provider must als",
+    "decision": "Exclude",
+    "justification": "Sem pistas de uso de LLM e/ou Agentic AI.",
+    "winning_category": "no_signal",
+    "evidence": [],
+    "needs_tiebreaker": true
+  }
+]

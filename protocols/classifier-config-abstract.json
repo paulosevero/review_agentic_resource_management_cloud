@@ -1,0 +1,1191 @@
+{
+  "stage": "abstract",
+  "default_decision": "Exclude",
+  "default_justification": "Sem pistas de uso de LLM e/ou Agentic AI.",
+  "proximity_window": 400,
+  "categories": [
+    {
+      "id": "out_of_scope",
+      "label": "Out of scope",
+      "decision": "Exclude",
+      "justification": "Out of scope",
+      "priority": 1,
+      "patterns": [
+        {
+          "id": "oos_erp",
+          "regex": "\\berp\\b",
+          "description": "ERP"
+        },
+        {
+          "id": "oos_planogram",
+          "regex": "\\bplanogram\\b",
+          "description": "planogram"
+        },
+        {
+          "id": "oos_multi_store_retail",
+          "regex": "\\bmulti[\\s-]store\\s+retail\\b",
+          "description": "multi-store retail"
+        },
+        {
+          "id": "oos_time_to_market",
+          "regex": "\\btime[-\\s]to[-\\s]market\\b",
+          "description": "time-to-market"
+        },
+        {
+          "id": "oos_fintech_mgmt",
+          "regex": "\\bfintech\\s+management\\b",
+          "description": "fintech management"
+        },
+        {
+          "id": "oos_pm_lifecycle",
+          "regex": "\\bproject\\s+management\\s+life[\\s-]?cycle\\b",
+          "description": "PM life cycle"
+        },
+        {
+          "id": "oos_sustainable_pm",
+          "regex": "\\bsustainable\\s+project\\s+management\\b",
+          "description": "sustainable PM"
+        },
+        {
+          "id": "oos_product_dev_genai",
+          "regex": "\\bproduct\\s+development\\b.*\\b(?:role|generative\\s+ai)",
+          "description": "product development+role/genai"
+        },
+        {
+          "id": "oos_cyber_labs",
+          "regex": "\\bcyber\\s+labs?\\b",
+          "description": "cyber labs"
+        },
+        {
+          "id": "oos_cloud_native_sec_edu",
+          "regex": "\\bcloud[-\\s]native\\s+security\\s+education\\b",
+          "description": "cloud-native sec edu"
+        },
+        {
+          "id": "oos_cloud_computing_edu",
+          "regex": "\\bcloud\\s+computing\\s+education\\b",
+          "description": "cloud computing edu"
+        },
+        {
+          "id": "oos_student_dashboard",
+          "regex": "\\bstudent\\s+dashboard\\b",
+          "description": "student dashboard"
+        },
+        {
+          "id": "oos_web_student",
+          "regex": "\\bweb[\\s-]based\\s+student\\b",
+          "description": "web-based student"
+        },
+        {
+          "id": "oos_students_advising",
+          "regex": "\\bstudents?\\b.*\\bacademic\\s+advising\\b",
+          "description": "students+academic advising"
+        },
+        {
+          "id": "oos_academic_advising",
+          "regex": "\\bacademic\\s+advising\\b",
+          "description": "academic advising"
+        },
+        {
+          "id": "oos_education_4_0",
+          "regex": "\\beducation\\s+4\\.0\\b",
+          "description": "education 4.0"
+        },
+        {
+          "id": "oos_cscl",
+          "regex": "\\bcomputer[-\\s]supported\\s+collaborative\\s+learning\\b",
+          "description": "CSCL"
+        },
+        {
+          "id": "oos_med_diagnosis",
+          "regex": "\\b(otological|cardiac|dementia)\\b.*\\bdiagnos",
+          "description": "medical diagnosis"
+        },
+        {
+          "id": "oos_med_image_seg",
+          "regex": "\\bmedical\\s+image\\s+segmentation\\b",
+          "description": "medical image segmentation"
+        },
+        {
+          "id": "oos_cancer_tumor",
+          "regex": "\\b(?:cancer|tumor)\\b.*\\bdetection\\b",
+          "description": "cancer/tumor detection"
+        },
+        {
+          "id": "oos_patient_monitor",
+          "regex": "\\bpatient\\s+monitor\\w*",
+          "description": "patient monitoring"
+        },
+        {
+          "id": "oos_dementia",
+          "regex": "\\bdementia\\b",
+          "description": "dementia"
+        },
+        {
+          "id": "oos_autism",
+          "regex": "\\bautism\\b",
+          "description": "autism"
+        },
+        {
+          "id": "oos_eating_disorder",
+          "regex": "\\beating\\s+disorders?\\b",
+          "description": "eating disorders"
+        },
+        {
+          "id": "oos_agri_business",
+          "regex": "\\bagricultural\\s+business\\s+sector\\b",
+          "description": "agri business"
+        },
+        {
+          "id": "oos_agri_research",
+          "regex": "\\bagricultural\\s+(?:research|large\\s+models)\\b",
+          "description": "agri research"
+        },
+        {
+          "id": "oos_smart_farming_platform",
+          "regex": "\\bsmart\\s+farming\\s+platform\\b",
+          "description": "smart farming platform"
+        },
+        {
+          "id": "oos_iort",
+          "regex": "\\binternet\\s+of\\s+robotic\\s+things\\b",
+          "description": "IoRT"
+        },
+        {
+          "id": "oos_robots_mllm",
+          "regex": "\\brobots?\\s+with\\s+multimodal\\s+(?:large\\s+)?language",
+          "description": "robots with mllm"
+        },
+        {
+          "id": "oos_active_inference_robots",
+          "regex": "\\bactive\\s+inference\\s+for\\s+robots\\b",
+          "description": "active inference for robots"
+        },
+        {
+          "id": "oos_maritime_sar",
+          "regex": "\\bmaritime\\s+search\\s+(?:and|&)\\s+rescue\\b",
+          "description": "maritime SAR"
+        },
+        {
+          "id": "oos_sar_network",
+          "regex": "\\bsearch\\s+(?:and|&)\\s+rescue\\b.*\\bnetwork",
+          "description": "SAR network"
+        },
+        {
+          "id": "oos_maritime_informatics",
+          "regex": "\\bcognitive\\s+maritime\\s+informatics\\b",
+          "description": "maritime informatics"
+        },
+        {
+          "id": "oos_smart_manufacturing",
+          "regex": "\\bsmart\\s+manufacturing\\b",
+          "description": "smart manufacturing"
+        },
+        {
+          "id": "oos_capp",
+          "regex": "\\bcomputer-?aided\\s+process\\s+planning\\b",
+          "description": "CAPP"
+        },
+        {
+          "id": "oos_wafer_defect",
+          "regex": "\\bwafer\\s+defect\\s+detection\\b",
+          "description": "wafer defect"
+        },
+        {
+          "id": "oos_industry_5_0",
+          "regex": "\\bindustry\\s+5\\.0\\b",
+          "description": "industry 5.0"
+        },
+        {
+          "id": "oos_biotech",
+          "regex": "\\bbiotechnolog\\w*",
+          "description": "biotech"
+        },
+        {
+          "id": "oos_bim",
+          "regex": "\\bbim\\b.*\\b(?:construction|architectur)",
+          "description": "BIM construction"
+        },
+        {
+          "id": "oos_test_case_migration",
+          "regex": "\\btest\\s+case\\s+migration\\b",
+          "description": "test case migration"
+        },
+        {
+          "id": "oos_nl2sql",
+          "regex": "\\bnl2sql\\b",
+          "description": "NL2SQL"
+        },
+        {
+          "id": "oos_nl_to_sql",
+          "regex": "\\bnl[-\\s]to[-\\s]sql\\b",
+          "description": "NL-to-SQL"
+        },
+        {
+          "id": "oos_unstructured_data",
+          "regex": "\\bunstructured\\s+data\\s+into\\s+structured\\s+data\\b",
+          "description": "unstructured→structured"
+        },
+        {
+          "id": "oos_dataset_gen",
+          "regex": "\\bgenerate\\s+datasets\\s+from\\s+existing\\b",
+          "description": "dataset generation"
+        },
+        {
+          "id": "oos_idiomaticity_detection",
+          "regex": "\\bidiomaticity\\s+detection\\b",
+          "description": "idiomaticity detection"
+        },
+        {
+          "id": "oos_idiomaticity",
+          "regex": "\\bidiomaticity\\b",
+          "description": "idiomaticity"
+        },
+        {
+          "id": "oos_sustainable_genai",
+          "regex": "\\bsustainable\\s+use\\s+of\\s+(?:generative\\s+)?artificial\\s+intelligence\\b",
+          "description": "sustainable genai"
+        },
+        {
+          "id": "oos_arm_sbc",
+          "regex": "\\barm\\s+sbc\\s+architecture\\b",
+          "description": "ARM SBC"
+        },
+        {
+          "id": "oos_flow_shop",
+          "regex": "\\bflow[\\s-]shop\\s+(?:scheduling|with)\\b",
+          "description": "flow-shop"
+        },
+        {
+          "id": "oos_signs_of_times",
+          "regex": "\\b(?:sign|signs)\\s+of\\s+the\\s+times\\b",
+          "description": "signs of the times"
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "review",
+      "label": "Review",
+      "decision": "Exclude",
+      "justification": "Review",
+      "priority": 2,
+      "patterns": [
+        {
+          "id": "rev_chal_pract_prosp",
+          "regex": ":\\s*challenges[\\s,]+practices[\\s,]+and\\s+prospects\\b",
+          "description": "subtitle: challenges, practices, and prospects"
+        },
+        {
+          "id": "rev_current_future_trends",
+          "regex": ":\\s*current\\s+and\\s+future\\s+trends\\b",
+          "description": "subtitle: current and future trends"
+        },
+        {
+          "id": "rev_vision_chal_opp",
+          "regex": ":\\s*vision[\\s,]+challenges[\\s,]+and\\s+opportunities\\b",
+          "description": "subtitle: vision, challenges, and opportunities"
+        },
+        {
+          "id": "rev_arch_chal_sol",
+          "regex": ":\\s*architecture[\\s,]+challenges[\\s,]+and\\s+(?:solutions|opportunities)\\b",
+          "description": "subtitle: architecture, challenges, and solutions"
+        },
+        {
+          "id": "rev_opp_chal",
+          "regex": ":\\s*opportunities\\s+and\\s+challenges\\b",
+          "description": "subtitle: opportunities and challenges"
+        },
+        {
+          "id": "rev_advances_chal",
+          "regex": ":\\s*advances\\s+and\\s+(?:challenges|opportunities|trends)\\b",
+          "description": "subtitle: advances and..."
+        },
+        {
+          "id": "rev_chal_opp",
+          "regex": ":\\s*\\bchallenges\\b\\s+and\\s+\\bopportunities\\b",
+          "description": "subtitle: challenges and opportunities"
+        },
+        {
+          "id": "rev_future_directions",
+          "regex": ":\\s*future\\s+(?:directions|research)\\b",
+          "description": "subtitle: future directions"
+        },
+        {
+          "id": "rev_a_roadmap_survey",
+          "regex": ":\\s*a\\s+(?:roadmap|survey|systematic\\s+review|comprehensive\\s+(?:survey|review))\\b",
+          "description": "subtitle: a roadmap/survey/etc"
+        },
+        {
+          "id": "rev_roadmap",
+          "regex": ":\\s*roadmap\\b",
+          "description": "subtitle: roadmap"
+        },
+        {
+          "id": "rev_recent_advances",
+          "regex": ":\\s*recent\\s+advances\\b",
+          "description": "subtitle: recent advances"
+        },
+        {
+          "id": "rev_concepts_apps",
+          "regex": ":\\s*concepts?[\\s,]+(?:applications|techniques|trends)\\b",
+          "description": "subtitle: concepts, applications/techniques/trends"
+        },
+        {
+          "id": "rev_from_vision_to",
+          "regex": ":\\s*from\\s+vision\\s+to\\b",
+          "description": "subtitle: from vision to"
+        },
+        {
+          "id": "rev_survey",
+          "regex": "\\bsurvey\\b",
+          "description": "survey"
+        },
+        {
+          "id": "rev_systematic_review",
+          "regex": "\\bsystematic\\s+review\\b",
+          "description": "systematic review"
+        },
+        {
+          "id": "rev_scoping_review",
+          "regex": "\\bscoping\\s+review\\b",
+          "description": "scoping review"
+        },
+        {
+          "id": "rev_mapping_study",
+          "regex": "\\bmapping\\s+study\\b",
+          "description": "mapping study"
+        },
+        {
+          "id": "rev_taxonomy_of",
+          "regex": "\\btaxonomy\\s+of\\b",
+          "description": "taxonomy of"
+        },
+        {
+          "id": "rev_comprehensive_survey",
+          "regex": "\\bcomprehensive\\s+(?:survey|review)\\b",
+          "description": "comprehensive survey/review"
+        },
+        {
+          "id": "rev_short_review",
+          "regex": "\\bshort\\s+review\\b",
+          "description": "short review"
+        },
+        {
+          "id": "rev_research_agenda",
+          "regex": "\\bresearch\\s+agenda\\b",
+          "description": "research agenda"
+        },
+        {
+          "id": "rev_state_of_art_chal",
+          "regex": ":\\s*state[-\\s]of[-\\s]the[-\\s]art[\\s,]+challenges",
+          "description": "subtitle: state-of-the-art, challenges..."
+        },
+        {
+          "id": "rev_concepts_techs_future",
+          "regex": ":\\s*concepts[\\s,]+technologies[\\s,]+and\\s+future",
+          "description": "subtitle: concepts, technologies, and future"
+        },
+        {
+          "id": "rev_fundamentals_solutions_chal",
+          "regex": ":\\s*fundamentals[\\s,]+solutions[\\s,]+and\\s+challenges",
+          "description": "subtitle: fundamentals, solutions, and challenges"
+        },
+        {
+          "id": "rev_editorial",
+          "regex": "\\beditorial\\b",
+          "description": "editorial"
+        },
+        {
+          "id": "rev_research_for_era",
+          "regex": "\\btowards\\s+\\w+\\s+research\\s+for\\s+the\\s+era\\b",
+          "description": "towards X research for the era"
+        },
+        {
+          "id": "rev_abs_this_survey",
+          "regex": "\\bthis\\s+(?:survey|review|article\\s+(?:reviews|surveys|provides\\s+an?\\s+overview))",
+          "description": "this survey/review (abstract)"
+        },
+        {
+          "id": "rev_abs_we_present_overview",
+          "regex": "\\bwe\\s+(?:present|provide)\\s+(?:a\\s+)?(?:comprehensive\\s+)?(?:overview|survey|review|systematic\\s+review)",
+          "description": "we present overview"
+        },
+        {
+          "id": "rev_abs_state_of_the_art",
+          "regex": "\\bstate[-\\s]of[-\\s]the[-\\s]art\\s+(?:in|on|review|survey)",
+          "description": "state-of-the-art review"
+        },
+        {
+          "id": "rev_abs_systematic_mapping",
+          "regex": "\\bsystematic\\s+mapping",
+          "description": "systematic mapping"
+        },
+        {
+          "id": "rev_abs_we_review",
+          "regex": "\\bwe\\s+(?:systematically\\s+)?review\\b",
+          "description": "we review"
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "rl",
+      "label": "RL",
+      "decision": "Exclude",
+      "justification": "RL",
+      "priority": 3,
+      "patterns": [
+        {
+          "id": "rl_madrl",
+          "regex": "\\bmadrl\\b",
+          "description": "MADRL"
+        },
+        {
+          "id": "rl_maddpg",
+          "regex": "\\bmaddpg\\b",
+          "description": "MADDPG"
+        },
+        {
+          "id": "rl_mappo",
+          "regex": "\\bmappo\\b",
+          "description": "MAPPO"
+        },
+        {
+          "id": "rl_ma_ppo",
+          "regex": "\\bma[\\s-]ppo\\b",
+          "description": "MA-PPO"
+        },
+        {
+          "id": "rl_matd3",
+          "regex": "\\bmatd3\\b",
+          "description": "MATD3"
+        },
+        {
+          "id": "rl_ma_td3",
+          "regex": "\\bma[\\s-]td3\\b",
+          "description": "MA-TD3"
+        },
+        {
+          "id": "rl_masac",
+          "regex": "\\bmasac\\b",
+          "description": "MASAC"
+        },
+        {
+          "id": "rl_ma_sac",
+          "regex": "\\bma[\\s-]sac\\b",
+          "description": "MA-SAC"
+        },
+        {
+          "id": "rl_ma_ddpg",
+          "regex": "\\bma[\\s-]ddpg\\b",
+          "description": "MA-DDPG"
+        },
+        {
+          "id": "rl_ma_rl_combo",
+          "regex": "(?=.*\\b(?:multi[\\s\\-–—]?agent[s]?|multiagent[s]?|multiple\\s+agents)\\b).*\\b(?:reinforcement[\\s\\-–—]+learning|deep[\\s\\-–—]+rl|deep[\\s\\-–—]+reinforcement(?:[\\s\\-–—]+learning)?|q[\\s\\-–—]?learning|dqn|ddqn|d3qn|dueling\\s+dqn|rainbow[\\s\\-–—]?dqn|actor[\\s\\-–—]?critic|soft\\s+actor[\\s\\-–—]?critic|sarsa|ddpg|td3|a3c|a2c|ppo|trpo|drl|sac|rl)\\b",
+          "description": "multi-agent + single-agent RL acronym (incl. plain RL, em/en-dash variants)"
+        }
+      ],
+      "overrides": [
+        {
+          "id": "ovr_rl_llm_present",
+          "regex": "\\b(?:llms?|gpts?|chatgpt|llama|bert|edgebert|netgpt|foundation(?:al)?\\s+model[s]?|large\\s+language\\s+model[s]?|language\\s+model[s]?|small\\s+language\\s+model[s]?|slm[s]?|large\\s+vision\\s+model[s]?|vision[-\\s]language\\s+model[s]?|vlm[s]?|mllm[s]?|agentic|generative\\s+ai|generative\\s+artificial\\s+intelligence|genai|gen[\\s-]?ai|aigc|transformer[s]?|llm[\\s-]?(?:agent|driven|empowered|powered|aided|enabled|based|guided|augmented)|prompt[\\s-]?(?:driven|based|engineering)|chain[\\s-]?of[\\s-]?thought|retrieval[\\s-]augmented\\s+generation|\\brag\\b|\\bai[-\\s](?:driven|based|powered|assisted|augmented|native|enabled|optimized|infused)\\b|\\bai\\s+agent[s]?\\b|\\bagent\\s+ai\\b|\\bllm\\s+agent[s]?\\b|chatbot[s]?|conversational\\s+ai|natural\\s+language\\s+processing|\\bnlp\\b|intent[-\\s]?(?:driven|based)|autonomic|neurosymbolic|language[-\\s]augmented)\\b",
+          "description": "LLM signal present (RL+LLM hybrid)"
+        }
+      ]
+    },
+    {
+      "id": "llm_as_workload",
+      "label": "LLM as workload",
+      "decision": "Exclude",
+      "justification": "LLM as workload",
+      "priority": 4,
+      "patterns": [
+        {
+          "id": "wl_train_llm_a",
+          "regex": "\\b(?:training|fine[-\\s]?tuning|pre[-\\s]?training)\\b[^.,]{0,200}\\b(?:llms?|foundation\\s+models?|large\\s+language\\s+models?|large\\s+models?|transformer[-\\s]based)\\b",
+          "description": "training/fine-tuning + LLM"
+        },
+        {
+          "id": "wl_train_llm_b",
+          "regex": "\\b(?:llms?|foundation\\s+models?|large\\s+language\\s+models?|large\\s+models?|transformer[-\\s]based)\\b[^.,]{0,200}\\b(?:training|fine[-\\s]?tuning|pre[-\\s]?training)\\b",
+          "description": "LLM + training/fine-tuning"
+        },
+        {
+          "id": "wl_train_cluster",
+          "regex": "\\b(?:ai|ml)\\s+training\\s+(?:cluster|workload)\\b",
+          "description": "AI/ML training cluster"
+        },
+        {
+          "id": "wl_training_workload",
+          "regex": "\\btraining\\s+(?:cluster|workload)s?\\b",
+          "description": "training cluster/workload"
+        },
+        {
+          "id": "wl_customizing_transformer",
+          "regex": "\\bcustomizing\\s+(?:transformer|llm|foundation\\s+model)",
+          "description": "customizing transformer/LLM"
+        },
+        {
+          "id": "wl_distributed_finetuning",
+          "regex": "\\b(?:decentralized|distributed|federated|split)\\s+(?:fine[-\\s]?tuning|training)\\s+(?:of\\s+)?(?:foundation\\s+models?|large\\s+language|llms?)",
+          "description": "distributed fine-tuning of LLMs"
+        },
+        {
+          "id": "wl_inference_llm_a",
+          "regex": "\\b(?:llm|llms|gpt|generative\\s+ai|genai|aigc|large\\s+language\\s+model|large\\s+language|foundation\\s+model|transformer)[s]?\\b[^.,]{0,200}\\b(?:inference|serving|deploy(?:ment|ing)?|accelerat|batching|quantization|pruning|decoding|hot[-\\s]swap|disaggregat)\\b",
+          "description": "LLM + inference/serving"
+        },
+        {
+          "id": "wl_inference_llm_b",
+          "regex": "\\b(?:inference|serving|deploy(?:ment|ing)?|accelerat|batching|quantization|pruning|decoding|hot[-\\s]swap|disaggregat)\\b[^.,]{0,200}\\b(?:llms?|gpts?|generative\\s+ai|genai|aigc|large\\s+language\\s+models?|foundation\\s+models?|transformers?)\\b",
+          "description": "inference/serving + LLM"
+        },
+        {
+          "id": "wl_abs_serving_llms",
+          "regex": "\\b(?:serving|serve|deploying|deploy|hosting|host)\\s+(?:of\\s+)?(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)",
+          "description": "serving/deploying LLMs"
+        },
+        {
+          "id": "wl_abs_llm_infra",
+          "regex": "\\b(?:llm|large\\s+language\\s+model|foundation\\s+model)\\s+(?:inference\\s+)?(?:engine|system|platform|infrastructure|stack|pipeline)",
+          "description": "LLM inference engine/infra"
+        },
+        {
+          "id": "wl_abs_for_llm_workload",
+          "regex": "\\bfor\\s+(?:efficient\\s+|scalable\\s+)?(?:llm|large\\s+language\\s+model|foundation\\s+model)\\s+(?:inference|serving|training|fine[\\s-]?tuning|deployment)",
+          "description": "for LLM inference/serving (workload)"
+        },
+        {
+          "id": "wl_abs_we_propose_llm_serving",
+          "regex": "\\bwe\\s+(?:propose|present|introduce|design)\\s+(?:a\\s+)?(?:novel\\s+|new\\s+)?(?:framework|system|method|approach|scheme|technique|architecture)\\s+(?:for|to)\\s+(?:efficient\\s+|scalable\\s+)?(?:serving|inference|deploy(?:ing|ment)|train(?:ing)|fine[\\s-]?tuning)\\s+(?:of\\s+)?(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)",
+          "description": "we propose system for LLM serving (workload)"
+        }
+      ],
+      "overrides": [
+        {
+          "id": "ovr_with_llm",
+          "regex": "\\bwith\\s+(?:llms?|large\\s+language\\s+models?|generative\\s+ai|genai)\\b",
+          "description": "with LLM"
+        },
+        {
+          "id": "ovr_using_llm",
+          "regex": "\\busing\\s+(?:llms?|large\\s+language|generative\\s+ai|genai|gpts?)\\b",
+          "description": "using LLM"
+        },
+        {
+          "id": "ovr_leveraging_llm",
+          "regex": "\\bleveraging\\s+(?:llms?|gpts?|generative\\s+ai|large\\s+language)\\b",
+          "description": "leveraging LLM"
+        },
+        {
+          "id": "ovr_via_llm",
+          "regex": "\\bvia\\s+(?:llms?|large\\s+language|generative\\s+ai|gpts?)\\b",
+          "description": "via LLM"
+        },
+        {
+          "id": "ovr_llm_modifier",
+          "regex": "\\bllm[-\\s]?(?:agent|empowered|driven|aided|guided|based|enabled|augmented|powered)",
+          "description": "llm-agent/empowered/etc"
+        },
+        {
+          "id": "ovr_modifier_by_llm",
+          "regex": "\\b(?:agent|empowered|driven|aided|guided|enabled|augmented|powered)[\\s-]?(?:by|via|with)\\s+(?:llm|large\\s+language|generative\\s+ai|genai|gpt|foundation\\s+model|transformer)",
+          "description": "X by/via/with LLM"
+        },
+        {
+          "id": "ovr_llm_as_judge",
+          "regex": "\\bllm[\\s-]?as[\\s-]?a[\\s-]?judge\\b",
+          "description": "LLM-as-a-judge"
+        },
+        {
+          "id": "ovr_llm_agents",
+          "regex": "\\bllm\\s+agents?\\b",
+          "description": "LLM agents"
+        },
+        {
+          "id": "ovr_intent_driven",
+          "regex": "\\bintent[\\s-]?driven\\b",
+          "description": "intent-driven"
+        },
+        {
+          "id": "ovr_prompt_driven",
+          "regex": "\\bprompt[\\s-]?driven\\b",
+          "description": "prompt-driven"
+        },
+        {
+          "id": "ovr_prompt_based",
+          "regex": "\\bprompt[\\s-]?based\\b",
+          "description": "prompt-based"
+        },
+        {
+          "id": "ovr_hyper_heuristics",
+          "regex": "\\bhyper[-\\s]heuristics?\\b",
+          "description": "hyper-heuristics"
+        },
+        {
+          "id": "ovr_rca",
+          "regex": "\\brca\\b",
+          "description": "RCA"
+        },
+        {
+          "id": "ovr_anomaly_log",
+          "regex": "\\banomaly\\s+log\\s+analysis\\b",
+          "description": "anomaly log analysis"
+        },
+        {
+          "id": "ovr_system_log_diag",
+          "regex": "\\bsystem\\s+log\\s+(?:fault\\s+)?diagnosis\\b",
+          "description": "system log diagnosis"
+        },
+        {
+          "id": "ovr_fault_diag",
+          "regex": "\\b(?:network|system|service)\\s+fault\\s+diagnosis\\b",
+          "description": "fault diagnosis"
+        },
+        {
+          "id": "ovr_rm_via",
+          "regex": "\\bresource\\s+management\\s+systems?\\s+via\\b",
+          "description": "resource management via"
+        },
+        {
+          "id": "ovr_function_calling",
+          "regex": "\\bfunction\\s+calling\\b",
+          "description": "function calling"
+        },
+        {
+          "id": "ovr_llm_caching",
+          "regex": "\\b(?:foundation\\s+model|llm)\\s+caching\\b",
+          "description": "LLM caching"
+        },
+        {
+          "id": "ovr_caching_inference",
+          "regex": "\\bcaching\\s+and\\s+inference\\s+of\\b",
+          "description": "caching and inference of"
+        },
+        {
+          "id": "ovr_abs_llm_decides",
+          "regex": "\\b(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)\\b[^.]{0,100}\\b(?:decides?|selects?|chooses?|determines?|recommends?|generates?\\s+(?:a\\s+)?(?:plan|policy|placement|schedule|allocation))",
+          "description": "LLM decides/selects/generates plan"
+        },
+        {
+          "id": "ovr_abs_llm_orchestrates",
+          "regex": "\\b(?:llms?|large\\s+language\\s+models?|foundation\\s+models?)\\b[^.]{0,100}\\b(?:orchestrate|control|manage|govern|reason|plan)",
+          "description": "LLM orchestrates/manages"
+        },
+        {
+          "id": "ovr_abs_agentic_workflow",
+          "regex": "\\bagentic\\s+(?:workflow|pipeline|loop|architecture|framework)",
+          "description": "agentic workflow"
+        },
+        {
+          "id": "ovr_abs_using_llms_to_decide",
+          "regex": "\\busing\\s+(?:llms?|large\\s+language\\s+models?|foundation\\s+models?)\\s+to\\s+(?:decide|select|recommend|plan|schedule|allocate|orchestrate)",
+          "description": "using LLMs to decide"
+        }
+      ]
+    },
+    {
+      "id": "classical_agents",
+      "label": "Classical agents or MAS (no LLM signal)",
+      "decision": "Exclude",
+      "justification": "MAS/Agent sem sinal de LLM no abstract (provável clássico ou MARL puro)",
+      "priority": 5,
+      "patterns": [
+        {
+          "id": "cls_mas_term",
+          "regex": "\\b(?:multi[\\s\\-–—]?agent[s]?|multiagent[s]?|MAS|multi[\\s\\-–—]?agent\\s+system[s]?)\\b",
+          "description": "MAS / multi-agent / multiagent term"
+        },
+        {
+          "id": "cls_agent_term",
+          "regex": "\\bagent[s]?\\b",
+          "description": "agent / agents term"
+        },
+        {
+          "id": "cls_jade",
+          "regex": "\\bJADE\\s+(?:framework|platform|agent|toolkit)|\\bjava\\s+agent\\s+development\\s+(?:environment|framework)",
+          "description": "JADE framework/platform"
+        },
+        {
+          "id": "cls_fipa",
+          "regex": "\\bFIPA[-\\s]?(?:compliant|protocol|standard|acl|specification)|\\bFIPA\\s+agent\\b",
+          "description": "FIPA-compliant"
+        },
+        {
+          "id": "cls_contract_net",
+          "regex": "\\bcontract[\\s\\-–—]net\\s+(?:protocol|interaction)",
+          "description": "contract-net protocol"
+        },
+        {
+          "id": "cls_holonic",
+          "regex": "\\bholonic\\s+(?:agent|system|architecture|control)",
+          "description": "holonic agent/system"
+        },
+        {
+          "id": "cls_bdi",
+          "regex": "\\bBDI\\s+(?:agent|architecture|model|framework)",
+          "description": "BDI architecture"
+        },
+        {
+          "id": "cls_behavior_based",
+          "regex": "\\bbehavior[\\s\\-–—]based\\s+(?:agent|robot|control|architecture)",
+          "description": "behavior-based agent"
+        },
+        {
+          "id": "cls_aglet",
+          "regex": "\\baglet[s]?\\s+(?:framework|platform|agent)",
+          "description": "Aglets mobile agents"
+        },
+        {
+          "id": "cls_mobile_agents_classic",
+          "regex": "\\bmobile\\s+agent[s]?\\s+(?:platform|framework|paradigm|migration|cloning|cooperation)",
+          "description": "classical mobile agent platforms"
+        },
+        {
+          "id": "cls_blackboard",
+          "regex": "\\bblackboard\\s+(?:system|architecture|agent)",
+          "description": "blackboard system"
+        },
+        {
+          "id": "cls_auction_protocol",
+          "regex": "\\bauction[\\s\\-–—]based\\s+(?:protocol|negotiation|allocation\\s+protocol|coordination)",
+          "description": "auction-based protocol"
+        },
+        {
+          "id": "cls_negotiation_protocol",
+          "regex": "\\bnegotiation\\s+protocol\\s+(?:among|between)\\s+agent",
+          "description": "negotiation protocol among agents"
+        },
+        {
+          "id": "cls_agent_oriented",
+          "regex": "\\bagent[\\s\\-–—]oriented\\s+(?:software\\s+engineering|programming|methodology)",
+          "description": "agent-oriented software engineering"
+        },
+        {
+          "id": "cls_kqml",
+          "regex": "\\bKQML\\b|\\bknowledge\\s+query\\s+manipulation\\s+language\\b",
+          "description": "KQML"
+        }
+      ],
+      "overrides": [
+        {
+          "id": "ovr_cls_llm_present",
+          "regex": "\\b(?:llms?|gpts?|chatgpt|llama|bert|edgebert|netgpt|foundation(?:al)?\\s+model[s]?|large\\s+language\\s+model[s]?|language\\s+model[s]?|small\\s+language\\s+model[s]?|slm[s]?|large\\s+vision\\s+model[s]?|vision[-\\s]language\\s+model[s]?|vlm[s]?|mllm[s]?|agentic|generative\\s+ai|generative\\s+artificial\\s+intelligence|genai|gen[\\s-]?ai|aigc|transformer[s]?|llm[\\s-]?(?:agent|driven|empowered|powered|aided|enabled|based|guided|augmented)|prompt[\\s-]?(?:driven|based|engineering)|chain[\\s-]?of[\\s-]?thought|retrieval[\\s-]augmented\\s+generation|\\brag\\b|\\bai[-\\s](?:driven|based|powered|assisted|augmented|native|enabled|optimized|infused)\\b|\\bai\\s+agent[s]?\\b|\\bagent\\s+ai\\b|\\bllm\\s+agent[s]?\\b|chatbot[s]?|conversational\\s+ai|natural\\s+language\\s+processing|\\bnlp\\b|intent[-\\s]?(?:driven|based)|autonomic|neurosymbolic|language[-\\s]augmented)\\b",
+          "description": "LLM signal present (classical+LLM modernization → Include downstream)"
+        }
+      ]
+    },
+    {
+      "id": "mas_llm_based",
+      "label": "MAS LLM-based",
+      "decision": "Include",
+      "justification": "Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM).",
+      "priority": 6,
+      "patterns": [
+        {
+          "id": "mas_llm_combo",
+          "regex": "(?=.*\\b(?:multi[\\s\\-–—]?agent[s]?|multiagent[s]?|MAS|multi[\\s\\-–—]?agent\\s+system[s]?)\\b)(?=.*\\b(?:llms?|gpts?|chatgpt|llama|bert|edgebert|netgpt|foundation(?:al)?\\s+model[s]?|large\\s+language\\s+model[s]?|language\\s+model[s]?|small\\s+language\\s+model[s]?|slm[s]?|large\\s+vision\\s+model[s]?|vision[-\\s]language\\s+model[s]?|vlm[s]?|mllm[s]?|agentic|generative\\s+ai|generative\\s+artificial\\s+intelligence|genai|gen[\\s-]?ai|aigc|transformer[s]?|llm[\\s-]?(?:agent|driven|empowered|powered|aided|enabled|based|guided|augmented)|prompt[\\s-]?(?:driven|based|engineering)|chain[\\s-]?of[\\s-]?thought|retrieval[\\s-]augmented\\s+generation|\\brag\\b|\\bai[-\\s](?:driven|based|powered|assisted|augmented|native|enabled|optimized|infused)\\b|\\bai\\s+agent[s]?\\b|\\bagent\\s+ai\\b|\\bllm\\s+agent[s]?\\b|chatbot[s]?|conversational\\s+ai|natural\\s+language\\s+processing|\\bnlp\\b|intent[-\\s]?(?:driven|based)|autonomic|neurosymbolic|language[-\\s]augmented)\\b).+",
+          "description": "MAS term + LLM signal co-occur in abstract"
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "agent_llm_based",
+      "label": "Agent LLM-based",
+      "decision": "Include",
+      "justification": "Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM).",
+      "priority": 7,
+      "patterns": [
+        {
+          "id": "agent_llm_combo",
+          "regex": "(?=.*\\bagent[s]?\\b)(?=.*\\b(?:llms?|gpts?|chatgpt|llama|bert|edgebert|netgpt|foundation(?:al)?\\s+model[s]?|large\\s+language\\s+model[s]?|language\\s+model[s]?|small\\s+language\\s+model[s]?|slm[s]?|large\\s+vision\\s+model[s]?|vision[-\\s]language\\s+model[s]?|vlm[s]?|mllm[s]?|agentic|generative\\s+ai|generative\\s+artificial\\s+intelligence|genai|gen[\\s-]?ai|aigc|transformer[s]?|llm[\\s-]?(?:agent|driven|empowered|powered|aided|enabled|based|guided|augmented)|prompt[\\s-]?(?:driven|based|engineering)|chain[\\s-]?of[\\s-]?thought|retrieval[\\s-]augmented\\s+generation|\\brag\\b|\\bai[-\\s](?:driven|based|powered|assisted|augmented|native|enabled|optimized|infused)\\b|\\bai\\s+agent[s]?\\b|\\bagent\\s+ai\\b|\\bllm\\s+agent[s]?\\b|chatbot[s]?|conversational\\s+ai|natural\\s+language\\s+processing|\\bnlp\\b|intent[-\\s]?(?:driven|based)|autonomic|neurosymbolic|language[-\\s]augmented)\\b).+",
+          "description": "agent term + LLM signal co-occur in abstract"
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "llm_agentic_ai_generic",
+      "label": "LLM / Agentic AI",
+      "decision": "Include",
+      "justification": "Talvez tenha algo de LLM e/ou Agentic AI.",
+      "priority": 8,
+      "patterns": [
+        {
+          "id": "gen_llm",
+          "regex": "\\bllm[s]?\\b",
+          "description": "LLM/LLMs"
+        },
+        {
+          "id": "gen_llmops_a",
+          "regex": "\\bllm-?ops\\b",
+          "description": "LLM-ops"
+        },
+        {
+          "id": "gen_llmops_b",
+          "regex": "\\bllmops\\b",
+          "description": "LLMOps"
+        },
+        {
+          "id": "gen_vllm",
+          "regex": "\\bvllm\\b",
+          "description": "vLLM"
+        },
+        {
+          "id": "gen_llama",
+          "regex": "\\bllama\\b",
+          "description": "LLaMA"
+        },
+        {
+          "id": "gen_gpt",
+          "regex": "\\bgpt(?:-\\d)?\\b",
+          "description": "GPT"
+        },
+        {
+          "id": "gen_chatgpt",
+          "regex": "\\bchatgpt\\b",
+          "description": "ChatGPT"
+        },
+        {
+          "id": "gen_bert",
+          "regex": "\\bbert\\b",
+          "description": "BERT"
+        },
+        {
+          "id": "gen_edgebert",
+          "regex": "\\bedgebert\\b",
+          "description": "EdgeBERT"
+        },
+        {
+          "id": "gen_netgpt",
+          "regex": "\\bnetgpt\\b",
+          "description": "NetGPT"
+        },
+        {
+          "id": "gen_shapegpt",
+          "regex": "\\bshapegpt\\b",
+          "description": "ShapeGPT"
+        },
+        {
+          "id": "gen_large_lang_model",
+          "regex": "\\blarge\\s+language\\s+model[s]?\\b",
+          "description": "large language model"
+        },
+        {
+          "id": "gen_lang_model",
+          "regex": "\\blanguage\\s+model[s]?\\b",
+          "description": "language model"
+        },
+        {
+          "id": "gen_small_lang_model",
+          "regex": "\\bsmall\\s+language\\s+model[s]?\\b",
+          "description": "small language model"
+        },
+        {
+          "id": "gen_slm",
+          "regex": "\\bslm[s]?\\b",
+          "description": "SLM"
+        },
+        {
+          "id": "gen_large_vision_model",
+          "regex": "\\blarge\\s+vision\\s+model[s]?\\b",
+          "description": "large vision model"
+        },
+        {
+          "id": "gen_vlm_full",
+          "regex": "\\bvision[-\\s]language\\s+model[s]?\\b",
+          "description": "vision-language model"
+        },
+        {
+          "id": "gen_vlm",
+          "regex": "\\bvlm[s]?\\b",
+          "description": "VLM"
+        },
+        {
+          "id": "gen_mllm",
+          "regex": "\\bmllm[s]?\\b",
+          "description": "MLLM"
+        },
+        {
+          "id": "gen_mllm_full",
+          "regex": "\\bmultimodal\\s+large\\s+language\\b",
+          "description": "multimodal large language"
+        },
+        {
+          "id": "gen_genai_full",
+          "regex": "\\bgenerative\\s+a(?:rtificial\\s+)?i(?:ntelligence)?\\b",
+          "description": "generative AI"
+        },
+        {
+          "id": "gen_genai",
+          "regex": "\\bgenai\\b",
+          "description": "GenAI"
+        },
+        {
+          "id": "gen_gen_ai",
+          "regex": "\\bgen[\\s-]?ai\\b",
+          "description": "Gen-AI"
+        },
+        {
+          "id": "gen_gai",
+          "regex": "\\bgai\\b",
+          "description": "GAI"
+        },
+        {
+          "id": "gen_aigc",
+          "regex": "\\baigc\\b",
+          "description": "AIGC"
+        },
+        {
+          "id": "gen_generative_model",
+          "regex": "\\bgenerative\\s+model[s]?\\b",
+          "description": "generative model"
+        },
+        {
+          "id": "gen_generative_diffusion",
+          "regex": "\\bgenerative\\s+diffusion\\b",
+          "description": "generative diffusion"
+        },
+        {
+          "id": "gen_diffusion_model",
+          "regex": "\\bdiffusion\\s+model[s]?\\b",
+          "description": "diffusion model"
+        },
+        {
+          "id": "gen_decoder_generative",
+          "regex": "\\bdecoder[-\\s]based\\s+generative\\b",
+          "description": "decoder-based generative"
+        },
+        {
+          "id": "gen_image_generation",
+          "regex": "\\bimage\\s+generation\\b",
+          "description": "image generation"
+        },
+        {
+          "id": "gen_text_to_x_gen",
+          "regex": "\\btext[-\\s]to[-\\s]\\w+\\s+generation\\b",
+          "description": "text-to-X generation"
+        },
+        {
+          "id": "gen_foundation_model",
+          "regex": "\\bfoundation(?:al)?\\s+model[s]?\\b",
+          "description": "foundation model"
+        },
+        {
+          "id": "gen_large_model",
+          "regex": "\\blarge\\s+model[s]?\\b",
+          "description": "large model"
+        },
+        {
+          "id": "gen_rag_full",
+          "regex": "\\bretrieval[-\\s]augmented\\s+generation\\b",
+          "description": "RAG (full)"
+        },
+        {
+          "id": "gen_rag",
+          "regex": "\\brag\\b",
+          "description": "RAG"
+        },
+        {
+          "id": "gen_prompt_engineering",
+          "regex": "\\bprompt\\s+engineering\\b",
+          "description": "prompt engineering"
+        },
+        {
+          "id": "gen_prompt_driven",
+          "regex": "\\bprompt[-\\s]driven\\b",
+          "description": "prompt-driven"
+        },
+        {
+          "id": "gen_prompt_based",
+          "regex": "\\bprompt[-\\s]based\\b",
+          "description": "prompt-based"
+        },
+        {
+          "id": "gen_prompting",
+          "regex": "\\bprompting\\b",
+          "description": "prompting"
+        },
+        {
+          "id": "gen_prompt_aware",
+          "regex": "\\bprompt[-\\s]aware\\b",
+          "description": "prompt-aware"
+        },
+        {
+          "id": "gen_cot_a",
+          "regex": "\\bchain[-\\s]of[-\\s]thought\\b",
+          "description": "chain-of-thought"
+        },
+        {
+          "id": "gen_cot_b",
+          "regex": "\\bchain\\s+of\\s+thought\\b",
+          "description": "chain of thought"
+        },
+        {
+          "id": "gen_conversational_ai",
+          "regex": "\\bconversational\\s+ai\\b",
+          "description": "conversational AI"
+        },
+        {
+          "id": "gen_moe",
+          "regex": "\\bmoe\\b",
+          "description": "MoE"
+        },
+        {
+          "id": "gen_mixture_experts",
+          "regex": "\\bmixture[-\\s]of[-\\s]experts\\b",
+          "description": "mixture-of-experts"
+        },
+        {
+          "id": "gen_collab_experts",
+          "regex": "\\bcollaboration[-\\s]of[-\\s]experts\\b",
+          "description": "collaboration-of-experts"
+        },
+        {
+          "id": "gen_agentic",
+          "regex": "\\bagentic\\b",
+          "description": "agentic"
+        },
+        {
+          "id": "gen_ai_agent",
+          "regex": "\\bai\\s+agent[s]?\\b",
+          "description": "AI agent"
+        },
+        {
+          "id": "gen_llm_agent",
+          "regex": "\\bllm\\s+agent[s]?\\b",
+          "description": "LLM agent"
+        },
+        {
+          "id": "gen_agent_ai",
+          "regex": "\\bagent\\s+ai\\b",
+          "description": "Agent AI"
+        },
+        {
+          "id": "gen_transformer",
+          "regex": "\\btransformer[s]?\\b",
+          "description": "transformer"
+        },
+        {
+          "id": "gen_aiops",
+          "regex": "\\baiops\\b",
+          "description": "AIOps"
+        },
+        {
+          "id": "gen_sam",
+          "regex": "\\bsam\\b",
+          "description": "SAM"
+        },
+        {
+          "id": "gen_ai_driven",
+          "regex": "\\bai[-\\s]driven\\b",
+          "description": "AI-driven"
+        },
+        {
+          "id": "gen_ai_based",
+          "regex": "\\bai[-\\s]based\\b",
+          "description": "AI-based"
+        },
+        {
+          "id": "gen_ai_powered",
+          "regex": "\\bai[-\\s]powered\\b",
+          "description": "AI-powered"
+        },
+        {
+          "id": "gen_ai_assisted",
+          "regex": "\\bai[-\\s]assisted\\b",
+          "description": "AI-assisted"
+        },
+        {
+          "id": "gen_ai_augmented",
+          "regex": "\\bai[-\\s]augmented\\b",
+          "description": "AI-augmented"
+        },
+        {
+          "id": "gen_ai_native",
+          "regex": "\\bai[-\\s]native\\b",
+          "description": "AI-native"
+        },
+        {
+          "id": "gen_ai_enabled",
+          "regex": "\\bai[-\\s]enabled\\b",
+          "description": "AI-enabled"
+        },
+        {
+          "id": "gen_pervasive_ai",
+          "regex": "\\bpervasive\\s+ai\\b",
+          "description": "pervasive AI"
+        },
+        {
+          "id": "gen_ai_optimized",
+          "regex": "\\bai[-\\s]optimized\\b",
+          "description": "AI-optimized"
+        },
+        {
+          "id": "gen_ai_infused",
+          "regex": "\\bai[-\\s]infused\\b",
+          "description": "AI-infused"
+        },
+        {
+          "id": "gen_ai_ran",
+          "regex": "\\bai-ran\\b",
+          "description": "AI-RAN"
+        },
+        {
+          "id": "gen_ai_services",
+          "regex": "\\bai[-\\s]services?\\b",
+          "description": "AI services"
+        },
+        {
+          "id": "gen_intent_driven",
+          "regex": "\\bintent[-\\s]?driven\\b",
+          "description": "intent-driven"
+        },
+        {
+          "id": "gen_intent_based",
+          "regex": "\\bintent[-\\s]?based\\b",
+          "description": "intent-based"
+        },
+        {
+          "id": "gen_autonomic",
+          "regex": "\\bautonomic\\b",
+          "description": "autonomic"
+        },
+        {
+          "id": "gen_neurosymbolic",
+          "regex": "\\bneurosymbolic\\b",
+          "description": "neurosymbolic"
+        },
+        {
+          "id": "gen_nlp_full",
+          "regex": "\\bnatural\\s+language\\s+processing\\b",
+          "description": "natural language processing"
+        },
+        {
+          "id": "gen_nlp",
+          "regex": "\\bnlp\\b",
+          "description": "NLP"
+        },
+        {
+          "id": "gen_language_augmented",
+          "regex": "\\blanguage[-\\s]augmented\\b",
+          "description": "language-augmented"
+        },
+        {
+          "id": "gen_chatbot",
+          "regex": "\\bchatbot[s]?\\b",
+          "description": "chatbot"
+        },
+        {
+          "id": "gen_fipa",
+          "regex": "\\bfipa\\b",
+          "description": "FIPA (multi-agent standard)"
+        }
+      ],
+      "overrides": []
+    }
+  ]
+}

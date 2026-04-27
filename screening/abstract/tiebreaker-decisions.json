@@ -1,0 +1,8 @@
+[
+  {
+    "paper_id": "paper-034",
+    "decision": "Exclude",
+    "justification": "Mecanismo de negociação clássico pré-LLM (2017) para SaaS, sem qualquer sinal de LLM, agente baseado em foundation model ou IA agêntica moderna.",
+    "confidence": "high"
+  }
+]
