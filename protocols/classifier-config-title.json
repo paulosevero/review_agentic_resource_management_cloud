@@ -41,7 +41,6 @@
         {"id": "oos_iort", "regex": "\\binternet\\s+of\\s+robotic\\s+things\\b", "description": "IoRT"},
         {"id": "oos_robots_mllm", "regex": "\\brobots?\\s+with\\s+multimodal\\s+(?:large\\s+)?language", "description": "robots with mllm"},
         {"id": "oos_active_inference_robots", "regex": "\\bactive\\s+inference\\s+for\\s+robots\\b", "description": "active inference for robots"},
-        {"id": "oos_equipment_sensor", "regex": "\\bautonomous\\s+interpretation\\s+of\\s+equipment\\s+sensor\\s+data\\b", "description": "equipment sensor"},
         {"id": "oos_maritime_sar", "regex": "\\bmaritime\\s+search\\s+(?:and|&)\\s+rescue\\b", "description": "maritime SAR"},
         {"id": "oos_sar_network", "regex": "\\bsearch\\s+(?:and|&)\\s+rescue\\b.*\\bnetwork", "description": "SAR network"},
         {"id": "oos_maritime_informatics", "regex": "\\bcognitive\\s+maritime\\s+informatics\\b", "description": "maritime informatics"},
@@ -60,11 +59,8 @@
         {"id": "oos_idiomaticity", "regex": "\\bidiomaticity\\b", "description": "idiomaticity"},
         {"id": "oos_sustainable_genai", "regex": "\\bsustainable\\s+use\\s+of\\s+(?:generative\\s+)?artificial\\s+intelligence\\b", "description": "sustainable genai"},
         {"id": "oos_arm_sbc", "regex": "\\barm\\s+sbc\\s+architecture\\b", "description": "ARM SBC"},
-        {"id": "oos_smart_assistant_microcontroller", "regex": "\\bsmart\\s+assistant\\s+on\\s+a\\s+microcontroller\\b", "description": "microcontroller assistant"},
         {"id": "oos_flow_shop", "regex": "\\bflow[\\s-]shop\\s+(?:scheduling|with)\\b", "description": "flow-shop"},
-        {"id": "oos_signs_of_times", "regex": "\\b(?:sign|signs)\\s+of\\s+the\\s+times\\b", "description": "signs of the times"},
-        {"id": "oos_video_summarization", "regex": "\\bvideo\\s+summarization\\b.*\\bprompt\\b", "description": "video summarization+prompt"},
-        {"id": "oos_practical_assess_llm", "regex": "\\bpractical\\s+(?:assessment|evaluation)\\s+of\\s+large\\s+language\\s+models\\b", "description": "practical assessment of LLM"}
+        {"id": "oos_signs_of_times", "regex": "\\b(?:sign|signs)\\s+of\\s+the\\s+times\\b", "description": "signs of the times"}
       ],
       "overrides": []
     },
@@ -94,6 +90,11 @@
         {"id": "rev_mapping_study", "regex": "\\bmapping\\s+study\\b", "description": "mapping study"},
         {"id": "rev_taxonomy_of", "regex": "\\btaxonomy\\s+of\\b", "description": "taxonomy of"},
         {"id": "rev_comprehensive_survey", "regex": "\\bcomprehensive\\s+(?:survey|review)\\b", "description": "comprehensive survey/review"},
+        {"id": "rev_short_review", "regex": "\\bshort\\s+review\\b", "description": "short review"},
+        {"id": "rev_research_agenda", "regex": "\\bresearch\\s+agenda\\b", "description": "research agenda"},
+        {"id": "rev_state_of_art_chal", "regex": ":\\s*state[-\\s]of[-\\s]the[-\\s]art[\\s,]+challenges", "description": "subtitle: state-of-the-art, challenges..."},
+        {"id": "rev_concepts_techs_future", "regex": ":\\s*concepts[\\s,]+technologies[\\s,]+and\\s+future", "description": "subtitle: concepts, technologies, and future"},
+        {"id": "rev_fundamentals_solutions_chal", "regex": ":\\s*fundamentals[\\s,]+solutions[\\s,]+and\\s+challenges", "description": "subtitle: fundamentals, solutions, and challenges"},
         {"id": "rev_editorial", "regex": "\\beditorial\\b", "description": "editorial"},
         {"id": "rev_research_for_era", "regex": "\\btowards\\s+\\w+\\s+research\\s+for\\s+the\\s+era\\b", "description": "towards X research for the era"}
       ],
@@ -115,7 +116,7 @@
         {"id": "rl_masac", "regex": "\\bmasac\\b", "description": "MASAC"},
         {"id": "rl_ma_sac", "regex": "\\bma[\\s-]sac\\b", "description": "MA-SAC"},
         {"id": "rl_ma_ddpg", "regex": "\\bma[\\s-]ddpg\\b", "description": "MA-DDPG"},
-        {"id": "rl_ma_rl_combo", "regex": "(?=.*\\b(?:multi[\\s-]?agent[s]?|multiagent[s]?|multiple\\s+agents)\\b).*\\b(?:reinforcement[-\\s]+learning|deep[-\\s]+rl|deep[-\\s]+reinforcement(?:[-\\s]+learning)?|q[-\\s]?learning|dqn|ddqn|d3qn|dueling\\s+dqn|rainbow[\\s-]?dqn|actor[-\\s]?critic|soft\\s+actor[-\\s]?critic|sarsa|ddpg|td3|a3c|a2c|ppo|trpo|drl|sac)\\b", "description": "multi-agent + single-agent RL acronym"}
+        {"id": "rl_ma_rl_combo", "regex": "(?=.*\\b(?:multi[\\s\\-–—]?agent[s]?|multiagent[s]?|multiple\\s+agents)\\b).*\\b(?:reinforcement[\\s\\-–—]+learning|deep[\\s\\-–—]+rl|deep[\\s\\-–—]+reinforcement(?:[\\s\\-–—]+learning)?|q[\\s\\-–—]?learning|dqn|ddqn|d3qn|dueling\\s+dqn|rainbow[\\s\\-–—]?dqn|actor[\\s\\-–—]?critic|soft\\s+actor[\\s\\-–—]?critic|sarsa|ddpg|td3|a3c|a2c|ppo|trpo|drl|sac|rl)\\b", "description": "multi-agent + single-agent RL acronym (incl. plain RL, em/en-dash variants)"}
       ],
       "overrides": []
     },
@@ -148,11 +149,6 @@
         {"id": "ovr_prompt_driven", "regex": "\\bprompt[\\s-]?driven\\b", "description": "prompt-driven"},
         {"id": "ovr_prompt_based", "regex": "\\bprompt[\\s-]?based\\b", "description": "prompt-based"},
         {"id": "ovr_hyper_heuristics", "regex": "\\bhyper[-\\s]heuristics?\\b", "description": "hyper-heuristics"},
-        {"id": "ovr_routing", "regex": "\\brouting\\b", "description": "routing"},
-        {"id": "ovr_user_alloc", "regex": "\\buser\\s+(?:allocation|association)\\b", "description": "user allocation/association"},
-        {"id": "ovr_resource_alloc", "regex": "\\bresource\\s+allocation\\b", "description": "resource allocation"},
-        {"id": "ovr_load_balancing", "regex": "\\bload[\\s-]balancing\\b", "description": "load balancing"},
-        {"id": "ovr_layer_alloc", "regex": "\\blayer\\s+allocation\\b", "description": "layer allocation"},
         {"id": "ovr_rca", "regex": "\\brca\\b", "description": "RCA"},
         {"id": "ovr_anomaly_log", "regex": "\\banomaly\\s+log\\s+analysis\\b", "description": "anomaly log analysis"},
         {"id": "ovr_system_log_diag", "regex": "\\bsystem\\s+log\\s+(?:fault\\s+)?diagnosis\\b", "description": "system log diagnosis"},
@@ -258,7 +254,16 @@
         {"id": "gen_ai_optimized", "regex": "\\bai[-\\s]optimized\\b", "description": "AI-optimized"},
         {"id": "gen_ai_infused", "regex": "\\bai[-\\s]infused\\b", "description": "AI-infused"},
         {"id": "gen_ai_ran", "regex": "\\bai-ran\\b", "description": "AI-RAN"},
-        {"id": "gen_ai_services", "regex": "\\bai[-\\s]services?\\b", "description": "AI services"}
+        {"id": "gen_ai_services", "regex": "\\bai[-\\s]services?\\b", "description": "AI services"},
+        {"id": "gen_intent_driven", "regex": "\\bintent[-\\s]?driven\\b", "description": "intent-driven"},
+        {"id": "gen_intent_based", "regex": "\\bintent[-\\s]?based\\b", "description": "intent-based"},
+        {"id": "gen_autonomic", "regex": "\\bautonomic\\b", "description": "autonomic"},
+        {"id": "gen_neurosymbolic", "regex": "\\bneurosymbolic\\b", "description": "neurosymbolic"},
+        {"id": "gen_nlp_full", "regex": "\\bnatural\\s+language\\s+processing\\b", "description": "natural language processing"},
+        {"id": "gen_nlp", "regex": "\\bnlp\\b", "description": "NLP"},
+        {"id": "gen_language_augmented", "regex": "\\blanguage[-\\s]augmented\\b", "description": "language-augmented"},
+        {"id": "gen_chatbot", "regex": "\\bchatbot[s]?\\b", "description": "chatbot"},
+        {"id": "gen_fipa", "regex": "\\bfipa\\b", "description": "FIPA (multi-agent standard)"}
       ],
       "overrides": []
     }

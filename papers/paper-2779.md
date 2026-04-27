@@ -29,8 +29,8 @@ screening:
     threshold_used: 0.67
     machine_decision: "include"
     disagreement_type: "strong_disagreement"
-    human_decision: ""
-    human_justification: ""
+    human_decision: "include"
+    human_justification: "NLP talvez implique em LLM e/ou Agentic AI."
 
 ---
 

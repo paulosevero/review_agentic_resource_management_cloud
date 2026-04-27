@@ -29,8 +29,8 @@ screening:
     threshold_used: 0.67
     machine_decision: "exclude"
     disagreement_type: "agreement_exclude"
-    human_decision: ""
-    human_justification: ""
+    human_decision: "exclude"
+    human_justification: "NN"
 
 ---
 

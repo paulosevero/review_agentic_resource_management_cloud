@@ -18,7 +18,7 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": include
+  "04-title-screening": exclude
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
@@ -29,8 +29,8 @@ screening:
     threshold_used: 0.67
     machine_decision: "include"
     disagreement_type: "strong_disagreement"
-    human_decision: ""
-    human_justification: ""
+    human_decision: "exclude"
+    human_justification: "Game theory."
 
 ---
 

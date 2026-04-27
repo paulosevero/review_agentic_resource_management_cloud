@@ -18,7 +18,7 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": exclude
+  "04-title-screening": include
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
@@ -29,8 +29,8 @@ screening:
     threshold_used: 0.67
     machine_decision: "exclude"
     disagreement_type: "agreement_exclude"
-    human_decision: ""
-    human_justification: ""
+    human_decision: "include"
+    human_justification: "Talvez Intent-Based e Neurosymbolic AI sejam indicativos que o artigo é interessante para a review (e.g., intent-based é comumente usado em conjunto com LLM-based agents, e Neurosymbolic AI pode usar LLMs por baixo dos panos)."
 
 ---
 

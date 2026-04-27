@@ -29,8 +29,8 @@ screening:
     threshold_used: 0.67
     machine_decision: "include"
     disagreement_type: "agreement_include"
-    human_decision: ""
-    human_justification: ""
+    human_decision: "include"
+    human_justification: "Talvez tenha algo de LLM e/ou Agentic AI (Agent)."
 
 ---
 

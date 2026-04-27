@@ -18,7 +18,7 @@ source:
     merged_from: []
     merge_reason: ""
 status:
-  "04-title-screening": exclude
+  "04-title-screening": include
   "05-abstract-screening": pending
   "06-full-text-screening": pending
   "07-taxonomy": pending
@@ -29,8 +29,8 @@ screening:
     threshold_used: 0.67
     machine_decision: "exclude"
     disagreement_type: "agreement_exclude"
-    human_decision: ""
-    human_justification: ""
+    human_decision: "include"
+    human_justification: "Learning approach talvez indique LLM/agents"
 
 ---
 
