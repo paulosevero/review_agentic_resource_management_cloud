@@ -883,3 +883,47 @@ Stage 03 concluído. Resumo:
 - Commit: `9bc9a7a` — `[03] lock`
 
 Próximo passo: `/04-title-screening`
+
+# User
+
+You are finalizing Stage 04 (title-screening) of the rapid-review pipeline. The user has completed their manual review of `spreadsheet.xlsx`, aba `04 — Title Screening`, filling in `My Final Decision` and `My Justification` for all papers.
+
+Repo path: /Users/paulosouza/Documents/Carreira/Pesquisa/Código/review_agentic_resource_management_cloud
+
+Your task:
+1. Read the spreadsheet to tally the final counts based on `My Final Decision` column (Include vs Exclude). Use the `My Final Decision` column as the authoritative decision — it overrides the machine decision wherever filled.
+2. Update CLAUDE.md §1 to set `locks.04-title-screening: locked`.
+3. Commit everything with message: `[04] lock: title screening complete — NNN included, NNN excluded` (replace NNN with actual counts from My Final Decision).
+
+Do NOT re-run any screening. Just tally, update the lock, and commit.
+
+# Claude
+
+Contagem confirmada a partir da aba `04 — Title Screening`:
+
+- Include: 603
+- Exclude: 2346
+- Empty: 0
+- Total: 2949
+
+Atualizei `locks.04-title-screening: locked` e `Current stage: 04-title-screening` em CLAUDE.md e criei o commit `[04] lock: title screening complete — 603 included, 2346 excluded`.
+
+Próximo passo: execute `/05-abstract-screening` para processar os 603 papers incluídos.
+
+# User
+
+Analisei a planilha @spreadsheet.xlsx e fiz várias modificações nela, com ajustes de artigos que julguei tanto positivamente (Excluded -> Included) quanto negativamente (Included -> Excluded).
+
+Também pensei nas seguintes melhorias para a estrutura da planilha (elas já estão implementadas na aba de triagem por título, mas quero que sejam implementadas também na triagem por resumo e texto completo):
+
+[Sub-Mudança 01: cores com base na decisão — verde #e7ffee para inclusão, vermelho #ffeff0 para exclusão nas colunas ID e Título]
+[Sub-Mudança 02: ordenação — excluídos primeiro (bloco vermelho), incluídos depois (bloco verde)]
+[Sub-Mudança 03: palavras-chave estratégicas em negrito no título e resumo]
+
+# Claude
+
+Stage 04 locked: 603 incluídos, 2.346 excluídos. Commits b260492 (lock) e fc6c2a8 (formatting spec).
+
+Documentados os requisitos de formatação para stages 05/06 em protocols/spreadsheet-formatting.md e CLAUDE.md §10 Notes.
+
+Próximo passo: /05-abstract-screening.
