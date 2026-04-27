@@ -6,3 +6,7 @@ spreadsheet.xlsx
 .DS_Store
 *.swp
 .vscode/
+# macOS Finder duplicates
+* 2.md
+* 2.json
+* 2.py
