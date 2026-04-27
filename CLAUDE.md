@@ -319,7 +319,10 @@ The v1 semantic-neighbor consistency check is gone. The v2 adversarial sub-agent
 
 ## 10. Notes
 
-`<Free-form notes about the review. Examples: venues to pay special attention to, authors with known conflicts of interest to flag, prior related reviews the user wants to avoid duplicating.>`
+**Spreadsheet formatting requirements (stages 05 and 06):** The full spec lives in `protocols/spreadsheet-formatting.md`. Every agent that writes a screening tab must apply all three rules before committing:
+1. Background fill on ID and Title columns — green (`#e7ffee`) for Include, red (`#ffeff0`) for Exclude.
+2. Sort order — Excluded rows first (red block), then Included rows (green block); within each block sort by sub-agent disagreement descending.
+3. Bold strategic keywords in Title and Abstract cells using rich-text cell formatting (not markdown) to surface the reason for inclusion/exclusion at a glance.
 
 ## 11. Reserved
 
