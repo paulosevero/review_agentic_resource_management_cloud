@@ -272,7 +272,7 @@ Stages 04 (title) and 05 (abstract) were screened in the legacy pipeline (pre-v3
 models:
   title-screening:      claude-haiku-4-5
   abstract-screening:   claude-sonnet-4-6
-  full-text-screening:  claude-sonnet-4-6
+  full-text-screening:  claude-haiku-4-5
 
 classifier_configs:
   title-screening:      protocols/classifier-config.json
