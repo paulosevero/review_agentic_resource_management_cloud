@@ -61,9 +61,9 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Include
+    proposed_justification: "Talvez tenha algo de LLM e/ou Agentic AI."
+    winning_category: llm_agentic_ai_generic
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -148,7 +148,30 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2779.pdf`)_
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI."
+- **winning_category:** 'llm_agentic_ai_generic'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_gpt, matched_substring: "GPT-4" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_gpt, matched_substring: "GPT-4" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_gpt, matched_substring: "GPT-4" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_large_lang_model, matched_substring: "Large Language Models" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_lang_model, matched_substring: "Language Models" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_foundation_model, matched_substring: "foundation models" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_intent_based, matched_substring: "Intent-Based" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_intent_based, matched_substring: "Intent-based" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_intent_based, matched_substring: "intent-based" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_nlp_full, matched_substring: "Natural Language Processing" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_nlp, matched_substring: "NLP" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_nlp, matched_substring: "NLP" }`
 
 ---
 
