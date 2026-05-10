@@ -2,6 +2,8 @@
 spreadsheet.xlsx
 # Embedding caches produced by the consistency check
 .embeddings/
+# Worktrees and local Claude state
+.claude/
 # Editor / OS noise
 .DS_Store
 *.swp
