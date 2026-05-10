@@ -72,9 +72,13 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: 'Embora intitule LLM como ''high-level decision agent'', pipeline
+      é offline: DRL agentes treinam → geram dataset de decisões → LLM é fine-tuned
+      para imitar DRL → LLM executa inference batch para scheduling. Não há loop agentic
+      autônomo perceive→reason→act em tempo real. LLM funciona como modelo surrogate/substituto
+      para DRL, não como agente com raciocínio iterativo.'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -166,6 +170,13 @@ no duplicates found
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-guided" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-assisted" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-guided" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Embora intitule LLM como 'high-level decision agent', pipeline é offline: DRL agentes treinam → geram dataset de decisões → LLM é fine-tuned para imitar DRL → LLM executa inference batch para scheduling. Não há loop agentic autônomo perceive→reason→act em tempo real. LLM funciona como modelo surrogate/substituto para DRL, não como agente com raciocínio iterativo.
+- **agrees_with_regex:** True
+- **evidence_sections:** ["Abstract — 'LLMs as high-level decision agents' (claim), mas pipeline revela offline fine-tuning", 'Seção System model — DRL agents train, generate dataset, LLM fine-tuned', 'Seção LLMs for cloud task scheduling (Related Work) — LLM como surrogate para DRL generalization', 'Seção Experimental results — LLM inference performance, não agent loop evaluation']
 
 
 ## 07 — Taxonomy

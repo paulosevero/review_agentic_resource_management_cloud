@@ -73,9 +73,18 @@ screening:
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: Paper propõe scheduling via prompt-template estático enviado
+      a LLMs (GPT-3.5, LLaMA, etc.), onde o contexto do cluster e tarefas pendentes
+      são formatados em texto. LLMs geram sugestões de scheduling, mas a decisão final
+      depende de parsing e rule-based logic pós-processamento. Não há loop agentic
+      autônomo (perceive→reason→tool-use→act) dirigindo a decisão de RM — o pipeline
+      é offline prompting + extraction, não agentic reasoning. Seção 'Experiment Design'
+      descreve input/output prompts estáticos; seção 'Scheduling with LLMs' mostra
+      template-based approach sem agência. Comparação contra heurísticos e um modelo
+      RL básico (seção Experimental Results), confirmando que LLM atua como um preditor
+      estático, não agente autônomo.
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -165,6 +174,14 @@ no duplicates found
 - **overrides_applied:** []
 - **evidence_trail:**
   - `{ category: D_devops_or_logs_not_rm, pattern_id: deployment_assistant_no_rm, matched_substring: "configuration generation" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper propõe scheduling via prompt-template estático enviado a LLMs (GPT-3.5, LLaMA, etc.), onde o contexto do cluster e tarefas pendentes são formatados em texto. LLMs geram sugestões de scheduling, mas a decisão final depende de parsing e rule-based logic pós-processamento. Não há loop agentic autônomo (perceive→reason→tool-use→act) dirigindo a decisão de RM — o pipeline é offline prompting + extraction, não agentic reasoning. Seção 'Experiment Design' descreve input/output prompts estáticos; seção 'Scheduling with LLMs' mostra template-based approach sem agência. Comparação contra heurísticos e um modelo RL básico (seção Experimental Results), confirmando que LLM atua como um preditor estático, não agente autônomo.
+- **agrees_with_regex:** True
+- **addressed_hint:** regex hint 'D_devops_or_logs_not_rm' é falso positivo; o problema é que não há loop agentic, não questão de DevOps.
+- **evidence_sections:** ['Experiment Design § Model', 'Experiment Design § Scheduling with LLMs', 'Experimental Results and Analysis']
 
 
 ## 07 — Taxonomy

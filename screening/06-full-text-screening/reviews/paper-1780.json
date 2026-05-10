@@ -1,0 +1,13 @@
+{
+  "paper_id": "paper-1780",
+  "my_final_decision": "Exclude",
+  "my_justification": "Framework AaaS implementa lifecycle management de agentes LLM em edge (§ Introduction, Overview of AAAs). Porém, domínio é estritamente 6G RAN/spektrum, não cloud/edge/fog resource management. Case study foca latência de autonomous driving via RAN optimization, não placement/scheduling/scaling de recursos de infraestrutura. Out of scope: boundary C (infraestrutura) excludes strict telecom/spectrum sem substrato cloud-edge-fog RM.",
+  "agrees_with_regex": true,
+  "divergence_reason": null,
+  "addressed_hint": "networks — confirmado: papel é estritamente telecom/6G, não RM de infraestrutura cloud/edge/fog",
+  "evidence_sections": [
+    "Introduction (2): Agents manage 6G edge computing (RAN-focused), not cloud/fog resource orchestration",
+    "Overview of AAAs framework: kernel-space agents manage user-space agents, but in 6G network context",
+    "Case study: autonomous driving latency via 6G agent coordination, not compute/storage placement"
+  ]
+}

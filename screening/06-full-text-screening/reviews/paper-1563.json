@@ -1,0 +1,13 @@
+{
+  "paper_id": "paper-1563",
+  "my_final_decision": "Exclude",
+  "my_justification": "LLM aparece em papel de suporte dentro da evolução GP. Seção 4.5 descreve LLM-Evolution como componente que gera tokens baseado em alto-fitness individuos de GPHH, mas a decisão de colocação de microsserviços é dirigida pelo algoritmo genético híbrido (GPHH), não por um loop agentic do LLM. Não há perceive-reason-act autônomo: o LLM não monitora estado da infra, não raciocina sobre alternativas de alocação, não executa ações. Assim, não satisfaz boundary essencial (seção 3 CLAUDE.md).",
+  "agrees_with_regex": true,
+  "divergence_reason": null,
+  "addressed_hint": "support",
+  "evidence_sections": [
+    "4.5 LLM Evolution",
+    "3 Problem Definition (GPHH é o método principal)",
+    "4.1 Overview (role de LLM em geração de heurísticas)"
+  ]
+}

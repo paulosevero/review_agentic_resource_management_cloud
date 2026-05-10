@@ -1,0 +1,430 @@
+[
+  {
+    "paper_id": "paper-0837",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-0908",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-0930",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-0989",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1157",
+    "regex_decision": "Include",
+    "winning_category": "agent_llm_based",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1386",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1408",
+    "regex_decision": "Include",
+    "winning_category": "agent_llm_based",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1420",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1496",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1563",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1593",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1644",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1680",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1683",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1684",
+    "regex_decision": "Include",
+    "winning_category": "agent_llm_based",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1746",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-1748",
+    "regex_decision": "Exclude",
+    "winning_category": "C_llm_as_workload",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-1780",
+    "regex_decision": "Exclude",
+    "winning_category": "E_strict_telecom",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-1783",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1790",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-1854",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-1947",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "support",
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-1971",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-1991",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1999",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2019",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [
+      "support",
+      "networks"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2028",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-2120",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "quality"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2179",
+    "regex_decision": "Exclude",
+    "winning_category": "F_out_of_scope_domain",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-2224",
+    "regex_decision": "Exclude",
+    "winning_category": "E_strict_telecom",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-2305",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2360",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "quality"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2362",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2399",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [
+      "quality"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2436",
+    "regex_decision": "Exclude",
+    "winning_category": "F_out_of_scope_domain",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2470",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "quality"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2520",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2542",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2556",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-2592",
+    "regex_decision": "Exclude",
+    "winning_category": "C_llm_as_workload",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2595",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2600",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2700",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2716",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2723",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2779",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [
+      "devops"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2787",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2822",
+    "regex_decision": "Exclude",
+    "winning_category": "E_strict_telecom",
+    "hint_categories": [
+      "support",
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2830",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support",
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2854",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2885",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2936",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  }
+]

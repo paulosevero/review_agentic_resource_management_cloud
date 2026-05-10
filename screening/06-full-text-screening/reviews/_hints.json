@@ -1,0 +1,216 @@
+{
+  "paper-1746": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-1748": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "C_llm_as_workload"
+  },
+  "paper-1790": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-1854": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-1947": {
+    "categories": [
+      "support",
+      "networks"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm"
+  },
+  "paper-1971": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm"
+  },
+  "paper-1999": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-2019": {
+    "categories": [
+      "support",
+      "networks"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic"
+  },
+  "paper-2362": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based"
+  },
+  "paper-2520": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-2542": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic"
+  },
+  "paper-2592": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "C_llm_as_workload"
+  },
+  "paper-2700": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-2716": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic"
+  },
+  "paper-2822": {
+    "categories": [
+      "support",
+      "networks"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "E_strict_telecom"
+  },
+  "paper-2885": {
+    "categories": [
+      "support"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-2830": {
+    "categories": [
+      "support",
+      "networks"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-2779": {
+    "categories": [
+      "devops"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic"
+  },
+  "paper-2120": {
+    "categories": [
+      "quality"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm"
+  },
+  "paper-2360": {
+    "categories": [
+      "quality"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm"
+  },
+  "paper-2399": {
+    "categories": [
+      "quality"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based"
+  },
+  "paper-2470": {
+    "categories": [
+      "quality"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  },
+  "paper-1780": {
+    "categories": [
+      "networks"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "E_strict_telecom"
+  },
+  "paper-2305": {
+    "categories": [
+      "networks"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm"
+  },
+  "paper-2436": {
+    "categories": [
+      "networks"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "F_out_of_scope_domain"
+  },
+  "paper-2595": {
+    "categories": [
+      "networks"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based"
+  },
+  "paper-2600": {
+    "categories": [
+      "networks"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic"
+  },
+  "paper-2723": {
+    "categories": [
+      "networks"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm"
+  },
+  "paper-2787": {
+    "categories": [
+      "networks"
+    ],
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based"
+  },
+  "paper-2854": {
+    "categories": [
+      "networks"
+    ],
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method"
+  }
+}

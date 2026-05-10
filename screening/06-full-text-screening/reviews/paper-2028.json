@@ -1,0 +1,14 @@
+{
+  "paper_id": "paper-2028",
+  "my_final_decision": "Exclude",
+  "my_justification": "Embora intitule LLM como 'high-level decision agent', pipeline é offline: DRL agentes treinam → geram dataset de decisões → LLM é fine-tuned para imitar DRL → LLM executa inference batch para scheduling. Não há loop agentic autônomo perceive→reason→act em tempo real. LLM funciona como modelo surrogate/substituto para DRL, não como agente com raciocínio iterativo.",
+  "agrees_with_regex": true,
+  "divergence_reason": null,
+  "addressed_hint": null,
+  "evidence_sections": [
+    "Abstract — 'LLMs as high-level decision agents' (claim), mas pipeline revela offline fine-tuning",
+    "Seção System model — DRL agents train, generate dataset, LLM fine-tuned",
+    "Seção LLMs for cloud task scheduling (Related Work) — LLM como surrogate para DRL generalization",
+    "Seção Experimental results — LLM inference performance, não agent loop evaluation"
+  ]
+}

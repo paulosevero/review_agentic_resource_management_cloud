@@ -1,0 +1,12 @@
+{
+  "paper_id": "paper-2120",
+  "my_final_decision": "Exclude",
+  "my_justification": "Paper trata automação em multi-cloud/hybrid-cloud via Generative AI, mas foco principal é em tarefas DevOps/observabilidade (incident triage, RCA, geração de manifestos Kubernetes, fraud detection) — não em decisões de resource management (scheduling, placement, scaling). Sec. II-C descreve 'anomaly detection', 'incident detection', 'prediction of system failures', 'configuration generation' como aplicações do LLM. Não há um loop agentic LLM-driven que dirige alocação/orquestração de recursos em cloud/edge/continuum. Validado contra critério boundary: LLM é suporte a DevOps, não tomador de decisão de RM.",
+  "agrees_with_regex": true,
+  "divergence_reason": null,
+  "addressed_hint": "pre_flagged_quality - confirm; paper shows hints of low evaluation rigor (case studies vagos, sem métricas quantitativas), mas primary exclusion reason é scope (DevOps, não RM).",
+  "evidence_sections": [
+    "Case Study 1-4 (Sec. VII)",
+    "Sec. II-C Role of AI/Generative AI (configuration generation, anomaly detection, incident triage)"
+  ]
+}

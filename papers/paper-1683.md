@@ -78,9 +78,14 @@ screening:
     - ovr_using_llm
     - ovr_rl_llm_present
     - ovr_cls_llm_present
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Include
+    my_justification: 'Framework integra GAI (Transformer+RAG) com game-theoretic
+      multi-agent model para offloading e resource allocation. Vehicles atuam como
+      strategic agents cuja offloading decisions iterativamente convergem via MADRL
+      (Seção III-D), balanceando latência, energia, utilização. Loop agentico claro:
+      telemetry→GAI+RAG→game-theoretic decision layer→autonomous offloading. Avaliação
+      por simulação com métricas RM (latency, energy, Nash equilibrium convergence).'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -174,6 +179,14 @@ no duplicates found
   - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "multi-agent" }`
   - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
   - `{ category: mas_llm_based, pattern_id: mas_llm_combo, matched_substring: "The exponential rise of Intelligent Transportation Systems (ITS) and autonomous vehicles has greatly" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Include
+- **my_justification:** Framework integra GAI (Transformer+RAG) com game-theoretic multi-agent model para offloading e resource allocation. Vehicles atuam como strategic agents cuja offloading decisions iterativamente convergem via MADRL (Seção III-D), balanceando latência, energia, utilização. Loop agentico claro: telemetry→GAI+RAG→game-theoretic decision layer→autonomous offloading. Avaliação por simulação com métricas RM (latency, energy, Nash equilibrium convergence).
+- **agrees_with_regex:** True
+- **addressed_hint:** Paper propõe multi-agent RL-based system, não clássico RL/MARL sem LLM; GAI layer essencial para context-aware strategy derivation.
+- **evidence_sections:** ['III. GAI-BASED COMPUTATION OFFLOADING', 'III-A. GenAI-Based Offloading and Resource Management', 'III-C. System model (3-layer architecture)', 'III-D. Decision-Making Algorithm', 'IV. RESULTS AND DISCUSSION']
 
 
 ## 07 — Taxonomy

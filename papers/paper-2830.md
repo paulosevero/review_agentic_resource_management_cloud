@@ -71,9 +71,13 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: 'Paper descreve teacher-student framework onde LLM+ToT gera
+      políticas expert para QoS em UAV edge, mas MAPPO student agent executa alocação
+      de recursos (seção IV). Não há loop agentic AI autônomo — LLM é suporte offline
+      para policy distillation. Critério boundary: agentic loop deve dirigir decisão
+      de RM, não gerar features/policies para outro método (§boundary essencial).'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -163,6 +167,14 @@ no duplicates found
 - **overrides_applied:** []
 - **evidence_trail:**
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-assisted" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper descreve teacher-student framework onde LLM+ToT gera políticas expert para QoS em UAV edge, mas MAPPO student agent executa alocação de recursos (seção IV). Não há loop agentic AI autônomo — LLM é suporte offline para policy distillation. Critério boundary: agentic loop deve dirigir decisão de RM, não gerar features/policies para outro método (§boundary essencial).
+- **agrees_with_regex:** True
+- **addressed_hint:** support — LLM gera high-quality expert policies que são injetadas via policy distillation, não executa loop agentic de RM.
+- **evidence_sections:** ['Abstract: teacher-student framework, policy distillation, MAPPO algorithm', 'III. System Model: Network Knowledge Graph + R-GAT + LLM+ToT para expert policies', '§boundary: agentic loop requerido; LLM como suporte a RL/MARL está FORA do escopo']
 
 
 ## 07 — Taxonomy

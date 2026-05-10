@@ -1,0 +1,23 @@
+[
+  {
+    "paper_id": "paper-1408",
+    "regex_decision": "Include",
+    "winning_category": "agent_llm_based",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1420",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1496",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  }
+]

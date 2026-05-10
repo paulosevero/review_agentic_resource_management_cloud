@@ -71,9 +71,12 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: 'LLM papel subordinado em reward design (§IV.B). D3QN é o agent
+      (DRL-based, não LLM-backed). Não há loop agentic AI dirigindo decisões: LLM
+      gera heurísticas/rewards pré-treinamento de RL. Boundary A (agentic loop) não
+      atendido.'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -165,6 +168,14 @@ no duplicates found
   - `{ category: H_llm_supports_other_method, pattern_id: llm_as_feature_extractor, matched_substring: "LLM-Empowered Reward Design" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "DRL with LLM" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-Empowered" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** LLM papel subordinado em reward design (§IV.B). D3QN é o agent (DRL-based, não LLM-backed). Não há loop agentic AI dirigindo decisões: LLM gera heurísticas/rewards pré-treinamento de RL. Boundary A (agentic loop) não atendido.
+- **agrees_with_regex:** True
+- **addressed_hint:** support — LLM apenas suporta RL via reward engineering
+- **evidence_sections:** ['IV.B: LLM-Empowered Reward Design', 'Algorithm 1: D3QN without LLM in closed loop']
 
 
 ## 07 — Taxonomy

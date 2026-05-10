@@ -70,10 +70,18 @@ screening:
       cloud/edge RM.
     winning_category: E_strict_telecom
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
-    divergence_reason: null
+    my_final_decision: Exclude
+    my_justification: Paper proposes generative AI (diffusion models)-enhanced DRL
+      for UAV-based low-altitude MEC resource optimization. Diffusion models are embedded
+      in the DRL actor network to improve exploration in hybrid action spaces. Core
+      agent is DRL, not LLM-based agentic AI. Generative AI is augmentation to DRL
+      actor, not an autonomous LLM-driven reasoning loop. Sections II (SYSTEM MODEL)
+      and III (Generative AI enhancement) confirm DRL is decision engine; diffusion
+      is support mechanism.
+    agrees_with_regex: true
+    divergence_reason: Paper uses generative AI (diffusion) in DRL context, not agentic
+      LLM-based system. Regex boundary unclear; full-text shows classical RL+GenAI
+      fusion, not agentic-AI-for-RM per scope.
     locked_at_iteration: null
     locked_at: null
 taxonomy: {}
@@ -164,6 +172,15 @@ no duplicates found
   - `{ category: E_strict_telecom, pattern_id: strict_telecom_only, matched_substring: "6G Communications)\"
 year: 2024
 abstract: \"UAV-based MEC system with RSMA for uplink task offloadin" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper proposes generative AI (diffusion models)-enhanced DRL for UAV-based low-altitude MEC resource optimization. Diffusion models are embedded in the DRL actor network to improve exploration in hybrid action spaces. Core agent is DRL, not LLM-based agentic AI. Generative AI is augmentation to DRL actor, not an autonomous LLM-driven reasoning loop. Sections II (SYSTEM MODEL) and III (Generative AI enhancement) confirm DRL is decision engine; diffusion is support mechanism.
+- **agrees_with_regex:** True
+- **divergence_reason:** Paper uses generative AI (diffusion) in DRL context, not agentic LLM-based system. Regex boundary unclear; full-text shows classical RL+GenAI fusion, not agentic-AI-for-RM per scope.
+- **addressed_hint:** hint_categories=[networks] applies strongly — 6G/5G/UAV-MEC is telecom/RAN focus (uplink RSMA, interference, satellite). Out-of-scope per boundary exclusion list.
+- **evidence_sections:** ["ABSTRACT: 'generative AI-enhanced deep reinforcement learning (DRL) framework...diffusion model [into] actor network'", 'RELATED WORKS: comparison table shows DRL+DGM as enhancing RL exploration, not agentic LLM loop', "MOTIVATIONS: 'integrate diffusion models with DRL' confirms support augmentation, not agentic shift"]
 
 
 ## 07 — Taxonomy

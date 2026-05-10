@@ -1,0 +1,14 @@
+{
+  "paper_id": "paper-1991",
+  "my_final_decision": "Include",
+  "my_justification": "Seção II.C descreve 4 agentes LLM-driven (Account Manager, System Architect, Scheduler, OAM) que executam loop autônomo: percepção de intenção → planejamento → decisões de alocação → monitoramento. Agents invocam ferramentas para alocar subcarriers. Atende Boundary A (agentic loop) e B (RM decisions: scheduling + resource allocation).",
+  "agrees_with_regex": false,
+  "divergence_reason": "Classifier marcou H_llm_supports_other_method, mas fulltext mostra LLM como motor principal do agentic workflow, não suporte.",
+  "addressed_hint": null,
+  "evidence_sections": [
+    "II.C: All agents are LLM-driven",
+    "II.C: agents invoke tools to change resource allocation",
+    "Experiments: task offloading + subcarrier scheduling via agent decisions",
+    "Multi-agent planning + execution in closed loop"
+  ]
+}

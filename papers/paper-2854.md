@@ -72,9 +72,14 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: 'Paper propõe pipeline LLM para traduzir intents (APPIs) em
+      network service requests (NSRs) via knowledge graphs, mas foco é network automation
+      em 6G—não resource management em cloud/edge/continuum. Motivação: intent-driven
+      network management (seção I), não scheduling/placement/scaling. Mesmo com LLM+KG
+      grounding, domínio é strictly RAN/6G, fora scope (§boundary C: out-of-scope
+      unless edge node in continuum).'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -166,6 +171,14 @@ no duplicates found
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-empowered" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-empowered" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-Enhanced" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper propõe pipeline LLM para traduzir intents (APPIs) em network service requests (NSRs) via knowledge graphs, mas foco é network automation em 6G—não resource management em cloud/edge/continuum. Motivação: intent-driven network management (seção I), não scheduling/placement/scaling. Mesmo com LLM+KG grounding, domínio é strictly RAN/6G, fora scope (§boundary C: out-of-scope unless edge node in continuum).
+- **agrees_with_regex:** True
+- **addressed_hint:** networks — intent translation é tarefa de rede 6G/RAN, não decisão de RM em infra cloud/edge.
+- **evidence_sections:** ['Abstract: APPIs→NSRs translation for 6G intent-driven management', 'I. Intro: closed-loop autonomy for 6G, not cloud/edge resource allocation', 'II.A: Studies on APPIs in networking context (SDN, 5G slicing)']
 
 
 ## 07 — Taxonomy

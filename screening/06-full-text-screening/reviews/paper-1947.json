@@ -1,0 +1,13 @@
+{
+  "paper_id": "paper-1947",
+  "my_final_decision": "Exclude",
+  "my_justification": "Artigo aborda gerenciamento de rede/serviços (triage de incidentes, RCA) usando LLM como ferramenta de suporte. É uma tarefa de DevOps/observabilidade, não de resource management. Não atende à Boundary B (RM decisions em loop fechado).",
+  "agrees_with_regex": true,
+  "divergence_reason": null,
+  "addressed_hint": "support",
+  "evidence_sections": [
+    "Abstract: zero-touch management",
+    "System Design: incident detection/network management",
+    "Evaluation: not SLA/scaling/placement metrics"
+  ]
+}

@@ -75,10 +75,17 @@ screening:
     - ovr_via_llm
     - ovr_llm_modifier
     - ovr_abs_llm_orchestrates
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
-    divergence_reason: null
+    my_final_decision: Exclude
+    my_justification: Escopo primário é beamforming + RAN otimização em redes DtS
+      (satélite-terrestrial), não cloud/edge computing infrastructure. Além disso,
+      LLM é tanto WORKLOAD (inferência otimizada em edge) quanto possível decisor
+      de RM, causando ambiguidade. Seção 5 ('Ground-based LLM Resource Management')
+      carece de detalhe sobre loop agentic autônomo versus policy estática offline.
+      Não satisfaz Boundary C (foco em spectrum/RAN/beamforming, não cloud-edge continuum).
+    agrees_with_regex: false
+    divergence_reason: Regex indica INCLUDE (llm_agentic_ai_generic), mas fulltext
+      revela escopo primário é RAN/spectrum, LLM é workload+decider (ambíguo), sem
+      loop agentic claro.
     locked_at_iteration: null
     locked_at: null
 taxonomy: {}
@@ -176,6 +183,15 @@ Architecture and Optimized Deployment" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Escopo primário é beamforming + RAN otimização em redes DtS (satélite-terrestrial), não cloud/edge computing infrastructure. Além disso, LLM é tanto WORKLOAD (inferência otimizada em edge) quanto possível decisor de RM, causando ambiguidade. Seção 5 ('Ground-based LLM Resource Management') carece de detalhe sobre loop agentic autônomo versus policy estática offline. Não satisfaz Boundary C (foco em spectrum/RAN/beamforming, não cloud-edge continuum).
+- **agrees_with_regex:** False
+- **divergence_reason:** Regex indica INCLUDE (llm_agentic_ai_generic), mas fulltext revela escopo primário é RAN/spectrum, LLM é workload+decider (ambíguo), sem loop agentic claro.
+- **addressed_hint:** support (parcial) + networks (crítico: paper é 6G/RAN essencialmente, não infra RM)
+- **evidence_sections:** ['Seção 1 — LLM-Orchestrated DtS-IoT networks (escopo)', 'Seção 5 — Ground-based LLM Resource Management (RM claim, falta detalhe)', 'Abstract — LLM-driven resource management para beamforming (workload+decider ambiguity)', 'Título e keywords — Mobile edge computing + RAN focus, não task/container/scheduling']
 
 
 ## 07 — Taxonomy

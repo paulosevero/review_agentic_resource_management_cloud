@@ -81,9 +81,15 @@ screening:
     - ovr_abs_llm_orchestrates
     - ovr_rl_llm_present
     - ovr_cls_llm_present
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Include
+    my_justification: 'Refuta hint ''support''. AutoHMA-LLM propõe multi-tier architecture
+      onde Cloud LLM é central planner para dynamic task allocation e scheduling em
+      heterogeneous multi-agent systems (drones, robots). Seção I descreve LLM para
+      ''communication coordination and dynamic task decomposition''. Loop agentic:
+      agents executam tarefas baseado em LLM planner output. Métricas (seção V.B–E)
+      medem task completion accuracy, communication reduction, token efficiency —
+      outcomes de resource management decisions. Closed-loop LLM-driven system.'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -180,6 +186,14 @@ no duplicates found
   - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "## A. Multiagent Deep Reinforcement Learning" }`
   - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "Multiagent Deep Reinforcement Learning (MARL) [9] has enhanced agent capabilities in various jobs, s" }`
   - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "models could be better in actual simulation experiments. The reason is that the large models are rel" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Include
+- **my_justification:** Refuta hint 'support'. AutoHMA-LLM propõe multi-tier architecture onde Cloud LLM é central planner para dynamic task allocation e scheduling em heterogeneous multi-agent systems (drones, robots). Seção I descreve LLM para 'communication coordination and dynamic task decomposition'. Loop agentic: agents executam tarefas baseado em LLM planner output. Métricas (seção V.B–E) medem task completion accuracy, communication reduction, token efficiency — outcomes de resource management decisions. Closed-loop LLM-driven system.
+- **agrees_with_regex:** True
+- **addressed_hint:** Hint 'support' não procedia. LLM não é suporte a outro método — é central planner dirigindo dynamic task allocation + scheduling + communication coordination em multi-agent system.
+- **evidence_sections:** ["Abstract: 'task coordination and scheduling in complex, dynamic environments'", "Section I: LLM for 'communication coordination, dynamic task decomposition, and scheduling'", 'Section III (System Definition): multi-tier architecture with Cloud LLM planner + Device LLM + Generative Agents', 'Section V.B–E: Task completion accuracy, communication steps, token usage metrics (RM outcomes)']
 
 
 ## 07 — Taxonomy

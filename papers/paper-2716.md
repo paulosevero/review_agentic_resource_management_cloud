@@ -87,9 +87,13 @@ screening:
     - ovr_with_llm
     - ovr_llm_modifier
     - ovr_abs_llm_orchestrates
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Include
+    my_justification: 'GenAI (LLM-backed) fecha loop agentic: predict (ML) → reason
+      (GenAI §III.B) → allocate (§III.E). GenAI explanations + uncertainty flags trigger
+      fallback guardrails. Decision-making é dirigido por GenAI reasoning, não suporte
+      passivo. Real-time adaptation loop (1-10s) evidencia autonomous decisions em
+      resource allocation (traffic steering, priority).'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -186,6 +190,14 @@ no duplicates found
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_large_lang_model, matched_substring: "large language models" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_lang_model, matched_substring: "language models" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_genai_full, matched_substring: "Generative AI" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Include
+- **my_justification:** GenAI (LLM-backed) fecha loop agentic: predict (ML) → reason (GenAI §III.B) → allocate (§III.E). GenAI explanations + uncertainty flags trigger fallback guardrails. Decision-making é dirigido por GenAI reasoning, não suporte passivo. Real-time adaptation loop (1-10s) evidencia autonomous decisions em resource allocation (traffic steering, priority).
+- **agrees_with_regex:** True
+- **addressed_hint:** support flagged but not confirmed — GenAI actively reasons & decides, not passive support
+- **evidence_sections:** ['III.B Hybrid ML+GenAI Workflow (Prediction→GenAI Reasoning→Decision&Allocation)', 'III.E Behavior-Aware Allocation (uncertainty-aware fallback mode)', 'Real-Time Adaptation Loop with GenAI explanations']
 
 
 ## 07 — Taxonomy

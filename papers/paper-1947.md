@@ -78,9 +78,11 @@ screening:
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: Artigo aborda gerenciamento de rede/serviços (triage de incidentes,
+      RCA) usando LLM como ferramenta de suporte. É uma tarefa de DevOps/observabilidade,
+      não de resource management. Não atende à Boundary B (RM decisions em loop fechado).
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -171,6 +173,14 @@ no duplicates found
 - **evidence_trail:**
   - `{ category: D_devops_or_logs_not_rm, pattern_id: devops_logs_incidents, matched_substring: "root cause analysis" }`
   - `{ category: D_devops_or_logs_not_rm, pattern_id: devops_logs_incidents, matched_substring: "root cause analysis" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Artigo aborda gerenciamento de rede/serviços (triage de incidentes, RCA) usando LLM como ferramenta de suporte. É uma tarefa de DevOps/observabilidade, não de resource management. Não atende à Boundary B (RM decisions em loop fechado).
+- **agrees_with_regex:** True
+- **addressed_hint:** support
+- **evidence_sections:** ['Abstract: zero-touch management', 'System Design: incident detection/network management', 'Evaluation: not SLA/scaling/placement metrics']
 
 
 ## 07 — Taxonomy

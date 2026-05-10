@@ -1,0 +1,29 @@
+[
+  {
+    "paper_id": "paper-2305",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2360",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "quality"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2362",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  }
+]

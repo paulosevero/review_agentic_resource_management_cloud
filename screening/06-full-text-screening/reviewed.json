@@ -1,0 +1,851 @@
+[
+  {
+    "paper_id": "paper-0837",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper sobre DevOpsBERT, um modelo BERT adaptado para tarefas DevOps (anomaly detection, predictive maintenance em logs). O LLM não dirige decisões de resource management (scheduling, placement, scaling) — a aplicação é log analysis e incident prediction, não orquestração autônoma de recursos. Fora do escopo agentic-AI-for-RM.",
+    "agrees_with_regex": false,
+    "divergence_reason": "Regex sugeriu Include (ovr_using_llm, ovr_abs_llm_orchestrates), mas fulltext mostra LLM isolado em tarefas de observabilidade (DevOps), não loop agentic dirigindo RM.",
+    "addressed_hint": null,
+    "evidence_sections": [
+      "DevOpsBERT functionality",
+      "Section III (LLM architecture for log analysis)",
+      "Section V (conclusion: DevOps perspective)"
+    ]
+  },
+  {
+    "paper_id": "paper-0908",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper sobre microservice deployment com LLM + CoT + RAG + Deep RL. LLM é usado em papel de suporte: gera sugestões de decomposição de problema (sub-problems em CoT) e hints para o RL agent. A decisão de deployment é governada por Deep Reinforcement Learning (Section 3.4), não pelo loop agentic do LLM. Loop causal: human → LLM (code-generation support) → RL (decision) → action.",
+    "agrees_with_regex": true,
+    "divergence_reason": "Regex sugeriu Exclude corretamente (H_llm_supports_other_method), mas para confirmar: fulltext mostra 'Deep Reinforce Learning' (Sec 3.4) como decision-maker, LLM como encoder/hint-generator.",
+    "addressed_hint": "Hint categoria: support. Verificado e confirmado.",
+    "evidence_sections": [
+      "Section 3.4 (Deep Reinforce Learning — decision loop)",
+      "Section 3.3.1-3.3.2 (CoT as prompting for decomposition, not autonomous reasoning)",
+      "Algorithm 1 (RAG for context retrieval, not decision-making)"
+    ]
+  },
+  {
+    "paper_id": "paper-0930",
+    "my_final_decision": "Include",
+    "my_justification": "FlowMage: sistema que usa LLM para analisar source code de network functions (NFs), extrair meta-informações (estado, complexidade), e o LLM informa diretamente um solver que gera configuração otimizada de RSS para NF chaining. O LLM percebe (code analysis) → razoa (complexidade comparativa) → decide (impacta configuração de parallelização). Loop agentic governa placement/scheduling de state em cores/servers. Decisão de RM (CPU placement, contention minimization) é dirigida pelo LLM.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": [
+      "Section 3.1 (LLM analyzes NF source code, extracts cost/complexity)",
+      "Section 3.2 (Solver uses LLM's output to decide RSS configuration — direct RM decision)",
+      "Figure 2 (feature tracker → LLM → solver → optimized config)"
+    ]
+  },
+  {
+    "paper_id": "paper-0989",
+    "title": "Don't Train, Just Prompt: A Simple yet Effective Approach to Leveraging Large Language Models for Software Engineering",
+    "my_final_decision": "Exclude",
+    "my_justification": "O paper descreve prompt engineering para gerar manifestos Kubernetes, mas não implementa loop agentic-AI autônomo. A LLM funciona como ferramenta estática de geração de código em modo offline: usuário fornece entrada → LLM gera manifesto → fim. Não há ciclo de percepção-raciocínio-ação em tempo real. A ausência de feedback/monitoramento do sistema e tomada de decisão em loop fecha a categorização como DevOps-tool-use, não resource-management agentic.",
+    "decision_mapping": {
+      "C18_thematic_design_quality": {
+        "score": 0.1,
+        "reasoning": "Design descreve uso de prompting estático, não sistema agentic com loop de decisão de resource management."
+      },
+      "C19_evaluation": {
+        "score": 0.4,
+        "reasoning": "Inclui avaliação de qualidade de manifestos gerados, mas não de decisões de resource management em tempo real."
+      },
+      "S1_architecture": {
+        "score": 0.0,
+        "reasoning": "Sem padrão agentic (ReAct, Plan-and-Execute, ou similar). Apenas prompt → resposta."
+      },
+      "S2_coupling": {
+        "score": 0.3,
+        "reasoning": "Output acoplado a CLI/manifesto, não a APIs de orquestração (Kubernetes) para feedback/ação iterativa."
+      },
+      "S3_safety": {
+        "score": 0.0,
+        "reasoning": "Sem mecanismos de guardrail porque sem loop autônomo de ação."
+      },
+      "S7_grounding": {
+        "score": 0.1,
+        "reasoning": "Nenhuma telemetria do sistema ou RAG sobre runbooks. Apenas prompts estruturados."
+      }
+    },
+    "weighted_score": 0.15,
+    "evidence": [
+      "Seção I (Introdução): 'we propose a simple yet effective approach to leveraging large language models to generate Kubernetes manifests' — descreve geração de artefatos, não agentic loop.",
+      "Seção III (Metodologia): fluxo é input de usuário → prompt → LLM → output de manifesto. Sem ciclo de ação-feedback.",
+      "Seção V (Avaliação): métricas medem qualidade do manifesto gerado (conformidade YAML, completude), não performance de resource management adaptativo.",
+      "Nenhuma menção a monitoramento de cluster, ajuste dinâmico de alocação, escalabilidade reativa, ou feedback em tempo real do sistema."
+    ],
+    "disagreement_with_regex": {
+      "regex_decision": "D_devops_or_logs_not_rm",
+      "my_decision": "EXCLUDE",
+      "agreement": true,
+      "note": "Classificador e revisor concordam: paper trata de DevOps tool (geração de manifesto), não resource management agentic."
+    },
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": []
+  },
+  {
+    "paper_id": "paper-1157",
+    "title": "ECO-LLM: LLM-based Edge Cloud Optimization via Dynamic Microservice Placement",
+    "my_final_decision": "Include",
+    "my_justification": "Paper implementa loop agentic-AI completo para placement dinâmico de microserviços. Ciclo de percepção (coleta de workload via DataX) → raciocínio (análise de LLM via prompt estruturado) → ação (aplicar placement) → feedback (latência reportada) é explícito. LLM dirige decisão alocativa em tempo real respondendo a mudanças de workload na arquitetura edge-cloud. Atende critério essencial: agentic-AI loop DIRIGE resource management.",
+    "decision_mapping": {
+      "C18_thematic_design_quality": {
+        "score": 0.85,
+        "reasoning": "Design agentic claro: percepção (DataX) → reasoning (LLM placement analysis) → action (apply placement) → feedback. Descreve suficiente detalhe do sistema."
+      },
+      "C19_evaluation": {
+        "score": 0.75,
+        "reasoning": "Avaliação inclui latência de placement, correspondência SLA, overhead de comunicação. Demonstra impacto nas decisões de RM."
+      },
+      "S1_architecture": {
+        "score": 0.8,
+        "reasoning": "Padrão agentic com 3 prompts interconectados; ciclo feedback-driven."
+      },
+      "S2_coupling": {
+        "score": 0.75,
+        "reasoning": "Acoplado via API para fetch de workload e aplicação de placement em orquestrador edge-cloud."
+      },
+      "S3_safety": {
+        "score": 0.6,
+        "reasoning": "Menção a validação de placement, mas guardrails explícitos limitados."
+      },
+      "S7_grounding": {
+        "score": 0.8,
+        "reasoning": "Telemetria de workload (DataX) e feedback de latência para refinamento de decisions."
+      }
+    },
+    "weighted_score": 0.76,
+    "evidence": [
+      "Seção II (System Design): 'perceives workload distribution via DataX, reasons about optimal placement using LLM analysis, and applies decisions to edge-cloud orchestrator' — ciclo agentic explícito.",
+      "Seção III (LLM Integration): 3-prompt pattern — resource-state analysis → placement-candidate filtering → final decision with confidence scoring.",
+      "Seção IV (Evaluation): métricas de latência placement (p50/p99), SLA compliance rate, e convergence time mostram impacto real em RM decision-making.",
+      "Seção II (Feedback Loop): 'latency reported back to LLM triggers re-analysis for next microservice batch' — feedback agentic loop documentado."
+    ],
+    "disagreement_with_regex": {
+      "regex_decision": "agent_llm_based",
+      "my_decision": "INCLUDE",
+      "agreement": true,
+      "note": "Classificador e revisor concordam: paper é agent_llm_based com agentic loop para resource management (placement)."
+    },
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": []
+  },
+  {
+    "paper_id": "paper-1386",
+    "title": "Utilizing LLMs for Virtual Machine Migration in Cloud Computing Environments",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper apresenta framework teórico (sem implementação) para integração de LLM em decisão de VM migration. Descreve arquitetura proposta (3 módulos: prediction, analysis, optimization) e pseudocódigos de algoritmos, mas não implementa nem avalia agentic-AI loop em operação. Falta ciclo fechado de ação-feedback: proposta é análise de LLM + seleção de estratégia, sem evidência de iteração autônoma em resposta a mudanças de carga. Classificação: theoretical framework, não sistema agentic operacional.",
+    "decision_mapping": {
+      "C18_thematic_design_quality": {
+        "score": 0.5,
+        "reasoning": "Design descrito em nível conceitual, mas sem implementação. Algoritmos pseudocode (RPA, MOA) são esquemáticos, sem clareza operacional do loop agentic."
+      },
+      "C19_evaluation": {
+        "score": 0.0,
+        "reasoning": "Nenhuma avaliação prática. Seção V apresenta 'projections' teóricas, não experimentos reais com sistema funcionando."
+      },
+      "S1_architecture": {
+        "score": 0.5,
+        "reasoning": "Propõe 3 módulos com LLM no hub central, mas sem ciclo de feedback documentado ou padrão agentic nomeado (ReAct, Plan-and-Execute)."
+      },
+      "S2_coupling": {
+        "score": 0.3,
+        "reasoning": "Framework descrito abstratamente; sem detalhes de integração com APIs de orquestrador cloud ou feedback loops."
+      },
+      "S3_safety": {
+        "score": 0.4,
+        "reasoning": "Seção IV.A menciona encryption e audit trails, mas sem validadores de ação ou rollback mechanism."
+      },
+      "S7_grounding": {
+        "score": 0.5,
+        "reasoning": "Arquitetura prevê coleta de telemetria (resource utilization, migration trends), mas implementação e efetividade não demonstradas."
+      }
+    },
+    "weighted_score": 0.37,
+    "evidence": [
+      "Seção III (Proposed Framework): 'demonstrates how LLMs can create an adaptive migration system' — proposta teórica, não implementação.",
+      "Tabela II e III (RPA/MOA algorithms): pseudocódigos em nível alto. Sem detalhe de como LLM infere predições de padrões em dados reais.",
+      "Seção V (Results and Discussion): 'our methodology breaks new ground... the framework appears capable of achieving...' (grifos nossos) — projections/modelagem teórica, não empirical evaluation.",
+      "Nenhuma seção de Implementation Details com código, testbed, ou resultados experimentais. Paper é purely theoretical modeling."
+    ],
+    "disagreement_with_regex": {
+      "regex_decision": "agent_llm_based",
+      "my_decision": "EXCLUDE",
+      "agreement": false,
+      "note": "Classificador sinaliza agent_llm_based, mas revisor rejeita: paper é theoretical framework sem agentic loop implementado ou avaliado. Falta evidência de ação autônoma e feedback iterativo que caracteriza agentic systems. Classificador pode ter sido acionado por abstract mencionando 'adaptive migration system' e '3 sections', mas full-text mostra nivel de abstração incompatível com inclusão (ausência total de evaluation/results é red flag para stage 06)."
+    },
+    "agrees_with_regex": false,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": []
+  },
+  {
+    "paper_id": "paper-1408",
+    "my_final_decision": "Include",
+    "scoring": {
+      "thematic_sub_rq": 0.85,
+      "qa": 0.75,
+      "weighted_total": 0.82
+    },
+    "justification": "O paper descreve LLMScheduler, um sistema agentic que implementa o loop autônomo perceive-reason-act para decisões de scheduling em Kubernetes. A Seção IV.A (Methodology) explica claramente: (1) Observe: coleta estado atual do cluster; (2) Query: gera prompt dinâmico e consulta LLM via API; (3) Decide: LLM realiza inferência e retorna nó ótimo; (4) Act: parse, verifica, vincula pod. Este loop direto do LLM nas decisões de resource placement (escalonamento) em edge/cloud satisfaz a boundary essencial: o sistema agentic DRIVE decisões de RM, não apenas suporta.",
+    "agrees_with_regex": true,
+    "regex_decision_from_batch": "Include",
+    "winning_category_from_batch": "agent_llm_based",
+    "divergence_reason": null,
+    "evidence": {
+      "architectural_pattern": "Single-agent LLM-based loop; ReAct-like pattern (Observe-Query-Decide-Act).",
+      "infrastructure_coupling": "Direct integration with Kubernetes API; pod binding via scheduling framework.",
+      "rm_decision_class": "Pod-to-node placement (scheduling); real-time, online decisions.",
+      "reasoning_process": "Prompt-based reasoning with dynamic context injection (cluster state, pod requirements).",
+      "grounding": "Telemetry: cluster state (node resources, pod characteristics).",
+      "evaluation": "Simulation testbed with real cluster traces; metrics: scheduling latency, resource utilization.",
+      "key_quote": "IV.A: 'Query: dynamically generate prompt, send to LLM API. Decide: LLM performs cloud inference, returns optimal node.'",
+      "section_references": "IV.A (Methodology), Abstract"
+    },
+    "hint_addressed": "no_hint",
+    "notes": "Paper demonstrates functional agentic loop directly driving Kubernetes resource scheduling. Meets criteria C4 (architectural pattern), C5 (infrastructure coupling), C7 (RM decision class), C9 (reasoning), C10 (grounding), C12-C14 (evaluation). Weighted score 0.82 > threshold 0.55.",
+    "my_justification": "",
+    "addressed_hint": null,
+    "evidence_sections": []
+  },
+  {
+    "paper_id": "paper-1420",
+    "my_final_decision": "Exclude",
+    "scoring": {
+      "thematic_sub_rq": 0.45,
+      "qa": 0.5,
+      "weighted_total": 0.47
+    },
+    "justification": "O paper descreve um sistema multi-stage para deployment em edge-cloud: Abstract Workflow Designer → Constraints Manager → Service Catalog → Candidate Discovery → LLM Advising. A Seção IV.E (LLM-Based Deployment Advising) revela que o LLM funciona como componente de advisory APÓS a descoberta de candidatos, gerando recomendações via prompt estruturado ('You are a multi-cloud expert... choose the best cloud service'). O LLM não participa de um loop autônomo de controle (perceive-reason-act) que DIRIJA decisões de placement; ele apenas aconselha. Este é o padrão 'LLM supports other method' explicitamente excluído pela boundary.",
+    "agrees_with_regex": true,
+    "regex_decision_from_batch": "Exclude",
+    "winning_category_from_batch": "H_llm_supports_other_method",
+    "divergence_reason": null,
+    "evidence": {
+      "architectural_pattern": "Multi-stage pipeline with LLM as advisory post-processing component, not agentic loop.",
+      "infrastructure_coupling": "Framework operates externally to cloud/edge orchestrators; LLM provides deployment advice, not autonomous control.",
+      "rm_decision_class": "LLM role is recommendation/advising, not autonomous placement decision-making.",
+      "reasoning_process": "Structured prompt-based reasoning to generate deployment insights; no closed-loop perception-action.",
+      "grounding": "Service catalog, constraints metadata; no continuous telemetry-driven feedback.",
+      "evaluation": "Case study validation; no formal RM metrics (latency, utilization, SLA).",
+      "key_quote": "IV.E: 'leverage reasoning capabilities of LLMs to determine optimal deployment configuration... LLMs are guided by structured prompt… to produce practical deployment insights.'",
+      "section_references": "IV.E (LLM-Based Deployment Advising), Architecture diagram (Fig. 4)"
+    },
+    "hint_addressed": "no_hint",
+    "notes": "LLM role is decision-support (advising) in a multi-stage framework, not agentic driver of RM loop. The pipeline separates service discovery (Candidate Discovery) from LLM recommendation (LLM Advising), indicating LLM does not autonomously control placement. Weighted score 0.47 < threshold 0.55. Alignment with regex category 'H_llm_supports_other_method' confirms exclusion.",
+    "my_justification": "",
+    "addressed_hint": null,
+    "evidence_sections": []
+  },
+  {
+    "paper_id": "paper-1496",
+    "my_final_decision": "Exclude",
+    "scoring": {
+      "thematic_sub_rq": 0.3,
+      "qa": 0.35,
+      "weighted_total": 0.32
+    },
+    "justification": "O paper apresenta um sistema neurosymbolic onde o LLM é explicitamente um componente de SUPORTE (pré-processamento), não um agente agentic. A Seção I.INTRODUCTION (parágrafo 2) descreve: 'LLM to convert natural language input into JSON representation → JSON used to create symbolic problem in ASP → Clingo solver extracts all possible service-to-cluster solutions.' A Seção IV (EXPERIMENTAL EVALUATION) testa separadamente 'LLM Intent Translation' vs 'ASP experiment', confirmando que o LLM traduz intenção natural para estruturado, mas o ASP solver (Clingo) toma as decisões de placement. O LLM NÃO participa do loop de decisão autônoma; ele apenas pré-processa entrada. Este é unambiguamente o padrão excluso 'LLM supports other method'.",
+    "agrees_with_regex": true,
+    "regex_decision_from_batch": "Exclude",
+    "winning_category_from_batch": "D_devops_or_logs_not_rm",
+    "divergence_reason": "Categoria regex 'D_devops_or_logs_not_rm' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é 'LLM-support-to-symbolic-solver': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico).",
+    "evidence": {
+      "architectural_pattern": "Neurosymbolic: two-stage pipeline (LLM intent translation → ASP solver), not agentic loop.",
+      "infrastructure_coupling": "ASP solver drives placement decisions; LLM is pre-processor, no closed-loop control.",
+      "rm_decision_class": "Service-to-cluster placement decided by ASP Clingo solver, not by LLM.",
+      "reasoning_process": "LLM: prompt-based NL-to-JSON conversion. ASP: symbolic constraint solving. These are decoupled components.",
+      "grounding": "Intent specification (natural language) → symbolic facts; no continuous telemetry or feedback loop.",
+      "evaluation": "Separate experiments: LLM translation accuracy vs ASP solver optimality; no unified agentic loop evaluation.",
+      "key_quote": "I.Introduction(2): 'LLM to convert natural language input into JSON representation → JSON used to create symbolic problem in ASP → Clingo solver extracts all possible service-to-cluster solutions.'",
+      "section_references": "I.Introduction (para 2), IV.Experimental Evaluation"
+    },
+    "hint_addressed": "no_hint",
+    "notes": "System demonstrates clear LLM-support pattern (LLM preprocessor → ASP solver). LLM is not an agentic driver; it provides utility function (NL interpretation). Regex classifier categorized as 'DevOps/logs' which misses the actual structure; corrected to 'LLM supports symbolic method'. Weighted score 0.32 < threshold 0.55. Exclusion confirmed.",
+    "my_justification": "",
+    "addressed_hint": null,
+    "evidence_sections": []
+  },
+  {
+    "paper_id": "paper-1563",
+    "my_final_decision": "Exclude",
+    "my_justification": "LLM aparece em papel de suporte dentro da evolução GP. Seção 4.5 descreve LLM-Evolution como componente que gera tokens baseado em alto-fitness individuos de GPHH, mas a decisão de colocação de microsserviços é dirigida pelo algoritmo genético híbrido (GPHH), não por um loop agentic do LLM. Não há perceive-reason-act autônomo: o LLM não monitora estado da infra, não raciocina sobre alternativas de alocação, não executa ações. Assim, não satisfaz boundary essencial (seção 3 CLAUDE.md).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support",
+    "evidence_sections": [
+      "4.5 LLM Evolution",
+      "3 Problem Definition (GPHH é o método principal)",
+      "4.1 Overview (role de LLM em geração de heurísticas)"
+    ]
+  },
+  {
+    "paper_id": "paper-1593",
+    "my_final_decision": "Include",
+    "my_justification": "Paper implementa loop agentic para autoscaling Kubernetes. Seção III.D descreve predição via generative AI (Claude 3.7 Sonnet via Amazon Bedrock) que analisa métricas coletadas em Prometheus e gera recomendação de pod count para próximos 5 min. Loop: coleta dados → LLM raciocina sobre estado → decisão de scaling executada em EKS. Seção IV.3 confirma sistema integrado, automático e adaptativo. Satisfaz C18 (design agentic descrito) e C19 (avaliação apresentada com resultados).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": [
+      "III.D Prediction Through Generative AI",
+      "I.INTRODUCTION (motivation e CloudNative scope)",
+      "IV.RESULTS AND DISCUSSION (implementação e avaliação)"
+    ]
+  },
+  {
+    "paper_id": "paper-1644",
+    "my_final_decision": "Include",
+    "my_justification": "DIRA-LDT framework implementa loop agentic para alocação dinâmica de microsserviços. Seção 5 descreve: Digital Twins coleta métricas (CPU, mem, latência, bandwidth) em estado S; LLM recebe S + descrição de workloads W e raciocina para gerar lista de servidores candidatos rankados; resource allocator executa alocação + DT atualiza estado para próximo ciclo. Seção 5.1 formaliza: LLM processa input para gerar ranked candidate servers considerando constraints e dependências. Loop fechado contínuo. Satisfaz C18 (design com detalhe em Algoritmo 1) e C19 (avaliação em seção 6).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": [
+      "5 DIRA-LDT (core framework)",
+      "5.1 Algorithm Description (LLM decision-making formalizado)",
+      "6 EVALUATION AND DISCUSSION"
+    ]
+  },
+  {
+    "paper_id": "paper-1680",
+    "my_final_decision": "Exclude",
+    "my_justification": "Arquitetura LLM-assistida para parsing de intents naturais (Seção III-B), convertendo descrições de alto nível em SLOs. Porém, o placement generator (Seção III-C) é determinístico, sem loop agentico de reasoning ou autonomous execution sobre decisões de RM. O LLM funciona como suporte a parsing, não como driver do loop de decisão de placement. MVP evaluation sem testes em escala real.",
+    "agrees_with_regex": false,
+    "divergence_reason": "Regex 'agent_llm_based' é permissivo demais; exige agentic loop (perceive-reason-act autônomo). Aqui apenas fase 1 (parse) é LLM; fases 2-3 (generate+deploy) não têm autonomous reasoning.",
+    "addressed_hint": null,
+    "evidence_sections": [
+      "III. PROPOSED ARCHITECTURE",
+      "III-B. Intent Parser",
+      "III-C. Placement Generator",
+      "IV. EVALUATION"
+    ]
+  },
+  {
+    "paper_id": "paper-1683",
+    "my_final_decision": "Include",
+    "my_justification": "Framework integra GAI (Transformer+RAG) com game-theoretic multi-agent model para offloading e resource allocation. Vehicles atuam como strategic agents cuja offloading decisions iterativamente convergem via MADRL (Seção III-D), balanceando latência, energia, utilização. Loop agentico claro: telemetry→GAI+RAG→game-theoretic decision layer→autonomous offloading. Avaliação por simulação com métricas RM (latency, energy, Nash equilibrium convergence).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "Paper propõe multi-agent RL-based system, não clássico RL/MARL sem LLM; GAI layer essencial para context-aware strategy derivation.",
+    "evidence_sections": [
+      "III. GAI-BASED COMPUTATION OFFLOADING",
+      "III-A. GenAI-Based Offloading and Resource Management",
+      "III-C. System model (3-layer architecture)",
+      "III-D. Decision-Making Algorithm",
+      "IV. RESULTS AND DISCUSSION"
+    ]
+  },
+  {
+    "paper_id": "paper-1684",
+    "my_final_decision": "Include",
+    "my_justification": "Framework integra GAI (Transformer+RAG com federated learning) e game-theoretic models para offloading e resource allocation em vehicular edge computing. Vehicles funcionam como strategic agents que autonomamente decidem offloading strategies em iteração até Nash equilibrium (Seção III-C). Loop agentico: sensor telemetry→Augmented Intelligence layer (GAI+RAG)→Decision layer (game-theoretic agents)→offloading decisions. Evaluation: simulação com 25-35% menor latency, 20-30% menor energia vs. métodos tradicionais.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": [
+      "I. INTRODUCTION",
+      "III. GAI-BASED COMPUTATION OFFLOADING AND RESOURCE MANAGEMENT",
+      "III-C. System model (3-layer architecture)",
+      "III-D. Decision-Making Algorithm",
+      "IV. RESULTS AND DISCUSSION"
+    ]
+  },
+  {
+    "paper_id": "paper-1746",
+    "my_final_decision": "Exclude",
+    "my_justification": "LLM funciona como módulo de suporte (§4, Algorithm 1): gera heurísticas para Q-shaping no agente SARSA. O loop de decisão de scheduling é governado pelo RL, não por um loop agentic-AI percebendo o estado da infraestrutura e agindo autonomamente. LLM não percebe, raciocina ou invoca ações de RM. Critério de boundary: LLM-guided (subordinado) não LLM-driven (agentic).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support — confirmado: LLM apenas dá suporte ao método RL subjacente",
+    "evidence_sections": [
+      "4. Proposed Work: LLM-guided SARSA architecture com LLM como gerador de heurísticas",
+      "Algorithm 1: SARSA loop (estados, ações, recompensas) com heurísticas LLM, sem loop agentic",
+      "Conclusões: task scheduling decisions driven by Q-learning convergence, not agent reasoning"
+    ]
+  },
+  {
+    "paper_id": "paper-1748",
+    "my_final_decision": "Exclude",
+    "my_justification": "SLM funciona como gerador de features para QTD-Learning (§4, Algorithm 1). Placement decisions são governadas pelo agente de RL treinado com features SLM, não por um loop agentic-AI que perceba estado dinâmico e tome decisões autônomas de placement. SLM subordinado ao RL; sem perceive-reason-act loop dirigindo RM.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support — confirmado: SLM dá suporte ao método QTD-Learning (RL) subjacente",
+    "evidence_sections": [
+      "4. Proposed Work: SLM-guided QTDL com SLM como gerador de política-shaping",
+      "Algorithm 1: QTD-Learning loop com SLM features (não agentic loop)",
+      "6. Results: policy convergence via RL, sem raciocínio agentic autônomo"
+    ]
+  },
+  {
+    "paper_id": "paper-1780",
+    "my_final_decision": "Exclude",
+    "my_justification": "Framework AaaS implementa lifecycle management de agentes LLM em edge (§ Introduction, Overview of AAAs). Porém, domínio é estritamente 6G RAN/spektrum, não cloud/edge/fog resource management. Case study foca latência de autonomous driving via RAN optimization, não placement/scheduling/scaling de recursos de infraestrutura. Out of scope: boundary C (infraestrutura) excludes strict telecom/spectrum sem substrato cloud-edge-fog RM.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "networks — confirmado: papel é estritamente telecom/6G, não RM de infraestrutura cloud/edge/fog",
+    "evidence_sections": [
+      "Introduction (2): Agents manage 6G edge computing (RAN-focused), not cloud/fog resource orchestration",
+      "Overview of AAAs framework: kernel-space agents manage user-space agents, but in 6G network context",
+      "Case study: autonomous driving latency via 6G agent coordination, not compute/storage placement"
+    ]
+  },
+  {
+    "paper_id": "paper-1783",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper propõe scheduling via prompt-template estático enviado a LLMs (GPT-3.5, LLaMA, etc.), onde o contexto do cluster e tarefas pendentes são formatados em texto. LLMs geram sugestões de scheduling, mas a decisão final depende de parsing e rule-based logic pós-processamento. Não há loop agentic autônomo (perceive→reason→tool-use→act) dirigindo a decisão de RM — o pipeline é offline prompting + extraction, não agentic reasoning. Seção 'Experiment Design' descreve input/output prompts estáticos; seção 'Scheduling with LLMs' mostra template-based approach sem agência. Comparação contra heurísticos e um modelo RL básico (seção Experimental Results), confirmando que LLM atua como um preditor estático, não agente autônomo.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "regex hint 'D_devops_or_logs_not_rm' é falso positivo; o problema é que não há loop agentic, não questão de DevOps.",
+    "evidence_sections": [
+      "Experiment Design § Model",
+      "Experiment Design § Scheduling with LLMs",
+      "Experimental Results and Analysis"
+    ]
+  },
+  {
+    "paper_id": "paper-1790",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper propõe LLM-optimized fuzzy state fusion acoplado a RL (PPO). O LLM treina membership functions dinamicamente para mapear estados em espaço semântico unificado; o RL (policy gradient) toma decisões de scheduling via MOALO (multi-objective ant lion optimizer). Arquitetura é dual-loop: LLM→fuzzy state, RL→action. O loop agentic (perceive→reason→act) é dirigido pelo RL, não pelo LLM. LLM dá suporte ao RL otimizando entrada fuzzy. Seção '1 Introduction' e Problem Statement confirmam: 'LLM-enhanced fuzzy state fusion' + 'RL-driven Dynamic Parameter Optimization' = LLM suporte a RL. Não há agentic reasoning loop dirigindo RM.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "Pre-flagged hint='support' procede: LLM otimiza features/estados (fuzzy membership), RL dirige decisão.",
+    "evidence_sections": [
+      "1 Introduction § Challenges",
+      "Problem Statement § LLM-enhanced fuzzy state fusion"
+    ]
+  },
+  {
+    "paper_id": "paper-1854",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper propõe LLM-empowered multi-expert para industrial edge security. Arquitetura: múltiplos especialistas DRL treinados (cada um para tarefa distinta) + LLM gate network. LLM replace conventional gate networks para interpretar reqs de tarefa e ativar/sintetizar outputs de DRL experts. MAS: a decisão final é ainda do DRL expert selecionado. LLM é orchestrator/gating mechanism, não agente que toma decisão de RM. Seção 'Multiple Experts' + 'LLM-Based Orchestration' detalham: LLM parse task reqs e seleciona expert, mas ação final vem do policy π_k (DRL). 13% melhoria é sobre DRL single-task baseline, não vs. non-agentic baselines.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "Pre-flagged hint='support' procede: LLM governa seleção de expert (gating), DRL especialista toma ação.",
+    "evidence_sections": [
+      "Introduction § Critical bottleneck / task-specific customization",
+      "LLM-Based Orchestration § How can ... adaptive optimizations",
+      "Multiple Experts § LLM-based orchestrator"
+    ]
+  },
+  {
+    "paper_id": "paper-1947",
+    "my_final_decision": "Exclude",
+    "my_justification": "Artigo aborda gerenciamento de rede/serviços (triage de incidentes, RCA) usando LLM como ferramenta de suporte. É uma tarefa de DevOps/observabilidade, não de resource management. Não atende à Boundary B (RM decisions em loop fechado).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support",
+    "evidence_sections": [
+      "Abstract: zero-touch management",
+      "System Design: incident detection/network management",
+      "Evaluation: not SLA/scaling/placement metrics"
+    ]
+  },
+  {
+    "paper_id": "paper-1971",
+    "my_final_decision": "Exclude",
+    "my_justification": "LLM gera features/heurísticas para otimizador DRL. Loop autônomo é dirigido por RL, não por agentic-AI. O LLM está em papel de suporte (entrada para outro método), não dirige decisões. Não atende Boundary A.",
+    "agrees_with_regex": true,
+    "divergence_reason": "Classifier marcou D_devops_or_logs_not_rm, mas real problema é H_llm_supports_other_method: LLM apoia DRL, não dirige loop.",
+    "addressed_hint": "support",
+    "evidence_sections": [
+      "Title: DRL is primary (not LLM)",
+      "Abstract: LLM for task offloading mentions pero DRL drives allocation",
+      "No agentic perception-reason-act loop"
+    ]
+  },
+  {
+    "paper_id": "paper-1991",
+    "my_final_decision": "Include",
+    "my_justification": "Seção II.C descreve 4 agentes LLM-driven (Account Manager, System Architect, Scheduler, OAM) que executam loop autônomo: percepção de intenção → planejamento → decisões de alocação → monitoramento. Agents invocam ferramentas para alocar subcarriers. Atende Boundary A (agentic loop) e B (RM decisions: scheduling + resource allocation).",
+    "agrees_with_regex": false,
+    "divergence_reason": "Classifier marcou H_llm_supports_other_method, mas fulltext mostra LLM como motor principal do agentic workflow, não suporte.",
+    "addressed_hint": null,
+    "evidence_sections": [
+      "II.C: All agents are LLM-driven",
+      "II.C: agents invoke tools to change resource allocation",
+      "Experiments: task offloading + subcarrier scheduling via agent decisions",
+      "Multi-agent planning + execution in closed loop"
+    ]
+  },
+  {
+    "paper_id": "paper-1999",
+    "my_final_decision": "Exclude",
+    "my_justification": "LLM aparece em papel de suporte ao DRL — gera design de recompensas e orientações de policy (Seção IV: 'LLM-guided reward design'). O loop de decisão de resource management é governado pelo D3QN (Deep RL), não por um agente agentic AI baseado em LLM. Não há loop autônomo perceive→reason→tool-use→act dirigido pelo LLM.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support (pre_flagged_align confirmado)",
+    "evidence_sections": [
+      "Seção I — LLM-Guided DRL (título framework)",
+      "Seção IV — proposed LGD framework: reward design by LLM, D3QN executa scheduling",
+      "Seção II — system model: MEC task scheduling (RM scope)",
+      "Seção V — evaluation: D3QN agent performance, não LLM agent"
+    ]
+  },
+  {
+    "paper_id": "paper-2019",
+    "my_final_decision": "Exclude",
+    "my_justification": "Escopo primário é beamforming + RAN otimização em redes DtS (satélite-terrestrial), não cloud/edge computing infrastructure. Além disso, LLM é tanto WORKLOAD (inferência otimizada em edge) quanto possível decisor de RM, causando ambiguidade. Seção 5 ('Ground-based LLM Resource Management') carece de detalhe sobre loop agentic autônomo versus policy estática offline. Não satisfaz Boundary C (foco em spectrum/RAN/beamforming, não cloud-edge continuum).",
+    "agrees_with_regex": false,
+    "divergence_reason": "Regex indica INCLUDE (llm_agentic_ai_generic), mas fulltext revela escopo primário é RAN/spectrum, LLM é workload+decider (ambíguo), sem loop agentic claro.",
+    "addressed_hint": "support (parcial) + networks (crítico: paper é 6G/RAN essencialmente, não infra RM)",
+    "evidence_sections": [
+      "Seção 1 — LLM-Orchestrated DtS-IoT networks (escopo)",
+      "Seção 5 — Ground-based LLM Resource Management (RM claim, falta detalhe)",
+      "Abstract — LLM-driven resource management para beamforming (workload+decider ambiguity)",
+      "Título e keywords — Mobile edge computing + RAN focus, não task/container/scheduling"
+    ]
+  },
+  {
+    "paper_id": "paper-2028",
+    "my_final_decision": "Exclude",
+    "my_justification": "Embora intitule LLM como 'high-level decision agent', pipeline é offline: DRL agentes treinam → geram dataset de decisões → LLM é fine-tuned para imitar DRL → LLM executa inference batch para scheduling. Não há loop agentic autônomo perceive→reason→act em tempo real. LLM funciona como modelo surrogate/substituto para DRL, não como agente com raciocínio iterativo.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": [
+      "Abstract — 'LLMs as high-level decision agents' (claim), mas pipeline revela offline fine-tuning",
+      "Seção System model — DRL agents train, generate dataset, LLM fine-tuned",
+      "Seção LLMs for cloud task scheduling (Related Work) — LLM como surrogate para DRL generalization",
+      "Seção Experimental results — LLM inference performance, não agent loop evaluation"
+    ]
+  },
+  {
+    "paper_id": "paper-2120",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper trata automação em multi-cloud/hybrid-cloud via Generative AI, mas foco principal é em tarefas DevOps/observabilidade (incident triage, RCA, geração de manifestos Kubernetes, fraud detection) — não em decisões de resource management (scheduling, placement, scaling). Sec. II-C descreve 'anomaly detection', 'incident detection', 'prediction of system failures', 'configuration generation' como aplicações do LLM. Não há um loop agentic LLM-driven que dirige alocação/orquestração de recursos em cloud/edge/continuum. Validado contra critério boundary: LLM é suporte a DevOps, não tomador de decisão de RM.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "pre_flagged_quality - confirm; paper shows hints of low evaluation rigor (case studies vagos, sem métricas quantitativas), mas primary exclusion reason é scope (DevOps, não RM).",
+    "evidence_sections": [
+      "Case Study 1-4 (Sec. VII)",
+      "Sec. II-C Role of AI/Generative AI (configuration generation, anomaly detection, incident triage)"
+    ]
+  },
+  {
+    "paper_id": "paper-2179",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper propõe LLM + Graph MADRL para 'task matching' em Edge Computing Power Networks (ECPN) — domain é redes eléctricas/smart grids, não cloud/edge/continuum computing. Sec. 2-3 ('Architecture of Large Model-Enabled ECPN', 'Application for Large Model-Enabled ECPN') focam em power-load balancing e demand prediction em infraestruturas de energia. Embora mencione 'edge computing', refere-se a ponto de acesso para smart devices de energia, não a continuum cloud-edge para aplicações/serviços. LLM é integrado a MADRL mas domínio é fora de escopo (power networks, manufatura, não RM em cloud/edge/continuum).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "no_hint",
+    "evidence_sections": [
+      "Sec. 2 The Architecture of Large Model-Enabled ECPN",
+      "Sec. 3 Application for Large Model-Enabled ECPN",
+      "Sec. 4 LLMs and Graph MADRL Driven Task Matching"
+    ]
+  },
+  {
+    "paper_id": "paper-2224",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper propõe intent-based network automation via multimodal Generative AI para 'management and orchestration' em redes 5G/6G. Sec. 3.1-3.3 descreve LLM para traduzir high-level intents em configurações de rede. Focus é em RAN/spectrum slicing e network QoS, não em resource management de cloud/edge/continuum (scheduling, placement, scaling, admission de aplicações). Menção a 'cloud-edge continuum' (sec. 1) é contexto apenas; core problem é telecom/network-as-a-service domain, fora do escopo da review.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "no_hint",
+    "evidence_sections": [
+      "Sec. 1 Introduction (RAN/5G/6G focus)",
+      "Sec. 2.2 Network-as-a-Service (spectrum slicing)",
+      "Sec. 3.2 Large language model (intent-to-config translation)"
+    ]
+  },
+  {
+    "paper_id": "paper-2305",
+    "my_final_decision": "Include",
+    "my_justification": "Refuta hint 'networks'. Paper proposes UnifiedKP, um knowledge plane para LLM-enabled agent coordination em 6G networks. Seção V.D descreve Edge AI Service Orchestration Results; algoritmos 1–2 detalham semantic knowledge retrieval e distributed consistency management que dirigem decisões de alocação de recursos entre agentes. A loop agentic (agents coordenam via shared knowledge plane + LLM retrieval + RL adaptation) dirige decisões de resource management em continuum edge. Não é tarefa de DevOps/logs.",
+    "agrees_with_regex": false,
+    "divergence_reason": "Regex classificou como D_devops_or_logs_not_rm (incident triage, RCA). Full-text revela agentic resource management architecture para orquestração de serviços edge em 6G, não DevOps.",
+    "addressed_hint": "Hint 'networks' procedia: paper é sobre redes. Mas não é 'estritamente redes/telecom' — é agentic AI driving resource orchestration decisions em infraestrutura 6G/edge.",
+    "evidence_sections": [
+      "Abstract: 'agent coordination in 6G networks'",
+      "Section IV.D–M: LLM integration framework, RL-based adaptation, knowledge consistency",
+      "Section V.D: Edge AI Service Orchestration Results (resource allocation via agents)",
+      "Algorithm 1–2: semantic retrieval and consistency management mechanisms"
+    ]
+  },
+  {
+    "paper_id": "paper-2360",
+    "my_final_decision": "Exclude",
+    "my_justification": "Concorda com hint 'quality'. Framework propõe intelligent planning stage (seção III.C) que usa LLM para resource management prediction em Kubernetes. Porém, avaliação (seção IV) reporta prediction accuracy, não closed-loop resource control outcomes. Não há evidência de loop agentic onde LLM-driven agent decisions causam mudanças em infraestrutura. LLM é ferramenta de planning offline, não agente dirigindo loop de RM.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "Hint 'quality' não procedia — paper tem estrutura clara. Divergência real: regex acertou em excluir (D_devops_or_logs), mas motivo errado. Exclusão correta é: LLM used for prediction only, not agentic closed-loop RM decision-making.",
+    "evidence_sections": [
+      "Section III.C: Intelligent Planning Stage mentions LLM for 'resource management'",
+      "Section IV: Experimental evaluation focuses on prediction accuracy metrics only",
+      "No evidence of agent-driven resource allocation, scaling, or placement decisions",
+      "Framework treats LLM as component of monitoring–analysis–planning pipeline, not autonomous decision-making agent"
+    ]
+  },
+  {
+    "paper_id": "paper-2362",
+    "my_final_decision": "Include",
+    "my_justification": "Refuta hint 'support'. AutoHMA-LLM propõe multi-tier architecture onde Cloud LLM é central planner para dynamic task allocation e scheduling em heterogeneous multi-agent systems (drones, robots). Seção I descreve LLM para 'communication coordination and dynamic task decomposition'. Loop agentic: agents executam tarefas baseado em LLM planner output. Métricas (seção V.B–E) medem task completion accuracy, communication reduction, token efficiency — outcomes de resource management decisions. Closed-loop LLM-driven system.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "Hint 'support' não procedia. LLM não é suporte a outro método — é central planner dirigindo dynamic task allocation + scheduling + communication coordination em multi-agent system.",
+    "evidence_sections": [
+      "Abstract: 'task coordination and scheduling in complex, dynamic environments'",
+      "Section I: LLM for 'communication coordination, dynamic task decomposition, and scheduling'",
+      "Section III (System Definition): multi-tier architecture with Cloud LLM planner + Device LLM + Generative Agents",
+      "Section V.B–E: Task completion accuracy, communication steps, token usage metrics (RM outcomes)"
+    ]
+  },
+  {
+    "paper_id": "paper-2399",
+    "my_final_decision": "Include",
+    "my_justification": "HIMAL implementa loop agentic: LLM (brain) percebe estado MEC via prompt method, raciocina sobre QoS goals e ajustes de offloading, executa via multi-agent (dispatcher, analyst, customer). Seção II.B descreve arquitetura com perception, memory (RAG), action modules. Seção III apresenta avaliação experimental da qualidade de decisões LLM em escalonamento de tarefas. Atende C18 (design agentic com detalhe suficiente) e C19 (avaliação presente).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "hint_categories=[quality] resolvido: avaliação do experimento mostra iteração prompt×human feedback, demonstrando ciclo fechado.",
+    "evidence_sections": [
+      "Section II.B.1: System Architecture (LLM generates strategies)",
+      "Section II.B.2: Multi-Agent Collaboration (agent model with brain, memory, action, perception)",
+      "Section II.B.3: HIMAL Workflow (iterative refinement loop)",
+      "Section III.C: Experiment 1 (scheduling accuracy)",
+      "Section III.E: LLM QoE evaluation accuracy"
+    ]
+  },
+  {
+    "paper_id": "paper-2436",
+    "my_final_decision": "Exclude",
+    "my_justification": "GenNet aplica DRL + diffusion model, não loop agentic com LLM dirigindo decisões. Mais crítico: escopo é deterministic transmission scheduling em 6G—roteamento, alocação de banda, sincronização TSN/DetNet. Boundary C (Infraestrutura Cloud/Edge/Fog/Continuum) exclui networking puro: este é problema de domain telecom, não resource management em compute cloud/edge. Seção 'GenNet Architecture' confirma foco em scheduling de transmissão (Q: QoS flow), não de máquinas/containers/serviços.",
+    "agrees_with_regex": true,
+    "divergence_reason": "regex sugeria Include por pattern matching genérico 'generative AI' + 'scheduling'. Full-text revela escopo: telecom/6G transmission scheduling, fora do domínio cloud-edge-continuum de RM computacional.",
+    "addressed_hint": "hint_categories=[networks] confirmado: paper é estritamente networking (6G TSN/DetNet); candidatos a exclusão por escopo.",
+    "evidence_sections": [
+      "Abstract: '6G Networks', 'Transmission Scheduling'",
+      "Section 'Deterministic Transmission Scheduling in 6G': routing (R matrix), bandwidth allocation (B matrix), TSN config (Ctsn)",
+      "Case Study: 'two TSN domains', 'DetNet domain', 'edge servers and cloud server'—cloud é apenas endpoint, não orchestration target",
+      "Reward function: delay/jitter/throughput em fluxos de rede, não em aplicações/serviços"
+    ]
+  },
+  {
+    "paper_id": "paper-2470",
+    "my_final_decision": "Exclude",
+    "my_justification": "IBSM usa LLM para classificar intent (seção III.B: dual-phase classification) e decompor em policy tree (seção III.C), mas LLM não dirige decisões autônomas de RM. Policy generator mapeia intents→templates via PG-KB; policy filler parameteriza templates com valores defaults/constraints—não há loop agentic onde LLM observe estado, raciocine, e altere alocação de storage. Deployment subsystem executa policies via APIs tradicionais, sem feedback ao LLM.",
+    "agrees_with_regex": true,
+    "divergence_reason": "regex (pass 1) flagou H_llm_supports_other_method e excluiu. Full-text confirma: LLM é componente de NLP-to-config (intent parser), não agente autônomo dirigindo RM.",
+    "addressed_hint": "hint_categories=[quality]: avaliação foca em accuracy de classificação intent (>90%), não em impacto de decisões RM ou qualidade de alocação de storage. Ciclo fechado (observe estado→ação) ausente.",
+    "evidence_sections": [
+      "Section III.A Overall Architecture: 'three subsystems: intent classification, decomposition, deployment'; LLM (MS-LLM) classifica/decompõe, deployer executa",
+      "Section III.B: 'dual-phase joint intent classification'—tradução de linguagem natural",
+      "Section III.C: 'policy generator + policy filler'—mapping a templates pré-definidas, não decisão dinâmica",
+      "Figure 2: decomposition subsystem sem feedback loop; intent→policy→execution é pipeline, não loop autônomo"
+    ]
+  },
+  {
+    "paper_id": "paper-2520",
+    "my_final_decision": "Exclude",
+    "my_justification": "TLM (Tiny Language Model) atua apenas como guia para o algoritmo Flow Q-Learning. O loop agentic-AI não dirige a decisão de scheduling em fog computing; FQL é um algoritmo de RL clássico que toma a decisão final. Seção 4 (Proposed Work) e Algorithm 1 mostram o TLM como módulo de entrada para heurísticas/features do FQL, não como agente autônomo com loop perceive-reason-act dirigindo RM.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support",
+    "evidence_sections": [
+      "Abstract: 'The neutrality and fine-tuning capability of the TLM is combined with the quick generable ability of the FQL algorithm.'",
+      "Section 4 (Proposed Work): TLM guiding FQL framework, where FQL makes scheduling decisions.",
+      "Algorithm 1: TLM input encoded into FQL action-value function, FQL selects actions."
+    ]
+  },
+  {
+    "paper_id": "paper-2542",
+    "my_final_decision": "Exclude",
+    "my_justification": "GAI (Generative AI) sintetiza eventos raros e extremos para aumentar treinamento de DQN clássico (federated deep Q-network). O loop agentic não está no GAI; é suporte para dados de treinamento sintéticos. Decisão de offloading/migração é dirigida por DQN/UCB em feedback loops do RL clássico. Seção IV (Algorithm description) e III (Problem Formulation) confirmam: GAI é módulo gerador de amostras; DQN/UCB otimizam.",
+    "agrees_with_regex": false,
+    "divergence_reason": null,
+    "addressed_hint": "support",
+    "evidence_sections": [
+      "Abstract: 'GAI synthesizes rare events and extreme experiences for augmented training of global DQN'",
+      "Section IV: 'GAI-assisted UCB' e 'GAI-enhanced federated deep Q-network' — GAI é assistência.",
+      "Section III: dois subproblemas (SP1, SP2) resolvidos por UCB e DQN; GAI não está no controlador da decisão."
+    ]
+  },
+  {
+    "paper_id": "paper-2556",
+    "my_final_decision": "Exclude",
+    "my_justification": "LLMSched posiciona explicitamente o LLM como 'policy generator' que delega 'constraint enforcement and fine-grained optimization to algorithmic modules'. Três estágios: (1) codificação de estado em texto, (2) LLM gera candidatos via prompting, (3) ILP refina/otimiza. O loop autônomo que dirige scheduling é ILP + heuristics clássicos; LLM não é o agente agentic que percebe, raciocina, age. Seção IV methodology (A-E) detalha ILP como refinement obrigatório, não LLM como decisor.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": null,
+    "evidence_sections": [
+      "Introduction § 2: 'Rather than using LLMs as end-to-end decision makers, LLMSched positions them as policy generators... while delegating constraint enforcement and fine-grained optimization to algorithmic modules.'",
+      "Section IV.C (Optimization-Based Refinement): 'The candidates generated by the LLM, while semantically reasonable, may violate hard resource or temporal constraints. To guarantee feasibility and achieve optimality, we employ a lightweight Integer Linear Programming (ILP) solver...'",
+      "Section IV.D: 'caching and workload-aware triggering mechanisms that invoke LLM reasoning only when significant state changes occur. For routine scheduling decisions, validated strategies are executed by fast heuristic modules.'"
+    ]
+  },
+  {
+    "paper_id": "paper-2592",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper usa foundation models (BERT/GPT) e LoRA fine-tuning para feature extraction em tarefas de task offloading veicular, mas o loop de decisão é um Q-learning agent clássico (BMQN), não um agentic AI loop. Foundation model atua como feature encoder; o agente RL toma a decisão de offloading. Não satisfaz boundary: LLM/FM não dirige o loop autônomo de decisão de RM. Hint 'support' confirmado — FM apenas suporta RL clássico.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support — FM como feature extractor, não como decisor agentic",
+    "evidence_sections": [
+      "§II.A Foundation Model — descreve arquitetura BERT/LoRA",
+      "§III System Model — formação Q-learning (BMQN) toma decisão final",
+      "§IV não menciona agentic loop ou multi-step reasoning — apenas RL classico"
+    ]
+  },
+  {
+    "paper_id": "paper-2595",
+    "my_final_decision": "Include",
+    "my_justification": "Paper apresenta agent-based architecture com cloud agent, RSU agents, e vehicle agents que coletam telemetria (state), usam D-LAM e DM-LAM (large AI models com sequence modeling) para inferência e decision-making em tempo real, e atuam sobre alocação de recursos (task offloading, power allocation). Loop perceive→(telemetry)→reason(LAM inference)→act(resource allocation) está claramente descrito (§Workflow, §Multi-layer architecture). Satisfaz RQ1 (arquitetura), RQ2 (task offloading como decisão delegada), RQ3 (reasoning via LAM com RAG/multi-scenario dataset), RQ4 (avaliação em IoV scenarios).",
+    "agrees_with_regex": true,
+    "divergence_reason": "regex classificou como 'networks' (hint exclude), mas paper é claramente agentic-RM: describe loop completo perceive-reason-act com LAM dirigindo decisões de RM em edge-cloud-vehicle continuum.",
+    "addressed_hint": "networks flag não procede — apesar do contexto 6G/V2X, o foco é agentic AI para resource management, não telecom/network slicing per se",
+    "evidence_sections": [
+      "§Multi-layer collaborative resource management architecture — descreve cloud agent, RSU agent, vehicle agent layers",
+      "§Multi-scenario Dataset Curation — estado (CSI, topologia, recursos, comportamento veicular)",
+      "§Model Pre-training And Multi-dimensional Assessment — D-LAM e DM-LAM realizam decision-making em tempo real",
+      "§Decision-making — agents decidem sobre task offloading, power allocation, model fine-tuning schedules"
+    ]
+  },
+  {
+    "paper_id": "paper-2600",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper propõe Graph-GAN vehicle trajectory prediction integrado com 5G resource slicing para task offloading em IoV/MEC. GAI (Generative AI / GAN) é usada apenas para trajectory prediction (input); a decisão de offloading/slicing segue modelo de otimização clássico (delay model, modulation schemes, bandwidth allocation). Não há agentic loop — GAI não dirige o raciocínio de RM. Loop de decisão é determinístico/otimizado, não autônomo reasoning+acting de agente.",
+    "agrees_with_regex": false,
+    "divergence_reason": null,
+    "addressed_hint": "support — GAI como preditor/feature extractor para método clássico de resource slicing, não como decisor agentic",
+    "evidence_sections": [
+      "§B Graph-GAN Vehicle Trajectory Prediction Model — GAN gera previsões; não toma decisão",
+      "§C RSUs Resource Slicing Model — formulas de otimização clássicas (delay, bandwidth, MCS allocation)",
+      "§IV Problem Description — model determinístico de alocação sem agentic reasoning"
+    ]
+  },
+  {
+    "paper_id": "paper-2700",
+    "my_final_decision": "Exclude",
+    "my_justification": "LLM papel subordinado em reward design (§IV.B). D3QN é o agent (DRL-based, não LLM-backed). Não há loop agentic AI dirigindo decisões: LLM gera heurísticas/rewards pré-treinamento de RL. Boundary A (agentic loop) não atendido.",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support — LLM apenas suporta RL via reward engineering",
+    "evidence_sections": [
+      "IV.B: LLM-Empowered Reward Design",
+      "Algorithm 1: D3QN without LLM in closed loop"
+    ]
+  },
+  {
+    "paper_id": "paper-2716",
+    "my_final_decision": "Include",
+    "my_justification": "GenAI (LLM-backed) fecha loop agentic: predict (ML) → reason (GenAI §III.B) → allocate (§III.E). GenAI explanations + uncertainty flags trigger fallback guardrails. Decision-making é dirigido por GenAI reasoning, não suporte passivo. Real-time adaptation loop (1-10s) evidencia autonomous decisions em resource allocation (traffic steering, priority).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support flagged but not confirmed — GenAI actively reasons & decides, not passive support",
+    "evidence_sections": [
+      "III.B Hybrid ML+GenAI Workflow (Prediction→GenAI Reasoning→Decision&Allocation)",
+      "III.E Behavior-Aware Allocation (uncertainty-aware fallback mode)",
+      "Real-Time Adaptation Loop with GenAI explanations"
+    ]
+  },
+  {
+    "paper_id": "paper-2723",
+    "my_final_decision": "Include",
+    "my_justification": "AGORA implementa agentic loop explícito (§III.B). LLM-backed agent: percebe estado infra → traduz intents (§III.C) → decide orchestration (scheduling/routing/slicing/scaling, §III.E) → atua. Avaliação (§V) mede comportamento agent-driven (energy-QoS tradeoff). Regex hint ('devops') não procede; core é resource management (energy + QoS), não incident triage. Boundaries A+B satisfeitos.",
+    "agrees_with_regex": false,
+    "divergence_reason": "Regex pattern 'D_devops_or_logs_not_rm' inadequado. AGORA foca orquestração de recursos (energy-QoS) dirigida por agente LLM, não análise de logs/RCA.",
+    "addressed_hint": "networks flagged, mas escopo é B5G orchestration (continuum edge-MEC), não telecom puro.",
+    "evidence_sections": [
+      "III.B Agentic Control Loop (explicit loop diagram)",
+      "III.C Intent Suite and Classification (intent→decision)",
+      "III.E Policy and Decision Compliance",
+      "V Results on energy-QoS characterization of agents"
+    ]
+  },
+  {
+    "paper_id": "paper-2779",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper proposes intent-based Kubernetes scheduling using GPT-4 for one-shot NLP parsing of user annotations. GPT-4 is a feature extractor translating intent to structured constraints; actual scheduling logic is deterministic utility-function evaluation. No autonomous perceive-reason-act loop. Sections PROTOTYPE AND TESTBED DESIGN (Intent Analyzer) and SCORING MODEL confirm LLM is stateless parser, not agentic decision driver.",
+    "agrees_with_regex": false,
+    "divergence_reason": "Regex flagged as llm_agentic_ai_generic; full-text reveals NLP parsing is support tool, not agentic RM loop.",
+    "addressed_hint": "hint_categories=[devops] partially applies — system is config/orchestration tooling, not resource management (placement is deterministic post-parsing).",
+    "evidence_sections": [
+      "INTRODUCTION: 'intent analyzer that transforms natural language...[into]...constraints...coupled with...multi-objective...framework'",
+      "PROTOTYPE AND TESTBED DESIGN > Intent Analyzer: 'sends structured prompt to GPT-4...parsed into structured representation used by scoring model'",
+      "SCORING MODEL: deterministic utility-function evaluation, no autonomous iteration"
+    ]
+  },
+  {
+    "paper_id": "paper-2787",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper proposes iterative algorithm decomposing resource allocation into two sub-problems: (1) satellite computation via convex Lagrange-multiplier method, (2) task offloading via LLM-based optimizer. LLM is one component in an alternating optimization loop, not an autonomous agentic system. No perceive-reason-act cycle; LLM is stateless prompt-response tool generating solutions evaluated deterministically. Section II and Algorithm 1 show LLM as generator module within optimization, not decision driver.",
+    "agrees_with_regex": false,
+    "divergence_reason": "Regex flagged as mas_llm_based; full-text reveals LLM is sub-solver, not agentic multi-agent system. Aligns with hint_status=pre_flagged_disagree.",
+    "addressed_hint": "hint_categories=[networks] partially applies — satellite MEC is edge infrastructure, but LLM role is optimization tool (support) not agentic RM loop.",
+    "evidence_sections": [
+      "ABSTRACT: 'iterative optimization algorithm that uses Lagrange multipliers...and LLM-based optimizer'",
+      "SYSTEM MODEL: problem (15) solved via LLM-based Generator Module (prompt+example pool)",
+      "Algorithm 1: LLM-based Alternating Optimization with Lagrange sub-solver and LLM generator as decoupled components"
+    ]
+  },
+  {
+    "paper_id": "paper-2822",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper proposes generative AI (diffusion models)-enhanced DRL for UAV-based low-altitude MEC resource optimization. Diffusion models are embedded in the DRL actor network to improve exploration in hybrid action spaces. Core agent is DRL, not LLM-based agentic AI. Generative AI is augmentation to DRL actor, not an autonomous LLM-driven reasoning loop. Sections II (SYSTEM MODEL) and III (Generative AI enhancement) confirm DRL is decision engine; diffusion is support mechanism.",
+    "agrees_with_regex": true,
+    "divergence_reason": "Paper uses generative AI (diffusion) in DRL context, not agentic LLM-based system. Regex boundary unclear; full-text shows classical RL+GenAI fusion, not agentic-AI-for-RM per scope.",
+    "addressed_hint": "hint_categories=[networks] applies strongly — 6G/5G/UAV-MEC is telecom/RAN focus (uplink RSMA, interference, satellite). Out-of-scope per boundary exclusion list.",
+    "evidence_sections": [
+      "ABSTRACT: 'generative AI-enhanced deep reinforcement learning (DRL) framework...diffusion model [into] actor network'",
+      "RELATED WORKS: comparison table shows DRL+DGM as enhancing RL exploration, not agentic LLM loop",
+      "MOTIVATIONS: 'integrate diffusion models with DRL' confirms support augmentation, not agentic shift"
+    ]
+  },
+  {
+    "paper_id": "paper-2830",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper descreve teacher-student framework onde LLM+ToT gera políticas expert para QoS em UAV edge, mas MAPPO student agent executa alocação de recursos (seção IV). Não há loop agentic AI autônomo — LLM é suporte offline para policy distillation. Critério boundary: agentic loop deve dirigir decisão de RM, não gerar features/policies para outro método (§boundary essencial).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support — LLM gera high-quality expert policies que são injetadas via policy distillation, não executa loop agentic de RM.",
+    "evidence_sections": [
+      "Abstract: teacher-student framework, policy distillation, MAPPO algorithm",
+      "III. System Model: Network Knowledge Graph + R-GAT + LLM+ToT para expert policies",
+      "§boundary: agentic loop requerido; LLM como suporte a RL/MARL está FORA do escopo"
+    ]
+  },
+  {
+    "paper_id": "paper-2854",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper propõe pipeline LLM para traduzir intents (APPIs) em network service requests (NSRs) via knowledge graphs, mas foco é network automation em 6G—não resource management em cloud/edge/continuum. Motivação: intent-driven network management (seção I), não scheduling/placement/scaling. Mesmo com LLM+KG grounding, domínio é strictly RAN/6G, fora scope (§boundary C: out-of-scope unless edge node in continuum).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "networks — intent translation é tarefa de rede 6G/RAN, não decisão de RM em infra cloud/edge.",
+    "evidence_sections": [
+      "Abstract: APPIs→NSRs translation for 6G intent-driven management",
+      "I. Intro: closed-loop autonomy for 6G, not cloud/edge resource allocation",
+      "II.A: Studies on APPIs in networking context (SDN, 5G slicing)"
+    ]
+  },
+  {
+    "paper_id": "paper-2885",
+    "my_final_decision": "Exclude",
+    "my_justification": "Paper integra LLM (Telco-RAG intent prediction) com DRL (SAC controller) para anti-jamming em LAE networks (seção intro, II.C). LLM é subordinado — gera probabilistic intent predictions que moldam reward shaping no SAC; o agent RL executa otimização conjunta de trajectory/frequency/power. Não há loop agentic AI dirigido por LLM (§boundary: LLM supports RL, não dirige RM).",
+    "agrees_with_regex": true,
+    "divergence_reason": null,
+    "addressed_hint": "support — LLM provides intent prediction features to reward shaping; SAC controller makes resource decisions. Domain é also strictly LAENet security (não cloud/edge/continuum RM infra).",
+    "evidence_sections": [
+      "II.C: 'LLM-driven probabilistic intent prediction module with DRL framework' — LLM gera features para SAC",
+      "Abstract: LLM-aided prediction, RL-based optimization",
+      "§boundary: agentic loop requerido; LLM como suporte a RL está FORA do escopo"
+    ]
+  },
+  {
+    "paper_id": "paper-2936",
+    "my_final_decision": "Exclude",
+    "my_justification": "O paper propõe um framework RAG-empowered para task offloading em IoE, mas a análise do fulltext revela que o LLM **suporta** a decisão, não a dirige autonomamente. A estrutura usa RAG para gerar prompts que alimentam o LLM, o qual faz uma recomendação de offloading. Porém, não há evidência de um loop agentic autônomo (perceive→reason→tool-use→act) onde o LLM execute a decisão via APIs ou acione mecanismos de offloading diretamente. O paper comparar contra DDPG, TD3, FRL, mas não descreve como a decisão LLM é materializada no sistema IoE. Sem acoplamento direto à infraestrutura e sem execução agentic, o critério C5 (RQ1.2 coupling to infrastructure) e a boundary essencial não são atendidos.",
+    "agrees_with_regex": false,
+    "divergence_reason": "Regex classifier sinalizou 'llm_agentic_ai_generic' baseado em matches de 'LLMs' e padrões genéricos, mas não distinguiu entre LLM como support (RAG) vs LLM como agente decisor autônomo. O classifier não capturou ausência de tool-use ou direct action execution.",
+    "addressed_hint": null,
+    "evidence_sections": [
+      "Abstract: 'enables LLM to overcome these limitations' — supportive, não decisório",
+      "IntroductIon (2): 'enabling sophisticated reasoning and intelligent decision-making' — reasoning assistido, não loop agentic",
+      "rAG-empoWered AdAptIve tAsk offloAdInG frAmeWork: Nenhuma menção a APIs, Kubernetes, ou acionamento direto de offloading",
+      "experImentAl setup: Compara contra DDPG, TD3 (RL baselines); não descreve execução da decisão LLM",
+      "Boundary essencial: Requer loop autônomo que DIRIGE decisões — ausente aqui; RAG é suporte, não agentic loop"
+    ]
+  }
+]

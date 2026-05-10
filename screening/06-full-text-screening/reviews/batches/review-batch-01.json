@@ -1,0 +1,23 @@
+[
+  {
+    "paper_id": "paper-0837",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-0908",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-0930",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  }
+]

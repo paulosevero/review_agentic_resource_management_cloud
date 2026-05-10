@@ -1,0 +1,29 @@
+[
+  {
+    "paper_id": "paper-2592",
+    "regex_decision": "Exclude",
+    "winning_category": "C_llm_as_workload",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2595",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2600",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  }
+]

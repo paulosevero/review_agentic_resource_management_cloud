@@ -79,9 +79,16 @@ screening:
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: 'Paper trata automação em multi-cloud/hybrid-cloud via Generative
+      AI, mas foco principal é em tarefas DevOps/observabilidade (incident triage,
+      RCA, geração de manifestos Kubernetes, fraud detection) — não em decisões de
+      resource management (scheduling, placement, scaling). Sec. II-C descreve ''anomaly
+      detection'', ''incident detection'', ''prediction of system failures'', ''configuration
+      generation'' como aplicações do LLM. Não há um loop agentic LLM-driven que dirige
+      alocação/orquestração de recursos em cloud/edge/continuum. Validado contra critério
+      boundary: LLM é suporte a DevOps, não tomador de decisão de RM.'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -171,6 +178,14 @@ no duplicates found
 - **overrides_applied:** []
 - **evidence_trail:**
   - `{ category: D_devops_or_logs_not_rm, pattern_id: deployment_assistant_no_rm, matched_substring: "configuration generation" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper trata automação em multi-cloud/hybrid-cloud via Generative AI, mas foco principal é em tarefas DevOps/observabilidade (incident triage, RCA, geração de manifestos Kubernetes, fraud detection) — não em decisões de resource management (scheduling, placement, scaling). Sec. II-C descreve 'anomaly detection', 'incident detection', 'prediction of system failures', 'configuration generation' como aplicações do LLM. Não há um loop agentic LLM-driven que dirige alocação/orquestração de recursos em cloud/edge/continuum. Validado contra critério boundary: LLM é suporte a DevOps, não tomador de decisão de RM.
+- **agrees_with_regex:** True
+- **addressed_hint:** pre_flagged_quality - confirm; paper shows hints of low evaluation rigor (case studies vagos, sem métricas quantitativas), mas primary exclusion reason é scope (DevOps, não RM).
+- **evidence_sections:** ['Case Study 1-4 (Sec. VII)', 'Sec. II-C Role of AI/Generative AI (configuration generation, anomaly detection, incident triage)']
 
 
 ## 07 — Taxonomy

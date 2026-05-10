@@ -1,0 +1,25 @@
+[
+  {
+    "paper_id": "paper-2120",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "quality"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2179",
+    "regex_decision": "Exclude",
+    "winning_category": "F_out_of_scope_domain",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-2224",
+    "regex_decision": "Exclude",
+    "winning_category": "E_strict_telecom",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  }
+]

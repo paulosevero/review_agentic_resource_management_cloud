@@ -73,9 +73,13 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: 'Paper integra LLM (Telco-RAG intent prediction) com DRL (SAC
+      controller) para anti-jamming em LAE networks (seção intro, II.C). LLM é subordinado
+      — gera probabilistic intent predictions que moldam reward shaping no SAC; o
+      agent RL executa otimização conjunta de trajectory/frequency/power. Não há loop
+      agentic AI dirigido por LLM (§boundary: LLM supports RL, não dirige RM).'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -170,6 +174,14 @@ no duplicates found
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-guided" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-guided" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-guided" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper integra LLM (Telco-RAG intent prediction) com DRL (SAC controller) para anti-jamming em LAE networks (seção intro, II.C). LLM é subordinado — gera probabilistic intent predictions que moldam reward shaping no SAC; o agent RL executa otimização conjunta de trajectory/frequency/power. Não há loop agentic AI dirigido por LLM (§boundary: LLM supports RL, não dirige RM).
+- **agrees_with_regex:** True
+- **addressed_hint:** support — LLM provides intent prediction features to reward shaping; SAC controller makes resource decisions. Domain é also strictly LAENet security (não cloud/edge/continuum RM infra).
+- **evidence_sections:** ["II.C: 'LLM-driven probabilistic intent prediction module with DRL framework' — LLM gera features para SAC", 'Abstract: LLM-aided prediction, RL-based optimization', '§boundary: agentic loop requerido; LLM como suporte a RL está FORA do escopo']
 
 
 ## 07 — Taxonomy

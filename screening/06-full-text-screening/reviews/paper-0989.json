@@ -1,0 +1,49 @@
+{
+  "paper_id": "paper-0989",
+  "title": "Don't Train, Just Prompt: A Simple yet Effective Approach to Leveraging Large Language Models for Software Engineering",
+  "my_final_decision": "Exclude",
+  "my_justification": "O paper descreve prompt engineering para gerar manifestos Kubernetes, mas não implementa loop agentic-AI autônomo. A LLM funciona como ferramenta estática de geração de código em modo offline: usuário fornece entrada → LLM gera manifesto → fim. Não há ciclo de percepção-raciocínio-ação em tempo real. A ausência de feedback/monitoramento do sistema e tomada de decisão em loop fecha a categorização como DevOps-tool-use, não resource-management agentic.",
+  "decision_mapping": {
+    "C18_thematic_design_quality": {
+      "score": 0.1,
+      "reasoning": "Design descreve uso de prompting estático, não sistema agentic com loop de decisão de resource management."
+    },
+    "C19_evaluation": {
+      "score": 0.4,
+      "reasoning": "Inclui avaliação de qualidade de manifestos gerados, mas não de decisões de resource management em tempo real."
+    },
+    "S1_architecture": {
+      "score": 0.0,
+      "reasoning": "Sem padrão agentic (ReAct, Plan-and-Execute, ou similar). Apenas prompt → resposta."
+    },
+    "S2_coupling": {
+      "score": 0.3,
+      "reasoning": "Output acoplado a CLI/manifesto, não a APIs de orquestração (Kubernetes) para feedback/ação iterativa."
+    },
+    "S3_safety": {
+      "score": 0.0,
+      "reasoning": "Sem mecanismos de guardrail porque sem loop autônomo de ação."
+    },
+    "S7_grounding": {
+      "score": 0.1,
+      "reasoning": "Nenhuma telemetria do sistema ou RAG sobre runbooks. Apenas prompts estruturados."
+    }
+  },
+  "weighted_score": 0.15,
+  "evidence": [
+    "Seção I (Introdução): 'we propose a simple yet effective approach to leveraging large language models to generate Kubernetes manifests' — descreve geração de artefatos, não agentic loop.",
+    "Seção III (Metodologia): fluxo é input de usuário → prompt → LLM → output de manifesto. Sem ciclo de ação-feedback.",
+    "Seção V (Avaliação): métricas medem qualidade do manifesto gerado (conformidade YAML, completude), não performance de resource management adaptativo.",
+    "Nenhuma menção a monitoramento de cluster, ajuste dinâmico de alocação, escalabilidade reativa, ou feedback em tempo real do sistema."
+  ],
+  "disagreement_with_regex": {
+    "regex_decision": "D_devops_or_logs_not_rm",
+    "my_decision": "EXCLUDE",
+    "agreement": true,
+    "note": "Classificador e revisor concordam: paper trata de DevOps tool (geração de manifesto), não resource management agentic."
+  },
+  "agrees_with_regex": true,
+  "divergence_reason": null,
+  "addressed_hint": null,
+  "evidence_sections": []
+}

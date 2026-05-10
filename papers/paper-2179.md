@@ -71,9 +71,16 @@ screening:
     - ovr_llm_modifier
     - ovr_abs_llm_decides
     - ovr_abs_llm_orchestrates
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: Paper propõe LLM + Graph MADRL para 'task matching' em Edge
+      Computing Power Networks (ECPN) — domain é redes eléctricas/smart grids, não
+      cloud/edge/continuum computing. Sec. 2-3 ('Architecture of Large Model-Enabled
+      ECPN', 'Application for Large Model-Enabled ECPN') focam em power-load balancing
+      e demand prediction em infraestruturas de energia. Embora mencione 'edge computing',
+      refere-se a ponto de acesso para smart devices de energia, não a continuum cloud-edge
+      para aplicações/serviços. LLM é integrado a MADRL mas domínio é fora de escopo
+      (power networks, manufatura, não RM em cloud/edge/continuum).
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -166,6 +173,14 @@ no duplicates found
   - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_b, matched_substring: "LLMs is a type of deep learning-based artificial intelligence model that can process large-scale tas" }`
   - `{ category: F_out_of_scope_domain, pattern_id: oos_smart_manufacturing, matched_substring: "smart manufacturing" }`
   - `{ category: F_out_of_scope_domain, pattern_id: oos_smart_manufacturing, matched_substring: "smart manufacturing" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper propõe LLM + Graph MADRL para 'task matching' em Edge Computing Power Networks (ECPN) — domain é redes eléctricas/smart grids, não cloud/edge/continuum computing. Sec. 2-3 ('Architecture of Large Model-Enabled ECPN', 'Application for Large Model-Enabled ECPN') focam em power-load balancing e demand prediction em infraestruturas de energia. Embora mencione 'edge computing', refere-se a ponto de acesso para smart devices de energia, não a continuum cloud-edge para aplicações/serviços. LLM é integrado a MADRL mas domínio é fora de escopo (power networks, manufatura, não RM em cloud/edge/continuum).
+- **agrees_with_regex:** True
+- **addressed_hint:** no_hint
+- **evidence_sections:** ['Sec. 2 The Architecture of Large Model-Enabled ECPN', 'Sec. 3 Application for Large Model-Enabled ECPN', 'Sec. 4 LLMs and Graph MADRL Driven Task Matching']
 
 
 ## 07 — Taxonomy

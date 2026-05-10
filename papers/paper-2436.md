@@ -89,10 +89,17 @@ screening:
     - ovr_with_llm
     - ovr_intent_driven
     - ovr_abs_llm_orchestrates
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
-    divergence_reason: null
+    my_final_decision: Exclude
+    my_justification: 'GenNet aplica DRL + diffusion model, não loop agentic com LLM
+      dirigindo decisões. Mais crítico: escopo é deterministic transmission scheduling
+      em 6G—roteamento, alocação de banda, sincronização TSN/DetNet. Boundary C (Infraestrutura
+      Cloud/Edge/Fog/Continuum) exclui networking puro: este é problema de domain
+      telecom, não resource management em compute cloud/edge. Seção ''GenNet Architecture''
+      confirma foco em scheduling de transmissão (Q: QoS flow), não de máquinas/containers/serviços.'
+    agrees_with_regex: true
+    divergence_reason: 'regex sugeria Include por pattern matching genérico ''generative
+      AI'' + ''scheduling''. Full-text revela escopo: telecom/6G transmission scheduling,
+      fora do domínio cloud-edge-continuum de RM computacional.'
     locked_at_iteration: null
     locked_at: null
 taxonomy: {}
@@ -185,6 +192,15 @@ no duplicates found
   - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "Deployment: Through global LLM" }`
   - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "deployment of generative AI" }`
   - `{ category: F_out_of_scope_domain, pattern_id: oos_smart_manufacturing, matched_substring: "smart manufacturing" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** GenNet aplica DRL + diffusion model, não loop agentic com LLM dirigindo decisões. Mais crítico: escopo é deterministic transmission scheduling em 6G—roteamento, alocação de banda, sincronização TSN/DetNet. Boundary C (Infraestrutura Cloud/Edge/Fog/Continuum) exclui networking puro: este é problema de domain telecom, não resource management em compute cloud/edge. Seção 'GenNet Architecture' confirma foco em scheduling de transmissão (Q: QoS flow), não de máquinas/containers/serviços.
+- **agrees_with_regex:** True
+- **divergence_reason:** regex sugeria Include por pattern matching genérico 'generative AI' + 'scheduling'. Full-text revela escopo: telecom/6G transmission scheduling, fora do domínio cloud-edge-continuum de RM computacional.
+- **addressed_hint:** hint_categories=[networks] confirmado: paper é estritamente networking (6G TSN/DetNet); candidatos a exclusão por escopo.
+- **evidence_sections:** ["Abstract: '6G Networks', 'Transmission Scheduling'", "Section 'Deterministic Transmission Scheduling in 6G': routing (R matrix), bandwidth allocation (B matrix), TSN config (Ctsn)", "Case Study: 'two TSN domains', 'DetNet domain', 'edge servers and cloud server'—cloud é apenas endpoint, não orchestration target", 'Reward function: delay/jitter/throughput em fluxos de rede, não em aplicações/serviços']
 
 
 ## 07 — Taxonomy

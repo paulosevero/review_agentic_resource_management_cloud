@@ -68,9 +68,14 @@ screening:
       cloud/edge RM.
     winning_category: E_strict_telecom
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: 'Framework AaaS implementa lifecycle management de agentes LLM
+      em edge (§ Introduction, Overview of AAAs). Porém, domínio é estritamente 6G
+      RAN/spektrum, não cloud/edge/fog resource management. Case study foca latência
+      de autonomous driving via RAN optimization, não placement/scheduling/scaling
+      de recursos de infraestrutura. Out of scope: boundary C (infraestrutura) excludes
+      strict telecom/spectrum sem substrato cloud-edge-fog RM.'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -162,6 +167,14 @@ no duplicates found
   - `{ category: E_strict_telecom, pattern_id: strict_telecom_only, matched_substring: "6G network AI agents edge intelligence large language model 
  ---
 title: Agent-as-a-Service: An AI-N" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Framework AaaS implementa lifecycle management de agentes LLM em edge (§ Introduction, Overview of AAAs). Porém, domínio é estritamente 6G RAN/spektrum, não cloud/edge/fog resource management. Case study foca latência de autonomous driving via RAN optimization, não placement/scheduling/scaling de recursos de infraestrutura. Out of scope: boundary C (infraestrutura) excludes strict telecom/spectrum sem substrato cloud-edge-fog RM.
+- **agrees_with_regex:** True
+- **addressed_hint:** networks — confirmado: papel é estritamente telecom/6G, não RM de infraestrutura cloud/edge/fog
+- **evidence_sections:** ['Introduction (2): Agents manage 6G edge computing (RAN-focused), not cloud/fog resource orchestration', 'Overview of AAAs framework: kernel-space agents manage user-space agents, but in 6G network context', 'Case study: autonomous driving latency via 6G agent coordination, not compute/storage placement']
 
 
 ## 07 — Taxonomy

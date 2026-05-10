@@ -1,0 +1,27 @@
+[
+  {
+    "paper_id": "paper-1783",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1790",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-1854",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  }
+]

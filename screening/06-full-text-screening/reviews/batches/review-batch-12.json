@@ -1,0 +1,29 @@
+[
+  {
+    "paper_id": "paper-2399",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [
+      "quality"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2436",
+    "regex_decision": "Exclude",
+    "winning_category": "F_out_of_scope_domain",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2470",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "quality"
+    ],
+    "hint_status": "pre_flagged_align"
+  }
+]

@@ -74,9 +74,14 @@ screening:
     overrides_applied:
     - ovr_rl_llm_present
     - ovr_cls_llm_present
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Exclude
+    my_justification: Paper propõe Graph-GAN vehicle trajectory prediction integrado
+      com 5G resource slicing para task offloading em IoV/MEC. GAI (Generative AI
+      / GAN) é usada apenas para trajectory prediction (input); a decisão de offloading/slicing
+      segue modelo de otimização clássico (delay model, modulation schemes, bandwidth
+      allocation). Não há agentic loop — GAI não dirige o raciocínio de RM. Loop de
+      decisão é determinístico/otimizado, não autônomo reasoning+acting de agente.
+    agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -173,6 +178,14 @@ no duplicates found
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_genai_full, matched_substring: "Generative Artificial Intelligence" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_genai_full, matched_substring: "Generative Artificial Intelligence" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_genai_full, matched_substring: "Generative Artificial Intelligence" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper propõe Graph-GAN vehicle trajectory prediction integrado com 5G resource slicing para task offloading em IoV/MEC. GAI (Generative AI / GAN) é usada apenas para trajectory prediction (input); a decisão de offloading/slicing segue modelo de otimização clássico (delay model, modulation schemes, bandwidth allocation). Não há agentic loop — GAI não dirige o raciocínio de RM. Loop de decisão é determinístico/otimizado, não autônomo reasoning+acting de agente.
+- **agrees_with_regex:** False
+- **addressed_hint:** support — GAI como preditor/feature extractor para método clássico de resource slicing, não como decisor agentic
+- **evidence_sections:** ['§B Graph-GAN Vehicle Trajectory Prediction Model — GAN gera previsões; não toma decisão', '§C RSUs Resource Slicing Model — formulas de otimização clássicas (delay, bandwidth, MCS allocation)', '§IV Problem Description — model determinístico de alocação sem agentic reasoning']
 
 
 ## 07 — Taxonomy

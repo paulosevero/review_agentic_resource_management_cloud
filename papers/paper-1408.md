@@ -77,9 +77,9 @@ screening:
     - ovr_abs_llm_decides
     - ovr_abs_llm_orchestrates
     - ovr_cls_llm_present
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Include
+    my_justification: ''
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -176,6 +176,12 @@ no duplicates found
   - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
   - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
   - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "Furthermore, the impracticality of the online approach presents our second research challenge: How t" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Include
+- **my_justification:** 
+- **agrees_with_regex:** True
 
 
 ## 07 — Taxonomy

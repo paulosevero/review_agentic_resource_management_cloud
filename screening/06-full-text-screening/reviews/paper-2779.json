@@ -1,0 +1,13 @@
+{
+  "paper_id": "paper-2779",
+  "my_final_decision": "Exclude",
+  "my_justification": "Paper proposes intent-based Kubernetes scheduling using GPT-4 for one-shot NLP parsing of user annotations. GPT-4 is a feature extractor translating intent to structured constraints; actual scheduling logic is deterministic utility-function evaluation. No autonomous perceive-reason-act loop. Sections PROTOTYPE AND TESTBED DESIGN (Intent Analyzer) and SCORING MODEL confirm LLM is stateless parser, not agentic decision driver.",
+  "agrees_with_regex": false,
+  "divergence_reason": "Regex flagged as llm_agentic_ai_generic; full-text reveals NLP parsing is support tool, not agentic RM loop.",
+  "addressed_hint": "hint_categories=[devops] partially applies — system is config/orchestration tooling, not resource management (placement is deterministic post-parsing).",
+  "evidence_sections": [
+    "INTRODUCTION: 'intent analyzer that transforms natural language...[into]...constraints...coupled with...multi-objective...framework'",
+    "PROTOTYPE AND TESTBED DESIGN > Intent Analyzer: 'sends structured prompt to GPT-4...parsed into structured representation used by scoring model'",
+    "SCORING MODEL: deterministic utility-function evaluation, no autonomous iteration"
+  ]
+}

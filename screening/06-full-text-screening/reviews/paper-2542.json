@@ -1,0 +1,13 @@
+{
+  "paper_id": "paper-2542",
+  "my_final_decision": "Exclude",
+  "my_justification": "GAI (Generative AI) sintetiza eventos raros e extremos para aumentar treinamento de DQN clássico (federated deep Q-network). O loop agentic não está no GAI; é suporte para dados de treinamento sintéticos. Decisão de offloading/migração é dirigida por DQN/UCB em feedback loops do RL clássico. Seção IV (Algorithm description) e III (Problem Formulation) confirmam: GAI é módulo gerador de amostras; DQN/UCB otimizam.",
+  "agrees_with_regex": false,
+  "divergence_reason": null,
+  "addressed_hint": "support",
+  "evidence_sections": [
+    "Abstract: 'GAI synthesizes rare events and extreme experiences for augmented training of global DQN'",
+    "Section IV: 'GAI-assisted UCB' e 'GAI-enhanced federated deep Q-network' — GAI é assistência.",
+    "Section III: dois subproblemas (SP1, SP2) resolvidos por UCB e DQN; GAI não está no controlador da decisão."
+  ]
+}

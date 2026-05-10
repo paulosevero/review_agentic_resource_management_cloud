@@ -1,0 +1,29 @@
+[
+  {
+    "paper_id": "paper-2700",
+    "regex_decision": "Exclude",
+    "winning_category": "H_llm_supports_other_method",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_align"
+  },
+  {
+    "paper_id": "paper-2716",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [
+      "support"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2723",
+    "regex_decision": "Exclude",
+    "winning_category": "D_devops_or_logs_not_rm",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  }
+]

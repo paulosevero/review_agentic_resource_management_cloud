@@ -72,10 +72,18 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
-    divergence_reason: null
+    my_final_decision: Exclude
+    my_justification: 'IBSM usa LLM para classificar intent (seção III.B: dual-phase
+      classification) e decompor em policy tree (seção III.C), mas LLM não dirige
+      decisões autônomas de RM. Policy generator mapeia intents→templates via PG-KB;
+      policy filler parameteriza templates com valores defaults/constraints—não há
+      loop agentic onde LLM observe estado, raciocine, e altere alocação de storage.
+      Deployment subsystem executa policies via APIs tradicionais, sem feedback ao
+      LLM.'
+    agrees_with_regex: true
+    divergence_reason: 'regex (pass 1) flagou H_llm_supports_other_method e excluiu.
+      Full-text confirma: LLM é componente de NLP-to-config (intent parser), não agente
+      autônomo dirigindo RM.'
     locked_at_iteration: null
     locked_at: null
 taxonomy: {}
@@ -165,6 +173,15 @@ no duplicates found
 - **evidence_trail:**
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-assisted" }`
   - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-assisted" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** IBSM usa LLM para classificar intent (seção III.B: dual-phase classification) e decompor em policy tree (seção III.C), mas LLM não dirige decisões autônomas de RM. Policy generator mapeia intents→templates via PG-KB; policy filler parameteriza templates com valores defaults/constraints—não há loop agentic onde LLM observe estado, raciocine, e altere alocação de storage. Deployment subsystem executa policies via APIs tradicionais, sem feedback ao LLM.
+- **agrees_with_regex:** True
+- **divergence_reason:** regex (pass 1) flagou H_llm_supports_other_method e excluiu. Full-text confirma: LLM é componente de NLP-to-config (intent parser), não agente autônomo dirigindo RM.
+- **addressed_hint:** hint_categories=[quality]: avaliação foca em accuracy de classificação intent (>90%), não em impacto de decisões RM ou qualidade de alocação de storage. Ciclo fechado (observe estado→ação) ausente.
+- **evidence_sections:** ["Section III.A Overall Architecture: 'three subsystems: intent classification, decomposition, deployment'; LLM (MS-LLM) classifica/decompõe, deployer executa", "Section III.B: 'dual-phase joint intent classification'—tradução de linguagem natural", "Section III.C: 'policy generator + policy filler'—mapping a templates pré-definidas, não decisão dinâmica", 'Figure 2: decomposition subsystem sem feedback loop; intent→policy→execution é pipeline, não loop autônomo']
 
 
 ## 07 — Taxonomy

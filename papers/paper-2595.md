@@ -94,10 +94,19 @@ screening:
     - ovr_abs_llm_orchestrates
     - ovr_rl_llm_present
     - ovr_cls_llm_present
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
-    divergence_reason: null
+    my_final_decision: Include
+    my_justification: Paper apresenta agent-based architecture com cloud agent, RSU
+      agents, e vehicle agents que coletam telemetria (state), usam D-LAM e DM-LAM
+      (large AI models com sequence modeling) para inferência e decision-making em
+      tempo real, e atuam sobre alocação de recursos (task offloading, power allocation).
+      Loop perceive→(telemetry)→reason(LAM inference)→act(resource allocation) está
+      claramente descrito (§Workflow, §Multi-layer architecture). Satisfaz RQ1 (arquitetura),
+      RQ2 (task offloading como decisão delegada), RQ3 (reasoning via LAM com RAG/multi-scenario
+      dataset), RQ4 (avaliação em IoV scenarios).
+    agrees_with_regex: true
+    divergence_reason: 'regex classificou como ''networks'' (hint exclude), mas paper
+      é claramente agentic-RM: describe loop completo perceive-reason-act com LAM
+      dirigindo decisões de RM em edge-cloud-vehicle continuum.'
     locked_at_iteration: null
     locked_at: null
 taxonomy: {}
@@ -193,6 +202,15 @@ no duplicates found
   - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "To validate the model's generalization capacity, we conducted the experiment under diverse scenarios" }`
   - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "multi-agent" }`
   - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "multi-agent" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Include
+- **my_justification:** Paper apresenta agent-based architecture com cloud agent, RSU agents, e vehicle agents que coletam telemetria (state), usam D-LAM e DM-LAM (large AI models com sequence modeling) para inferência e decision-making em tempo real, e atuam sobre alocação de recursos (task offloading, power allocation). Loop perceive→(telemetry)→reason(LAM inference)→act(resource allocation) está claramente descrito (§Workflow, §Multi-layer architecture). Satisfaz RQ1 (arquitetura), RQ2 (task offloading como decisão delegada), RQ3 (reasoning via LAM com RAG/multi-scenario dataset), RQ4 (avaliação em IoV scenarios).
+- **agrees_with_regex:** True
+- **divergence_reason:** regex classificou como 'networks' (hint exclude), mas paper é claramente agentic-RM: describe loop completo perceive-reason-act com LAM dirigindo decisões de RM em edge-cloud-vehicle continuum.
+- **addressed_hint:** networks flag não procede — apesar do contexto 6G/V2X, o foco é agentic AI para resource management, não telecom/network slicing per se
+- **evidence_sections:** ['§Multi-layer collaborative resource management architecture — descreve cloud agent, RSU agent, vehicle agent layers', '§Multi-scenario Dataset Curation — estado (CSI, topologia, recursos, comportamento veicular)', '§Model Pre-training And Multi-dimensional Assessment — D-LAM e DM-LAM realizam decision-making em tempo real', '§Decision-making — agents decidem sobre task offloading, power allocation, model fine-tuning schedules']
 
 
 ## 07 — Taxonomy

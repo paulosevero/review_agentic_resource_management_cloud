@@ -1,0 +1,30 @@
+[
+  {
+    "paper_id": "paper-2779",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [
+      "devops"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2787",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [
+      "networks"
+    ],
+    "hint_status": "pre_flagged_disagree"
+  },
+  {
+    "paper_id": "paper-2822",
+    "regex_decision": "Exclude",
+    "winning_category": "E_strict_telecom",
+    "hint_categories": [
+      "support",
+      "networks"
+    ],
+    "hint_status": "pre_flagged_align"
+  }
+]

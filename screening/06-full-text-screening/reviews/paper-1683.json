@@ -1,0 +1,15 @@
+{
+  "paper_id": "paper-1683",
+  "my_final_decision": "Include",
+  "my_justification": "Framework integra GAI (Transformer+RAG) com game-theoretic multi-agent model para offloading e resource allocation. Vehicles atuam como strategic agents cuja offloading decisions iterativamente convergem via MADRL (Seção III-D), balanceando latência, energia, utilização. Loop agentico claro: telemetry→GAI+RAG→game-theoretic decision layer→autonomous offloading. Avaliação por simulação com métricas RM (latency, energy, Nash equilibrium convergence).",
+  "agrees_with_regex": true,
+  "divergence_reason": null,
+  "addressed_hint": "Paper propõe multi-agent RL-based system, não clássico RL/MARL sem LLM; GAI layer essencial para context-aware strategy derivation.",
+  "evidence_sections": [
+    "III. GAI-BASED COMPUTATION OFFLOADING",
+    "III-A. GenAI-Based Offloading and Resource Management",
+    "III-C. System model (3-layer architecture)",
+    "III-D. Decision-Making Algorithm",
+    "IV. RESULTS AND DISCUSSION"
+  ]
+}

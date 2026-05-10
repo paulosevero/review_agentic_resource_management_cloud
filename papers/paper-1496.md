@@ -73,10 +73,14 @@ screening:
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
-    divergence_reason: null
+    my_final_decision: Exclude
+    my_justification: ''
+    agrees_with_regex: true
+    divergence_reason: 'Categoria regex ''D_devops_or_logs_not_rm'' é imprecisa. O
+      paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA,
+      ou IaC). O padrão real é ''LLM-support-to-symbolic-solver'': LLM faz intent
+      translation (NL → JSON), ASP faz placement decisions. Classificação corrigida:
+      H_llm_supports_other_method (suporte a método simbólico).'
     locked_at_iteration: null
     locked_at: null
 taxonomy: {}
@@ -165,6 +169,13 @@ no duplicates found
 - **overrides_applied:** []
 - **evidence_trail:**
   - `{ category: D_devops_or_logs_not_rm, pattern_id: devops_logs_incidents, matched_substring: "log analysis" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** 
+- **agrees_with_regex:** True
+- **divergence_reason:** Categoria regex 'D_devops_or_logs_not_rm' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é 'LLM-support-to-symbolic-solver': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico).
 
 
 ## 07 — Taxonomy

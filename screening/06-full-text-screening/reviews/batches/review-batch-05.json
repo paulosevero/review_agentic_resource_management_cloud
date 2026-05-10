@@ -1,0 +1,23 @@
+[
+  {
+    "paper_id": "paper-1680",
+    "regex_decision": "Include",
+    "winning_category": "llm_agentic_ai_generic",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1683",
+    "regex_decision": "Include",
+    "winning_category": "mas_llm_based",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  },
+  {
+    "paper_id": "paper-1684",
+    "regex_decision": "Include",
+    "winning_category": "agent_llm_based",
+    "hint_categories": [],
+    "hint_status": "no_hint"
+  }
+]

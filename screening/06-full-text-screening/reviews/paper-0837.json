@@ -1,0 +1,13 @@
+{
+  "paper_id": "paper-0837",
+  "my_final_decision": "Exclude",
+  "my_justification": "Paper sobre DevOpsBERT, um modelo BERT adaptado para tarefas DevOps (anomaly detection, predictive maintenance em logs). O LLM não dirige decisões de resource management (scheduling, placement, scaling) — a aplicação é log analysis e incident prediction, não orquestração autônoma de recursos. Fora do escopo agentic-AI-for-RM.",
+  "agrees_with_regex": false,
+  "divergence_reason": "Regex sugeriu Include (ovr_using_llm, ovr_abs_llm_orchestrates), mas fulltext mostra LLM isolado em tarefas de observabilidade (DevOps), não loop agentic dirigindo RM.",
+  "addressed_hint": null,
+  "evidence_sections": [
+    "DevOpsBERT functionality",
+    "Section III (LLM architecture for log analysis)",
+    "Section V (conclusion: DevOps perspective)"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "paper_id": "paper-1386",
+  "title": "Utilizing LLMs for Virtual Machine Migration in Cloud Computing Environments",
+  "my_final_decision": "Exclude",
+  "my_justification": "Paper apresenta framework teórico (sem implementação) para integração de LLM em decisão de VM migration. Descreve arquitetura proposta (3 módulos: prediction, analysis, optimization) e pseudocódigos de algoritmos, mas não implementa nem avalia agentic-AI loop em operação. Falta ciclo fechado de ação-feedback: proposta é análise de LLM + seleção de estratégia, sem evidência de iteração autônoma em resposta a mudanças de carga. Classificação: theoretical framework, não sistema agentic operacional.",
+  "decision_mapping": {
+    "C18_thematic_design_quality": {
+      "score": 0.5,
+      "reasoning": "Design descrito em nível conceitual, mas sem implementação. Algoritmos pseudocode (RPA, MOA) são esquemáticos, sem clareza operacional do loop agentic."
+    },
+    "C19_evaluation": {
+      "score": 0.0,
+      "reasoning": "Nenhuma avaliação prática. Seção V apresenta 'projections' teóricas, não experimentos reais com sistema funcionando."
+    },
+    "S1_architecture": {
+      "score": 0.5,
+      "reasoning": "Propõe 3 módulos com LLM no hub central, mas sem ciclo de feedback documentado ou padrão agentic nomeado (ReAct, Plan-and-Execute)."
+    },
+    "S2_coupling": {
+      "score": 0.3,
+      "reasoning": "Framework descrito abstratamente; sem detalhes de integração com APIs de orquestrador cloud ou feedback loops."
+    },
+    "S3_safety": {
+      "score": 0.4,
+      "reasoning": "Seção IV.A menciona encryption e audit trails, mas sem validadores de ação ou rollback mechanism."
+    },
+    "S7_grounding": {
+      "score": 0.5,
+      "reasoning": "Arquitetura prevê coleta de telemetria (resource utilization, migration trends), mas implementação e efetividade não demonstradas."
+    }
+  },
+  "weighted_score": 0.37,
+  "evidence": [
+    "Seção III (Proposed Framework): 'demonstrates how LLMs can create an adaptive migration system' — proposta teórica, não implementação.",
+    "Tabela II e III (RPA/MOA algorithms): pseudocódigos em nível alto. Sem detalhe de como LLM infere predições de padrões em dados reais.",
+    "Seção V (Results and Discussion): 'our methodology breaks new ground... the framework appears capable of achieving...' (grifos nossos) — projections/modelagem teórica, não empirical evaluation.",
+    "Nenhuma seção de Implementation Details com código, testbed, ou resultados experimentais. Paper é purely theoretical modeling."
+  ],
+  "disagreement_with_regex": {
+    "regex_decision": "agent_llm_based",
+    "my_decision": "EXCLUDE",
+    "agreement": false,
+    "note": "Classificador sinaliza agent_llm_based, mas revisor rejeita: paper é theoretical framework sem agentic loop implementado ou avaliado. Falta evidência de ação autônoma e feedback iterativo que caracteriza agentic systems. Classificador pode ter sido acionado por abstract mencionando 'adaptive migration system' e '3 sections', mas full-text mostra nivel de abstração incompatível com inclusão (ausência total de evaluation/results é red flag para stage 06)."
+  },
+  "agrees_with_regex": false,
+  "divergence_reason": null,
+  "addressed_hint": null,
+  "evidence_sections": []
+}

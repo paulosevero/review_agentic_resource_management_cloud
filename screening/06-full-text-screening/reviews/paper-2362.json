@@ -1,0 +1,14 @@
+{
+  "paper_id": "paper-2362",
+  "my_final_decision": "Include",
+  "my_justification": "Refuta hint 'support'. AutoHMA-LLM propõe multi-tier architecture onde Cloud LLM é central planner para dynamic task allocation e scheduling em heterogeneous multi-agent systems (drones, robots). Seção I descreve LLM para 'communication coordination and dynamic task decomposition'. Loop agentic: agents executam tarefas baseado em LLM planner output. Métricas (seção V.B–E) medem task completion accuracy, communication reduction, token efficiency — outcomes de resource management decisions. Closed-loop LLM-driven system.",
+  "agrees_with_regex": true,
+  "divergence_reason": null,
+  "addressed_hint": "Hint 'support' não procedia. LLM não é suporte a outro método — é central planner dirigindo dynamic task allocation + scheduling + communication coordination em multi-agent system.",
+  "evidence_sections": [
+    "Abstract: 'task coordination and scheduling in complex, dynamic environments'",
+    "Section I: LLM for 'communication coordination, dynamic task decomposition, and scheduling'",
+    "Section III (System Definition): multi-tier architecture with Cloud LLM planner + Device LLM + Generative Agents",
+    "Section V.B–E: Task completion accuracy, communication steps, token usage metrics (RM outcomes)"
+  ]
+}

@@ -67,10 +67,16 @@ screening:
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
-    divergence_reason: null
+    my_final_decision: Exclude
+    my_justification: Paper proposes intent-based Kubernetes scheduling using GPT-4
+      for one-shot NLP parsing of user annotations. GPT-4 is a feature extractor translating
+      intent to structured constraints; actual scheduling logic is deterministic utility-function
+      evaluation. No autonomous perceive-reason-act loop. Sections PROTOTYPE AND TESTBED
+      DESIGN (Intent Analyzer) and SCORING MODEL confirm LLM is stateless parser,
+      not agentic decision driver.
+    agrees_with_regex: false
+    divergence_reason: Regex flagged as llm_agentic_ai_generic; full-text reveals
+      NLP parsing is support tool, not agentic RM loop.
     locked_at_iteration: null
     locked_at: null
 taxonomy: {}
@@ -166,6 +172,15 @@ no duplicates found
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
   - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Exclude
+- **my_justification:** Paper proposes intent-based Kubernetes scheduling using GPT-4 for one-shot NLP parsing of user annotations. GPT-4 is a feature extractor translating intent to structured constraints; actual scheduling logic is deterministic utility-function evaluation. No autonomous perceive-reason-act loop. Sections PROTOTYPE AND TESTBED DESIGN (Intent Analyzer) and SCORING MODEL confirm LLM is stateless parser, not agentic decision driver.
+- **agrees_with_regex:** False
+- **divergence_reason:** Regex flagged as llm_agentic_ai_generic; full-text reveals NLP parsing is support tool, not agentic RM loop.
+- **addressed_hint:** hint_categories=[devops] partially applies — system is config/orchestration tooling, not resource management (placement is deterministic post-parsing).
+- **evidence_sections:** ["INTRODUCTION: 'intent analyzer that transforms natural language...[into]...constraints...coupled with...multi-objective...framework'", "PROTOTYPE AND TESTBED DESIGN > Intent Analyzer: 'sends structured prompt to GPT-4...parsed into structured representation used by scoring model'", 'SCORING MODEL: deterministic utility-function evaluation, no autonomous iteration']
 
 
 ## 07 — Taxonomy

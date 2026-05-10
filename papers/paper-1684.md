@@ -72,9 +72,15 @@ screening:
     - ovr_with_llm
     - ovr_rl_llm_present
     - ovr_cls_llm_present
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Include
+    my_justification: 'Framework integra GAI (Transformer+RAG com federated learning)
+      e game-theoretic models para offloading e resource allocation em vehicular edge
+      computing. Vehicles funcionam como strategic agents que autonomamente decidem
+      offloading strategies em iteração até Nash equilibrium (Seção III-C). Loop agentico:
+      sensor telemetry→Augmented Intelligence layer (GAI+RAG)→Decision layer (game-theoretic
+      agents)→offloading decisions. Evaluation: simulação com 25-35% menor latency,
+      20-30% menor energia vs. métodos tradicionais.'
+    agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
@@ -171,6 +177,13 @@ no duplicates found
   - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "deployment of Generative AI" }`
   - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "deployment of Generative AI" }`
   - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_madrl, matched_substring: "MADRL" }`
+
+**Pass-2 LLM reviewer (Haiku 4.5):**
+
+- **my_final_decision:** Include
+- **my_justification:** Framework integra GAI (Transformer+RAG com federated learning) e game-theoretic models para offloading e resource allocation em vehicular edge computing. Vehicles funcionam como strategic agents que autonomamente decidem offloading strategies em iteração até Nash equilibrium (Seção III-C). Loop agentico: sensor telemetry→Augmented Intelligence layer (GAI+RAG)→Decision layer (game-theoretic agents)→offloading decisions. Evaluation: simulação com 25-35% menor latency, 20-30% menor energia vs. métodos tradicionais.
+- **agrees_with_regex:** True
+- **evidence_sections:** ['I. INTRODUCTION', 'III. GAI-BASED COMPUTATION OFFLOADING AND RESOURCE MANAGEMENT', 'III-C. System model (3-layer architecture)', 'III-D. Decision-Making Algorithm', 'IV. RESULTS AND DISCUSSION']
 
 
 ## 07 — Taxonomy
