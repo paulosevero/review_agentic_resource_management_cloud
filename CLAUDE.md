@@ -272,12 +272,12 @@ Stages 04 (title) and 05 (abstract) were screened in the legacy pipeline (pre-v3
 models:
   title-screening:      claude-haiku-4-5
   abstract-screening:   claude-sonnet-4-6
-  full-text-screening:  claude-opus-4-7
+  full-text-screening:  claude-sonnet-4-6
 
 classifier_configs:
   title-screening:      protocols/classifier-config.json
   abstract-screening:   protocols/classifier-config.json
-  full-text-screening:  protocols/classifier-config.json   # may be split to protocols/classifier-config-fulltext.json at first run of stage 06
+  full-text-screening:  protocols/classifier-config-fulltext.json   # split at first run of stage 06
 ```
 
 Conventions:
