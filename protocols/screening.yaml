@@ -1,0 +1,224 @@
+pattern: thematic_decomposition
+research_questions:
+- id: RQ1
+  text: How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum
+    infrastructures?
+  sub_rqs:
+  - id: RQ1.1
+    text: Architectural patterns of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical;
+      ReAct/Plan-and-Execute/Reflexion).
+  - id: RQ1.2
+    text: Coupling to infrastructure via tools/APIs/MCP (tool surface, action grammar, integration with
+      Kubernetes/orchestrators).
+  - id: RQ1.3
+    text: Safety and guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback).
+- id: RQ2
+  text: Which classes of resource management decisions are delegated to agentic AI systems, and under
+    what operational conditions?
+  sub_rqs:
+  - id: RQ2.1
+    text: Classes of resource management decisions delegated.
+  - id: RQ2.2
+    text: Operational conditions and autonomy level (advisory/supervised/autonomous).
+- id: RQ3
+  text: What reasoning processes and grounding mechanisms do agentic AI systems employ to translate observed
+    system state into resource management actions?
+  sub_rqs:
+  - id: RQ3.1
+    text: Reasoning processes (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).
+  - id: RQ3.2
+    text: Grounding mechanisms (telemetry, RAG over runbooks/docs, episodic memory, vector DBs, knowledge
+      graphs).
+  - id: RQ3.3
+    text: Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, infrastructure
+      ontologies).
+- id: RQ4
+  text: How is the behavior of agentic AI systems for resource management evaluated?
+  sub_rqs:
+  - id: RQ4.1
+    text: Evaluation methodologies and environments (simulation, real testbed, production, synthetic benchmarks,
+      real traces).
+  - id: RQ4.2
+    text: Resource-management performance metrics (latency, cost, energy, SLA, utilization, throughput).
+  - id: RQ4.3
+    text: Agent/inference overhead metrics (token usage, inference latency, monetary cost per decision,
+      model size/footprint, agent-loop throughput).
+  - id: RQ4.4
+    text: Safety and governance metrics (rate of unsafe/invalid actions, frequency of human intervention,
+      audit coverage, policy compliance).
+- id: RQ5
+  text: What open challenges, unresolved tensions, and promising future directions emerge from the synthesis
+    of the included literature?
+  sub_rqs:
+  - id: RQ5.1
+    text: Unresolved methodological and technical tensions (inference cost vs. decision latency, hallucination
+      in critical environments, transferability across infrastructures).
+  - id: RQ5.2
+    text: Governance, accountability, and auditability gaps (decision traceability, responsibility attribution,
+      regulatory requirements, explainability).
+inclusion_criteria:
+- id: C1
+  type: thematic_rq
+  refs:
+  - RQ1
+  - RQ2
+  - RQ3
+  - RQ4
+  - RQ5
+  text: '[T1] The title indicates an agentic AI system or LLM-based decision-making mechanism (agents,
+    agentic, LLM, large language model, autonomous AI, intelligent control, conversational AI, foundation
+    model, or related terms).'
+  weight: null
+- id: C2
+  type: thematic_rq
+  refs:
+  - RQ2
+  text: '[T2] The title mentions a resource management decision (resource management, placement, scheduling,
+    allocation, autoscaling, migration, routing, slicing, orchestration, capacity planning, governance,
+    infrastructure management, or related).'
+  weight: null
+- id: C3
+  type: thematic_rq
+  refs:
+  - RQ1
+  - RQ2
+  - RQ3
+  - RQ4
+  - RQ5
+  text: '[T3] The title mentions cloud, edge, fog, continuum, serverless, FaaS, Kubernetes, MEC, datacenter,
+    or related distributed-infrastructure terms.'
+  weight: null
+- id: C4
+  type: thematic_sub_rq
+  refs:
+  - RQ1.1
+  text: '[S1] The paper describes the architectural pattern of the perceive-reason-act loop (single-agent
+    vs multi-agent vs hierarchical; ReAct, Plan-and-Execute, Reflexion, or variants).'
+  weight: 0.7
+- id: C5
+  type: thematic_sub_rq
+  refs:
+  - RQ1.2
+  text: '[S2] The paper specifies how the agent couples to infrastructure (tools, APIs, MCP, integration
+    with Kubernetes/orchestrators) and describes the action grammar.'
+  weight: 0.7
+- id: C6
+  type: thematic_sub_rq
+  refs:
+  - RQ1.3
+  text: '[S3] The paper describes safety/guardrail mechanisms (HITL, action validators, sandboxing, policy
+    gates, rollback) or explicitly justifies their absence.'
+  weight: 0.7
+- id: C7
+  type: thematic_sub_rq
+  refs:
+  - RQ2.1
+  text: '[S4] The paper identifies the classes of resource management decisions delegated to the agent
+    (scheduling, placement, scaling, admission, energy, fault response, etc.).'
+  weight: 0.7
+- id: C8
+  type: thematic_sub_rq
+  refs:
+  - RQ2.2
+  text: '[S5] The paper characterizes operational conditions and the level of autonomy of the agent (advisory,
+    supervised, autonomous).'
+  weight: 0.7
+- id: C9
+  type: thematic_sub_rq
+  refs:
+  - RQ3.1
+  text: '[S6] The paper articulates the reasoning process employed (CoT, ToT, ReAct, planning + reflection,
+    debate, self-consistency).'
+  weight: 0.7
+- id: C10
+  type: thematic_sub_rq
+  refs:
+  - RQ3.2
+  text: '[S7] The paper describes grounding mechanisms (telemetry ingestion, RAG over runbooks/docs, episodic
+    memory, vector DBs, knowledge graphs).'
+  weight: 0.7
+- id: C11
+  type: thematic_sub_rq
+  refs:
+  - RQ3.3
+  text: '[S8] The paper describes how domain knowledge is incorporated into the agent (fine-tuning, structured
+    prompting, few-shot, infrastructure ontologies).'
+  weight: 0.7
+- id: C12
+  type: thematic_sub_rq
+  refs:
+  - RQ4.1
+  text: '[S9] The paper describes the evaluation methodology and experimental environment (simulation,
+    real testbed, production, synthetic benchmarks, real traces).'
+  weight: 0.7
+- id: C13
+  type: thematic_sub_rq
+  refs:
+  - RQ4.2
+  text: '[S10] The paper reports resource-management performance metrics (latency, cost, energy, SLA,
+    utilization, throughput).'
+  weight: 0.7
+- id: C14
+  type: thematic_sub_rq
+  refs:
+  - RQ4.3
+  text: '[S11] The paper reports agent/inference overhead metrics (token usage, inference latency, monetary
+    cost per decision, model footprint, agent-loop throughput).'
+  weight: 0.7
+- id: C15
+  type: thematic_sub_rq
+  refs:
+  - RQ4.4
+  text: '[S12] The paper reports safety/governance metrics (rate of unsafe/invalid actions, frequency
+    of human intervention, audit coverage, policy compliance).'
+  weight: 0.7
+- id: C16
+  type: thematic_sub_rq
+  refs:
+  - RQ5.1
+  text: '[S13] The paper discusses unresolved methodological/technical tensions (inference cost vs. decision
+    latency, hallucination, transferability).'
+  weight: 0.7
+- id: C17
+  type: thematic_sub_rq
+  refs:
+  - RQ5.2
+  text: '[S14] The paper discusses governance, accountability, or auditability gaps (decision traceability,
+    responsibility attribution, regulatory requirements, explainability).'
+  weight: 0.7
+- id: C18
+  type: qa
+  refs:
+  - RQ1
+  - RQ2
+  text: '[Q1] The paper describes the design of an agentic AI system for resource management with sufficient
+    detail to understand how the system works.'
+  weight: 0.6
+- id: C19
+  type: qa
+  refs:
+  - RQ4
+  text: '[Q2] The paper presents an evaluation of the proposed agentic AI system.'
+  weight: 0.4
+stage_allocation:
+  title:
+    criteria_types:
+    - thematic_rq
+    scale: ternary
+    threshold: 0.67
+  abstract:
+    criteria_types:
+    - thematic_sub_rq
+    scale: weighted
+    threshold: 0.35
+  full_text:
+    criteria_types:
+    - thematic_sub_rq
+    - qa
+    scale: weighted
+    threshold: 0.55
+models:
+  title: claude-haiku-4-5
+  abstract: claude-sonnet-4-6
+  full_text: claude-opus-4-7
+seed_global: 20260425

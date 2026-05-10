@@ -1,0 +1,340 @@
+keywords_include:
+  scope_concepts:
+  - Resource management in cloud
+  - and continuum infrastructures has
+  - historically relied on heuristics
+  - control-theoretic policies
+  - mixed-integer formulations
+  - and reinforcement learning agents
+  - bound to narrow action
+  - The recent emergence of
+  - LLM-backed systems that perceive
+  - invoke tools
+  - and act over multi-step
+  - opens a qualitatively different
+  - design space
+  - admission control
+  - energy management
+  - and fault response can
+  - now be expressed as
+  - goal-conditioned dialog with an
+  - autonomous agent rather than
+  - as fixed decision rules
+  - Resource management in clouds
+  - and continuum infrastructures ha
+  - historically relied on heuristic
+  - control theoretic policies
+  - controltheoretic policies
+  - control-theoretic policie
+  - mixed integer formulations
+  - mixedinteger formulations
+  - mixed-integer formulation
+  - and reinforcement learning agent
+  - bound to narrow actions
+  - LLM backed systems that perceive
+  - LLMbacked systems that perceive
+  - LLM-backed systems that perceives
+  - invoke tool
+  - and act over multi step
+  - and act over multistep
+  - opens a qualitatively differents
+  - design spaces
+  - admission controls
+  - energy managements
+  - and fault response cans
+  - goal conditioned dialog with an
+  - goalconditioned dialog with an
+  - autonomous agent rather thans
+  - as fixed decision rule
+  methods_or_techniques:
+  - Architectural patterns of the
+  - perceive-reason-act loop
+  - single-agent vs multi-agent vs
+  - ReAct
+  - Plan-and-Execute
+  - Reflexion
+  - Reasoning processes
+  - CoT
+  - ToT
+  - Evaluation methodologies and environments
+  - real testbed
+  - synthetic benchmarks
+  - real traces
+  - Agent
+  - inference overhead metrics
+  - token usage
+  - inference latency
+  - monetary cost per decision
+  - model size
+  - agent-loop throughput
+  - Architectural patterns of thes
+  - perceive reason-act loop
+  - perceivereason-act loop
+  - perceive-reason-act loops
+  - single agent vs multi agent vs
+  - singleagent vs multiagent vs
+  - ReActs
+  - Plan and-Execute
+  - Planand-Execute
+  - Reflexions
+  - Reasoning processe
+  - chain-of-thought
+  - CoTs
+  - tree-of-thought
+  - ToTs
+  - Evaluation methodologies and environment
+  - real testbeds
+  - synthetic benchmark
+  - real trace
+  - Agents
+  - inference overhead metric
+  - token usages
+  - inference latencys
+  - monetary cost per decisions
+  - model sizes
+  - agent loop throughput
+  - agentloop throughput
+  - agent-loop throughputs
+  domain_terms:
+  - The title indicates an
+  - AI system or LLM-based
+  - decision-making mechanism
+  - LLM
+  - large language model
+  - intelligent control
+  - foundation model
+  - or related terms
+  - The title mentions a
+  - resource management decision
+  - resource management
+  - capacity planning
+  - infrastructure management
+  - or related
+  - The title mentions cloud
+  - FaaS
+  - Kubernetes
+  - MEC
+  - or related distributed-infrastructure terms
+  - The paper describes the
+  - AI system or LLM based
+  - AI system or LLMbased
+  - decision making mechanism
+  - decisionmaking mechanism
+  - decision-making mechanisms
+  - LLMs
+  - large language models
+  - intelligent controls
+  - foundation models
+  - or related term
+  - resource management decisions
+  - resource managements
+  - capacity plannings
+  - infrastructure managements
+  - or relateds
+  - The title mentions clouds
+  - function as a service
+  - FaaSs
+  - Kubernete
+  - mobile edge computing
+  - MECs
+  - or related distributed infrastructure terms
+  - or related distributedinfrastructure terms
+  - or related distributed-infrastructure term
+  - The paper describes thes
+keywords_exclude:
+  out_of_scope_workload: []
+  out_of_scope_method:
+  - Scope decisions accepted at
+  - Level 1
+  - Boundary A
+  - Agentic loop required
+  - The system must implement
+  - the autonomous perception
+  - action loop
+  - MARL papers without an
+  - LLM-driven reasoning step are
+  - Boundary B
+  - Resource management as the
+  - closed loop
+  - The agent
+  - actions must affect resource
+  - management decisions
+  - The paper describes safety
+  - guardrail mechanisms
+  - HITL
+  - action validators
+  - policy gates
+  - or explicitly justifies their
+  - Agentic loop requireds
+  - The system must implements
+  - the autonomous perceptions
+  - action loops
+  - LLM driven reasoning step are
+  - LLMdriven reasoning step are
+  - LLM-driven reasoning step ares
+  - Resource management as thes
+  - closed loops
+  - The agents
+  - actions must affect resources
+  - management decision
+  - The paper describes safetys
+  - guardrail mechanism
+  - human-in-the-loop
+  - HITLs
+  - action validator
+  - policy gate
+  - or explicitly justifies theirs
+  out_of_scope_infra:
+  - Scope decisions accepted at
+  - Level 1
+  - Boundary A
+  - Agentic loop required
+  - The system must implement
+  - the autonomous perception
+  - action loop
+  - MARL papers without an
+  - LLM-driven reasoning step are
+  - Boundary B
+  - Resource management as the
+  - closed loop
+  - The agent
+  - actions must affect resource
+  - management decisions
+  - Agentic loop requireds
+  - The system must implements
+  - the autonomous perceptions
+  - action loops
+  - LLM driven reasoning step are
+  - LLMdriven reasoning step are
+  - LLM-driven reasoning step ares
+  - Resource management as thes
+  - closed loops
+  - The agents
+  - actions must affect resources
+  - management decision
+  document_type:
+  - survey
+  - review
+  - taxonomy
+  - poster
+  - demo
+  - tutorial
+  - benchmark
+  - book chapter
+  - challenges and opportunities
+  - challenges and future
+  - future directions
+  - surveys
+  - reviews
+  - taxonomys
+  - posters
+  - demos
+  - tutorials
+  - benchmarks
+  - book chapters
+  - challenges and opportunitie
+  - challenges and futures
+  - future direction
+strip_patterns:
+- pattern: ©.*$
+  flags:
+  - DOTALL
+  - MULTILINE
+- pattern: \bCopyright\s+(?:©\s*)?\d{0,4}\s*[A-Z][^.]*(?:Ltd|Inc|AG|Pte|Springer|IEEE|ACM)[^.]*\.?
+- pattern: \bSpringer Nature(?:\s+(?:Switzerland|Singapore))?(?:\s+(?:AG|Pte\s+Ltd\.?))?\b\.?
+- pattern: \bSpringer International Publishing(?:\s+AG)?\b\.?
+- pattern: \bInderscience Enterprises Ltd\.?
+- pattern: \bInternational Publishing AG\b\.?
+- pattern: \bSwitzerland AG\b\.?
+- pattern: \bSingapore Pte Ltd\.?
+- pattern: \bNature Switzerland\b\.?
+- pattern: \bNature Singapore\b\.?
+- pattern: \bPte\s+Ltd\.?
+- pattern: \bunder\s+(?:an\s+)?exclusive\s+licen[sc]e\s+to\s+Springer\b[^.]*\.?
+- pattern: \b(?:an\s+)?exclusive\s+licen[sc]e\b[^.]*\.?
+- pattern: \bpart\s+of\s+Springer\s+Nature\b[^.]*\.?
+- pattern: \bAll rights reserved\.?
+- pattern: \bThis is an open access article[^.]*\.?
+- pattern: \bThe Author\(s\)[^.]*\.?
+- pattern: \b\d{4}\s+IEEE\b\.?
+- pattern: \s+([.,;:])
+  replace: \1
+- pattern: \s{2,}
+  replace: ' '
+- pattern: \s+$
+  replace: ''
+stopword_trim:
+- a
+- an
+- the
+- and
+- or
+- but
+- of
+- in
+- true
+- at
+- to
+- from
+- by
+- for
+- with
+- within
+- without
+- about
+- into
+- onto
+- upon
+- over
+- under
+- through
+- during
+- this
+- that
+- these
+- those
+- it
+- its
+- they
+- them
+- their
+- we
+- our
+- us
+- you
+- your
+- is
+- are
+- was
+- were
+- be
+- been
+- being
+- have
+- has
+- had
+- will
+- would
+- can
+- could
+- may
+- might
+- must
+- based
+- using
+- used
+- via
+- new
+- novel
+- propose
+- proposed
+- present
+- presents
+- presented
+- paper
+- article
+- work
+- study
+- results
+- show
+- shows

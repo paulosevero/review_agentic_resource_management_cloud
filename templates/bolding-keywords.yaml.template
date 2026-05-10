@@ -1,0 +1,211 @@
+# Curated keyword list driving title/abstract bolding in the screening tabs.
+#
+# How it is used:
+# - `regenerate_spreadsheet.py` loads this file at the start of every regeneration.
+# - Editorial noise is stripped from each cell first (see `strip_patterns`).
+# - Both `keywords_include` and `keywords_exclude` are fused into a single spaCy
+#   `PhraseMatcher` (LOWER attribute, i.e. case-insensitive) and tagged as bold,
+#   longest-match-first. The split exists for audit trail and future analytics —
+#   bolding behavior is identical for both lists.
+# - Adjacent spans separated only by whitespace or a hyphen are merged
+#   (so "multi-LLMs" bolds as one span when "multi" and "LLM" are both keywords).
+# - Plural "s" suffixes are absorbed into the span automatically.
+# - Leading/trailing tokens that appear in `stopword_trim` are stripped.
+# - A density cap of 50% drops the shortest spans first when a cell would otherwise
+#   become more bold than not.
+#
+# When this file is absent, `regenerate_spreadsheet.py` falls back to the legacy
+# behavior (bolding every `evidence_trail.matched_substring` produced by the
+# screening pass-1).
+#
+# Provenance of the two lists:
+# - `keywords_include` — terms drawn from the RQs, sub-RQs, inclusion criteria,
+#   and theme prose. These are what a reviewer scans for to confirm a paper IS
+#   in scope (e.g. method names, infrastructure terms, scope concepts).
+# - `keywords_exclude` — terms drawn from the "Out of scope" theme prose,
+#   exclusion-leaning criteria language, and document-type rules. These flag
+#   reasons a paper LEAVES scope (e.g. "LLM serving" as workload, "survey" as
+#   document type, "HPC" as infrastructure).
+#
+# Both lists may include synonyms, abbreviations, expansions, and orthographic
+# variants — any spelling a reviewer would recognize. The matcher does not need
+# the canonical form to win; it bolds whatever variant appears in the cell.
+#
+# Curation guidance:
+# - Keep terms domain-specific and short (1–4 tokens). Generic words bloat output.
+# - Order inside a group does not matter; longest-match-first is enforced by spaCy.
+# - Group names are free-form. Use them to organize editing — they have no runtime
+#   semantics beyond being merged on load.
+# - Both lists are populated by `define-protocol` Half A (concept extraction +
+#   synonym generation) with explicit human validation. Re-run the elicitation
+#   when RQs or criteria change.
+
+# ---------------------------------------------------------------------------
+# 1. INCLUDE-LEANING KEYWORDS — bolded when found
+# ---------------------------------------------------------------------------
+# Replace the placeholder groups with terms drawn from your RQs and inclusion
+# criteria, then expand each with synonyms / abbreviations / variants.
+keywords_include:
+  scope_concepts: []
+    # - example concept
+    # - another concept
+
+  methods_or_techniques: []
+    # - example method
+
+  domain_terms: []
+    # - example domain term
+
+# ---------------------------------------------------------------------------
+# 2. EXCLUDE-LEANING KEYWORDS — bolded when found (audit trail for exclusions)
+# ---------------------------------------------------------------------------
+# Terms that signal a paper is OUT of scope. Sourced from the theme's
+# "Out of scope" prose, exclusion-leaning criterion wording, and the
+# document-type manual review rules.
+keywords_exclude:
+  out_of_scope_workload: []
+    # - example: LLM serving, fine-tuning, AIGC services
+
+  out_of_scope_method: []
+    # - example: classical RL, MARL without LLM
+
+  out_of_scope_infra: []
+    # - example: HPC, supercomputing, embedded device
+
+  document_type:
+    - survey
+    - review
+    - taxonomy
+    - poster
+    - demo
+    - tutorial
+    - benchmark
+    - book chapter
+    - challenges and opportunities
+    - challenges and future
+    - future directions
+
+# ---------------------------------------------------------------------------
+# 2. STRIP PATTERNS — editorial noise removed from text BEFORE bolding
+#    Applied top-down. Each entry: {pattern, replace?, flags?}.
+#    Default flag is IGNORECASE; declare DOTALL/MULTILINE explicitly when needed.
+# ---------------------------------------------------------------------------
+strip_patterns:
+  # Copyright line: "© ..." up to end of line (catches "© 2025 IEEE.",
+  # "© The Author(s) 2026.", "© by SCITEPRESS ...", etc.).
+  - pattern: '©.*$'
+    flags: [DOTALL, MULTILINE]
+
+  # "Copyright ..." sentences without ©.
+  - pattern: '\bCopyright\s+(?:©\s*)?\d{0,4}\s*[A-Z][^.]*(?:Ltd|Inc|AG|Pte|Springer|IEEE|ACM)[^.]*\.?'
+
+  # Publisher boilerplate fragments.
+  - pattern: '\bSpringer Nature(?:\s+(?:Switzerland|Singapore))?(?:\s+(?:AG|Pte\s+Ltd\.?))?\b\.?'
+  - pattern: '\bSpringer International Publishing(?:\s+AG)?\b\.?'
+  - pattern: '\bInderscience Enterprises Ltd\.?'
+  - pattern: '\bInternational Publishing AG\b\.?'
+  - pattern: '\bSwitzerland AG\b\.?'
+  - pattern: '\bSingapore Pte Ltd\.?'
+  - pattern: '\bNature Switzerland\b\.?'
+  - pattern: '\bNature Singapore\b\.?'
+  - pattern: '\bPte\s+Ltd\.?'
+
+  # License preambles.
+  - pattern: '\bunder\s+(?:an\s+)?exclusive\s+licen[sc]e\s+to\s+Springer\b[^.]*\.?'
+  - pattern: '\b(?:an\s+)?exclusive\s+licen[sc]e\b[^.]*\.?'
+  - pattern: '\bpart\s+of\s+Springer\s+Nature\b[^.]*\.?'
+
+  # Generic disclaimers.
+  - pattern: '\bAll rights reserved\.?'
+  - pattern: '\bThis is an open access article[^.]*\.?'
+  - pattern: '\bThe Author\(s\)[^.]*\.?'
+
+  # Trailing IEEE-only marker (when © was missed upstream).
+  - pattern: '\b\d{4}\s+IEEE\b\.?'
+
+  # Cleanup of resulting double spaces / orphan punctuation.
+  - pattern: '\s+([.,;:])'
+    replace: '\1'
+  - pattern: '\s{2,}'
+    replace: ' '
+  - pattern: '\s+$'
+    replace: ''
+
+# ---------------------------------------------------------------------------
+# 3. STOPWORDS — never bold; trimmed from the start/end of any matched span.
+# ---------------------------------------------------------------------------
+stopword_trim:
+  - a
+  - an
+  - the
+  - and
+  - or
+  - but
+  - of
+  - in
+  - on
+  - at
+  - to
+  - from
+  - by
+  - for
+  - with
+  - within
+  - without
+  - about
+  - into
+  - onto
+  - upon
+  - over
+  - under
+  - through
+  - during
+  - this
+  - that
+  - these
+  - those
+  - it
+  - its
+  - they
+  - them
+  - their
+  - we
+  - our
+  - us
+  - you
+  - your
+  - is
+  - are
+  - was
+  - were
+  - be
+  - been
+  - being
+  - have
+  - has
+  - had
+  - will
+  - would
+  - can
+  - could
+  - may
+  - might
+  - must
+  - based
+  - using
+  - used
+  - via
+  - new
+  - novel
+  - propose
+  - proposed
+  - present
+  - presents
+  - presented
+  - paper
+  - article
+  - work
+  - study
+  - results
+  - show
+  - shows

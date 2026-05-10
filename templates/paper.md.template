@@ -1,0 +1,266 @@
+<!--
+Template for a per-paper markdown file. Created by /import-results, one per deduplicated record
+imported from raw/exports/. Subsequent skills APPEND new sub-sections; they never rewrite prior
+sub-sections in place.
+
+This file is the source-of-truth for the paper. The xlsx spreadsheet is regenerated from it
+(plus all other paper-NNNN.md files) on every commit by the post-commit hook.
+
+Filename convention: `papers/paper-NNNN.md` — NNNN is a 4-digit zero-padded auto-incrementing id
+assigned at import time and stable across the entire review (`paper-0014`, `paper-0223`,
+`paper-2139`, …, up to `paper-9999`).
+
+Two-pass screening with accretive audit trail (v3 Phase 3 — PLUGIN-SPEC §20.9): each of stages
+04/05/06 records the decision history as `### iter-K` sub-sections plus a final `### final`
+block. iter-0 is written by the first run of the screening skill (combining the pass-1 regex
+record and the pass-2 LLM record); subsequent iter-K blocks are written by `screen --refine`
+when the user refines `protocols/classifier-config.json` mid-screening. The
+`### final` block is written at lock time and carries the user's verdict plus a pointer back to
+the iteration whose classification was kept (`locked_at_iteration: iter-K`).
+-->
+
+---
+id: paper-NNNN
+title: "<full title>"
+authors:
+  - "<Last, First>"
+  - "<Last, First>"
+venue: "<conference or journal name>"
+venue_type: "<conference | journal | book-chapter>"
+year: <YYYY>
+doi: "<10.xxxx/yyyy or empty>"
+url: "<publisher URL or empty>"
+publisher: "<publisher>"
+pages: "<start–end or empty>"
+keywords:
+  - "<kw1>"
+  - "<kw2>"
+language: "<en | pt | other>"
+
+# Provenance of this record (filled by /03-parse-references-metadata)
+source:
+  databases: ["<Scopus>", "<IEEE Xplore>"]     # databases where the paper was returned
+  exports: ["raw/exports/scopus-2025-09-14.bib"] # export files it came from
+  imported_at: "<YYYY-MM-DD>"
+  dedup:
+    merged_from: []                              # ids of duplicates merged into this one
+    merge_reason: ""                             # "same DOI" | "same title+year+first-author" | etc.
+
+# Per-stage status — updated at each stage lock. Drives xlsx regeneration and stage gates.
+# `unavailable` (stage 06 only) marks papers whose PDF could not be obtained.
+status:
+  04-title-screening:      pending   # pending | include | exclude
+  05-abstract-screening:   pending   # pending | include | exclude
+  06-full-text-screening:  pending   # pending | include | exclude | unavailable
+  07-taxonomy-development: pending   # pending | coded | classified
+  08-analysis:             pending
+
+# Two-pass screening record per stage. The frontmatter mirrors the *latest* iteration's
+# regex+LLM verdict plus the human-edited fields. The full iteration history lives in the body
+# as `### iter-K (...)` sub-sections; `last_iteration` here points at the iteration whose values
+# the frontmatter currently mirrors. `locked_at_iteration` is set at lock time and points at the
+# iteration the user kept; the corresponding `### final` block in the body carries the verdict.
+# See `agents/_screening-protocol.md §7`.
+screening:
+  04-title-screening:
+    last_iteration:          0      # integer K — latest iter-K written for this stage
+    proposed_decision:       null   # Include | Exclude | null  (mirror of iter-K regex_decision)
+    proposed_justification:  null   # verbatim PT-BR string from the winning category | null
+    winning_category:        null   # category id | "default" | null
+    overrides_applied:       []     # list of override ids hit during pass 1 of iter-K
+    my_final_decision:       null   # Include | Exclude | null (user-editable via xlsx col L)
+    my_justification:        null   # 1–3 sentences PT-BR | null (user-editable via xlsx col M)
+    agrees_with_regex:       null   # true | false | null
+    divergence_reason:       null   # 1–2 sentences PT-BR when agrees_with_regex == false | null
+    locked_at_iteration:     null   # "iter-K" — the iteration kept at lock time | null
+    locked_at:               null   # ISO timestamp of [04] lock | null
+  05-abstract-screening:
+    last_iteration:          0
+    proposed_decision:       null
+    proposed_justification:  null
+    winning_category:        null
+    overrides_applied:       []
+    my_final_decision:       null
+    my_justification:        null
+    agrees_with_regex:       null
+    divergence_reason:       null
+    locked_at_iteration:     null
+    locked_at:               null
+  06-full-text-screening:
+    last_iteration:          0
+    proposed_decision:       null
+    proposed_justification:  null
+    winning_category:        null
+    overrides_applied:       []
+    my_final_decision:       null
+    my_justification:        null
+    agrees_with_regex:       null
+    divergence_reason:       null
+    locked_at_iteration:     null
+    locked_at:               null
+
+# Taxonomy classification — populated during `07-taxonomy-development` after `taxonomy-locked`.
+# Keys are axis names declared in CLAUDE.md §8.1; values come from the code book §8.2.
+taxonomy: {}
+---
+
+# paper-NNNN — `<short title or key phrase>`
+
+The body of this file is organized as an accretive log. Each stage appends its own section in order. Prior sections are never rewritten in place; corrections happen via checkpoint commits that materialize a new `### Reviewed (LLM)` block (the latest one is the source-of-truth; older blocks remain in git history).
+
+## Metadata (from `/03-parse-references-metadata`)
+
+Short prose summary of the record. Full machine-readable fields live in the frontmatter.
+
+**Abstract**
+
+> `<paste abstract verbatim; keep original language>`
+
+**Dedup notes**
+
+`<If this record was merged with duplicates from other databases, note what was merged and why. Otherwise: "no duplicates found".>`
+
+---
+
+## 04 — Title Screening
+
+Populated by `/screen --stage title` as an accretive log. The first run writes `### iter-0 (initial classification)` combining the pass-1 (regex) and pass-2 (LLM) records. Refinements via `/screen --refine` append `### iter-K (after refine: <summary>)` blocks. Lock time appends `### final` with the user's verdict and a pointer at `locked_at_iteration`.
+
+### iter-0 (initial classification)
+
+- **regex_decision:** `<Include | Exclude>`
+- **regex_justification:** `"<verbatim PT-BR string from the winning category>"`
+- **winning_category:** `<category_id | default>`
+- **overrides_applied:** `[<override_id>, …]`
+- **evidence_trail:**
+  - `{ category: <category_id>, pattern_id: <pattern_id>, matched_substring: "<substring>", position: [<start>, <end>] }`
+  - `{ … }`
+- **llm_decision:** `<Include | Exclude>`
+- **llm_justification:** `"<1–3 sentences PT-BR>"`
+- **agrees_with_regex:** `<true | false>`
+- **divergence_reason:** `<null | "<1–2 sentences PT-BR citing evidence_trail or a missed signal>">`
+- **model:** `<model id used at pass 2>`
+- **timestamp:** `<ISO timestamp>`
+
+### final
+
+- **my_final_decision:** `<Include | Exclude>`
+- **my_justification:** `"<free text from the spreadsheet's My Justification cell>"`
+- **locked_at_iteration:** `<iter-K>` (the iteration whose verdict the user kept)
+- **locked_at:** `<ISO timestamp of [04] lock>`
+
+---
+
+## 05 — Abstract Screening
+
+Populated by `/screen --stage abstract`. Same accretive structure as stage 04, with input expanded to title + abstract + keywords. Patterns idle at stage 04 (`applicable_stages` excludes `title`) become active here when their reliability is higher on abstract evidence.
+
+### iter-0 (initial classification)
+
+- **regex_decision:** `<Include | Exclude>`
+- **regex_justification:** `"<verbatim PT-BR string>"`
+- **winning_category:** `<category_id | default>`
+- **overrides_applied:** `[<override_id>, …]`
+- **evidence_trail:**
+  - `{ category: <category_id>, pattern_id: <pattern_id>, matched_substring: "<substring>", position: [<start>, <end>] }`
+  - `{ … }`
+- **llm_decision:** `<Include | Exclude>`
+- **llm_justification:** `"<1–3 sentences PT-BR>"`
+- **agrees_with_regex:** `<true | false>`
+- **divergence_reason:** `<null | "<…>">`
+- **model:** `<model id>`
+- **timestamp:** `<ISO timestamp>`
+
+### final
+
+- **my_final_decision:** `<Include | Exclude>`
+- **my_justification:** `"<free text>"`
+- **locked_at_iteration:** `<iter-K>`
+- **locked_at:** `<ISO timestamp of [05] lock>`
+
+---
+
+## 06 — Full-Text Screening
+
+Populated by `/screen --stage full-text`. Requires `raw/pdfs/paper-NNNN.pdf` (or a `papers/paper-NNNN.fulltext.md` produced by `/prepare-pdf`). Pass 1 reads the section-anchored excerpt; pass 2 reads the same. Justifications cite section labels (e.g., "§4.2 confirma o claim do abstract").
+
+- **PDF location:** `raw/pdfs/paper-NNNN.pdf`
+- **Fulltext location:** `papers/paper-NNNN.fulltext.md` (when produced by `/prepare-pdf`)
+
+### iter-0 (initial classification)
+
+- **regex_decision:** `<Include | Exclude>`
+- **regex_justification:** `"<verbatim PT-BR string>"`
+- **winning_category:** `<category_id | default>`
+- **overrides_applied:** `[<override_id>, …]`
+- **evidence_trail:**
+  - `{ category: <category_id>, pattern_id: <pattern_id>, matched_substring: "<substring>", position: [<start>, <end>], section: "<section label or null>" }`
+  - `{ … }`
+- **llm_decision:** `<Include | Exclude>`
+- **llm_justification:** `"<1–3 sentences PT-BR; cite a section label>"`
+- **agrees_with_regex:** `<true | false>`
+- **divergence_reason:** `<null | "<cite a section label>">`
+- **model:** `<model id>`
+- **timestamp:** `<ISO timestamp>`
+
+### final
+
+- **my_final_decision:** `<Include | Exclude>` (or `unavailable` when no PDF could be obtained)
+- **my_justification:** `"<free text — must cite a section label>"`
+- **locked_at_iteration:** `<iter-K>`
+- **locked_at:** `<ISO timestamp of [06] lock>`
+
+---
+
+## 07 — Taxonomy
+
+Populated by `/07-taxonomy-development` across multiple iterations before `taxonomy-locked`, then finalized in the lock pass. Only present for papers with `06-full-text-screening: include`.
+
+### 07a — Open coding
+
+Free-form codes emitted per paper during iteration 1 and any subsequent re-coding triggered by criterion refinements.
+
+- **Codes proposed in iteration `<k>`:**
+  - `"<code phrase>"` — confidence `<LOW | MED | HIGH>` — evidence:
+    > `<verbatim snippet>`
+    - Location: `<section, page>`
+  - `"<code phrase>"` — confidence `<…>` — evidence:
+    > `<…>`
+- **Checkpoint:** `<none | see stages/07-taxonomy-development.md#coding-checkpoint-paper-NNNN>`
+- **Commit:** `<hash>`
+
+### 07b — Final classification (post-lock)
+
+One entry per axis declared in CLAUDE.md §8.1, with the chosen value and anchoring evidence.
+
+- **axis `<axis-name>`:** `<value>` — confidence `<LOW | MED | HIGH>` — evidence:
+  > `<verbatim snippet>`
+  - Location: `<section, page>`
+  - Reason: `<why this value, not the neighbors>`
+- **Checkpoint:** `<none | see stages/07-taxonomy-development.md#classify-checkpoint-paper-NNNN>`
+- **Commit:** `<hash>`
+
+---
+
+## 08 — Analysis contributions
+
+Populated by `/08-analysis`. Records which analysis views this paper contributes to and any quote-level material extracted for the final write-up.
+
+- **Views contributing:** `<axis-based-views, year, venue, …>`
+- **Extracted quotes:** <!-- optional, for later manuscript writing -->
+  - > `<quote>` — location `<section, page>` — theme `<…>`
+- **Commit:** `<hash>`
+
+---
+
+<!--
+Accretive rule (enforced by the skills, PLUGIN-SPEC §20.9): the iter-K body blocks are immutable
+once written. When the user refines `protocols/classifier-config.json` via `/screen --refine`,
+the agent appends a new `### iter-(K+1) (after refine: <summary>)` block; prior
+iter-K blocks remain untouched. The frontmatter mirror always reflects the latest iter-K's
+regex+LLM verdict; `last_iteration` points at K so the spreadsheet's `Last Iteration` column
+displays `iter-K`. At lock time, the `### final` block is appended once and carries
+`locked_at_iteration: iter-K` naming the iteration whose verdict the user kept; the user's
+`my_final_decision` and `my_justification` go in the same `### final` block plus the frontmatter.
+`git log papers/paper-NNNN.md` is the authoritative history; the markdown is a navigable summary.
+-->
