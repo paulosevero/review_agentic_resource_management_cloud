@@ -1,0 +1,90 @@
+{
+  "auditor": "boundary-a",
+  "ran_at": "2026-05-03T14:30:00Z",
+  "papers_reviewed": 114,
+  "flips": [
+    {
+      "row": 401,
+      "paper_id": "paper-1401",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "Multi-Agent System clássico com Bayesian optimization, chaos engineering e distributed reinforcement learning. Zero sinal LLM/foundation model/generative AI no abstract. Título menciona 'Multi-Agent' mas o componente de raciocínio é controlador heurístico + DRL, não LLM.",
+      "evidence_quote": "we evaluate our framework on two applications and three optimization methods, including Bayesian optimization, chaos engineering, and a distributed reinforcement learning approach."
+    },
+    {
+      "row": 414,
+      "paper_id": "paper-1409",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "Framework CARE-6G usa 'cognitive AI agents' e 'AI-based predictive orchestration' mas nenhum sinal LLM/foundation model no abstract. 'Cognitive AI' aqui é sinônimo de DRL/ML clássico para predição de recursos. Sem chain-of-thought, sem language model, sem generative AI.",
+      "evidence_quote": "The use of cognitive AI agents together with edge-cloud cooperation in CARE-6G enables automated prediction, allocation, and optimization of computing, storage, and networking resources."
+    },
+    {
+      "row": 417,
+      "paper_id": "paper-1514",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "medium",
+      "rationale_pt": "Título menciona 'Agentic AI' mas o abstract não substantia sinal LLM. Descreve 'AI agents for real-time learning' e 'constrained AI operations' sem mencionar language models, foundation models ou técnicas LLM (CoT, prompting, RAG). Paper de arquitetura 6G onde 'agentic' é usado no sentido pré-LLM.",
+      "evidence_quote": "exploring advanced techniques for constrained artificial intelligence (AI) operations, particularly the design of AI agents for real-time learning, optimizing energy consumption, and the allocation of computational resources"
+    },
+    {
+      "row": 424,
+      "paper_id": "paper-2118",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "medium",
+      "rationale_pt": "Usa 'AI Agents' expandindo o MAPE-K loop (Execute phase) mas nenhum sinal LLM explícito no abstract. 'Agentic digital workers' é usado coloquialmente. Sem foundation model, LLM, generative AI ou técnicas distintivas LLM. Paper sobre self-adaptive systems com ML/RL clássico integrado ao MAPE-K.",
+      "evidence_quote": "This paper also introduces AI Agents in the self-managing system, which can further enhance autonomous management flexibility by enabling dynamic system architecture changes through these agentic 'digital workers.'"
+    },
+    {
+      "row": 447,
+      "paper_id": "paper-1637",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "Título usa 'Generative AI' de forma enganosa. O abstract clarifica que o componente generativo é um Generative Diffusion Model (GDM) + MADRL (multi-agent deep reinforcement learning). GDMs são modelos de geração de dados, não LLMs. Zero sinal de language model ou foundation model para raciocínio.",
+      "evidence_quote": "we propose a multi-agent generative-enhanced deep reinforcement learning method that integrates generative diffusion model (GDM) with multi-agent deep reinforcement learning (MADRL) to effectively handle high-dimensional action spaces"
+    },
+    {
+      "row": 463,
+      "paper_id": "paper-1885",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "Título usa 'Generative AI-Driven' mas o abstract descreve PreDiffusion usando Generative Diffusion Models (GDMs) — não LLMs. GDMs são modelos generativos para geração de decisões de migração (similar a GANs), sem componente de linguagem, raciocínio em linguagem natural, ou chain-of-thought. Boundary A não satisfeita.",
+      "evidence_quote": "this paper proposes PreDiffusion, a Diffusion-Based Service Fault-Tolerant Migration Algorithm, leveraging Generative Diffusion Models (GDMs) for stable and efficient preemptive migration decisions."
+    },
+    {
+      "row": 566,
+      "paper_id": "paper-2770",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "Título usa 'generative AI-based' mas o abstract implementa uma conditional GAN (cGAN) — rede generativa adversarial clássica, não LLM. Componente generativo produz alocações tarefa-servidor sem linguagem natural, raciocínio LLM ou foundation model. Padrão de título enganoso com 'generative AI' cobrindo método GAN.",
+      "evidence_quote": "This study proposes a conditional generative adversarial network (cGAN) with a fully connected (non-recurrent) generator and discriminator to produce task-to-server allocations at each scheduling cycle."
+    }
+  ],
+  "borderline_kept": [
+    {
+      "row": 418,
+      "paper_id": "paper-1722",
+      "current_decision": "Include",
+      "rationale_pt": "Cloudless Intelligence: propõe 'autonomous AI agents' em edge fabric com federated learning e 'lightweight inference models'. Sem sinal LLM explícito, mas tese central de agentes autônomos em ambiente descentralizado é coerente com agentic AI moderno. Caso calibrado nos exemplos do protocolo como borderline_kept por doutrina do include."
+    },
+    {
+      "row": 456,
+      "paper_id": "paper-1748",
+      "current_decision": "Include",
+      "rationale_pt": "Usa explicitamente 'small language model (SLM)' para guiar QTDL em fog computing. SLM é sinal LLM válido — language model usado como componente ativo de decisão (policy shaping), não periférico. Mantido Include. Borderline porque SLM é mais fraco que LLM completo, mas dentro da Boundary A."
+    },
+    {
+      "row": 532,
+      "paper_id": "paper-2595",
+      "current_decision": "Include",
+      "rationale_pt": "Usa 'Large artificial intelligence models (LAMs)' para vehicle-road-cloud collaboration. LAM pode englobar foundation models, mas abstract não menciona language models nem técnicas LLM (CoT, prompting, RAG). Usa sequence modeling e MoE para resource allocation — transformer aplicado a decisão, não a linguagem. Mantido Include por doutrina (dúvida favorece Include); revisor humano deve verificar se LAM é realmente LLM-based."
+    }
+  ]
+}

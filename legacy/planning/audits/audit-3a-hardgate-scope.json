@@ -1,0 +1,69 @@
+{
+  "auditor": "hardgate-scope",
+  "ran_at": "2026-05-03T12:00:00+00:00",
+  "papers_reviewed": 114,
+  "summary": {
+    "total_flips": 3,
+    "by_submode": {
+      "A_hard_gates": 3,
+      "B_boundary_c": 0
+    },
+    "by_confidence": {
+      "high": 2,
+      "medium": 1,
+      "low": 0
+    }
+  },
+  "flips": [
+    {
+      "row": 248,
+      "paper_id": "paper-909",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] Demo paper explícito: o abstract abre com 'This demo shows service deployment from a user request using simple natural language.' — sinal hard-gate inequívoco de demo paper. Abstract muito curto (73 palavras), sem avaliação experimental. Aplica manual review rule §5: 'Poster / demo / tutorial / editorial'.",
+      "evidence_quote": "This demo shows service deployment from a user request using simple natural language. We leverage LLM to decompose and translate the user request into TM Forum Intent representation."
+    },
+    {
+      "row": 437,
+      "paper_id": "paper-1430",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] Demo paper explícito: abstract abre com 'We demonstrate OptiSeq', continua com 'Our demonstration shows how OptiSeq...', e fecha com 'This work presents the first demonstration of ordering-aware middleware'. O título não traz prefixo 'Demo:' mas o conteúdo é inequivocamente um demo paper — sem seção de avaliação experimental controlada, apenas resultados de demonstração ao vivo. Aplica manual review rule §5: 'Poster / demo / tutorial / editorial'.",
+      "evidence_quote": "We demonstrate OptiSeq [1], an edge-cloud middleware system... Our demonstration shows how OptiSeq... reduces these failures... This work presents the first demonstration of ordering-aware middleware for natural-language-to-API sequence generation deployed across edge-cloud systems."
+    },
+    {
+      "row": 417,
+      "paper_id": "paper-1514",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "medium",
+      "rationale_pt": "[sub-modo A] Survey/visão geral disfarçado de contribuição técnica. O abstract descreve o paper como 'investigates a range of cutting-edge technologies and architectural innovations' e lista quatro tópicos (1–4) formulados como 'proposing', 'exploring', 'identifying', 'introducing' — padrão de survey multi-tópico, não de sistema avaliado. Nenhum resultado experimental é mencionado. A estrutura multi-tópico (6G architectures + constrained AI + serverless + optical switching) reforça o caráter de survey. Aplica sub-modo A: 'challenges and future directions como tese central' e 'we present an overview' pattern.",
+      "evidence_quote": "This paper investigates a range of cutting-edge technologies and architectural innovations... 1) proposing novel, more efficient 6G architectures... 2) exploring advanced techniques for constrained AI operations... 3) identifying technologies and architectures that support the orchestration of back-end services... 4) introducing optically-based, ultra-high-speed, low-latency network architectures"
+    }
+  ],
+  "borderline_kept": [
+    {
+      "paper_id": "paper-2209",
+      "row": 485,
+      "title": "Multigranularity Interleaved Reconfigurable Edge Data Center Network Architecture for Accelerated GAI Jobs",
+      "rationale_pt": "[sub-modo A / nota] O paper propõe um algoritmo clássico de scheduling para redes ópticas/elétricas em edge data centers, onde 'GAI jobs' são apenas o workload — não há LLM nem loop agentic no paper. Isso é sinal de Boundary A (escopo de sub-agente 1), não de hard gate documental (sub-modo A) nem de escopo de infraestrutura (sub-modo B). A infra (edge data center) está em escopo. Mantido como nota para sub-agente 1.",
+      "confidence": "high"
+    },
+    {
+      "paper_id": "paper-1419",
+      "row": 403,
+      "title": "SALLMA: A Software Architecture for LLM-Based Multi-Agent Systems",
+      "rationale_pt": "[sub-modo B / nota] SALLMA propõe arquitetura de software para sistemas multi-agente LLM. Foco é arquitetura de software, não resource management de cloud/edge. Prova de conceito usa Kubernetes mas domínio de aplicação é administração pública. Mantido como borderline — doutrina do estágio 05 orienta incluir em caso de dúvida; sub-agentes 1 e 2 devem avaliar Boundary A e RM como loop fechado.",
+      "confidence": "low"
+    },
+    {
+      "paper_id": "paper-2716",
+      "row": 563,
+      "title": "A Trustworthy Hybrid ML-GenAI Architecture for Autonomous, Behavior-Aware Resource Allocation in Internet2 Traffic",
+      "rationale_pt": "[sub-modo B / nota] Internet2 é rede de pesquisa/educação de alto desempenho (HPC-adjacent). Porém o paper menciona 'distributed edge computing' explicitamente e trata de resource allocation autônoma com GenAI. Infra está no limite do escopo mas não claramente fora. Mantido por doutrina de inclusão em dúvida.",
+      "confidence": "low"
+    }
+  ]
+}

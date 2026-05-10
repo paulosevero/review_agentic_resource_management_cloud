@@ -1,0 +1,52 @@
+---
+id: "{{id}}"
+title: "{{title}}"
+authors: {{authors}}
+year: {{year}}
+venue: "{{venue}}"
+venue_type: "{{venue_type}}"
+doi: "{{doi}}"
+url: "{{url}}"
+publisher: "{{publisher}}"
+pages: "{{pages}}"
+keywords: {{keywords}}
+language: "{{language}}"
+source:
+  databases: {{source_databases}}
+  exports: {{source_exports}}
+  dedup:
+    merged_from: {{dedup_merged_from}}
+    merge_reason: "{{dedup_merge_reason}}"
+status:
+  "04-title-screening": pending
+  "05-abstract-screening": pending
+  "06-full-text-screening": pending
+  "07-taxonomy": pending
+  "08-analysis": pending
+---
+
+# {{id}} — {{title}}
+
+## Metadata
+
+{{metadata_body}}
+
+## 04 — Title Screening
+
+<!-- Populated by /04-title-screening -->
+
+## 05 — Abstract Screening
+
+<!-- Populated by /05-abstract-screening -->
+
+## 06 — Full-Text Screening
+
+<!-- Populated by /06-full-text-screening -->
+
+## 07 — Taxonomy
+
+<!-- Populated by /07-taxonomy-development -->
+
+## 08 — Analysis
+
+<!-- Populated by /08-analysis -->

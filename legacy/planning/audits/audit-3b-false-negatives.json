@@ -1,0 +1,38 @@
+{
+  "auditor": "false-negatives",
+  "ran_at": "2026-05-04T01:52:00Z",
+  "papers_reviewed": 287,
+  "summary": {
+    "c1_classical_agents_llm": 0,
+    "c2_rl_llm_hybrid": 0,
+    "c3_llm_decides_rm": 2,
+    "total_flips": 2
+  },
+  "flips": [
+    {
+      "row": 316,
+      "paper_id": "paper-1510",
+      "current_decision": "Exclude",
+      "recommended_decision": "Include",
+      "confidence": "high",
+      "rationale_pt": "C.3: Abstract explicitly states 'agentic AI framework' with automated decision-making for infrastructure monitoring. Misclassified as llm_as_workload when core contribution is agentic AI system (Boundary A). Should be Include per RQ1.",
+      "evidence_quote": "This work presents an agentic AI framework that integrates Federated Learning (FL) for Large Language Models (LLMs) and open-vocabulary object detection (OVD) to automate roadside infrastructure monitoring."
+    },
+    {
+      "row": 318,
+      "paper_id": "paper-1623",
+      "current_decision": "Exclude",
+      "recommended_decision": "Include",
+      "confidence": "high",
+      "rationale_pt": "C.3: LLM explicitly enables 'autonomous decision-making' for task priority adjustment, dynamic resource allocation, and anomaly handling in UAV command system. Core contribution is LLM-based RM decisions (Boundary A), not serving LLM workload (Sub-modo A) nor analyzing logs (Sub-modo B).",
+      "evidence_quote": "LLM integration enhanced decision-making accuracy across multiple dimensions—task priority adjustment (76.3% to 94.7%), dynamic resource allocation (68.9% to 91.2%), and anomaly handling (71.5% to 93.8%); Integrating large language models into unmanned aerial vehicle command information systems enables autonomous decision-making"
+    }
+  ],
+  "borderline_kept": [],
+  "audit_methodology": {
+    "c1_search": "Scanned 192 classical_agents Exclude papers for explicit 'agentic AI' mentions. Found 0 papers (papers mentioning 'intelligent agent' or 'autonomous agent' alone do not qualify as Boundary A per protocol Sub-agente 1 §Critérios de decisão).",
+    "c2_search": "Scanned 68 rl Exclude papers for LLM-aided/guided/assisted/enhanced patterns combined with RL. Found 0 papers.",
+    "c3_search": "Audited 27 llm_as_workload Exclude papers by reading full abstracts to distinguish 'LLM serves (Sub-modo A)' vs 'LLM uses RM (override)' vs 'LLM decides RM (C.3 flip)'. Applied Sub-agente 2 override logic: papers where LLM clearly decides RM autonomously should be Include. Found 2 papers with high-confidence evidence.",
+    "confidence_threshold": "Only 'high' confidence flips reported. Medium/low borderline cases kept as Exclude per cautious interpretation of llm_as_workload category."
+  }
+}

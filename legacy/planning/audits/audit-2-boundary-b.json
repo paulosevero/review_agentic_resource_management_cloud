@@ -1,0 +1,222 @@
+{
+  "auditor": "boundary-b",
+  "ran_at": "2026-05-03T18:00:00Z",
+  "papers_reviewed": 114,
+  "flips": [
+    {
+      "row": 402,
+      "paper_id": "paper-1636",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] Contribuição central é federated learning com GAI/diffusion como gerador de dados para mitigar heterogeneidade non-IID; o RL (não o LLM) faz a alocação. GAI atua como workload de geração de dados, não como agente LLM decidindo RM em malha fechada.",
+      "evidence_quote": "GAI techniques are employed to reduce intra-cluster data heterogeneity by generating data, thereby enriching local datasets... a dual-circulation optimization strategy is implemented, utilizing RL with GDMs to generate optimal strategies"
+    },
+    {
+      "row": 411,
+      "paper_id": "paper-2416",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] Aloca GPU em ambiente serverless PARA servir multi-agent LLM systems; LLM é o workload. Decisão de alocação é via algoritmo heurístico O(N), não há agente LLM no loop de RM.",
+      "evidence_quote": "Multi-agent systems powered by large language models... efficiently deploying these systems on serverless GPU platforms presents significant resource allocation challenges... an O(N) complexity algorithm for real-time adaptation"
+    },
+    {
+      "row": 428,
+      "paper_id": "paper-2310",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo C] TerraFault usa LLM para descobrir bugs em updates de IaC; tarefa é teste/QA de software (code quality), não decisão de resource management em malha fechada. Saída são bug reports, não ações de RM.",
+      "evidence_quote": "We introduce TerraFault, an automated, efficient, LLM-guided system for discovering update bugs... successfully identified bugs even in simple IaC updates"
+    },
+    {
+      "row": 432,
+      "paper_id": "paper-1406",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo B] CubeMig executa live migration via eBPF/MTD; LLM apenas augmenta análise post-incident gerando narrativa human-readable e recomendações de segurança. LLM fora do loop de decisão de migração.",
+      "evidence_quote": "we augment the forensic analysis output using LLMs, generating human-explainable analysis from the forensic logs to support post-incident investigation and providing relevant security recommendations"
+    },
+    {
+      "row": 439,
+      "paper_id": "paper-1489",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "medium",
+      "rationale_pt": "[sub-modo B] LLaMA fine-tuned faz forecasting multi-dimensional para microsserviços; downstream tasks (resource allocation, fault prediction) mencionados como uso futuro, não fechados no paper. LLM como ferramenta de previsão sem ação de RM acoplada.",
+      "evidence_quote": "This research's achievements in time series forecasting provide new insights for downstream tasks such as resource allocation and fault prediction."
+    },
+    {
+      "row": 444,
+      "paper_id": "paper-1597",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] KAM é scheduler GenAI-aware para fine-tuning jobs; o GenAI/LLM é o workload sendo agendado. Agendador é heurístico que aloca GPUs para jobs LLM, sem agente LLM no loop.",
+      "evidence_quote": "Fine tuning jobs are compute intensive, and hence, while deploying such jobs, a scheduler must efficiently allocate the resources of accelerators such as GPUs... we propose KAM, a Generative AI (GenAI)-aware workload manager."
+    },
+    {
+      "row": 462,
+      "paper_id": "paper-1869",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] BigFiberNet trata limitações de banda/computação para servir LLMs em fabric/edge; LLM é o workload consumindo recursos, sistema extrai semântica para alimentar LLMs. Não há agente LLM decidindo RM.",
+      "evidence_quote": "the limited computing capacity and network bandwidth of edge fabric devices restrict the functionality of LLMs... BigFiberNet dynamically extracts semantics from raw data, tailoring it to meet diverse user requirements... allows the LLMs to derive insights"
+    },
+    {
+      "row": 477,
+      "paper_id": "paper-2059",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] Batching e worker assignment para servir inferência LLM em AI-RAN edge; LLM é o workload. Decisão de scheduling é via DRL, não via LLM agentic.",
+      "evidence_quote": "the integration of Large Language Models (LLMs) into RAN Intelligent Controllers (RICs) has emerged as a promising approach to enabling intelligent telecom edge services such as AI inference... we develop a deep reinforcement learning (DRL)-based algorithm"
+    },
+    {
+      "row": 485,
+      "paper_id": "paper-2209",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] Arquitetura óptica/elétrica de edge data center para acelerar jobs GAI; GAI é o workload. RM decision é heurística multigranularity sobre topologia óptica, sem LLM agentic.",
+      "evidence_quote": "The network has become a bottleneck for generative artificial intelligence (GAI) jobs. Accelerating GAI jobs in edge data centers using hybrid electrical/optical switch is considered a promising solution... we propose a multigranularity adaptive interleaved algorithm"
+    },
+    {
+      "row": 533,
+      "paper_id": "paper-2839",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "medium",
+      "rationale_pt": "[sub-modo A] UAV-IoV: GAN/FDRL-GAN para offloading; GAI 'predicts task demands' como gerador dentro de FDRL. Decision-making é DRL/MADDPG; GAI é augmentação de geração, não agente LLM no loop.",
+      "evidence_quote": "leveraging GAI to predict task demands for cache hit rate optimization, while implementing FDRL for distributed privacy-preserving decision-making"
+    },
+    {
+      "row": 534,
+      "paper_id": "paper-2881",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo A] LEAF é framework para DEPLOYAR SLM agents em IIoT; SLMs são workload edge. Workflow é controlado por FSM determinística; o paper é sobre como servir/treinar SLMs no edge, não sobre um agente LLM tomando decisões de RM.",
+      "evidence_quote": "Deploying Large Language Model (LLM)-based agents in the Industrial Internet of Things (IIoT) presents significant challenges... LEAF, a Lightweight Edge Agent Framework... a Finite State Machine (FSM)-based decision engine orchestrates the workflow"
+    },
+    {
+      "row": 540,
+      "paper_id": "paper-2587",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo B] LEMON é monitoring/intent classification — o próprio paper se posiciona como 'foundational step' e 'sense component' rumo a futura orquestração autônoma; loop de RM ainda não fechado, sistema apenas diagnostica.",
+      "evidence_quote": "we introduce LEMON: a new architecture that leverages Large Language Models (LLMs) for intelligent microservice monitoring... We foresee this monitoring capability as the critical 'sense' component toward autonomous microservices orchestration loops."
+    },
+    {
+      "row": 542,
+      "paper_id": "paper-2640",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "high",
+      "rationale_pt": "[sub-modo B] Paper de medição/caracterização sistêmica do CUSTO de agentes LLM (latência, energia, datacenter power). Não propõe agente LLM para RM em malha fechada — analisa agentes existentes do ponto de vista de infraestrutura.",
+      "evidence_quote": "This paper presents the first comprehensive system-level analysis of AI agents, quantifying their resource usage, latency behavior, energy consumption, and datacenter-wide power consumption demands"
+    },
+    {
+      "row": 543,
+      "paper_id": "paper-2645",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "medium",
+      "rationale_pt": "[sub-modo B] InfrastructureSentinel é middleware de SEGURANÇA/guardrails para agentes MCP — interpreta políticas de segurança e bloqueia ações maliciosas (command injection, privilege escalation). É sobre Boundary controle, não sobre o agente que decide RM.",
+      "evidence_quote": "a novel security middleware that uniquely translates high-level, natural-language policies into context-aware, multi-layer enforcement for MCP-driven agents... preventing command injection, privilege escalation, and tool poisoning attacks"
+    },
+    {
+      "row": 563,
+      "paper_id": "paper-2736",
+      "current_decision": "Include",
+      "recommended_decision": "Exclude",
+      "confidence": "medium",
+      "rationale_pt": "[sub-modo B] LAGTrust gera scores de TRUST e explicações causais para entidades em cloud-network convergence; saída é avaliação interpretável de confiança, não ação de RM. Sistema downstream usaria a saída — closed loop de RM não demonstrado no paper.",
+      "evidence_quote": "trust evaluation plays an essential role in ensuring secure resource scheduling and reliable service deployment... a Semantic Explanation Generation module that synthesizes multi-source evidence through causal reasoning to produce interpretable trust assessments"
+    }
+  ],
+  "borderline_kept": [
+    {
+      "row": 247,
+      "paper_id": "paper-908",
+      "current_decision": "Include",
+      "rationale_pt": "RAG+CoT para gerar código de deployment de microsserviços; saída executa decisão de placement. Loop fechado pela execução do código gerado."
+    },
+    {
+      "row": 249,
+      "paper_id": "paper-930",
+      "current_decision": "Include",
+      "rationale_pt": "FlowMage usa LLM para extrair informação de NFs e decidir configuração ótima de NF chain antes do deploy. LLM toma a decisão de configuração."
+    },
+    {
+      "row": 467,
+      "paper_id": "paper-1971",
+      "current_decision": "Include",
+      "rationale_pt": "LiLM responde queries sobre estado da rede para guiar DRL no provisionamento de SFC. LLM como grounding mechanism (RQ3.2) acoplado à decisão."
+    },
+    {
+      "row": 469,
+      "paper_id": "paper-1992",
+      "current_decision": "Include",
+      "rationale_pt": "LLM gera scenarios para stochastic optimization de GPU lifecycle (capacity planning é classe RM válida). LLM alimenta diretamente decisão de upgrade/retirement."
+    },
+    {
+      "row": 470,
+      "paper_id": "paper-1993",
+      "current_decision": "Include",
+      "rationale_pt": "CAPLAI: padrão idêntico a paper-1992. LLM gera cenários para capacity planning de GPU AI infrastructure. Manter por doutrina."
+    },
+    {
+      "row": 552,
+      "paper_id": "paper-2542",
+      "current_decision": "Include",
+      "rationale_pt": "GAI augmenta UCB e FDQN para offloading cloud-edge IoT — gera eventos raros e ajusta exploration. Borderline porque GAI é augmentação dentro do loop de decisão. Manter por doutrina."
+    },
+    {
+      "row": 559,
+      "paper_id": "paper-2661",
+      "current_decision": "Include",
+      "rationale_pt": "GenAI embedded em DT para deviation calibration; offloading resolvido por IMPA. GenAI participa do loop de calibração que afeta decisões de offloading. Borderline keep."
+    },
+    {
+      "row": 561,
+      "paper_id": "paper-2716",
+      "current_decision": "Include",
+      "rationale_pt": "Hybrid ML-GenAI para Internet2 traffic; GenAI gera explicações e flagga uncertainty que dispara safe-fallback allocation. Loop fechado via uncertainty-aware allocation."
+    },
+    {
+      "row": 562,
+      "paper_id": "paper-2725",
+      "current_decision": "Include",
+      "rationale_pt": "Firefly usa Time-Series Foundation Models para forecasting de contact times DTN; decisões de offload tomadas on-device com base nas previsões. Foundation model no loop."
+    },
+    {
+      "row": 569,
+      "paper_id": "paper-2822",
+      "current_decision": "Include",
+      "rationale_pt": "Diffusion model embedded em actor network do DRL para offloading RSMA-MEC. Não é LLM agentic puro, mas é generative AI no loop de decisão. Manter por doutrina."
+    },
+    {
+      "row": 571,
+      "paper_id": "paper-2882",
+      "current_decision": "Include",
+      "rationale_pt": "LLM frozen gera knowledge-aware rewards para PPO em federated-split learning resource allocation. LLM como reward shaping no loop."
+    },
+    {
+      "row": 545,
+      "paper_id": "paper-2844",
+      "current_decision": "Include",
+      "rationale_pt": "HybridRAG-LLM agent formula problemas de otimização de baixo carbono em UAV-MEC; SAC resolve. LLM agent participa da modelagem que afeta diretamente as decisões — borderline."
+    },
+    {
+      "row": 418,
+      "paper_id": "paper-1722",
+      "current_decision": "Include",
+      "rationale_pt": "Vision paper 'Cloudless Intelligence' com autonomous AI agents on edge fabric. Boundary B não é o eixo problemático aqui (mais relevante para Boundary A). Manter."
+    }
+  ]
+}
