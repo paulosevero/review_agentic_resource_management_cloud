@@ -68,9 +68,9 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: Exclude
-    proposed_justification: "Review"
-    winning_category: review
+    proposed_decision: null
+    proposed_justification: null
+    winning_category: null
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -155,16 +155,7 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-### iter-0 (initial classification)
-
-- **regex_decision:** Exclude
-- **regex_justification:** "Review"
-- **winning_category:** 'review'
-- **overrides_applied:** []
-- **evidence_trail:**
-  - `{ category: review, pattern_id: rev_opp_chal, matched_substring: "Opportunities and challenges" }`
-  - `{ category: review, pattern_id: rev_opp_chal, matched_substring: "Opportunities and challenges" }`
-  - `{ category: review, pattern_id: rev_editorial, matched_substring: "Editorial" }`
+_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1683.pdf`)_
 
 ---
 

@@ -65,9 +65,9 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: Exclude
-    proposed_justification: "Review"
-    winning_category: review
+    proposed_decision: null
+    proposed_justification: null
+    winning_category: null
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -152,24 +152,7 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-### iter-0 (initial classification)
-
-- **regex_decision:** Exclude
-- **regex_justification:** "Review"
-- **winning_category:** 'review'
-- **overrides_applied:** []
-- **evidence_trail:**
-  - `{ category: review, pattern_id: rev_a_roadmap_survey, matched_substring: "A comprehensive survey" }`
-  - `{ category: review, pattern_id: rev_a_roadmap_survey, matched_substring: "a survey" }`
-  - `{ category: review, pattern_id: rev_survey, matched_substring: "survey" }`
-  - `{ category: review, pattern_id: rev_survey, matched_substring: "survey" }`
-  - `{ category: review, pattern_id: rev_survey, matched_substring: "survey" }`
-  - `{ category: review, pattern_id: rev_survey, matched_substring: "survey" }`
-  - `{ category: review, pattern_id: rev_comprehensive_survey, matched_substring: "comprehensive survey" }`
-  - `{ category: review, pattern_id: rev_abs_this_survey, matched_substring: "this review" }`
-  - `{ category: review, pattern_id: rev_abs_state_of_the_art, matched_substring: "state-of-the-art on" }`
-  - `{ category: review, pattern_id: rev_abs_state_of_the_art, matched_substring: "state-of-the-art on" }`
-  - `{ category: review, pattern_id: rev_abs_state_of_the_art, matched_substring: "state-of-the-art on" }`
+_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2224.pdf`)_
 
 ---
 

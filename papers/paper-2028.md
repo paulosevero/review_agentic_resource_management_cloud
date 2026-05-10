@@ -65,11 +65,10 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: Include
-    proposed_justification: "Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM)."
-    winning_category: agent_llm_based
-    overrides_applied:
-    - ovr_cls_llm_present
+    proposed_decision: null
+    proposed_justification: null
+    winning_category: null
+    overrides_applied: []
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -153,29 +152,7 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-### iter-0 (initial classification)
-
-- **regex_decision:** Include
-- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM)."
-- **winning_category:** 'agent_llm_based'
-- **overrides_applied:** ['ovr_cls_llm_present']
-- **evidence_trail:**
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agents" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agents" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agents" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agents" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agent" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agents" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agents" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agent" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agents" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agent" }`
-  - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "Cloud task scheduling faces significant challenges due to resource heterogeneity, conflicting optimization objectives, and dynamic workload fluctuations. Traditional heuristic algorithms often necessitate comprehensive knowledge of environmental parameters, significantly constraining their efficacy in dynamic cloud computing environments. While Deep Reinforcement Learning (DRL) methods have shown promise in intelligent scheduling via continuous environment interaction, they suffer from limited generalization to diverse cloud scenarios and lack decision interpretability. To address these shortcomings, this paper proposes LarS, a scheduling framework that employs Large Language Models (LLMs) as high-level decision agents for cloud task scheduling. In LarS, DRL agents trained in carefully chosen representative cloud environments generate a high-quality dataset of scheduling decisions, which is used to fine-tune an LLM. By jointly optimizing average response time, task success rate, and average rental cost, LarS achieves strong generalization across heterogeneous cloud deployments. Experimental results demonstrate that LarS surpasses current approaches in average response time, success rate, and average cost, and maintains strong generalization performance under varied experimental settings." }`
-  - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "RESEARCH:  LLM-based cost-aware task scheduling for cloud computing systems: Haoran Pei 1 , Yan Gu 1 , Yajuan Sun 2\* , Qingle Wang 1 , Cong Liu 3 , Xiaomin Chen 4 and Long Cheng 1,2 Abstract: Cloud task scheduling faces significant challenges due to resource heterogeneity, conflicting optimization objectives, and dynamic workload fluctuations. Traditional heuristic algorithms often necessitate comprehensive knowledge of environmental parameters, significantly constraining their efficacy in dynamic cloud computing environments. While Deep Reinforcement Learning (DRL) methods have shown promise in intelligent scheduling via continuous environment interaction, they suffer from limited generalization to diverse cloud scenarios and lack decision interpretability. To address these shortcomings, this paper proposes LarS, a scheduling framework that employs Large Language Models (LLMs) as high-level decision agents for cloud task scheduling. In LarS, DRL agents trained in carefully chosen representative cloud environments generate a high-quality dataset of scheduling decisions, which is used to fine-tune an LLM. By jointly optimizing average response time, task success rate, and average rental cost, LarS achieves strong generalization across heterogeneous cloud deployments. Experimental results demonstrate that LarS surpasses current approaches in average response time, success rate, and average cost, and maintains strong generalization performance under varied experimental settings." }`
-  - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "To address these challenges, we propose LarS, a cloud task scheduling framework that leverages an LLM as a high-level decision agent. In LarS, GPT-4o generates scheduling decisions with reasoning trajectories for given environments and states. Trained DRL agents evaluate these trajectories, and only the validated ones are retained to form a high-quality dataset. This dataset is then used to fine-tune the LLM via LoRA, enhancing its generalization capability and enabling optimization of cost and QoS across diverse cloud environments. In summary, the key contributions of this paper are as follows:" }`
-  - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "- We propose a hybrid data generation pipeline where GPT-4o produces reasoning trajectories and DRL agents serve as evaluators to curate high-quality supervision data." }`
-  - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "| LarS      | DQN+LLM                         | ✓              | ✓              | ✓                    | Large language models for cloud task scheduling: The rapid advancement of LLMs has created opportunities for addressing complex optimization problems, including scheduling tasks, by leveraging their powerful sequence modeling and reasoning capabilities. Recent studies demonstrate that LLMs, pretrained on extensive corpora, can effectively learn intricate scheduling constraints and objectives. For example, Abgaryan et al. [25] demonstrated that with minimal fine-tuning techniques like LoRA, LLMs achieve competitive performance on static job shop scheduling problems. Krishnamurthy and Shiva propose an LLM-guided approach using a SARSA reinforcement learning agent for dynamic task scheduling in the cloud [14]. Similarly, Tang et al. [24] developed a scheduling expert dataset to fine-tune a lightweight LLM for task assignment decisions in multi-cloud environments, showing that LLM-based agents can learn effective scheduling policies from expert demonstrations. However, current LLM-based schedulers primarily operate in offline or semi-static contexts, providing heuristic guidance or refining existing solutions rather than participating in the continuous, real-time decision-making required for dynamic cloud environments [26]." }`
-  - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "We summarize the related works mentioned above in Table 1. While task scheduling has been extensively studied, traditional heuristic methods often lack flexibility and adaptability to dynamic conditions. DRLbased schedulers, though adaptive, suffer from limited generalization and high computational costs. Existing LLM-driven approaches exhibit strong generalization capabilities, yet they have not fully demonstrated their potential in handling online adaptive scheduling scenarios with streaming workloads and evolving objectives. To remedy these shortcomings, this paper proposes LarS, an effective framework that leverages LLM as cloud task scheduling agent to achieve adaptive, explainable, and efficient cloud task scheduling." }`
+_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2028.pdf`)_
 
 ---
 

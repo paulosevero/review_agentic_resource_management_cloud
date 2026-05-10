@@ -67,11 +67,10 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: Exclude
-    proposed_justification: "LLM as workload"
-    winning_category: llm_as_workload
-    overrides_applied:
-    - ovr_rl_llm_present
+    proposed_decision: null
+    proposed_justification: null
+    winning_category: null
+    overrides_applied: []
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -155,17 +154,7 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-### iter-0 (initial classification)
-
-- **regex_decision:** Exclude
-- **regex_justification:** "LLM as workload"
-- **winning_category:** 'llm_as_workload'
-- **overrides_applied:** ['ovr_rl_llm_present']
-- **evidence_trail:**
-  - `{ category: rl, pattern_id: rl_ma_rl_combo, matched_substring: "server, the asynchronous advantage actor-critic is introduced for task offloading and multi-resource management. By regarding vehicles as multiple agents, a multi-agent reinforcement learning" }`
-  - `{ category: llm_as_workload, pattern_id: wl_train_llm_a, matched_substring: "fine-tuning foundation models" }`
-  - `{ category: llm_as_workload, pattern_id: wl_train_llm_b, matched_substring: "foundation model and the fine-tuning" }`
-  - `{ category: llm_as_workload, pattern_id: wl_train_llm_b, matched_substring: "foundation models using low-rank decomposition matrices in LoRA can achieve a performance level to that training" }`
+_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2592.pdf`)_
 
 ---
 

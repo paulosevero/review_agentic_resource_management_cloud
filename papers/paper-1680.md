@@ -64,9 +64,9 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: Include
-    proposed_justification: "Talvez tenha algo de LLM e/ou Agentic AI."
-    winning_category: llm_agentic_ai_generic
+    proposed_decision: null
+    proposed_justification: null
+    winning_category: null
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -151,44 +151,7 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-### iter-0 (initial classification)
-
-- **regex_decision:** Include
-- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI."
-- **winning_category:** 'llm_agentic_ai_generic'
-- **overrides_applied:** []
-- **evidence_trail:**
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_gpt, matched_substring: "GPT" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_gpt, matched_substring: "GPT-4" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_gpt, matched_substring: "GPT-4" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_large_lang_model, matched_substring: "Large language models" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_large_lang_model, matched_substring: "Large Language Model" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_lang_model, matched_substring: "language models" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_lang_model, matched_substring: "Language Model" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_genai_full, matched_substring: "Generative Artificial Intelligence" }`
-  - `{ category: llm_agentic_ai_generic, pattern_id: gen_genai_full, matched_substring: "Generative Artificial Intelligence" }`
-  - _(+32 more)_
+_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1680.pdf`)_
 
 ---
 

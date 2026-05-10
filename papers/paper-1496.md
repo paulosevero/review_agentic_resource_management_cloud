@@ -63,9 +63,9 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: Exclude
-    proposed_justification: "Out of scope"
-    winning_category: out_of_scope
+    proposed_decision: null
+    proposed_justification: null
+    winning_category: null
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -150,15 +150,7 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-### iter-0 (initial classification)
-
-- **regex_decision:** Exclude
-- **regex_justification:** "Out of scope"
-- **winning_category:** 'out_of_scope'
-- **overrides_applied:** []
-- **evidence_trail:**
-  - `{ category: out_of_scope, pattern_id: oos_industry_5_0, matched_substring: "Industry 5.0" }`
-  - `{ category: out_of_scope, pattern_id: oos_industry_5_0, matched_substring: "industry 5.0" }`
+_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1496.pdf`)_
 
 ---
 

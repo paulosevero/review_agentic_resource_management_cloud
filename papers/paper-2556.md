@@ -64,17 +64,10 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: Include
-    proposed_justification: "Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM)."
-    winning_category: mas_llm_based
-    overrides_applied:
-    - ovr_rl_llm_present
-    - ovr_using_llm
-    - ovr_via_llm
-    - ovr_llm_modifier
-    - ovr_prompt_based
-    - ovr_abs_llm_orchestrates
-    - ovr_cls_llm_present
+    proposed_decision: null
+    proposed_justification: null
+    winning_category: null
+    overrides_applied: []
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -158,26 +151,7 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-### iter-0 (initial classification)
-
-- **regex_decision:** Include
-- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM)."
-- **winning_category:** 'mas_llm_based'
-- **overrides_applied:** ['ovr_rl_llm_present', 'ovr_using_llm', 'ovr_via_llm', 'ovr_llm_modifier', 'ovr_prompt_based', 'ovr_abs_llm_orchestrates', 'ovr_cls_llm_present']
-- **evidence_trail:**
-  - `{ category: rl, pattern_id: rl_ma_rl_combo, matched_substring: "Learning-Based Scheduling Approaches: Recent years have seen extensive efforts to apply learning-based methods to cluster and resource scheduling. Early work such as DeepRM [12] formulates scheduling as an MDP and demonstrates that deep reinforcement learning can outperform heuristic policies. Subsequent systems explore richer models and learning paradigms, including GNN-based dependency modeling for DAG jobs (Decima [38]), performance prediction via Bayesian optimization (Auto-Tune [39]), temporal workload modeling with RNNs (NNS [40]), and multi-agent reinforcement learning" }`
-  - `{ category: llm_as_workload, pattern_id: wl_train_llm_a, matched_substring: "Training compute-optimal large language models" }`
-  - `{ category: llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM inference" }`
-  - `{ category: llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM inference" }`
-  - `{ category: llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM Inference**: explore model quantization" }`
-  - `{ category: llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM inference" }`
-  - `{ category: llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM prompting strategies and ILP solver objectives based on real deployment" }`
-  - `{ category: llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "inference latency of LLMs" }`
-  - `{ category: llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "inference time (100-500 ms for GPT" }`
-  - `{ category: llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "Deployment Feedback**: incorporate online learning mechanisms that refine LLM" }`
-  - `{ category: classical_agents, pattern_id: cls_mas_term, matched_substring: "multi-agent" }`
-  - `{ category: classical_agents, pattern_id: cls_agent_term, matched_substring: "agent" }`
-  - `{ category: mas_llm_based, pattern_id: mas_llm_combo, matched_substring: "Learning-Based Scheduling Approaches: Recent years have seen extensive efforts to apply learning-based methods to cluster and resource scheduling. Early work such as DeepRM [12] formulates scheduling as an MDP and demonstrates that deep reinforcement learning can outperform heuristic policies. Subsequent systems explore richer models and learning paradigms, including GNN-based dependency modeling for DAG jobs (Decima [38]), performance prediction via Bayesian optimization (Auto-Tune [39]), temporal workload modeling with RNNs (NNS [40]), and multi-agent reinforcement learning for distributed scheduling (Chronus [41]). Despite promising results, learning-based schedulers suffer from practical limitations, including heavy reliance on representative training traces [42], sensitivity to distribution shift [43], limited interpretability [44], and restricted state representations that overlook high-level semantic information [45]. To mitigate these issues, hybrid systems combine learning with optimization, using learned models for demand or cost estimation while relying on mathematical solvers for decision making (e.g., Cilantro [46], Harmony [47]). Our work follows this hybrid philosophy and further extends it by leveraging the reasoning capabilities of large language models." }`
+_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2556.pdf`)_
 
 ---
 
