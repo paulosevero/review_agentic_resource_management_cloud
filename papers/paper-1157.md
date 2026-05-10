@@ -8,7 +8,9 @@ authors:
 - De Vita, Ciro Giuseppe
 - Mellone, Gennaro
 - Chakradhar, Srimat
-venue: 'AI4Sys 2024 - Proceedings of the 2024 Workshop on AI For Systems, Part of:  HPDC 2024 - 33rd International Symposium on High-Performance Parallel and Distributed Computing'
+venue: 'AI4Sys 2024 - Proceedings of the 2024 Workshop on AI For Systems, Part of:  HPDC
+  2024 - 33rd International Symposium on High-Performance Parallel and Distributed
+  Computing'
 venue_type: conference
 year: 2024
 doi: 10.1145/3660605.3660941
@@ -43,7 +45,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -67,10 +70,12 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM).
+    winning_category: agent_llm_based
+    overrides_applied:
+    - ovr_rl_llm_present
+    - ovr_cls_llm_present
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -154,9 +159,21 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1157.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM)."
+- **winning_category:** 'agent_llm_based'
+- **overrides_applied:** ['ovr_rl_llm_present', 'ovr_cls_llm_present']
+- **evidence_trail:**
+  - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "- [4] Ali Belgacem, Saïd Mahmoudi, and Maria Kihl. 2022. Intelligent multi-agent reinforcement learn" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "multi-agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agents" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
+  - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "ML techniques have been applied for resource allocation [4][13] and job scheduling [3][28] in variou" }`
+
 
 ## 07 — Taxonomy
 

@@ -1,6 +1,7 @@
 ---
 id: paper-2362
-title: 'AutoHMA-LLM: Efficient Task Coordination and Execution in Heterogeneous Multi-Agent Systems Using Hybrid Large Language Models'
+title: 'AutoHMA-LLM: Efficient Task Coordination and Execution in Heterogeneous Multi-Agent
+  Systems Using Hybrid Large Language Models'
 authors:
 - Yang, Tingting
 - Feng, Ping
@@ -43,7 +44,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0 (no resource management signal); C3=0 (no infra signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0 (no resource
+      management signal); C3=0 (no infra signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -67,10 +69,18 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM).
+    winning_category: mas_llm_based
+    overrides_applied:
+    - ovr_with_llm
+    - ovr_using_llm
+    - ovr_llm_modifier
+    - ovr_llm_agents
+    - ovr_abs_llm_decides
+    - ovr_abs_llm_orchestrates
+    - ovr_rl_llm_present
+    - ovr_cls_llm_present
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -154,9 +164,23 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2362.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM)."
+- **winning_category:** 'mas_llm_based'
+- **overrides_applied:** ['ovr_with_llm', 'ovr_using_llm', 'ovr_llm_modifier', 'ovr_llm_agents', 'ovr_abs_llm_decides', 'ovr_abs_llm_orchestrates', 'ovr_rl_llm_present', 'ovr_cls_llm_present']
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "Deployment structure of the AutoHMA-LLM" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_abs_llm_infra, matched_substring: "LLM system" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_abs_llm_infra, matched_substring: "LLM system" }`
+  - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_ppo, matched_substring: "MA-PPO" }`
+  - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "In Section I, the paper introduces the background of heterogeneous multi-agent systems and briefly s" }`
+  - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "## A. Multiagent Deep Reinforcement Learning" }`
+  - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "Multiagent Deep Reinforcement Learning (MARL) [9] has enhanced agent capabilities in various jobs, s" }`
+  - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "models could be better in actual simulation experiments. The reason is that the large models are rel" }`
+
 
 ## 07 — Taxonomy
 

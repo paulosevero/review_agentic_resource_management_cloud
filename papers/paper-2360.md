@@ -1,13 +1,15 @@
 ---
 id: paper-2360
-title: An Intelligent Predictive Resource Management Framework for Cloud-Native Systems Based on Large Language Models
+title: An Intelligent Predictive Resource Management Framework for Cloud-Native Systems
+  Based on Large Language Models
 authors:
 - Yang, Hao
 - Gao, Jianyong
 - Liu, Shaobo
 - Xiong, Yipeng
 - Dong, Rui
-venue: 2025 6th International Conference on Artificial Intelligence and Computer Engineering, ICAICE 2025
+venue: 2025 6th International Conference on Artificial Intelligence and Computer Engineering,
+  ICAICE 2025
 venue_type: conference
 year: 2025
 doi: 10.1109/ICAICE68195.2025.11382395
@@ -39,7 +41,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -64,9 +67,10 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Exclude
+    proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA,
+      geração de manifestos) — não é decisão de resource management.
+    winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -151,9 +155,17 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2360.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Exclude
+- **regex_justification:** "Tarefa de DevOps/observabilidade (incident triage, RCA, geração de manifestos) — não é decisão de resource management."
+- **winning_category:** 'D_devops_or_logs_not_rm'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: D_devops_or_logs_not_rm, pattern_id: devops_logs_incidents, matched_substring: "fault localization" }`
+  - `{ category: D_devops_or_logs_not_rm, pattern_id: devops_logs_incidents, matched_substring: "log analysis" }`
+
 
 ## 07 — Taxonomy
 

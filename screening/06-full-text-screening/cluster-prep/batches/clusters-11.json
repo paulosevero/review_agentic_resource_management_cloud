@@ -1,0 +1,168 @@
+{
+  "batch": 11,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "agentic_core_rm",
+      "description": "LLM-driven agent controls scheduling, placement, scaling, or offloading decisions via multi-step reasoning loop.",
+      "n_papers": 8,
+      "decision_distribution": {
+        "Include": 4,
+        "Exclude": 4
+      },
+      "paper_ids": [
+        "paper-2544",
+        "paper-2556",
+        "paper-2568",
+        "paper-2588",
+        "paper-2595",
+        "paper-2723",
+        "paper-2767",
+        "paper-2787"
+      ],
+      "example_titles": [
+        "LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence With...",
+        "Agent-Based Network Architecture and Resource Management for Vehicle-Road-Cloud...",
+        "AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks"
+      ]
+    },
+    {
+      "name": "telecom_5g_domain",
+      "description": "5G/V2X/vehicular network context; may include agents but domain is network, not pure resource scheduling.",
+      "n_papers": 5,
+      "decision_distribution": {
+        "Include": 2,
+        "Exclude": 3
+      },
+      "paper_ids": [
+        "paper-2586",
+        "paper-2592",
+        "paper-2600",
+        "paper-2655",
+        "paper-2661"
+      ],
+      "example_titles": [
+        "Foundation Model Enhanced Joint Multi-Hop Task Offloading in Dynamic R2X/V2X...",
+        "GenAI-5GS Fusion Approach: A New Path for Enhancing Computation Offloading...",
+        "An Agent-Based Network Power Management Scheme in WSN for Enhanced Edge..."
+      ]
+    },
+    {
+      "name": "multiagent_classical",
+      "description": "Multi-agent systems, cooperative scheduling, negotiation protocols—no LLM or agentic reasoning loop.",
+      "n_papers": 9,
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 9
+      },
+      "paper_ids": [
+        "paper-2527",
+        "paper-2559",
+        "paper-2569",
+        "paper-2572",
+        "paper-2626",
+        "paper-2635",
+        "paper-2638",
+        "paper-2647",
+        "paper-2667"
+      ],
+      "example_titles": [
+        "A Task Scheduling Strategy Based on Computing-Aware and Multi-agent Collaborative...",
+        "DAOMAN: Decentralized Adaptive Computation Offloading and Multi-Agent Navigation",
+        "Multi-Agent Collaborative Inference Optimization for Large-Scale DNNs in IoT Edge"
+      ]
+    },
+    {
+      "name": "llm_auxiliary_or_oot",
+      "description": "LLM used for software modernization, pricing, monitoring, or anomaly detection—not resource management core loop.",
+      "n_papers": 4,
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 4
+      },
+      "paper_ids": [
+        "paper-2521",
+        "paper-2525",
+        "paper-2587",
+        "paper-2628"
+      ],
+      "example_titles": [
+        "Modernization of enterprise payment infrastructure: A case study on LLM-assisted migration...",
+        "From Static to Intelligent: Evolving SaaS Pricing with LLMs",
+        "LEMON: LLM-Enabled Monitoring for Microservices Orchestration"
+      ]
+    },
+    {
+      "name": "cloudnative_nonagent",
+      "description": "Kubernetes, autoscaling, load balancing, microservice identification—traditional DevOps, no agentic loop.",
+      "n_papers": 5,
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 5
+      },
+      "paper_ids": [
+        "paper-2532",
+        "paper-2550",
+        "paper-2562",
+        "paper-2578",
+        "paper-2809"
+      ],
+      "example_titles": [
+        "From reactive to predictive: A pattern-Aware framework for kubernetes autoscaling",
+        "AI-Driven Microservice Identification for Business Process Digital Transformation",
+        "GRACE: A Strategic LLM-Enhanced Graph Reinforcement Learning Framework..."
+      ]
+    },
+    {
+      "name": "rl_or_questionable",
+      "description": "RL/Q-learning, emergent properties, graph diffusion, or unclear connection to agentic RM—weak signal.",
+      "n_papers": 4,
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 4
+      },
+      "paper_ids": [
+        "paper-2566",
+        "paper-2706",
+        "paper-2736",
+        "paper-2751"
+      ],
+      "example_titles": [
+        "Emergent language among AI agents: a path toward energy efficiency and water consumption",
+        "AsynDBT: asynchronous distributed bilevel tuning for efficient in-context learning",
+        "LAGTrust: Language-Augmented Graph Representation Learning for Trust Evaluation"
+      ]
+    },
+    {
+      "name": "mixed_or_unclear",
+      "description": "Hybrid approaches, proto-agentic systems, or unclear domain boundary—requires full-text review to classify.",
+      "n_papers": 10,
+      "decision_distribution": {
+        "Include": 5,
+        "Exclude": 5
+      },
+      "paper_ids": [
+        "paper-2520",
+        "paper-2542",
+        "paper-2564",
+        "paper-2603",
+        "paper-2622",
+        "paper-2630",
+        "paper-2640",
+        "paper-2645",
+        "paper-2700",
+        "paper-2716",
+        "paper-2725",
+        "paper-2752",
+        "paper-2770",
+        "paper-2779",
+        "paper-2798"
+      ],
+      "example_titles": [
+        "Tiny Language Model Guided Flow Q Learning for Optimal Task Scheduling in Fog Computing",
+        "Generative AI-Enabled Transmission and Computing Integration for Cloud-Edge Collaboration",
+        "A Trustworthy Hybrid ML-GenAI Architecture for Autonomous, Behavior-Aware Resource Mgmt"
+      ]
+    }
+  ]
+}

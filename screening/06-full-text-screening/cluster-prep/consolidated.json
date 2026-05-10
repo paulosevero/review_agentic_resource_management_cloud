@@ -1,0 +1,1049 @@
+[
+  {
+    "canonical": "B_classical_mas_no_llm",
+    "n_papers": 104,
+    "include": 5,
+    "exclude": 99,
+    "inc_rate": 0.05,
+    "src_batches": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8,
+      10,
+      11
+    ],
+    "n_subclusters": 8,
+    "sample_descriptions": [
+      "Multi-agent systems for cloud/edge resource management without LLM components (pre-agentic)",
+      "Multi-agent systems for resource management without LLM-based reasoning (coordination, negotiation, auction-based)",
+      "Multi-agent systems with game theory, auctions, or decentralized mechanisms (no LLM)."
+    ],
+    "sample_titles": [
+      "Utilizing LLMs for Virtual Machine Migration in Cloud Computing Environments",
+      "Research on cloud computing resource management model based on multi-agent system",
+      "Dynamic Load Balancing with Agent-Based Algorithm in Cloud Computing via OpenStack",
+      "Multi-agent Approach to Computational Resource Allocation in Edge Computing",
+      "Decentralized Multi-Agent Task Offloading in LEO Satellite Edge Computing"
+    ],
+    "paper_ids": [
+      "paper-0005",
+      "paper-0020",
+      "paper-0024",
+      "paper-0026",
+      "paper-0028",
+      "paper-0032",
+      "paper-0042",
+      "paper-0055",
+      "paper-0060",
+      "paper-0062",
+      "paper-0067",
+      "paper-0068",
+      "paper-0071",
+      "paper-0072",
+      "paper-0075",
+      "paper-0084",
+      "paper-0087",
+      "paper-0093",
+      "paper-0097",
+      "paper-0104",
+      "paper-0112",
+      "paper-0139",
+      "paper-0144",
+      "paper-0152",
+      "paper-0155",
+      "paper-0173",
+      "paper-0184",
+      "paper-0194",
+      "paper-0229",
+      "paper-0230",
+      "paper-0233",
+      "paper-0237",
+      "paper-0257",
+      "paper-0258",
+      "paper-0284",
+      "paper-0290",
+      "paper-0299",
+      "paper-0331",
+      "paper-0332",
+      "paper-0334",
+      "paper-0352",
+      "paper-0370",
+      "paper-0373",
+      "paper-0382",
+      "paper-0383",
+      "paper-0389",
+      "paper-0413",
+      "paper-0417",
+      "paper-0423",
+      "paper-0434",
+      "paper-0458",
+      "paper-0470",
+      "paper-0475",
+      "paper-0479",
+      "paper-0493",
+      "paper-0532",
+      "paper-0550",
+      "paper-0554",
+      "paper-0557",
+      "paper-0564",
+      "paper-0600",
+      "paper-0601",
+      "paper-0609",
+      "paper-0625",
+      "paper-0675",
+      "paper-0998",
+      "paper-1366",
+      "paper-1386",
+      "paper-1408",
+      "paper-1420",
+      "paper-1431",
+      "paper-1436",
+      "paper-1496",
+      "paper-1499",
+      "paper-1501",
+      "paper-1563",
+      "paper-1761",
+      "paper-1916",
+      "paper-1925",
+      "paper-1955",
+      "paper-2257",
+      "paper-2281",
+      "paper-2293",
+      "paper-2298",
+      "paper-2312",
+      "paper-2331",
+      "paper-2359",
+      "paper-2366",
+      "paper-2380",
+      "paper-2385",
+      "paper-2417",
+      "paper-2433",
+      "paper-2451",
+      "paper-2464",
+      "paper-2475",
+      "paper-2527",
+      "paper-2559",
+      "paper-2569",
+      "paper-2572",
+      "paper-2626",
+      "paper-2635",
+      "paper-2638",
+      "paper-2647",
+      "paper-2667"
+    ]
+  },
+  {
+    "canonical": "A_classical_rl_marl_no_llm",
+    "n_papers": 95,
+    "include": 0,
+    "exclude": 110,
+    "inc_rate": 0.0,
+    "src_batches": [
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "n_subclusters": 10,
+    "sample_descriptions": [
+      "Reinforcement learning or multi-agent systems for RM without agentic LLM component (pre-transformer era or RL/MARL-only).",
+      "Classical RL/MARL agents without LLM reasoning component.",
+      "DRL/MARL/RL for resource management without LLM-driven agentic reasoning loop."
+    ],
+    "sample_titles": [
+      "Efficient Data as a Service in Fog Computing: An Adaptive Multi-Agent Based Approach",
+      "AI-Assisted Synergetic Orchestration Mechanisms for Autoscaling in Computing Continuum Systems",
+      "Video Service-Oriented Vehicular Collaboration: A Multi-Agent Proximal Policy Optimization Approach",
+      "Multi-Agent Learning-Based Optimal Task Offloading and UAV Trajectory Planning for AGIN-Power IoT",
+      "A multi-agent system toward the green edge computing with microgrid"
+    ],
+    "paper_ids": [
+      "paper-0130",
+      "paper-0147",
+      "paper-0166",
+      "paper-0275",
+      "paper-0306",
+      "paper-0315",
+      "paper-0369",
+      "paper-0415",
+      "paper-0468",
+      "paper-0497",
+      "paper-0522",
+      "paper-0579",
+      "paper-0608",
+      "paper-0635",
+      "paper-0656",
+      "paper-0674",
+      "paper-0699",
+      "paper-0703",
+      "paper-0719",
+      "paper-0751",
+      "paper-0815",
+      "paper-0823",
+      "paper-0854",
+      "paper-0886",
+      "paper-0950",
+      "paper-0958",
+      "paper-0983",
+      "paper-1017",
+      "paper-1045",
+      "paper-1059",
+      "paper-1064",
+      "paper-1084",
+      "paper-1086",
+      "paper-1098",
+      "paper-1100",
+      "paper-1116",
+      "paper-1123",
+      "paper-1132",
+      "paper-1150",
+      "paper-1180",
+      "paper-1203",
+      "paper-1217",
+      "paper-1219",
+      "paper-1228",
+      "paper-1249",
+      "paper-1274",
+      "paper-1298",
+      "paper-1306",
+      "paper-1314",
+      "paper-1321",
+      "paper-1336",
+      "paper-1350",
+      "paper-1362",
+      "paper-1576",
+      "paper-1579",
+      "paper-1636",
+      "paper-1637",
+      "paper-1645",
+      "paper-1685",
+      "paper-1689",
+      "paper-1727",
+      "paper-1728",
+      "paper-1743",
+      "paper-1745",
+      "paper-1747",
+      "paper-1755",
+      "paper-1779",
+      "paper-1785",
+      "paper-1795",
+      "paper-1800",
+      "paper-1804",
+      "paper-1917",
+      "paper-1918",
+      "paper-1921",
+      "paper-1922",
+      "paper-1934",
+      "paper-1935",
+      "paper-1939",
+      "paper-1955",
+      "paper-1961",
+      "paper-1962",
+      "paper-2256",
+      "paper-2405",
+      "paper-2428",
+      "paper-2472",
+      "paper-2494",
+      "paper-2566",
+      "paper-2706",
+      "paper-2736",
+      "paper-2751",
+      "paper-2832",
+      "paper-2876",
+      "paper-2893",
+      "paper-2901",
+      "paper-2940"
+    ]
+  },
+  {
+    "canonical": "F_out_of_scope_domain",
+    "n_papers": 69,
+    "include": 3,
+    "exclude": 74,
+    "inc_rate": 0.04,
+    "src_batches": [
+      1,
+      2,
+      4,
+      7,
+      8,
+      9,
+      11,
+      12
+    ],
+    "n_subclusters": 12,
+    "sample_descriptions": [
+      "LLM inference optimization (medical NLP, healthcare) without RM or agent loop.",
+      "LLM-driven security, compliance, policy automation, audit — not resource allocation/scheduling decisions (Boundary B).",
+      "Unclear scope, insufficient evidence, or borderline relevance."
+    ],
+    "sample_titles": [
+      "KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments",
+      "Next-Generation Autonomous Troubleshooting Using Generative AI in Heterogeneous Cloud Systems",
+      "Integrating Generative AI with Network Digital Twin for 6G: An Edge-Cloud Collaborative Approach",
+      "Circuit-AI: A Self-Hosted AI-Agent Language Model Framework for Control Loop Implementation and Simulation",
+      "A Service Consolidation Approach for Edge-Vehicle Network using Multi-agent Decision-making Method"
+    ],
+    "paper_ids": [
+      "paper-0008",
+      "paper-0054",
+      "paper-0138",
+      "paper-0156",
+      "paper-0214",
+      "paper-0226",
+      "paper-0269",
+      "paper-0283",
+      "paper-0286",
+      "paper-0678",
+      "paper-0688",
+      "paper-0692",
+      "paper-0707",
+      "paper-0711",
+      "paper-0721",
+      "paper-0724",
+      "paper-0729",
+      "paper-0737",
+      "paper-0761",
+      "paper-0772",
+      "paper-0789",
+      "paper-0847",
+      "paper-0853",
+      "paper-0885",
+      "paper-0910",
+      "paper-0915",
+      "paper-0928",
+      "paper-0930",
+      "paper-0954",
+      "paper-0965",
+      "paper-0974",
+      "paper-0989",
+      "paper-0990",
+      "paper-1006",
+      "paper-1022",
+      "paper-1026",
+      "paper-1033",
+      "paper-1603",
+      "paper-1613",
+      "paper-1618",
+      "paper-1621",
+      "paper-1623",
+      "paper-1682",
+      "paper-1722",
+      "paper-1735",
+      "paper-1753",
+      "paper-1756",
+      "paper-1766",
+      "paper-1784",
+      "paper-1814",
+      "paper-1844",
+      "paper-1850",
+      "paper-1915",
+      "paper-1920",
+      "paper-1923",
+      "paper-1924",
+      "paper-1927",
+      "paper-1931",
+      "paper-1940",
+      "paper-1946",
+      "paper-1953",
+      "paper-1975",
+      "paper-1977",
+      "paper-2521",
+      "paper-2525",
+      "paper-2587",
+      "paper-2628",
+      "paper-2814",
+      "paper-2938"
+    ]
+  },
+  {
+    "canonical": "E_telecom_networks",
+    "n_papers": 42,
+    "include": 2,
+    "exclude": 38,
+    "inc_rate": 0.05,
+    "src_batches": [
+      1,
+      2,
+      5,
+      6,
+      10,
+      11
+    ],
+    "n_subclusters": 6,
+    "sample_descriptions": [
+      "5G/V2X/vehicular network context; may include agents but domain is network, not pure resource scheduling.",
+      "Network slicing, spectrum management, or telecom infrastructure; out of cloud/edge continuum scope.",
+      "Telecommunications, 5G/6G networks, and HPC clusters outside cloud-edge scope"
+    ],
+    "sample_titles": [
+      "Optimizing Resume Parsing Processes by Leveraging Large Language Models",
+      "Implementing hy-ids, mobiles agents and virtual firewall to enhance the security in iaas cloud",
+      "Repairing Infrastructure-as-Code using Large Language Models",
+      "GenAI-5GS Fusion Approach: A New Path for Enhancing Computation Offloading...",
+      "Smart design for resources allocation in IoT application service based on multi-agent system and DCSP"
+    ],
+    "paper_ids": [
+      "paper-0004",
+      "paper-0011",
+      "paper-0014",
+      "paper-0015",
+      "paper-0017",
+      "paper-0034",
+      "paper-0040",
+      "paper-0041",
+      "paper-0066",
+      "paper-0070",
+      "paper-0074",
+      "paper-0088",
+      "paper-0090",
+      "paper-0095",
+      "paper-0163",
+      "paper-0180",
+      "paper-0207",
+      "paper-0232",
+      "paper-0249",
+      "paper-0262",
+      "paper-0265",
+      "paper-1073",
+      "paper-1083",
+      "paper-1109",
+      "paper-1124",
+      "paper-1164",
+      "paper-1172",
+      "paper-1181",
+      "paper-1196",
+      "paper-1232",
+      "paper-1267",
+      "paper-1326",
+      "paper-1333",
+      "paper-1412",
+      "paper-2448",
+      "paper-2477",
+      "paper-2490",
+      "paper-2586",
+      "paper-2592",
+      "paper-2600",
+      "paper-2655",
+      "paper-2661"
+    ]
+  },
+  {
+    "canonical": "J_agentic_ai_core_rm",
+    "n_papers": 41,
+    "include": 28,
+    "exclude": 22,
+    "inc_rate": 0.56,
+    "src_batches": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "n_subclusters": 11,
+    "sample_descriptions": [
+      "LLM-based agents or agentic AI for RM with possible tool use.",
+      "Mentions agents/agentic/LLM for RM but unclear if agentic loop is real or if LLM is secondary.",
+      "Agentic AI or LLM-driven systems explicitly solving resource management decisions (scheduling, placement, scaling, allocation) in cloud-edge."
+    ],
+    "sample_titles": [
+      "Toward 6G Edge Intelligence: Lightweight LLMs for Intent-Driven Network Automation",
+      "Agent-Based Network Architecture and Resource Management for Vehicle-Road-Cloud...",
+      "A Human-in-Multi-Agent-Loop Intent Refinement Method for Task Offloading in Mobile Edge Computing",
+      "Advanced Architectures Integrated With Agentic AI for Next-Generation Wireless Networks",
+      "Large Language Model-based QoS-aware Resource Allocation for Multi-UAV Cooperative Edge Computing Networks"
+    ],
+    "paper_ids": [
+      "paper-1010",
+      "paper-1114",
+      "paper-1157",
+      "paper-1170",
+      "paper-1197",
+      "paper-1411",
+      "paper-1514",
+      "paper-1593",
+      "paper-1644",
+      "paper-1680",
+      "paper-1683",
+      "paper-1684",
+      "paper-1720",
+      "paper-1721",
+      "paper-1746",
+      "paper-1748",
+      "paper-1780",
+      "paper-1783",
+      "paper-1790",
+      "paper-1854",
+      "paper-1947",
+      "paper-1971",
+      "paper-1991",
+      "paper-1999",
+      "paper-2251",
+      "paper-2253",
+      "paper-2362",
+      "paper-2399",
+      "paper-2416",
+      "paper-2544",
+      "paper-2556",
+      "paper-2568",
+      "paper-2588",
+      "paper-2595",
+      "paper-2723",
+      "paper-2767",
+      "paper-2787",
+      "paper-2830",
+      "paper-2854",
+      "paper-2885",
+      "paper-2936"
+    ]
+  },
+  {
+    "canonical": "C_llm_as_workload_or_serving",
+    "n_papers": 38,
+    "include": 0,
+    "exclude": 51,
+    "inc_rate": 0.0,
+    "src_batches": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      12
+    ],
+    "n_subclusters": 6,
+    "sample_descriptions": [
+      "LLM or GenAI treated as a workload to be served/optimized, not as the decision-making agent.",
+      "Systems managing LLM or generative AI workloads/inference, not deploying LLM agents for RM decisions (Boundary B violation).",
+      "Papers where LLM is the computational workload being scheduled, not the decision agent"
+    ],
+    "sample_titles": [
+      "Generative AI-Enabled Energy-Efficient Mobile Augmented Reality in Multi-Access Edge Computing",
+      "WDMoE: Wireless Distributed Mixture of Experts for Large Language Models",
+      "Bringing Llama-3 to the Edge: End-to-End Quantized Conversational AI on Raspberry Pi 5",
+      "Resource Allocation in Large Language Model Integrated 6G Vehicular Networks",
+      "SigMorph: A Transfer-Oriented Toolkit for Fingerprint Injection in Fine-Tuned Models"
+    ],
+    "paper_ids": [
+      "paper-1066",
+      "paper-1093",
+      "paper-1130",
+      "paper-1137",
+      "paper-1158",
+      "paper-1184",
+      "paper-1205",
+      "paper-1287",
+      "paper-1308",
+      "paper-1320",
+      "paper-1398",
+      "paper-1596",
+      "paper-1597",
+      "paper-1600",
+      "paper-1628",
+      "paper-1629",
+      "paper-1651",
+      "paper-1658",
+      "paper-1675",
+      "paper-1679",
+      "paper-1687",
+      "paper-1691",
+      "paper-1699",
+      "paper-1707",
+      "paper-1749",
+      "paper-1758",
+      "paper-1788",
+      "paper-1798",
+      "paper-1849",
+      "paper-1879",
+      "paper-1880",
+      "paper-1944",
+      "paper-1965",
+      "paper-1966",
+      "paper-2846",
+      "paper-2871",
+      "paper-2881",
+      "paper-2911"
+    ]
+  },
+  {
+    "canonical": "H_llm_supports_other_method",
+    "n_papers": 35,
+    "include": 2,
+    "exclude": 33,
+    "inc_rate": 0.06,
+    "src_batches": [
+      6,
+      10,
+      12
+    ],
+    "n_subclusters": 4,
+    "sample_descriptions": [
+      "LLM used as supporting component in MLOps/DevOps/e-commerce workflows, not for autonomous resource management decisions.",
+      "LLM as a support component for monitoring, anomaly detection, log analysis, or fine-tuning.",
+      "LLM or GenAI as feature/augmentation in RL/optimization, not autonomous agent loop."
+    ],
+    "sample_titles": [
+      "UAV-Assisted Task Offloading and Resource Allocation in Internet of Vehicles: An Integration of Digital Twin and Generative AI",
+      "GAIKube: Generative AI-Based Proactive Kubernetes Container Orchestration Framework for Heterogeneous Edge Computing",
+      "Real-Time ML and LLM Optimization: Orchestrating Scalable Workflows in Distributed Commerce Environments",
+      "Enhancing Multi-Modal RCA in Resource Management Systems via Fine-Tuning of LLMs",
+      "AutoML-Pipeline: A RAG-Enhanced Code Generation Framework With Pre-Validation for Cloud-Native Machine Learning Workflows"
+    ],
+    "paper_ids": [
+      "paper-1379",
+      "paper-1383",
+      "paper-1397",
+      "paper-1404",
+      "paper-1406",
+      "paper-1409",
+      "paper-1413",
+      "paper-1417",
+      "paper-1419",
+      "paper-1425",
+      "paper-1426",
+      "paper-1430",
+      "paper-1446",
+      "paper-1449",
+      "paper-1469",
+      "paper-1507",
+      "paper-1510",
+      "paper-1527",
+      "paper-1532",
+      "paper-1534",
+      "paper-1535",
+      "paper-1552",
+      "paper-1574",
+      "paper-2246",
+      "paper-2290",
+      "paper-2352",
+      "paper-2452",
+      "paper-2470",
+      "paper-2497",
+      "paper-2822",
+      "paper-2839",
+      "paper-2844",
+      "paper-2851",
+      "paper-2882",
+      "paper-2926"
+    ]
+  },
+  {
+    "canonical": "K_ambiguous_needs_fulltext",
+    "n_papers": 28,
+    "include": 5,
+    "exclude": 18,
+    "inc_rate": 0.22,
+    "src_batches": [
+      2,
+      6,
+      7,
+      11
+    ],
+    "n_subclusters": 4,
+    "sample_descriptions": [
+      "Hybrid approaches, proto-agentic systems, or unclear domain boundary—requires full-text review to classify.",
+      "Papers with unclear/missing abstracts or titles that do not map clearly to agent types or RM domains",
+      "Papers with insufficient evidence in abstract to classify; requires full-text review."
+    ],
+    "sample_titles": [
+      "SEAL: Secure and Efficient Adaptive Layering for On-Device Language Models with TEE",
+      "Distributed scheduling in Kubernetes based on MAS for Fog-in-the-loop applications",
+      "Tiny Language Model Guided Flow Q Learning for Optimal Task Scheduling in Fog Computing",
+      "Generative AI-Enabled Transmission and Computing Integration for Cloud-Edge Collaboration",
+      "Accelerating Frontier MoE Training with 3D Integrated Optics"
+    ],
+    "paper_ids": [
+      "paper-0113",
+      "paper-0141",
+      "paper-0149",
+      "paper-0240",
+      "paper-1423",
+      "paper-1454",
+      "paper-1455",
+      "paper-1478",
+      "paper-1489",
+      "paper-1516",
+      "paper-1526",
+      "paper-1540",
+      "paper-1708",
+      "paper-2520",
+      "paper-2542",
+      "paper-2564",
+      "paper-2603",
+      "paper-2622",
+      "paper-2630",
+      "paper-2640",
+      "paper-2645",
+      "paper-2700",
+      "paper-2716",
+      "paper-2725",
+      "paper-2752",
+      "paper-2770",
+      "paper-2779",
+      "paper-2798"
+    ]
+  },
+  {
+    "canonical": "D_devops_or_logs_not_rm",
+    "n_papers": 27,
+    "include": 0,
+    "exclude": 27,
+    "inc_rate": 0.0,
+    "src_batches": [
+      1,
+      2,
+      3,
+      10,
+      11,
+      12
+    ],
+    "n_subclusters": 6,
+    "sample_descriptions": [
+      "Cloud DevOps tasks (log analysis, incident triage, deployment automation) outside core resource management decisions",
+      "Kubernetes, autoscaling, load balancing, microservice identification—traditional DevOps, no agentic loop.",
+      "Container orchestration, Kubernetes, IaC tooling, LLM-driven DevOps (non-RM focus)."
+    ],
+    "sample_titles": [
+      "Local self-verified chain-of-thought and preference alignment: a two-stage ReVCoT-DPO fine-tuning framework for system log fault diagnosis",
+      "Distributed System of Intelligent Content Monitoring Agents",
+      "Agent-Based Distributed Data Analysis in Industrial Cyber-Physical Systems",
+      "A modified cloud-based cryptographic agent for cloud data integrity",
+      "Automated Bug Discovery in Cloud Infrastructure-as-Code Updates with LLM Agents"
+    ],
+    "paper_ids": [
+      "paper-0007",
+      "paper-0019",
+      "paper-0022",
+      "paper-0030",
+      "paper-0038",
+      "paper-0051",
+      "paper-0052",
+      "paper-0057",
+      "paper-0061",
+      "paper-0065",
+      "paper-0082",
+      "paper-0085",
+      "paper-0092",
+      "paper-0096",
+      "paper-0136",
+      "paper-0197",
+      "paper-0346",
+      "paper-0487",
+      "paper-2310",
+      "paper-2518",
+      "paper-2519",
+      "paper-2532",
+      "paper-2550",
+      "paper-2562",
+      "paper-2578",
+      "paper-2809",
+      "paper-2932"
+    ]
+  },
+  {
+    "canonical": "G_low_quality_or_survey",
+    "n_papers": 17,
+    "include": 3,
+    "exclude": 18,
+    "inc_rate": 0.14,
+    "src_batches": [
+      3,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_subclusters": 6,
+    "sample_descriptions": [
+      "Preprint-only, demo-without-evaluation, or workshop papers lacking peer review.",
+      "Surveys, systematic reviews, or document-type exclusions per manual review rules.",
+      "Survey papers, systematic reviews, literature surveys, or editorials (excluded by document-type gate)."
+    ],
+    "sample_titles": [
+      "A multi agent based dynamic resource allocation in fog-cloud computing environment",
+      "An Intelligent Predictive Resource Management Framework for Cloud-Native Systems Based on Large Language Models",
+      "INT-LLM: Adaptive Path Planner for In-Band Network Telemetry via Large Language Models",
+      "Toward Edge General Intelligence With Multiple-Large Language Model (MLLM)",
+      "Joint Request Batching and Worker Assignment in AI-RAN Edge Inference Systems"
+    ],
+    "paper_ids": [
+      "paper-0345",
+      "paper-0361",
+      "paper-0396",
+      "paper-0433",
+      "paper-0442",
+      "paper-0568",
+      "paper-0571",
+      "paper-0641",
+      "paper-1590",
+      "paper-1642",
+      "paper-1801",
+      "paper-1919",
+      "paper-1964",
+      "paper-2360",
+      "paper-2370",
+      "paper-2383",
+      "paper-2422"
+    ]
+  },
+  {
+    "canonical": "I_rag_grounding_memory",
+    "n_papers": 8,
+    "include": 2,
+    "exclude": 6,
+    "inc_rate": 0.25,
+    "src_batches": [
+      10
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Knowledge bases, RAG, knowledge graphs, or semantic frameworks for agent grounding."
+    ],
+    "sample_titles": [
+      "Zero-Knowledge Proof-Enabled LLM-Driven Fusion of Privacy-Sensitive Heterogeneous Sensor Data in Edge Environments",
+      "UnifiedKP: A Unified Network Knowledge Plane for Large Model-Enabled 6G Networks"
+    ],
+    "paper_ids": [
+      "paper-2305",
+      "paper-2306",
+      "paper-2436",
+      "paper-2489",
+      "paper-2499",
+      "paper-2502",
+      "paper-2504",
+      "paper-2509"
+    ]
+  },
+  {
+    "canonical": "Z_other__multi_agent_system_rm",
+    "n_papers": 5,
+    "include": 0,
+    "exclude": 5,
+    "inc_rate": 0.0,
+    "src_batches": [
+      6
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Multi-agent systems coordinating resource management decisions, agent type unclear from abstract (may be RL/MARL or agentic)."
+    ],
+    "sample_titles": [
+      "Simurgh: Multi-Agent Adversarial Benchmarking for Proactive Microservice Observability",
+      "Federated Synergy: Hierarchical Multi-Agent Learning for Sustainable Edge Computing in IIoT"
+    ],
+    "paper_ids": [
+      "paper-1401",
+      "paper-1422",
+      "paper-1459",
+      "paper-1556",
+      "paper-1560"
+    ]
+  },
+  {
+    "canonical": "Z_other__task_offloading_mobile_edge",
+    "n_papers": 3,
+    "include": 0,
+    "exclude": 3,
+    "inc_rate": 0.0,
+    "src_batches": [
+      2
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Task offloading and mobile-device-centric computation on edge networks (mobility and latency focus, not orchestration)"
+    ],
+    "sample_titles": [
+      "Computation offloading with multiple agents in edge-computing–supported IoT",
+      "A Multi-Agent Approach for Vehicle-to-Fog Fair Computation Offloading"
+    ],
+    "paper_ids": [
+      "paper-0157",
+      "paper-0200",
+      "paper-0206"
+    ]
+  },
+  {
+    "canonical": "Z_other__energy_grid_microgrid",
+    "n_papers": 3,
+    "include": 0,
+    "exclude": 3,
+    "inc_rate": 0.0,
+    "src_batches": [
+      2
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Smart grids, microgrids, renewable energy management (not primarily cloud/edge infrastructure RM)"
+    ],
+    "sample_titles": [
+      "Fog agents in distributed multi agent system for autonomous energy management",
+      "A Hierarchical distributed energy management agent framework for smart homes, grids, and cities"
+    ],
+    "paper_ids": [
+      "paper-0117",
+      "paper-0148",
+      "paper-0208"
+    ]
+  },
+  {
+    "canonical": "Z_other__kubernetes_container_scaling",
+    "n_papers": 3,
+    "include": 1,
+    "exclude": 2,
+    "inc_rate": 0.33,
+    "src_batches": [
+      4
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Kubernetes, container orchestration, autoscaling—DevOps, not RM-specific."
+    ],
+    "sample_titles": [
+      "Optimizing Microservice Deployment in Edge Computing with Large Language Models: Integrating Retrieval Augmented Generation and Chain of Thought Techniques",
+      "Leveraging Large Language Models for Auto-remediation in Microservices Architecture"
+    ],
+    "paper_ids": [
+      "paper-0708",
+      "paper-0908",
+      "paper-0909"
+    ]
+  },
+  {
+    "canonical": "Z_other__search_rescue_vehicle_routing",
+    "n_papers": 2,
+    "include": 0,
+    "exclude": 2,
+    "inc_rate": 0.0,
+    "src_batches": [
+      2
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Search and rescue, vehicle routing, autonomous systems (domain-specific, not cloud/edge RM)"
+    ],
+    "sample_titles": [
+      "An edge-Assisted vehicle routing method based on game-Theoretic multiagent learning",
+      "Multi Agents to Search and Rescue Based on Group Intelligent Algorithm and Edge Computing"
+    ],
+    "paper_ids": [
+      "paper-0106",
+      "paper-0171"
+    ]
+  },
+  {
+    "canonical": "Z_other__scheduling_workflow_heuristics",
+    "n_papers": 2,
+    "include": 1,
+    "exclude": 1,
+    "inc_rate": 0.5,
+    "src_batches": [
+      4
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Workflow, task, job scheduling via heuristics or optimization."
+    ],
+    "sample_titles": [
+      "Optimizing Generative AI Workloads for Sustainability: Balancing Performance and Environmental Impact in Generative AI",
+      "Optimizing Cloud Infrastructure Management Using Large Language Models: A DevOps Perspective"
+    ],
+    "paper_ids": [
+      "paper-0837",
+      "paper-0894"
+    ]
+  },
+  {
+    "canonical": "Z_other__vm_container_placement",
+    "n_papers": 1,
+    "include": 0,
+    "exclude": 1,
+    "inc_rate": 0.0,
+    "src_batches": [
+      3
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "VM/container placement, migration, scheduling in cloud/edge (classical or RL, no LLM)."
+    ],
+    "sample_titles": [
+      "Agent-based cloud simulation model for resource management"
+    ],
+    "paper_ids": [
+      "paper-0581"
+    ]
+  },
+  {
+    "canonical": "Z_other__demo_without_evaluation",
+    "n_papers": 1,
+    "include": 0,
+    "exclude": 1,
+    "inc_rate": 0.0,
+    "src_batches": [
+      7
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Demo or proof-of-concept without formal evaluation, per manual rule exclusion."
+    ],
+    "sample_titles": [
+      "Demo: Conversational AI Agent for ML Infrastructure Monitoring and Analysis"
+    ],
+    "paper_ids": [
+      "paper-1588"
+    ]
+  },
+  {
+    "canonical": "Z_other__security_not_resource_mgmt",
+    "n_papers": 1,
+    "include": 0,
+    "exclude": 1,
+    "inc_rate": 0.0,
+    "src_batches": [
+      7
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Agentic AI applied to security (threat analysis, misconfiguration detection), not resource management."
+    ],
+    "sample_titles": [
+      "A Novel LLM Approach of Cybersecurity Threat Analysis and Response"
+    ],
+    "paper_ids": [
+      "paper-1656"
+    ]
+  },
+  {
+    "canonical": "Z_other__generative_ai_inference",
+    "n_papers": 1,
+    "include": 0,
+    "exclude": 1,
+    "inc_rate": 0.0,
+    "src_batches": [
+      10
+    ],
+    "n_subclusters": 1,
+    "sample_descriptions": [
+      "Generative AI for inference, AIGC, diffusion model optimization on edge."
+    ],
+    "sample_titles": [
+      "Optimizing AIGC Services by Prompt Engineering and Edge Computing: A Generative Diffusion Model-Based Contract Theory Approach"
+    ],
+    "paper_ids": [
+      "paper-2381"
+    ]
+  }
+]

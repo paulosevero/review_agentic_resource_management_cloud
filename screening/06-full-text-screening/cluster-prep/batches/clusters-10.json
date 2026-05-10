@@ -1,0 +1,198 @@
+{
+  "batch": 10,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "multi_agent_non_llm_rm",
+      "description": "Multi-agent coordination for resource management via classical RL/MARL without LLM reasoning.",
+      "paper_ids": [
+        "paper-2257",
+        "paper-2281",
+        "paper-2293",
+        "paper-2298",
+        "paper-2312",
+        "paper-2331",
+        "paper-2359",
+        "paper-2366",
+        "paper-2380",
+        "paper-2385",
+        "paper-2417",
+        "paper-2433",
+        "paper-2451",
+        "paper-2464",
+        "paper-2475"
+      ],
+      "decision_distribution": {
+        "Exclude": 15
+      },
+      "example_titles": [
+        "Dependent task offloading for air-ground integrated MEC networks: a multi-agent collaboration approach",
+        "UAV-D2D Assisted Multi-Agent Parameter-Sharing for Optimizing Energy Consumption and Task Latency in MEC Task Offloading",
+        "Federated Reinforcement Learning-Empowered Task Offloading for Large Models in Vehicular Edge Computing"
+      ]
+    },
+    {
+      "name": "rag_grounding_memory",
+      "description": "Knowledge bases, RAG, knowledge graphs, or semantic frameworks for agent grounding.",
+      "paper_ids": [
+        "paper-2305",
+        "paper-2306",
+        "paper-2436",
+        "paper-2489",
+        "paper-2499",
+        "paper-2502",
+        "paper-2504",
+        "paper-2509"
+      ],
+      "decision_distribution": {
+        "Include": 2,
+        "Exclude": 6
+      },
+      "example_titles": [
+        "UnifiedKP: A Unified Network Knowledge Plane for Large Model-Enabled 6G Networks",
+        "Zero-Knowledge Proof-Enabled LLM-Driven Fusion of Privacy-Sensitive Heterogeneous Sensor Data in Edge Environments",
+        "GenNet: Computing-Efficient Generative AI for Deterministic Transmission Scheduling in 6G Networks"
+      ]
+    },
+    {
+      "name": "llm_support_feature",
+      "description": "LLM as a support component for monitoring, anomaly detection, log analysis, or fine-tuning.",
+      "paper_ids": [
+        "paper-2246",
+        "paper-2290",
+        "paper-2352",
+        "paper-2452",
+        "paper-2470",
+        "paper-2497"
+      ],
+      "decision_distribution": {
+        "Exclude": 5,
+        "Include": 1
+      },
+      "example_titles": [
+        "A Framework for Gen AI Adoption for Enterprises Leveraging Enterprise Architecture Patterns",
+        "Enhancing Multi-Modal RCA in Resource Management Systems via Fine-Tuning of LLMs",
+        "Accuracy-Aware MLLM Task Offloading and Resource Allocation in UAV-Assisted Satellite Edge Computing"
+      ]
+    },
+    {
+      "name": "rl_marl_classical",
+      "description": "Classical reinforcement learning for resource management without agentic LLM loop.",
+      "paper_ids": [
+        "paper-2256",
+        "paper-2405",
+        "paper-2428",
+        "paper-2472",
+        "paper-2494"
+      ],
+      "decision_distribution": {
+        "Exclude": 5
+      },
+      "example_titles": [
+        "Dependency-Aware Deployment and Retrieval of Intelligent Microservices in AI-RAN",
+        "AI-Assisted Synergetic Orchestration Mechanisms for Autoscaling in Computing Continuum Systems",
+        "ECMSA: Dual-Agent Learning-Based Edge Caching with Multi-Strategy Adaptation in Dynamic Environments"
+      ]
+    },
+    {
+      "name": "other_uncertain",
+      "description": "Insufficient thematic signal or boundary violations (domain-specific or non-RM focus).",
+      "paper_ids": [
+        "paper-2360",
+        "paper-2370",
+        "paper-2383",
+        "paper-2422"
+      ],
+      "decision_distribution": {
+        "Include": 1,
+        "Exclude": 3
+      },
+      "example_titles": [
+        "An Intelligent Predictive Resource Management Framework for Cloud-Native Systems Based on Large Language Models",
+        "Quality-of-Service Aware LLM Routing for Edge Computing with Multiple Experts",
+        "Productive Intelligence: AI and Generative AI for Production Optimization and Predictive Maintenance in Oil and Gas Fields - Case Studies from the USA and India"
+      ]
+    },
+    {
+      "name": "multi_agent_with_llm",
+      "description": "Hybrid multi-agent systems combining agent coordination with LLM grounding or reasoning.",
+      "paper_ids": [
+        "paper-2253",
+        "paper-2399",
+        "paper-2416"
+      ],
+      "decision_distribution": {
+        "Exclude": 2,
+        "Include": 1
+      },
+      "example_titles": [
+        "CoMaTS: A Collaborative Multi-Agent Framework for Edge Task Scheduling",
+        "A Human-in-Multi-Agent-Loop Intent Refinement Method for Task Offloading in Mobile Edge Computing",
+        "Adaptive GPU Resource Allocation for Multi-Agent Collaborative Reasoning in Serverless Environments"
+      ]
+    },
+    {
+      "name": "devops_automation_tooling",
+      "description": "Container orchestration, Kubernetes, IaC tooling, LLM-driven DevOps (non-RM focus).",
+      "paper_ids": [
+        "paper-2310",
+        "paper-2518",
+        "paper-2519"
+      ],
+      "decision_distribution": {
+        "Exclude": 3
+      },
+      "example_titles": [
+        "Automated Bug Discovery in Cloud Infrastructure-as-Code Updates with LLM Agents",
+        "Multi-Agent Stateless Orchestration for Distributed Data Pipelines Implementation",
+        "Prompt-Driven Container Orchestration"
+      ]
+    },
+    {
+      "name": "network_telecom_specific",
+      "description": "5G/6G/telecom-focused; potentially out of scope as not core resource management.",
+      "paper_ids": [
+        "paper-2448",
+        "paper-2477",
+        "paper-2490"
+      ],
+      "decision_distribution": {
+        "Exclude": 3
+      },
+      "example_titles": [
+        "Optimizing Remote Medical Services with AloT: Integration of Large Language Models and 6G Edge Computing",
+        "QoE-Aware Service Provision for Mobile AR Rendering: An Agent-Driven Approach",
+        "Generative AI-Assisted Mobile-Edge Computation Offloading in Digital-Twin-Enabled IIoT"
+      ]
+    },
+    {
+      "name": "agentic_ai_core_rm",
+      "description": "LLM-based agent explicitly for resource management decisions (placement, migration, scheduling).",
+      "paper_ids": [
+        "paper-2251",
+        "paper-2362"
+      ],
+      "decision_distribution": {
+        "Exclude": 1,
+        "Include": 1
+      },
+      "example_titles": [
+        "Adaptive AI Agent Placement and Migration in Edge Intelligence Systems",
+        "AutoHMA-LLM: Efficient Task Coordination and Execution in Heterogeneous Multi-Agent Systems Using Hybrid Large Language Models"
+      ]
+    },
+    {
+      "name": "generative_ai_inference",
+      "description": "Generative AI for inference, AIGC, diffusion model optimization on edge.",
+      "paper_ids": [
+        "paper-2381"
+      ],
+      "decision_distribution": {
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Optimizing AIGC Services by Prompt Engineering and Edge Computing: A Generative Diffusion Model-Based Contract Theory Approach"
+      ]
+    }
+  ]
+}

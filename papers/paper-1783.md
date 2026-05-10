@@ -1,6 +1,7 @@
 ---
 id: paper-1783
-title: Can LLMs only talk? Experimental studies on task scheduling with Large Language Models
+title: Can LLMs only talk? Experimental studies on task scheduling with Large Language
+  Models
 authors:
 - Li, Mengjuan
 - Chen, Zhengguang
@@ -10,7 +11,8 @@ authors:
 - Zhao, Baokang
 - Ouyang, Xue
 - Su, Jinshu
-venue: Proceedings - International Conference on Computer Communications and Networks, ICCCN
+venue: Proceedings - International Conference on Computer Communications and Networks,
+  ICCCN
 venue_type: conference
 year: 2025
 doi: 10.1109/ICCCN65249.2025.11133882
@@ -41,7 +43,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=0 (no infra signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+      management signal); C3=0 (no infra signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -65,9 +68,10 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Exclude
+    proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA,
+      geração de manifestos) — não é decisão de resource management.
+    winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -152,9 +156,16 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1783.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Exclude
+- **regex_justification:** "Tarefa de DevOps/observabilidade (incident triage, RCA, geração de manifestos) — não é decisão de resource management."
+- **winning_category:** 'D_devops_or_logs_not_rm'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: D_devops_or_logs_not_rm, pattern_id: deployment_assistant_no_rm, matched_substring: "configuration generation" }`
+
 
 ## 07 — Taxonomy
 

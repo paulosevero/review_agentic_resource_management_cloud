@@ -1,13 +1,15 @@
 ---
 id: paper-2399
-title: A Human-in-Multi-Agent-Loop Intent Refinement Method for Task Offloading in Mobile Edge Computing
+title: A Human-in-Multi-Agent-Loop Intent Refinement Method for Task Offloading in
+  Mobile Edge Computing
 authors:
 - Yuan, Shao
 - Ni, Weichen
 - Han, Boxiao
 - Dai, Zuojun
 - Yu, Yang
-venue: 2025 IEEE 2nd International Conference on Electronics, Communications and Intelligent Science, ECIS 2025 - Proceeding
+venue: 2025 IEEE 2nd International Conference on Electronics, Communications and Intelligent
+  Science, ECIS 2025 - Proceeding
 venue_type: conference
 year: 2025
 doi: 10.1109/ECIS65594.2025.11086847
@@ -39,7 +41,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -63,10 +66,12 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM).
+    winning_category: mas_llm_based
+    overrides_applied:
+    - ovr_with_llm
+    - ovr_cls_llm_present
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -150,9 +155,25 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2399.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM)."
+- **winning_category:** 'mas_llm_based'
+- **overrides_applied:** ['ovr_with_llm', 'ovr_cls_llm_present']
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLMs
+
+To investigate the impact of the HIMAL intent refinement method on the WBMS deployment" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "deployment in medium enterprise to investigate the impact of CoT and SRR-CoT methods on the accuracy" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "Multi-Agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "Multi-Agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "multi-agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "Multi-Agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "Multi-Agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "multi-agent" }`
+
 
 ## 07 — Taxonomy
 

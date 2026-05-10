@@ -1,25 +1,278 @@
 {
-  "version": "1.0",
-  "default_decision": "Exclude",
-  "default_justification": "Sem pistas de uso de LLM e/ou Agentic AI.",
+  "version": "1.1-fulltext",
+  "default_decision": "Include",
+  "default_justification": "Sem assinatura de exclusão clara; revisar full-text manualmente para confirmar Include.",
   "proximity_window": 400,
   "priority_order": [
-    "out_of_scope",
-    "review",
-    "rl",
-    "llm_as_workload",
-    "classical_agents",
+    "H_llm_supports_other_method",
+    "D_devops_or_logs_not_rm",
+    "E_strict_telecom",
+    "C_llm_as_workload",
+    "F_out_of_scope_domain",
+    "A_classical_rl_marl_no_llm",
+    "B_classical_mas_no_llm",
     "mas_llm_based",
     "agent_llm_based",
     "llm_agentic_ai_generic"
   ],
   "categories": [
     {
-      "id": "out_of_scope",
+      "id": "H_llm_supports_other_method",
+      "label": "LLM apenas dá suporte a outro método",
+      "kind": "exclude",
+      "justification": "O LLM aparece em papel de suporte (gera heurísticas, embeddings, features ou recompensas para RL/MARL/otimização clássica). Não há loop agentic AI dirigindo decisão de RM.",
+      "priority_index": 0,
+      "patterns": [
+        {
+          "id": "llm_explicit_support_role",
+          "regex": "\\b(?:llms?|large\\s+language\\s+models?|gpts?|llama|foundation\\s+models?)\\b[^.]{0,300}\\b(?:guides?|provides?\\s+heuristics?|generates?\\s+heuristics?|augments?|enhances?|enriches?|assists?|aids?|supplements?|complements?|informs?)\\b[^.]{0,200}\\b(?:rl|marl|reinforcement\\s+learning|q[-\\s]?learning|sarsa|dqn|ppo|a3c|ddpg|ga\\b|genetic\\s+algorithm|metaheuristic|ant\\s+colony|particle\\s+swarm|simulated\\s+annealing|tabu|ilp|milp|optimization\\s+(?:algorithm|method|model)|heuristic\\s+search|moga|nsga|pso|aco|sa\\b)\\b",
+          "description": "LLM explicitly in support role for non-LLM optimization/RL method"
+        },
+        {
+          "id": "llm_as_feature_extractor",
+          "regex": "\\b(?:llm|large\\s+language\\s+model|gpt|bert|transformer)\\b[^.]{0,200}\\b(?:embedding|feature\\s+extract|state\\s+representation|reward\\s+(?:shap|design)|input\\s+to\\s+(?:the\\s+)?(?:rl|drl|marl|q[-\\s]?learning|policy|critic|actor)|generates?\\s+features?)\\b",
+          "description": "LLM used purely to produce embeddings/features/rewards consumed by RL/optimization"
+        },
+        {
+          "id": "hybrid_llm_rl_llm_subordinate",
+          "regex": "\\b(?:llm[-\\s]?(?:guided|aided|assisted|augmented|enhanced|empowered|enriched)|llm[-\\s]?(?:sarsa|dqn|ppo|q[-\\s]?learning|marl|drl)|(?:rl|marl|drl)[-\\s]?with[-\\s]?llm)\\b",
+          "description": "Hyphenated combos that signal LLM is subordinate component of an RL/optimization pipeline"
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "D_devops_or_logs_not_rm",
+      "label": "DevOps/logs/incidents (não RM)",
+      "kind": "exclude",
+      "justification": "Tarefa de DevOps/observabilidade (incident triage, RCA, geração de manifestos) — não é decisão de resource management.",
+      "priority_index": 1,
+      "patterns": [
+        {
+          "id": "devops_logs_incidents",
+          "regex": "\\b(?:incident\\s+(?:triage|management|response|resolution)|root[-\\s]cause\\s+analysis|\\brca\\b|log\\s+(?:analysis|summariz|parsing|anomaly)|alert\\s+(?:correlation|noise|fatigue|clustering)|alarm\\s+(?:correlation|management)|runbook\\s+(?:generation|automation)|postmortem|on[-\\s]?call|chatops|aiops|sre\\s+assistant|fault\\s+(?:diagnosis|localization)|troubleshoot)\\b",
+          "description": "DevOps / observability / incident-management tasks (not RM decisions)"
+        },
+        {
+          "id": "deployment_assistant_no_rm",
+          "regex": "\\b(?:deployment\\s+(?:assistant|automation|chatbot|copilot)|infrastructure[-\\s]as[-\\s]code\\s+(?:generation|assistant)|terraform\\s+(?:generation|assistant)|ansible\\s+(?:assistant|generation)|kubernetes\\s+(?:manifest|yaml)\\s+(?:generation|assistant)|configuration\\s+(?:assistant|generation|recommendation))\\b",
+          "description": "DevOps deployment assistance (config/IaC generation) without RM decision loop"
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "E_strict_telecom",
+      "label": "Estritamente telecom/5G/6G",
+      "kind": "exclude",
+      "justification": "Problema estritamente de RAN/5G/6G/spectrum sem substrato cloud/edge RM.",
+      "priority_index": 2,
+      "patterns": [
+        {
+          "id": "strict_telecom_only",
+          "regex": "\\b(?:5g|6g|ran|o[-\\s]?ran|c[-\\s]?ran|v[-\\s]?ran|new\\s+radio|nr\\b|gnodeb|gnb|enb|enodeb|sub[-\\s]?6\\s?ghz|mmwave|beamform|massive\\s+mimo|hetnet|small\\s+cell|macro\\s+cell|network\\s+slic|ran\\s+slic|spectrum\\s+(?:allocation|sharing)|fronthaul|backhaul|midhaul|baseband\\s+unit|bbu|core\\s+network|epc\\b|5gc\\b|amf\\b|smf\\b|upf\\b|pdcp|rrc|mac\\s+layer|phy\\s+layer|physical\\s+layer|csi\\s+feedback|channel\\s+estimation|interference\\s+management|handover|qos\\s+slic)\\b(?:[^.]{0,500}\\b(?:5g|6g|ran|slic|spectrum|beamform|fronthaul|backhaul)\\b){2,}",
+          "description": "Strictly RAN/5G/6G/spectrum problems with no cloud/edge RM substrate"
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "C_llm_as_workload",
+      "label": "LLM como workload (servir/treinar), não como agente",
+      "kind": "exclude",
+      "justification": "LLM as workload",
+      "priority_index": 3,
+      "patterns": [
+        {
+          "id": "wl_train_llm_a",
+          "regex": "\\b(?:training|fine[-\\s]?tuning|pre[-\\s]?training)\\b[^.,]{0,200}\\b(?:llms?|foundation\\s+models?|large\\s+language\\s+models?|large\\s+models?|transformer[-\\s]based)\\b",
+          "description": "training/fine-tuning + LLM"
+        },
+        {
+          "id": "wl_train_llm_b",
+          "regex": "\\b(?:llms?|foundation\\s+models?|large\\s+language\\s+models?|large\\s+models?|transformer[-\\s]based)\\b[^.,]{0,200}\\b(?:training|fine[-\\s]?tuning|pre[-\\s]?training)\\b",
+          "description": "LLM + training/fine-tuning"
+        },
+        {
+          "id": "wl_train_cluster",
+          "regex": "\\b(?:ai|ml)\\s+training\\s+(?:cluster|workload)\\b",
+          "description": "AI/ML training cluster"
+        },
+        {
+          "id": "wl_training_workload",
+          "regex": "\\btraining\\s+(?:cluster|workload)s?\\b",
+          "description": "training cluster/workload"
+        },
+        {
+          "id": "wl_customizing_transformer",
+          "regex": "\\bcustomizing\\s+(?:transformer|llm|foundation\\s+model)",
+          "description": "customizing transformer/LLM"
+        },
+        {
+          "id": "wl_distributed_finetuning",
+          "regex": "\\b(?:decentralized|distributed|federated|split)\\s+(?:fine[-\\s]?tuning|training)\\s+(?:of\\s+)?(?:foundation\\s+models?|large\\s+language|llms?)",
+          "description": "distributed fine-tuning of LLMs"
+        },
+        {
+          "id": "wl_inference_llm_a",
+          "regex": "\\b(?:llm|llms|gpt|generative\\s+ai|genai|aigc|large\\s+language\\s+model|large\\s+language|foundation\\s+model|transformer)[s]?\\b[^.,]{0,200}\\b(?:inference|serving|deploy(?:ment|ing)?|accelerat|batching|quantization|pruning|decoding|hot[-\\s]swap|disaggregat)\\b",
+          "description": "LLM + inference/serving"
+        },
+        {
+          "id": "wl_inference_llm_b",
+          "regex": "\\b(?:inference|serving|deploy(?:ment|ing)?|accelerat|batching|quantization|pruning|decoding|hot[-\\s]swap|disaggregat)\\b[^.,]{0,200}\\b(?:llms?|gpts?|generative\\s+ai|genai|aigc|large\\s+language\\s+models?|foundation\\s+models?|transformers?)\\b",
+          "description": "inference/serving + LLM"
+        },
+        {
+          "id": "wl_abs_serving_llms",
+          "regex": "\\b(?:serving|serve|deploying|deploy|hosting|host)\\s+(?:of\\s+)?(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)",
+          "description": "serving/deploying LLMs"
+        },
+        {
+          "id": "wl_abs_llm_infra",
+          "regex": "\\b(?:llm|large\\s+language\\s+model|foundation\\s+model)\\s+(?:inference\\s+)?(?:engine|system|platform|infrastructure|stack|pipeline)",
+          "description": "LLM inference engine/infra"
+        },
+        {
+          "id": "wl_abs_for_llm_workload",
+          "regex": "\\bfor\\s+(?:efficient\\s+|scalable\\s+)?(?:llm|large\\s+language\\s+model|foundation\\s+model)\\s+(?:inference|serving|training|fine[\\s-]?tuning|deployment)",
+          "description": "for LLM inference/serving (workload)"
+        },
+        {
+          "id": "wl_abs_we_propose_llm_serving",
+          "regex": "\\bwe\\s+(?:propose|present|introduce|design)\\s+(?:a\\s+)?(?:novel\\s+|new\\s+)?(?:framework|system|method|approach|scheme|technique|architecture)\\s+(?:for|to)\\s+(?:efficient\\s+|scalable\\s+)?(?:serving|inference|deploy(?:ing|ment)|train(?:ing)|fine[\\s-]?tuning)\\s+(?:of\\s+)?(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)",
+          "description": "we propose system for LLM serving (workload)"
+        }
+      ],
+      "overrides": [
+        {
+          "id": "ovr_with_llm",
+          "regex": "\\bwith\\s+(?:llms?|large\\s+language\\s+models?|generative\\s+ai|genai)\\b",
+          "description": "with LLM"
+        },
+        {
+          "id": "ovr_using_llm",
+          "regex": "\\busing\\s+(?:llms?|large\\s+language|generative\\s+ai|genai|gpts?)\\b",
+          "description": "using LLM"
+        },
+        {
+          "id": "ovr_leveraging_llm",
+          "regex": "\\bleveraging\\s+(?:llms?|gpts?|generative\\s+ai|large\\s+language)\\b",
+          "description": "leveraging LLM"
+        },
+        {
+          "id": "ovr_via_llm",
+          "regex": "\\bvia\\s+(?:llms?|large\\s+language|generative\\s+ai|gpts?)\\b",
+          "description": "via LLM"
+        },
+        {
+          "id": "ovr_llm_modifier",
+          "regex": "\\bllm[-\\s]?(?:agent|empowered|driven|aided|guided|based|enabled|augmented|powered)",
+          "description": "llm-agent/empowered/etc"
+        },
+        {
+          "id": "ovr_modifier_by_llm",
+          "regex": "\\b(?:agent|empowered|driven|aided|guided|enabled|augmented|powered)[\\s-]?(?:by|via|with)\\s+(?:llm|large\\s+language|generative\\s+ai|genai|gpt|foundation\\s+model|transformer)",
+          "description": "X by/via/with LLM"
+        },
+        {
+          "id": "ovr_llm_as_judge",
+          "regex": "\\bllm[\\s-]?as[\\s-]?a[\\s-]?judge\\b",
+          "description": "LLM-as-a-judge"
+        },
+        {
+          "id": "ovr_llm_agents",
+          "regex": "\\bllm\\s+agents?\\b",
+          "description": "LLM agents"
+        },
+        {
+          "id": "ovr_intent_driven",
+          "regex": "\\bintent[\\s-]?driven\\b",
+          "description": "intent-driven"
+        },
+        {
+          "id": "ovr_prompt_driven",
+          "regex": "\\bprompt[\\s-]?driven\\b",
+          "description": "prompt-driven"
+        },
+        {
+          "id": "ovr_prompt_based",
+          "regex": "\\bprompt[\\s-]?based\\b",
+          "description": "prompt-based"
+        },
+        {
+          "id": "ovr_hyper_heuristics",
+          "regex": "\\bhyper[-\\s]heuristics?\\b",
+          "description": "hyper-heuristics"
+        },
+        {
+          "id": "ovr_rca",
+          "regex": "\\brca\\b",
+          "description": "RCA"
+        },
+        {
+          "id": "ovr_anomaly_log",
+          "regex": "\\banomaly\\s+log\\s+analysis\\b",
+          "description": "anomaly log analysis"
+        },
+        {
+          "id": "ovr_system_log_diag",
+          "regex": "\\bsystem\\s+log\\s+(?:fault\\s+)?diagnosis\\b",
+          "description": "system log diagnosis"
+        },
+        {
+          "id": "ovr_fault_diag",
+          "regex": "\\b(?:network|system|service)\\s+fault\\s+diagnosis\\b",
+          "description": "fault diagnosis"
+        },
+        {
+          "id": "ovr_rm_via",
+          "regex": "\\bresource\\s+management\\s+systems?\\s+via\\b",
+          "description": "resource management via"
+        },
+        {
+          "id": "ovr_function_calling",
+          "regex": "\\bfunction\\s+calling\\b",
+          "description": "function calling"
+        },
+        {
+          "id": "ovr_llm_caching",
+          "regex": "\\b(?:foundation\\s+model|llm)\\s+caching\\b",
+          "description": "LLM caching"
+        },
+        {
+          "id": "ovr_caching_inference",
+          "regex": "\\bcaching\\s+and\\s+inference\\s+of\\b",
+          "description": "caching and inference of"
+        },
+        {
+          "id": "ovr_abs_llm_decides",
+          "regex": "\\b(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)\\b[^.]{0,100}\\b(?:decides?|selects?|chooses?|determines?|recommends?|generates?\\s+(?:a\\s+)?(?:plan|policy|placement|schedule|allocation))",
+          "description": "LLM decides/selects/generates plan"
+        },
+        {
+          "id": "ovr_abs_llm_orchestrates",
+          "regex": "\\b(?:llms?|large\\s+language\\s+models?|foundation\\s+models?)\\b[^.]{0,100}\\b(?:orchestrate|control|manage|govern|reason|plan)",
+          "description": "LLM orchestrates/manages"
+        },
+        {
+          "id": "ovr_abs_agentic_workflow",
+          "regex": "\\bagentic\\s+(?:workflow|pipeline|loop|architecture|framework)",
+          "description": "agentic workflow"
+        },
+        {
+          "id": "ovr_abs_using_llms_to_decide",
+          "regex": "\\busing\\s+(?:llms?|large\\s+language\\s+models?|foundation\\s+models?)\\s+to\\s+(?:decide|select|recommend|plan|schedule|allocate|orchestrate)",
+          "description": "using LLMs to decide"
+        }
+      ]
+    },
+    {
+      "id": "F_out_of_scope_domain",
       "label": "Domínio fora de escopo",
       "kind": "exclude",
       "justification": "Out of scope",
-      "priority_index": 0,
+      "priority_index": 4,
       "patterns": [
         {
           "id": "oos_erp",
@@ -275,176 +528,11 @@
       "overrides": []
     },
     {
-      "id": "review",
-      "label": "Survey/review/mapping/tutorial",
-      "kind": "exclude",
-      "justification": "Review",
-      "priority_index": 1,
-      "patterns": [
-        {
-          "id": "rev_chal_pract_prosp",
-          "regex": ":\\s*challenges[\\s,]+practices[\\s,]+and\\s+prospects\\b",
-          "description": "subtitle: challenges, practices, and prospects"
-        },
-        {
-          "id": "rev_current_future_trends",
-          "regex": ":\\s*current\\s+and\\s+future\\s+trends\\b",
-          "description": "subtitle: current and future trends"
-        },
-        {
-          "id": "rev_vision_chal_opp",
-          "regex": ":\\s*vision[\\s,]+challenges[\\s,]+and\\s+opportunities\\b",
-          "description": "subtitle: vision, challenges, and opportunities"
-        },
-        {
-          "id": "rev_arch_chal_sol",
-          "regex": ":\\s*architecture[\\s,]+challenges[\\s,]+and\\s+(?:solutions|opportunities)\\b",
-          "description": "subtitle: architecture, challenges, and solutions"
-        },
-        {
-          "id": "rev_opp_chal",
-          "regex": ":\\s*opportunities\\s+and\\s+challenges\\b",
-          "description": "subtitle: opportunities and challenges"
-        },
-        {
-          "id": "rev_advances_chal",
-          "regex": ":\\s*advances\\s+and\\s+(?:challenges|opportunities|trends)\\b",
-          "description": "subtitle: advances and..."
-        },
-        {
-          "id": "rev_chal_opp",
-          "regex": ":\\s*\\bchallenges\\b\\s+and\\s+\\bopportunities\\b",
-          "description": "subtitle: challenges and opportunities"
-        },
-        {
-          "id": "rev_future_directions",
-          "regex": ":\\s*future\\s+(?:directions|research)\\b",
-          "description": "subtitle: future directions"
-        },
-        {
-          "id": "rev_a_roadmap_survey",
-          "regex": ":\\s*a\\s+(?:roadmap|survey|systematic\\s+review|comprehensive\\s+(?:survey|review))\\b",
-          "description": "subtitle: a roadmap/survey/etc"
-        },
-        {
-          "id": "rev_roadmap",
-          "regex": ":\\s*roadmap\\b",
-          "description": "subtitle: roadmap"
-        },
-        {
-          "id": "rev_recent_advances",
-          "regex": ":\\s*recent\\s+advances\\b",
-          "description": "subtitle: recent advances"
-        },
-        {
-          "id": "rev_concepts_apps",
-          "regex": ":\\s*concepts?[\\s,]+(?:applications|techniques|trends)\\b",
-          "description": "subtitle: concepts, applications/techniques/trends"
-        },
-        {
-          "id": "rev_from_vision_to",
-          "regex": ":\\s*from\\s+vision\\s+to\\b",
-          "description": "subtitle: from vision to"
-        },
-        {
-          "id": "rev_survey",
-          "regex": "\\bsurvey\\b",
-          "description": "survey"
-        },
-        {
-          "id": "rev_systematic_review",
-          "regex": "\\bsystematic\\s+review\\b",
-          "description": "systematic review"
-        },
-        {
-          "id": "rev_scoping_review",
-          "regex": "\\bscoping\\s+review\\b",
-          "description": "scoping review"
-        },
-        {
-          "id": "rev_mapping_study",
-          "regex": "\\bmapping\\s+study\\b",
-          "description": "mapping study"
-        },
-        {
-          "id": "rev_taxonomy_of",
-          "regex": "\\btaxonomy\\s+of\\b",
-          "description": "taxonomy of"
-        },
-        {
-          "id": "rev_comprehensive_survey",
-          "regex": "\\bcomprehensive\\s+(?:survey|review)\\b",
-          "description": "comprehensive survey/review"
-        },
-        {
-          "id": "rev_short_review",
-          "regex": "\\bshort\\s+review\\b",
-          "description": "short review"
-        },
-        {
-          "id": "rev_research_agenda",
-          "regex": "\\bresearch\\s+agenda\\b",
-          "description": "research agenda"
-        },
-        {
-          "id": "rev_state_of_art_chal",
-          "regex": ":\\s*state[-\\s]of[-\\s]the[-\\s]art[\\s,]+challenges",
-          "description": "subtitle: state-of-the-art, challenges..."
-        },
-        {
-          "id": "rev_concepts_techs_future",
-          "regex": ":\\s*concepts[\\s,]+technologies[\\s,]+and\\s+future",
-          "description": "subtitle: concepts, technologies, and future"
-        },
-        {
-          "id": "rev_fundamentals_solutions_chal",
-          "regex": ":\\s*fundamentals[\\s,]+solutions[\\s,]+and\\s+challenges",
-          "description": "subtitle: fundamentals, solutions, and challenges"
-        },
-        {
-          "id": "rev_editorial",
-          "regex": "\\beditorial\\b",
-          "description": "editorial"
-        },
-        {
-          "id": "rev_research_for_era",
-          "regex": "\\btowards\\s+\\w+\\s+research\\s+for\\s+the\\s+era\\b",
-          "description": "towards X research for the era"
-        },
-        {
-          "id": "rev_abs_this_survey",
-          "regex": "\\bthis\\s+(?:survey|review|article\\s+(?:reviews|surveys|provides\\s+an?\\s+overview))",
-          "description": "this survey/review (abstract)"
-        },
-        {
-          "id": "rev_abs_we_present_overview",
-          "regex": "\\bwe\\s+(?:present|provide)\\s+(?:a\\s+)?(?:comprehensive\\s+)?(?:overview|survey|review|systematic\\s+review)",
-          "description": "we present overview"
-        },
-        {
-          "id": "rev_abs_state_of_the_art",
-          "regex": "\\bstate[-\\s]of[-\\s]the[-\\s]art\\s+(?:in|on|review|survey)",
-          "description": "state-of-the-art review"
-        },
-        {
-          "id": "rev_abs_systematic_mapping",
-          "regex": "\\bsystematic\\s+mapping",
-          "description": "systematic mapping"
-        },
-        {
-          "id": "rev_abs_we_review",
-          "regex": "\\bwe\\s+(?:systematically\\s+)?review\\b",
-          "description": "we review"
-        }
-      ],
-      "overrides": []
-    },
-    {
-      "id": "rl",
+      "id": "A_classical_rl_marl_no_llm",
       "label": "Reinforcement learning sem LLM",
       "kind": "exclude",
       "justification": "RL",
-      "priority_index": 2,
+      "priority_index": 5,
       "patterns": [
         {
           "id": "rl_madrl",
@@ -506,202 +594,11 @@
       ]
     },
     {
-      "id": "llm_as_workload",
-      "label": "LLM como workload (servir/treinar), não como agente",
-      "kind": "exclude",
-      "justification": "LLM as workload",
-      "priority_index": 3,
-      "patterns": [
-        {
-          "id": "wl_train_llm_a",
-          "regex": "\\b(?:training|fine[-\\s]?tuning|pre[-\\s]?training)\\b[^.,]{0,200}\\b(?:llms?|foundation\\s+models?|large\\s+language\\s+models?|large\\s+models?|transformer[-\\s]based)\\b",
-          "description": "training/fine-tuning + LLM"
-        },
-        {
-          "id": "wl_train_llm_b",
-          "regex": "\\b(?:llms?|foundation\\s+models?|large\\s+language\\s+models?|large\\s+models?|transformer[-\\s]based)\\b[^.,]{0,200}\\b(?:training|fine[-\\s]?tuning|pre[-\\s]?training)\\b",
-          "description": "LLM + training/fine-tuning"
-        },
-        {
-          "id": "wl_train_cluster",
-          "regex": "\\b(?:ai|ml)\\s+training\\s+(?:cluster|workload)\\b",
-          "description": "AI/ML training cluster"
-        },
-        {
-          "id": "wl_training_workload",
-          "regex": "\\btraining\\s+(?:cluster|workload)s?\\b",
-          "description": "training cluster/workload"
-        },
-        {
-          "id": "wl_customizing_transformer",
-          "regex": "\\bcustomizing\\s+(?:transformer|llm|foundation\\s+model)",
-          "description": "customizing transformer/LLM"
-        },
-        {
-          "id": "wl_distributed_finetuning",
-          "regex": "\\b(?:decentralized|distributed|federated|split)\\s+(?:fine[-\\s]?tuning|training)\\s+(?:of\\s+)?(?:foundation\\s+models?|large\\s+language|llms?)",
-          "description": "distributed fine-tuning of LLMs"
-        },
-        {
-          "id": "wl_inference_llm_a",
-          "regex": "\\b(?:llm|llms|gpt|generative\\s+ai|genai|aigc|large\\s+language\\s+model|large\\s+language|foundation\\s+model|transformer)[s]?\\b[^.,]{0,200}\\b(?:inference|serving|deploy(?:ment|ing)?|accelerat|batching|quantization|pruning|decoding|hot[-\\s]swap|disaggregat)\\b",
-          "description": "LLM + inference/serving"
-        },
-        {
-          "id": "wl_inference_llm_b",
-          "regex": "\\b(?:inference|serving|deploy(?:ment|ing)?|accelerat|batching|quantization|pruning|decoding|hot[-\\s]swap|disaggregat)\\b[^.,]{0,200}\\b(?:llms?|gpts?|generative\\s+ai|genai|aigc|large\\s+language\\s+models?|foundation\\s+models?|transformers?)\\b",
-          "description": "inference/serving + LLM"
-        },
-        {
-          "id": "wl_abs_serving_llms",
-          "regex": "\\b(?:serving|serve|deploying|deploy|hosting|host)\\s+(?:of\\s+)?(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)",
-          "description": "serving/deploying LLMs"
-        },
-        {
-          "id": "wl_abs_llm_infra",
-          "regex": "\\b(?:llm|large\\s+language\\s+model|foundation\\s+model)\\s+(?:inference\\s+)?(?:engine|system|platform|infrastructure|stack|pipeline)",
-          "description": "LLM inference engine/infra"
-        },
-        {
-          "id": "wl_abs_for_llm_workload",
-          "regex": "\\bfor\\s+(?:efficient\\s+|scalable\\s+)?(?:llm|large\\s+language\\s+model|foundation\\s+model)\\s+(?:inference|serving|training|fine[\\s-]?tuning|deployment)",
-          "description": "for LLM inference/serving (workload)"
-        },
-        {
-          "id": "wl_abs_we_propose_llm_serving",
-          "regex": "\\bwe\\s+(?:propose|present|introduce|design)\\s+(?:a\\s+)?(?:novel\\s+|new\\s+)?(?:framework|system|method|approach|scheme|technique|architecture)\\s+(?:for|to)\\s+(?:efficient\\s+|scalable\\s+)?(?:serving|inference|deploy(?:ing|ment)|train(?:ing)|fine[\\s-]?tuning)\\s+(?:of\\s+)?(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)",
-          "description": "we propose system for LLM serving (workload)"
-        }
-      ],
-      "overrides": [
-        {
-          "id": "ovr_with_llm",
-          "regex": "\\bwith\\s+(?:llms?|large\\s+language\\s+models?|generative\\s+ai|genai)\\b",
-          "description": "with LLM"
-        },
-        {
-          "id": "ovr_using_llm",
-          "regex": "\\busing\\s+(?:llms?|large\\s+language|generative\\s+ai|genai|gpts?)\\b",
-          "description": "using LLM"
-        },
-        {
-          "id": "ovr_leveraging_llm",
-          "regex": "\\bleveraging\\s+(?:llms?|gpts?|generative\\s+ai|large\\s+language)\\b",
-          "description": "leveraging LLM"
-        },
-        {
-          "id": "ovr_via_llm",
-          "regex": "\\bvia\\s+(?:llms?|large\\s+language|generative\\s+ai|gpts?)\\b",
-          "description": "via LLM"
-        },
-        {
-          "id": "ovr_llm_modifier",
-          "regex": "\\bllm[-\\s]?(?:agent|empowered|driven|aided|guided|based|enabled|augmented|powered)",
-          "description": "llm-agent/empowered/etc"
-        },
-        {
-          "id": "ovr_modifier_by_llm",
-          "regex": "\\b(?:agent|empowered|driven|aided|guided|enabled|augmented|powered)[\\s-]?(?:by|via|with)\\s+(?:llm|large\\s+language|generative\\s+ai|genai|gpt|foundation\\s+model|transformer)",
-          "description": "X by/via/with LLM"
-        },
-        {
-          "id": "ovr_llm_as_judge",
-          "regex": "\\bllm[\\s-]?as[\\s-]?a[\\s-]?judge\\b",
-          "description": "LLM-as-a-judge"
-        },
-        {
-          "id": "ovr_llm_agents",
-          "regex": "\\bllm\\s+agents?\\b",
-          "description": "LLM agents"
-        },
-        {
-          "id": "ovr_intent_driven",
-          "regex": "\\bintent[\\s-]?driven\\b",
-          "description": "intent-driven"
-        },
-        {
-          "id": "ovr_prompt_driven",
-          "regex": "\\bprompt[\\s-]?driven\\b",
-          "description": "prompt-driven"
-        },
-        {
-          "id": "ovr_prompt_based",
-          "regex": "\\bprompt[\\s-]?based\\b",
-          "description": "prompt-based"
-        },
-        {
-          "id": "ovr_hyper_heuristics",
-          "regex": "\\bhyper[-\\s]heuristics?\\b",
-          "description": "hyper-heuristics"
-        },
-        {
-          "id": "ovr_rca",
-          "regex": "\\brca\\b",
-          "description": "RCA"
-        },
-        {
-          "id": "ovr_anomaly_log",
-          "regex": "\\banomaly\\s+log\\s+analysis\\b",
-          "description": "anomaly log analysis"
-        },
-        {
-          "id": "ovr_system_log_diag",
-          "regex": "\\bsystem\\s+log\\s+(?:fault\\s+)?diagnosis\\b",
-          "description": "system log diagnosis"
-        },
-        {
-          "id": "ovr_fault_diag",
-          "regex": "\\b(?:network|system|service)\\s+fault\\s+diagnosis\\b",
-          "description": "fault diagnosis"
-        },
-        {
-          "id": "ovr_rm_via",
-          "regex": "\\bresource\\s+management\\s+systems?\\s+via\\b",
-          "description": "resource management via"
-        },
-        {
-          "id": "ovr_function_calling",
-          "regex": "\\bfunction\\s+calling\\b",
-          "description": "function calling"
-        },
-        {
-          "id": "ovr_llm_caching",
-          "regex": "\\b(?:foundation\\s+model|llm)\\s+caching\\b",
-          "description": "LLM caching"
-        },
-        {
-          "id": "ovr_caching_inference",
-          "regex": "\\bcaching\\s+and\\s+inference\\s+of\\b",
-          "description": "caching and inference of"
-        },
-        {
-          "id": "ovr_abs_llm_decides",
-          "regex": "\\b(?:llms?|large\\s+language\\s+models?|foundation\\s+models?|generative\\s+ai)\\b[^.]{0,100}\\b(?:decides?|selects?|chooses?|determines?|recommends?|generates?\\s+(?:a\\s+)?(?:plan|policy|placement|schedule|allocation))",
-          "description": "LLM decides/selects/generates plan"
-        },
-        {
-          "id": "ovr_abs_llm_orchestrates",
-          "regex": "\\b(?:llms?|large\\s+language\\s+models?|foundation\\s+models?)\\b[^.]{0,100}\\b(?:orchestrate|control|manage|govern|reason|plan)",
-          "description": "LLM orchestrates/manages"
-        },
-        {
-          "id": "ovr_abs_agentic_workflow",
-          "regex": "\\bagentic\\s+(?:workflow|pipeline|loop|architecture|framework)",
-          "description": "agentic workflow"
-        },
-        {
-          "id": "ovr_abs_using_llms_to_decide",
-          "regex": "\\busing\\s+(?:llms?|large\\s+language\\s+models?|foundation\\s+models?)\\s+to\\s+(?:decide|select|recommend|plan|schedule|allocate|orchestrate)",
-          "description": "using LLMs to decide"
-        }
-      ]
-    },
-    {
-      "id": "classical_agents",
+      "id": "B_classical_mas_no_llm",
       "label": "Agentes clássicos (não-LLM)",
       "kind": "exclude",
       "justification": "MAS/Agent sem sinal de LLM no abstract (provável clássico ou MARL puro)",
-      "priority_index": 4,
+      "priority_index": 6,
       "patterns": [
         {
           "id": "cls_mas_term",
@@ -792,7 +689,7 @@
       "label": "Multi-agent system baseado em LLM",
       "kind": "include",
       "justification": "Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM).",
-      "priority_index": 5,
+      "priority_index": 7,
       "patterns": [
         {
           "id": "mas_llm_combo",
@@ -807,7 +704,7 @@
       "label": "Single-agent baseado em LLM",
       "kind": "include",
       "justification": "Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM).",
-      "priority_index": 6,
+      "priority_index": 8,
       "patterns": [
         {
           "id": "agent_llm_combo",
@@ -822,7 +719,7 @@
       "label": "Agentic AI / LLM (genérico)",
       "kind": "include",
       "justification": "Talvez tenha algo de LLM e/ou Agentic AI.",
-      "priority_index": 7,
+      "priority_index": 9,
       "patterns": [
         {
           "id": "gen_llm",

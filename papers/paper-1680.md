@@ -1,12 +1,14 @@
 ---
 id: paper-1680
-title: 'MicroIntent: Intent-Based Placement Strategy for Microservice Application in the Compute Continuum Using LLMs'
+title: 'MicroIntent: Intent-Based Placement Strategy for Microservice Application
+  in the Compute Continuum Using LLMs'
 authors:
 - Islam, Koushikur
 - Da Cunha Rodrigues, Guilherme
 - Javadi, Bahman
 - Calheiros, Rodrigo N.
-venue: Proceedings - 2025 IEEE International Conference on Smart Internet of Things, SmartIoT 2025
+venue: Proceedings - 2025 IEEE International Conference on Smart Internet of Things,
+  SmartIoT 2025
 venue_type: conference
 year: 2025
 doi: 10.1109/SmartIoT66867.2025.00026
@@ -38,7 +40,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -64,9 +67,9 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
+    winning_category: llm_agentic_ai_generic
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -151,9 +154,23 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1680.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI."
+- **winning_category:** 'llm_agentic_ai_generic'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+
 
 ## 07 — Taxonomy
 

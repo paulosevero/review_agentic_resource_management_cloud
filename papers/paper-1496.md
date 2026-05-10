@@ -8,7 +8,9 @@ authors:
 - Tortonesi, Mauro
 - Stefanelli, Cesare
 - Varga, Pal
-venue: 'Proceedings of the 2025 21st International Conference on Network and Service Management: AI and Sustainability in the Future of Network and Service Management, CNSM 2025'
+venue: 'Proceedings of the 2025 21st International Conference on Network and Service
+  Management: AI and Sustainability in the Future of Network and Service Management,
+  CNSM 2025'
 venue_type: conference
 year: 2025
 doi: 10.23919/CNSM67658.2025.11297547
@@ -38,12 +40,15 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: C1=0.5 (agentic/LLM signal in title); C2=0 (no resource management signal); C3=0 (no infra signal)
+    proposed_justification: C1=0.5 (agentic/LLM signal in title); C2=0 (no resource
+      management signal); C3=0 (no infra signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
-    my_justification: Talvez Intent-Based e Neurosymbolic AI sejam indicativos que o artigo é interessante para a review (e.g., intent-based é comumente usado em conjunto com LLM-based agents, e Neurosymbolic
-      AI pode usar LLMs por baixo dos panos).
+    my_justification: Talvez Intent-Based e Neurosymbolic AI sejam indicativos que
+      o artigo é interessante para a review (e.g., intent-based é comumente usado
+      em conjunto com LLM-based agents, e Neurosymbolic AI pode usar LLMs por baixo
+      dos panos).
     agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: iter-0
@@ -63,9 +68,10 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Exclude
+    proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA,
+      geração de manifestos) — não é decisão de resource management.
+    winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -150,9 +156,16 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1496.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Exclude
+- **regex_justification:** "Tarefa de DevOps/observabilidade (incident triage, RCA, geração de manifestos) — não é decisão de resource management."
+- **winning_category:** 'D_devops_or_logs_not_rm'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: D_devops_or_logs_not_rm, pattern_id: devops_logs_incidents, matched_substring: "log analysis" }`
+
 
 ## 07 — Taxonomy
 

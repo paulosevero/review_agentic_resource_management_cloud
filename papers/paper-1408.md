@@ -9,7 +9,8 @@ authors:
 - Guo, Jianxiong
 - Wang, Tian
 - Jia, Weijia
-venue: Proceedings - 2025 IEEE International Conference on Security, Privacy, Anonymity in Computation and Communication and Storage, SpaCCS 2025
+venue: Proceedings - 2025 IEEE International Conference on Security, Privacy, Anonymity
+  in Computation and Communication and Storage, SpaCCS 2025
 venue_type: conference
 year: 2025
 doi: 10.1109/SpaCCS67922.2025.00012
@@ -39,7 +40,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -63,10 +65,18 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM).
+    winning_category: agent_llm_based
+    overrides_applied:
+    - ovr_with_llm
+    - ovr_using_llm
+    - ovr_llm_modifier
+    - ovr_llm_as_judge
+    - ovr_intent_driven
+    - ovr_abs_llm_decides
+    - ovr_abs_llm_orchestrates
+    - ovr_cls_llm_present
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -150,9 +160,23 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1408.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM)."
+- **winning_category:** 'agent_llm_based'
+- **overrides_applied:** ['ovr_with_llm', 'ovr_using_llm', 'ovr_llm_modifier', 'ovr_llm_as_judge', 'ovr_intent_driven', 'ovr_abs_llm_decides', 'ovr_abs_llm_orchestrates', 'ovr_cls_llm_present']
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_b, matched_substring: "LLMs elegantly bypass this training" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "Large Language Models 
+ The impressive natural language understanding and inference" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "inference abilities of recent Large Language Models (LLMs" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_b, matched_substring: "inference abilities of recent Large Language Models (LLMs" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
+  - `{ category: agent_llm_based, pattern_id: agent_llm_combo, matched_substring: "Furthermore, the impracticality of the online approach presents our second research challenge: How t" }`
+
 
 ## 07 — Taxonomy
 

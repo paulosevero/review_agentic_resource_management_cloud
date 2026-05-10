@@ -1,6 +1,7 @@
 ---
 id: paper-1683
-title: Game-Theoretic-GAI Approach for Computation Offloading and Resource Management for Mobile Edge Collaborative Vehicular Networks
+title: Game-Theoretic-GAI Approach for Computation Offloading and Resource Management
+  for Mobile Edge Collaborative Vehicular Networks
 authors:
 - Jahan, Nusrat
 - Hasan, Mohammad Kamrul
@@ -43,7 +44,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: C1=0 (no agentic/LLM signal); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=0 (no agentic/LLM signal); C2=1.0 (resource management
+      signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -68,10 +70,14 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM).
+    winning_category: mas_llm_based
+    overrides_applied:
+    - ovr_with_llm
+    - ovr_using_llm
+    - ovr_rl_llm_present
+    - ovr_cls_llm_present
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -155,9 +161,20 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1683.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM)."
+- **winning_category:** 'mas_llm_based'
+- **overrides_applied:** ['ovr_with_llm', 'ovr_using_llm', 'ovr_rl_llm_present', 'ovr_cls_llm_present']
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "Generative AI have addressed privacy concerns by enabling decentralized training and inference" }`
+  - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "The exponential rise of Intelligent Transportation Systems (ITS) and autonomous vehicles has greatly" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "multi-agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
+  - `{ category: mas_llm_based, pattern_id: mas_llm_combo, matched_substring: "The exponential rise of Intelligent Transportation Systems (ITS) and autonomous vehicles has greatly" }`
+
 
 ## 07 — Taxonomy
 

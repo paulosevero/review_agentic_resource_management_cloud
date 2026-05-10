@@ -1,0 +1,179 @@
+{
+  "batch": 8,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "agentic_llm_for_rm",
+      "description": "Agentic AI or LLM-driven systems explicitly solving resource management decisions (scheduling, placement, scaling, allocation) in cloud-edge.",
+      "decision_distribution": {
+        "Include": 8,
+        "Exclude": 0
+      },
+      "paper_ids": [
+        "paper-1780",
+        "paper-1783",
+        "paper-1790",
+        "paper-1854",
+        "paper-1947",
+        "paper-1971",
+        "paper-1991",
+        "paper-1999"
+      ],
+      "example_titles": [
+        "Agent-as-a-Service: An AI-Native Edge Computing Framework for 6G Networks",
+        "Can LLMs only talk? Experimental studies on task scheduling with Large Language Models",
+        "An Agentic Task Offloading Workflow Method for Intellicise Wireless Networks"
+      ]
+    },
+    {
+      "name": "classical_rl_marl_without_llm",
+      "description": "Reinforcement learning or multi-agent systems for RM without agentic LLM component (pre-transformer era or RL/MARL-only).",
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 15
+      },
+      "paper_ids": [
+        "paper-1779",
+        "paper-1785",
+        "paper-1795",
+        "paper-1800",
+        "paper-1804",
+        "paper-1917",
+        "paper-1918",
+        "paper-1921",
+        "paper-1922",
+        "paper-1934",
+        "paper-1935",
+        "paper-1939",
+        "paper-1955",
+        "paper-1961",
+        "paper-1962"
+      ],
+      "example_titles": [
+        "Adaptive AI-based Decentralized Resource Management in the Cloud-Edge Continuum",
+        "Collaborative computation offloading in satellite–terrestrial networks enabled by satellite edge computing",
+        "Energy-Efficient UAV-Driven Multi-Access Edge Computing: A Distributed Many-Agent Perspective"
+      ]
+    },
+    {
+      "name": "llm_as_workload",
+      "description": "Systems managing LLM or generative AI workloads/inference, not deploying LLM agents for RM decisions (Boundary B violation).",
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 9
+      },
+      "paper_ids": [
+        "paper-1758",
+        "paper-1788",
+        "paper-1798",
+        "paper-1849",
+        "paper-1879",
+        "paper-1880",
+        "paper-1944",
+        "paper-1965",
+        "paper-1966"
+      ],
+      "example_titles": [
+        "Serverless RAG-Stream: A Cloud Pipeline for Efficient Real-Time Retrieval-Augmented Generation",
+        "Distributed VLMs: Efficient Vision-Language Processing through Cloud-Edge Collaboration",
+        "FlexGen: Efficient On-Demand Generative AI Service With Flexible Diffusion Model in Mobile Edge Networks"
+      ]
+    },
+    {
+      "name": "security_governance_not_rm",
+      "description": "LLM-driven security, compliance, policy automation, audit — not resource allocation/scheduling decisions (Boundary B).",
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 5
+      },
+      "paper_ids": [
+        "paper-1766",
+        "paper-1915",
+        "paper-1953",
+        "paper-1975",
+        "paper-1977"
+      ],
+      "example_titles": [
+        "KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments",
+        "Cross-Cloud Data Privacy Protection: Optimizing Collaborative Mechanisms",
+        "Analyzing and mitigating (with LLMs) the security misconfigurations of Helm charts"
+      ]
+    },
+    {
+      "name": "non_rm_non_infrastructure_scope",
+      "description": "Works outside resource management domain or infrastructure scope (analytics, monitoring, optimization in non-cloud contexts, healthcare, business systems).",
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 12
+      },
+      "paper_ids": [
+        "paper-1756",
+        "paper-1784",
+        "paper-1814",
+        "paper-1844",
+        "paper-1850",
+        "paper-1920",
+        "paper-1923",
+        "paper-1924",
+        "paper-1927",
+        "paper-1931",
+        "paper-1940",
+        "paper-1946"
+      ],
+      "example_titles": [
+        "LLMs for Resource Allocation in Next-Gen RIS-Aided Healthcare Wireless Networks",
+        "Can pre-trained LLMs be used as out-of-the-box bottleneck detectors? An explorative study",
+        "Optimisation and application of management accounting system based on generative artificial intelligence"
+      ]
+    },
+    {
+      "name": "survey_review_editorial",
+      "description": "Survey papers, systematic reviews, literature surveys, or editorials (excluded by document-type gate).",
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 2
+      },
+      "paper_ids": [
+        "paper-1919",
+        "paper-1964"
+      ],
+      "example_titles": [
+        "Toward Edge General Intelligence With Multiple-Large Language Model (MLLM)",
+        "Enhancing Adaptability, Security, and Resource Optimization by Convergence of Clouds"
+      ]
+    },
+    {
+      "name": "agent_without_llm_signal",
+      "description": "Agent-based or multi-agent systems for RM with no clear LLM component in abstract (likely classical MAS or MARL).",
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 4
+      },
+      "paper_ids": [
+        "paper-1761",
+        "paper-1916",
+        "paper-1925",
+        "paper-1955"
+      ],
+      "example_titles": [
+        "Dynamic Load Balancing with Agent-Based Algorithm in Cloud Computing via OpenStack",
+        "Decentralized Multi-Agent Task Offloading in LEO Satellite Edge Computing",
+        "Intent-Driven Multi-Agent Coordination for Edge Computing under Resource Constraints"
+      ]
+    },
+    {
+      "name": "no_pdf_or_insufficient_evidence",
+      "description": "Papers without accessible PDF or insufficient evidence to judge scope/relevance (exclude at gate).",
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "paper_ids": [
+        "paper-1801"
+      ],
+      "example_titles": [
+        "INT-LLM: Adaptive Path Planner for In-Band Network Telemetry via Large Language Models"
+      ]
+    }
+  ]
+}

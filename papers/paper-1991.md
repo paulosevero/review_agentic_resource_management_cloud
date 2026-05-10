@@ -1,13 +1,15 @@
 ---
 id: paper-1991
-title: An Agentic Task Offloading Workflow Method for Intellicise Wireless Networks in the Industrial Internet of Things
+title: An Agentic Task Offloading Workflow Method for Intellicise Wireless Networks
+  in the Industrial Internet of Things
 authors:
 - Ni, Guowei
 - Ni, Weichen
 - Han, Boxiao
 - Dai, Zuojun
 - Jia, Ziyan
-venue: 2025 IEEE 2nd International Conference on Electronics, Communications and Intelligent Science, ECIS 2025 - Proceeding
+venue: 2025 IEEE 2nd International Conference on Electronics, Communications and Intelligent
+  Science, ECIS 2025 - Proceeding
 venue_type: conference
 year: 2025
 doi: 10.1109/ECIS65594.2025.11086771
@@ -38,7 +40,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=0.5 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+      management signal); C3=0.5 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -62,9 +65,11 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Exclude
+    proposed_justification: O LLM aparece em papel de suporte (gera heurísticas, embeddings,
+      features ou recompensas para RL/MARL/otimização clássica). Não há loop agentic
+      AI dirigindo decisão de RM.
+    winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -149,9 +154,16 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1991.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Exclude
+- **regex_justification:** "O LLM aparece em papel de suporte (gera heurísticas, embeddings, features ou recompensas para RL/MARL/otimização clássica). Não há loop agentic AI dirigindo decisão de RM."
+- **winning_category:** 'H_llm_supports_other_method'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: H_llm_supports_other_method, pattern_id: hybrid_llm_rl_llm_subordinate, matched_substring: "LLM-Enhanced" }`
+
 
 ## 07 — Taxonomy
 

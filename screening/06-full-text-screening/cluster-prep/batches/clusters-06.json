@@ -1,0 +1,150 @@
+{
+  "batch": 6,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "llm_supporting_not_rm_driven",
+      "description": "LLM used as supporting component in MLOps/DevOps/e-commerce workflows, not for autonomous resource management decisions.",
+      "paper_ids": [
+        "paper-1379",
+        "paper-1383",
+        "paper-1397",
+        "paper-1404",
+        "paper-1406",
+        "paper-1409",
+        "paper-1413",
+        "paper-1417",
+        "paper-1419",
+        "paper-1425",
+        "paper-1426",
+        "paper-1430",
+        "paper-1446",
+        "paper-1449",
+        "paper-1469",
+        "paper-1507",
+        "paper-1510",
+        "paper-1527",
+        "paper-1532",
+        "paper-1534",
+        "paper-1535",
+        "paper-1552",
+        "paper-1574"
+      ],
+      "decision_distribution": {
+        "Exclude": 23
+      },
+      "example_titles": [
+        "Real-Time ML and LLM Optimization: Orchestrating Scalable Workflows in Distributed Commerce Environments",
+        "GAIKube: Generative AI-Based Proactive Kubernetes Container Orchestration Framework for Heterogeneous Edge Computing",
+        "Deploy-Ready IaC Generation Using Multi-Agent Systems for Cloud Deployments"
+      ]
+    },
+    {
+      "name": "agent_without_llm_signal",
+      "description": "Agent systems (classical agents, MARL, RL) without clear LLM-driven agentic loop or marked as non-LLM-based.",
+      "paper_ids": [
+        "paper-1366",
+        "paper-1386",
+        "paper-1408",
+        "paper-1420",
+        "paper-1431",
+        "paper-1436",
+        "paper-1496",
+        "paper-1499",
+        "paper-1501",
+        "paper-1563"
+      ],
+      "decision_distribution": {
+        "Exclude": 5,
+        "Include": 5
+      },
+      "example_titles": [
+        "Agentic AI Decentralized Edge-Cloud Thermal Orchestration System",
+        "Utilizing LLMs for Virtual Machine Migration in Cloud Computing Environments",
+        "Intelligent Kubernetes Scheduling with Large Language Models"
+      ]
+    },
+    {
+      "name": "unclear_need_full_text",
+      "description": "Papers with insufficient abstract signal; require full-text review to determine scope boundary.",
+      "paper_ids": [
+        "paper-1423",
+        "paper-1454",
+        "paper-1455",
+        "paper-1478",
+        "paper-1489",
+        "paper-1516",
+        "paper-1526",
+        "paper-1540"
+      ],
+      "decision_distribution": {
+        "Exclude": 8
+      },
+      "example_titles": [
+        "Accelerating Frontier MoE Training with 3D Integrated Optics",
+        "SEAL: Secure and Efficient Adaptive Layering for On-Device Language Models with TEE",
+        "Towards An Improved Video RAG Workflow With Orchestration Support in A Visual Data Management System"
+      ]
+    },
+    {
+      "name": "multi_agent_system_rm",
+      "description": "Multi-agent systems coordinating resource management decisions, agent type unclear from abstract (may be RL/MARL or agentic).",
+      "paper_ids": [
+        "paper-1401",
+        "paper-1422",
+        "paper-1459",
+        "paper-1556",
+        "paper-1560"
+      ],
+      "decision_distribution": {
+        "Exclude": 5
+      },
+      "example_titles": [
+        "Simurgh: Multi-Agent Adversarial Benchmarking for Proactive Microservice Observability",
+        "Federated Synergy: Hierarchical Multi-Agent Learning for Sustainable Edge Computing in IIoT",
+        "A3CMulti-Edge: Multi-Agent Cross-Edge-Cloud Collaborative Task Scheduling Policy for Underground Coal Mine Intelligent Monitoring"
+      ]
+    },
+    {
+      "name": "agentic_ai_core_rm",
+      "description": "Core agentic AI system where LLM-backed autonomous agent drives resource management decisions (placement, scheduling, scaling).",
+      "paper_ids": [
+        "paper-1411",
+        "paper-1514"
+      ],
+      "decision_distribution": {
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Agentic AI in the Cloud: A Framework for Self-Directed Decision-Making and Optimization",
+        "Advanced Architectures Integrated With Agentic AI for Next-Generation Wireless Networks"
+      ]
+    },
+    {
+      "name": "edge_llm_inference",
+      "description": "Edge deployment, inference optimization, or quantization of LLMs; not about resource management decisions.",
+      "paper_ids": [
+        "paper-1398"
+      ],
+      "decision_distribution": {
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Bringing Llama-3 to the Edge: End-to-End Quantized Conversational AI on Raspberry Pi 5"
+      ]
+    },
+    {
+      "name": "network_telecom_5g_6g",
+      "description": "Network slicing, spectrum management, or telecom infrastructure; out of cloud/edge continuum scope.",
+      "paper_ids": [
+        "paper-1412"
+      ],
+      "decision_distribution": {
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Llama-Recipe - Fine-Tuned Meta's Llama LLM, PBOM and NFT Enabled 5G Network-Slice Orchestration and End-to-End Supply-Chain Verification Platform"
+      ]
+    }
+  ]
+}

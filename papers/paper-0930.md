@@ -7,7 +7,8 @@ authors:
 - Scazzariello, Mariano
 - Chiesa, Marco
 - Kostić, Dejan
-venue: EuroMLSys 2024 - Proceedings of the 2024 4th Workshop on Machine Learning and Systems
+venue: EuroMLSys 2024 - Proceedings of the 2024 4th Workshop on Machine Learning and
+  Systems
 venue_type: conference
 year: 2024
 doi: 10.1145/3642970.3655836
@@ -39,7 +40,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=0.5 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+      management signal); C3=0.5 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -63,10 +65,15 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
+    winning_category: llm_agentic_ai_generic
+    overrides_applied:
+    - ovr_with_llm
+    - ovr_using_llm
+    - ovr_via_llm
+    - ovr_llm_modifier
+    - ovr_abs_llm_decides
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -150,9 +157,31 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-0930.pdf`)_
 
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI."
+- **winning_category:** 'llm_agentic_ai_generic'
+- **overrides_applied:** ['ovr_with_llm', 'ovr_using_llm', 'ovr_via_llm', 'ovr_llm_modifier', 'ovr_abs_llm_decides']
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_a, matched_substring: "fine-tuning of LLMs" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "Large Language Models (LLMs) to perform code analysis and extract essential information from statefu" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLMs RSS Configuration Stateful Network Functions Static Code Analysis 
+ ---
+title: \"Deploying" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLMs\"
+  - \"Static Code Analysis\"
+  - \"RSS Configuration\"
 ---
+
+# Deploying" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "Large Language Models (LLMs) to perform code analysis and extract essential information from statefu" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLMs in the context of packet processing and (ii) address the challenges of deploying" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLMs before deploying a chain of stateful NFs;
+- Evaluated FlowMage and showed the benefits of optim" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLMs help to efficiently deploy" }`
+
 
 ## 07 — Taxonomy
 

@@ -1,12 +1,14 @@
 ---
 id: paper-2019
-title: 'Beyond Terrestrial: LLM-Orchestrated DtS-IoT Networks for Ubiquitous Edge Intelligence'
+title: 'Beyond Terrestrial: LLM-Orchestrated DtS-IoT Networks for Ubiquitous Edge
+  Intelligence'
 authors:
 - Pasandi, Hannaneh B.
 - Rousseau, Franck
 - Nadeem, Tamer
 - Darabi, Sina
-venue: ANAI 2025 - Proceedings of the 2025 ACM Workshop on Access Networks with Artificial Intelligence, Part of MobiCom 2025
+venue: ANAI 2025 - Proceedings of the 2025 ACM Workshop on Access Networks with Artificial
+  Intelligence, Part of MobiCom 2025
 venue_type: conference
 year: 2025
 doi: 10.1145/3737904.3768537
@@ -39,7 +41,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0 (no resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0 (no resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -65,10 +68,13 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
+    winning_category: llm_agentic_ai_generic
+    overrides_applied:
+    - ovr_via_llm
+    - ovr_llm_modifier
+    - ovr_abs_llm_orchestrates
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -152,9 +158,25 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2019.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI."
+- **winning_category:** 'llm_agentic_ai_generic'
+- **overrides_applied:** ['ovr_via_llm', 'ovr_llm_modifier', 'ovr_abs_llm_orchestrates']
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_a, matched_substring: "finetuning of quantized LLMs" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM RESOURCE MANAGEMENT
+
+Architecture and Optimized Deployment" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM inference" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM's superior prediction accuracy (reducing handover frequency by 18%) offsetting the higher per-in" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_abs_llm_infra, matched_substring: "LLM system" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLM" }`
+
 
 ## 07 — Taxonomy
 

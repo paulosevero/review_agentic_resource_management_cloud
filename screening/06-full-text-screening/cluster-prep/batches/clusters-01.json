@@ -1,0 +1,111 @@
+{
+  "batch": 1,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "classic_mas_without_llm",
+      "description": "Multi-agent systems for cloud/edge resource management without LLM components (pre-agentic)",
+      "paper_ids": [
+        "paper-0005",
+        "paper-0020",
+        "paper-0024",
+        "paper-0026",
+        "paper-0028",
+        "paper-0032",
+        "paper-0042",
+        "paper-0055",
+        "paper-0060",
+        "paper-0062",
+        "paper-0067",
+        "paper-0068",
+        "paper-0071",
+        "paper-0072",
+        "paper-0075",
+        "paper-0084",
+        "paper-0087",
+        "paper-0093",
+        "paper-0097",
+        "paper-0104"
+      ],
+      "decision_distribution": {
+        "Exclude": 20
+      },
+      "example_titles": [
+        "Research on cloud computing resource management model based on multi-agent system",
+        "Application of multi-agent modeling to sociological research: A case study of community evolution",
+        "Multiply-sectioned Bayesian network for multi-agent learning based meta resources scheduling in CloudSim"
+      ]
+    },
+    {
+      "name": "cloud_devops_auxiliary",
+      "description": "Cloud DevOps tasks (log analysis, incident triage, deployment automation) outside core resource management decisions",
+      "paper_ids": [
+        "paper-0007",
+        "paper-0019",
+        "paper-0022",
+        "paper-0030",
+        "paper-0038",
+        "paper-0051",
+        "paper-0052",
+        "paper-0057",
+        "paper-0061",
+        "paper-0065",
+        "paper-0082",
+        "paper-0085",
+        "paper-0092",
+        "paper-0096"
+      ],
+      "decision_distribution": {
+        "Exclude": 14
+      },
+      "example_titles": [
+        "Multiple intelligent agent coordination strategy for categorizing and searching appropriate cloud services",
+        "A modified cloud-based cryptographic agent for cloud data integrity",
+        "Load balancing, cost and response time minimisation issues in agent-based multi cloud service composition"
+      ]
+    },
+    {
+      "name": "robotics_edge_mobility",
+      "description": "Robotics and mobile navigation systems using edge/cloud infrastructure (not resource management)",
+      "paper_ids": [
+        "paper-0008",
+        "paper-0054"
+      ],
+      "decision_distribution": {
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Cloud computing support for the multi-agent robot navigation system",
+        "Cloud computing based on agent technology, super-recursive algorithms and DNA"
+      ]
+    },
+    {
+      "name": "network_telecom_telecom_focused",
+      "description": "Network slicing, 5G/6G, RAN scheduling in telecommunications (not cloud/edge resource management)",
+      "paper_ids": [
+        "paper-0004",
+        "paper-0011",
+        "paper-0014",
+        "paper-0015",
+        "paper-0017",
+        "paper-0034",
+        "paper-0040",
+        "paper-0041",
+        "paper-0066",
+        "paper-0070",
+        "paper-0074",
+        "paper-0088",
+        "paper-0090",
+        "paper-0095"
+      ],
+      "decision_distribution": {
+        "Exclude": 14
+      },
+      "example_titles": [
+        "ABS: Agent-Based Scheduling for Data-Intensive Workflow in Software-as-a-Service Environments",
+        "A distributed multi-agents architecture for self healing healthcare data center",
+        "Towards a fairer negotiation for dynamic resource allocation in cloud by relying on trustworthiness"
+      ]
+    }
+  ]
+}

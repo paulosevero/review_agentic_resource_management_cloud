@@ -1,6 +1,7 @@
 ---
 id: paper-2592
-title: Foundation Model Enhanced Joint Multi-Hop Task Offloading in Dynamic R2X/V2X-based Edge Computing Networks
+title: Foundation Model Enhanced Joint Multi-Hop Task Offloading in Dynamic R2X/V2X-based
+  Edge Computing Networks
 authors:
 - Han, Mingqi
 - Sun, Xinghua
@@ -42,7 +43,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -67,9 +69,9 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Exclude
+    proposed_justification: LLM as workload
+    winning_category: C_llm_as_workload
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -154,9 +156,18 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2592.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Exclude
+- **regex_justification:** "LLM as workload"
+- **winning_category:** 'C_llm_as_workload'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_a, matched_substring: "fine-tuning foundation models" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_b, matched_substring: "foundation model and the fine-tuning" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_b, matched_substring: "foundation models using low-rank decomposition matrices in LoRA can achieve a performance level to t" }`
+
 
 ## 07 — Taxonomy
 

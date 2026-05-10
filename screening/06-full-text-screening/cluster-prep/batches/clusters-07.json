@@ -1,0 +1,191 @@
+{
+  "batch": 7,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "llm_as_workload_serving",
+      "description": "LLM or GenAI treated as a workload to be served/optimized, not as the decision-making agent.",
+      "kind": "exclude",
+      "paper_ids": [
+        "paper-1596",
+        "paper-1597",
+        "paper-1600",
+        "paper-1628",
+        "paper-1629",
+        "paper-1651",
+        "paper-1658",
+        "paper-1675",
+        "paper-1679",
+        "paper-1687",
+        "paper-1691",
+        "paper-1699",
+        "paper-1707",
+        "paper-1749"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 14
+      },
+      "example_titles": [
+        "SigMorph: A Transfer-Oriented Toolkit for Fingerprint Injection in Fine-Tuned Models",
+        "Bringing GenAI awareness to Workload Management (Industry Track)",
+        "Development of a Transformer-Based Large Language Model Architecture in Cloud"
+      ]
+    },
+    {
+      "name": "classical_marl_without_llm",
+      "description": "Multi-agent reinforcement learning or classical RL for resource management without LLM-driven reasoning.",
+      "kind": "exclude",
+      "paper_ids": [
+        "paper-1576",
+        "paper-1579",
+        "paper-1636",
+        "paper-1637",
+        "paper-1645",
+        "paper-1685",
+        "paper-1689",
+        "paper-1727",
+        "paper-1728",
+        "paper-1743",
+        "paper-1745",
+        "paper-1747",
+        "paper-1755"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 13
+      },
+      "example_titles": [
+        "BAAM: An Inferential Multi-agent Modeling for Energy-Optimized Job Scheduling in Green Data Centers",
+        "Flash-Attention-Enhanced Multi-Agent Deep Deterministic Policy Gradient for Mobile Edge Computing in Digital Twin-Powered Internet of Things",
+        "Dual-Circulation Generative AI for Optimizing Resource Allocation in Multi-Granularity Heterogeneous Federated Learning"
+      ]
+    },
+    {
+      "name": "out_of_scope_domain",
+      "description": "Agentic AI applied to domains outside cloud/edge RM (6G, cybersecurity threat detection, general AIOps).",
+      "kind": "exclude",
+      "paper_ids": [
+        "paper-1603",
+        "paper-1613",
+        "paper-1618",
+        "paper-1621",
+        "paper-1623",
+        "paper-1682",
+        "paper-1722",
+        "paper-1735",
+        "paper-1753"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 9
+      },
+      "example_titles": [
+        "Integrating Generative AI with Network Digital Twin for 6G: An Edge-Cloud Collaborative Approach",
+        "Integrating LLM and GenAI for CyberSecure and Adaptive Resource Management in Large-Scale Wireless Sensor Networks",
+        "Comparative Analysis of GPT-2 and Gemini for Automated Generation of Dockerfiles and Docker Compose in DevOps Workflows"
+      ]
+    },
+    {
+      "name": "agentic_ai_core_for_rm",
+      "description": "Agentic AI (LLM-backed) systems where the autonomous loop directly drives resource management decisions.",
+      "kind": "include_candidate",
+      "paper_ids": [
+        "paper-1593",
+        "paper-1644",
+        "paper-1680",
+        "paper-1683",
+        "paper-1684",
+        "paper-1720",
+        "paper-1746",
+        "paper-1748"
+      ],
+      "decision_distribution": {
+        "Include": 7,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions",
+        "LLM-Based Adaptive Digital Twin Allocation for Microservice Workloads",
+        "MicroIntent: Intent-Based Placement Strategy for Microservice Application in the Compute Continuum Using LLMs"
+      ]
+    },
+    {
+      "name": "survey_review_excluded",
+      "description": "Surveys, systematic reviews, or document-type exclusions per manual review rules.",
+      "kind": "exclude",
+      "paper_ids": [
+        "paper-1590",
+        "paper-1642"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Towards Secure Cloud-Native Computing: Unveiling Kubernetes Misconfigurations with Large Language Models",
+        "Transforming 6G Mobile Edge Intelligence With Large Models"
+      ]
+    },
+    {
+      "name": "demo_without_evaluation",
+      "description": "Demo or proof-of-concept without formal evaluation, per manual rule exclusion.",
+      "kind": "exclude",
+      "paper_ids": [
+        "paper-1588"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Demo: Conversational AI Agent for ML Infrastructure Monitoring and Analysis"
+      ]
+    },
+    {
+      "name": "security_not_resource_mgmt",
+      "description": "Agentic AI applied to security (threat analysis, misconfiguration detection), not resource management.",
+      "kind": "exclude",
+      "paper_ids": [
+        "paper-1656"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "A Novel LLM Approach of Cybersecurity Threat Analysis and Response"
+      ]
+    },
+    {
+      "name": "ambiguous_unclear",
+      "description": "Papers with insufficient evidence in abstract to classify; requires full-text review.",
+      "kind": "boundary_case",
+      "paper_ids": [
+        "paper-1708"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "An AI-native application assemble platform for easy-integrating of AIGC based services"
+      ]
+    },
+    {
+      "name": "aiops_generic_not_agentic",
+      "description": "Generic AIOps without clear agentic loop for autonomous resource management decisions.",
+      "kind": "exclude",
+      "paper_ids": [
+        "paper-1721"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "NextGen AI-Infused IT Operations Model: Revolutionizing Application Maintenance for Modern Enterprises"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "batch": 3,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "mas_game_theory",
+      "description": "Multi-agent systems with game theory, auctions, or decentralized mechanisms (no LLM).",
+      "paper_ids": [
+        "paper-0299",
+        "paper-0331",
+        "paper-0332",
+        "paper-0334",
+        "paper-0352",
+        "paper-0370",
+        "paper-0373",
+        "paper-0382",
+        "paper-0383",
+        "paper-0389",
+        "paper-0413",
+        "paper-0417",
+        "paper-0423",
+        "paper-0434",
+        "paper-0458",
+        "paper-0470",
+        "paper-0475",
+        "paper-0479",
+        "paper-0493",
+        "paper-0532",
+        "paper-0550",
+        "paper-0554",
+        "paper-0557",
+        "paper-0564",
+        "paper-0600",
+        "paper-0601",
+        "paper-0609",
+        "paper-0625"
+      ],
+      "decision_distribution": {
+        "Exclude": 28
+      },
+      "example_titles": [
+        "Research of New Cloud Agent Game Model",
+        "Multi-Agent-Based Framework for Resource Allocation in Cloud Computing",
+        "A new multi-agent group-buying auction for automated VM-to-Customer mapping"
+      ]
+    },
+    {
+      "name": "rl_marl_classical",
+      "description": "Classical RL/MARL agents without LLM reasoning component.",
+      "paper_ids": [
+        "paper-0306",
+        "paper-0315",
+        "paper-0369",
+        "paper-0415",
+        "paper-0468",
+        "paper-0497",
+        "paper-0522",
+        "paper-0579",
+        "paper-0608",
+        "paper-0635",
+        "paper-0656"
+      ],
+      "decision_distribution": {
+        "Exclude": 11
+      },
+      "example_titles": [
+        "Video Service-Oriented Vehicular Collaboration: A Multi-Agent Proximal Policy Optimization Approach",
+        "Joint Caching and Transmission in the Mobile Edge Network: An Multi-Agent Learning Approach",
+        "Optimizing Federated Learning in Distributed Industrial IoT: A Multi-Agent Approach"
+      ]
+    },
+    {
+      "name": "low_quality_or_unfocused",
+      "description": "Survey, review, or low empirical eval; unclear fit to agentic RM scope.",
+      "paper_ids": [
+        "paper-0345",
+        "paper-0361",
+        "paper-0396",
+        "paper-0433",
+        "paper-0442",
+        "paper-0568",
+        "paper-0571",
+        "paper-0641"
+      ],
+      "decision_distribution": {
+        "Exclude": 8
+      },
+      "example_titles": [
+        "NITCO: An intelligent agent technique for optimising of resource utilisation in cloud",
+        "A multi agent based dynamic resource allocation in fog-cloud computing environment",
+        "Mandrake: multiagent systems as a basis for programming fault-tolerant decentralized applications"
+      ]
+    },
+    {
+      "name": "devops_monitoring_observability",
+      "description": "DevOps, CI/CD, monitoring, logging (not core resource management).",
+      "paper_ids": [
+        "paper-0346",
+        "paper-0487"
+      ],
+      "decision_distribution": {
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Distributed System of Intelligent Content Monitoring Agents",
+        "Agent-Based Distributed Data Analysis in Industrial Cyber-Physical Systems"
+      ]
+    },
+    {
+      "name": "vm_container_placement",
+      "description": "VM/container placement, migration, scheduling in cloud/edge (classical or RL, no LLM).",
+      "paper_ids": [
+        "paper-0581"
+      ],
+      "decision_distribution": {
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Agent-based cloud simulation model for resource management"
+      ]
+    }
+  ]
+}

@@ -1,11 +1,13 @@
 ---
 id: paper-2120
-title: 'AI and Generative AI-Driven Automation for Multi-Cloud and Hybrid Cloud Architectures: Enhancing Security, Performance, and Operational Efficiency'
+title: 'AI and Generative AI-Driven Automation for Multi-Cloud and Hybrid Cloud Architectures:
+  Enhancing Security, Performance, and Operational Efficiency'
 authors:
 - Seth, Dhruv Kumar
 - Ratra, Karan Kumar
 - Sundareswaran, Aneeshkumar P
-venue: 2025 IEEE 15th Annual Computing and Communication Workshop and Conference, CCWC 2025
+venue: 2025 IEEE 15th Annual Computing and Communication Workshop and Conference,
+  CCWC 2025
 venue_type: conference
 year: 2025
 doi: 10.1109/CCWC62904.2025.10903928
@@ -47,7 +49,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -71,9 +74,10 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Exclude
+    proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA,
+      geração de manifestos) — não é decisão de resource management.
+    winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
     my_final_decision: null
     my_justification: null
@@ -158,9 +162,16 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2120.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Exclude
+- **regex_justification:** "Tarefa de DevOps/observabilidade (incident triage, RCA, geração de manifestos) — não é decisão de resource management."
+- **winning_category:** 'D_devops_or_logs_not_rm'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: D_devops_or_logs_not_rm, pattern_id: deployment_assistant_no_rm, matched_substring: "configuration generation" }`
+
 
 ## 07 — Taxonomy
 

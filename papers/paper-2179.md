@@ -36,7 +36,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: C1=0 (no agentic/LLM signal); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=0 (no agentic/LLM signal); C2=1.0 (resource management
+      signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -61,10 +62,15 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Exclude
+    proposed_justification: Out of scope
+    winning_category: F_out_of_scope_domain
+    overrides_applied:
+    - ovr_with_llm
+    - ovr_leveraging_llm
+    - ovr_llm_modifier
+    - ovr_abs_llm_decides
+    - ovr_abs_llm_orchestrates
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -148,9 +154,19 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2179.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Exclude
+- **regex_justification:** "Out of scope"
+- **winning_category:** 'F_out_of_scope_domain'
+- **overrides_applied:** ['ovr_with_llm', 'ovr_leveraging_llm', 'ovr_llm_modifier', 'ovr_abs_llm_decides', 'ovr_abs_llm_orchestrates']
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_a, matched_substring: "training large models" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_train_llm_b, matched_substring: "LLMs is a type of deep learning-based artificial intelligence model that can process large-scale tas" }`
+  - `{ category: F_out_of_scope_domain, pattern_id: oos_smart_manufacturing, matched_substring: "smart manufacturing" }`
+  - `{ category: F_out_of_scope_domain, pattern_id: oos_smart_manufacturing, matched_substring: "smart manufacturing" }`
+
 
 ## 07 — Taxonomy
 

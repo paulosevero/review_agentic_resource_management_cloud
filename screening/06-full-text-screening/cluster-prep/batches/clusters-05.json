@@ -1,0 +1,113 @@
+{
+  "batch": 5,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "classical_rl_marl_no_llm",
+      "description": "Classical reinforcement learning and multi-agent systems without LLM-driven reasoning loop",
+      "paper_ids": [
+        "paper-1059",
+        "paper-1064",
+        "paper-1084",
+        "paper-1086",
+        "paper-1098",
+        "paper-1100",
+        "paper-1116",
+        "paper-1123",
+        "paper-1132",
+        "paper-1150",
+        "paper-1180",
+        "paper-1203",
+        "paper-1217",
+        "paper-1219",
+        "paper-1228",
+        "paper-1249",
+        "paper-1274",
+        "paper-1298",
+        "paper-1306",
+        "paper-1314",
+        "paper-1321",
+        "paper-1336",
+        "paper-1350",
+        "paper-1362"
+      ],
+      "decision_distribution": {
+        "Exclude": 24
+      },
+      "example_titles": [
+        "Mobile-Aware Service Offloading for UAV-Assisted IoV: A Multiagent Tiny Distributed Learning Approach",
+        "Resource allocation for pervasive edge computing based on multi-agent imitation learning; [基于多代理模仿学习的普适边缘计算资源分配]",
+        "Poster: Multi-Agent Transformer for Dynamic Allocation of Distributed Applications on the Edge"
+      ]
+    },
+    {
+      "name": "telecom_5g_6g_hpc",
+      "description": "Telecommunications, 5G/6G networks, and HPC clusters outside cloud-edge scope",
+      "paper_ids": [
+        "paper-1073",
+        "paper-1083",
+        "paper-1109",
+        "paper-1124",
+        "paper-1164",
+        "paper-1172",
+        "paper-1181",
+        "paper-1196",
+        "paper-1232",
+        "paper-1267",
+        "paper-1326",
+        "paper-1333"
+      ],
+      "decision_distribution": {
+        "Exclude": 12
+      },
+      "example_titles": [
+        "Repairing Infrastructure-as-Code using Large Language Models",
+        "Optimizing Resume Parsing Processes by Leveraging Large Language Models",
+        "Real-Time Environment Monitoring and Response Through IoT and Retrieval-Augmented Generation"
+      ]
+    },
+    {
+      "name": "llm_as_workload_not_agent",
+      "description": "Papers where LLM is the computational workload being scheduled, not the decision agent",
+      "paper_ids": [
+        "paper-1066",
+        "paper-1093",
+        "paper-1130",
+        "paper-1137",
+        "paper-1158",
+        "paper-1184",
+        "paper-1205",
+        "paper-1287",
+        "paper-1308",
+        "paper-1320"
+      ],
+      "decision_distribution": {
+        "Exclude": 10
+      },
+      "example_titles": [
+        "Resource Allocation in Large Language Model Integrated 6G Vehicular Networks",
+        "Generative AI-Enabled Energy-Efficient Mobile Augmented Reality in Multi-Access Edge Computing",
+        "JARVIS: Disjoint Large Language Models on Radio VLANs for Intelligent Services"
+      ]
+    },
+    {
+      "name": "agentic_ai_llm_core",
+      "description": "Agentic AI systems with LLM-driven reasoning loop for resource management decisions",
+      "paper_ids": [
+        "paper-1114",
+        "paper-1157",
+        "paper-1170",
+        "paper-1197"
+      ],
+      "decision_distribution": {
+        "Exclude": 3,
+        "Include": 1
+      },
+      "example_titles": [
+        "Simplifying Network Orchestration using Conversational AI",
+        "ECO-LLM: LLM-based Edge Cloud Optimization",
+        "Large Language Model for Practical Evaluation in Cloud Computing with Applications of Real World Data"
+      ]
+    }
+  ]
+}

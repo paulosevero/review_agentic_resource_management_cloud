@@ -1,0 +1,157 @@
+{
+  "batch": 4,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "unclear_out_of_scope",
+      "description": "Unclear scope, insufficient evidence, or borderline relevance.",
+      "paper_ids": [
+        "paper-0707",
+        "paper-0729",
+        "paper-0737",
+        "paper-0761",
+        "paper-0772",
+        "paper-0847",
+        "paper-0853",
+        "paper-0885",
+        "paper-0910",
+        "paper-0915",
+        "paper-0928",
+        "paper-0930",
+        "paper-0974",
+        "paper-0989",
+        "paper-0990",
+        "paper-1026"
+      ],
+      "decision_distribution": {
+        "Include": 2,
+        "Exclude": 14
+      },
+      "example_titles": [
+        "Multi-agent QoS-aware autonomic resource provisioning framework for elastic BPM in containerized multi-cloud environment",
+        "A Multi-Agent-Based VM Migration for Dynamic Load Balancing in Cloud Computing Cloud Environment",
+        "GMA: Graph Multi-agent Microservice Autoscaling Algorithm in Edge-Cloud Environment"
+      ]
+    },
+    {
+      "name": "rl_marl_without_llm",
+      "description": "Classical RL/MARL agents without LLM reasoning loop.",
+      "paper_ids": [
+        "paper-0674",
+        "paper-0699",
+        "paper-0703",
+        "paper-0719",
+        "paper-0751",
+        "paper-0815",
+        "paper-0823",
+        "paper-0854",
+        "paper-0886",
+        "paper-0950",
+        "paper-0958",
+        "paper-0983",
+        "paper-1017",
+        "paper-1045"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 14
+      },
+      "example_titles": [
+        "Efficient Data as a Service in Fog Computing: An Adaptive Multi-Agent Based Approach",
+        "Multi-Agent Learning-Based Optimal Task Offloading and UAV Trajectory Planning for AGIN-Power IoT",
+        "A Dynamic Adaptive Bio-Inspired Multi-Agent System for Healthcare Task Deployment"
+      ]
+    },
+    {
+      "name": "vehicular_edge_computing",
+      "description": "V2X, RSU, vehicular offloading—edge focus, often RL-based.",
+      "paper_ids": [
+        "paper-0678",
+        "paper-0688",
+        "paper-0692",
+        "paper-0711",
+        "paper-0721",
+        "paper-0724",
+        "paper-0789",
+        "paper-0954",
+        "paper-0965",
+        "paper-1006",
+        "paper-1022",
+        "paper-1033"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 12
+      },
+      "example_titles": [
+        "A Service Consolidation Approach for Edge-Vehicle Network using Multi-agent Decision-making Method",
+        "Multi-Agent Task Assignment in Vehicular Edge Computing: A Regret-Matching Learning-Based Approach",
+        "A Spin-off Version of Jason for IoT and Embedded Multi-Agent Systems"
+      ]
+    },
+    {
+      "name": "kubernetes_container_scaling",
+      "description": "Kubernetes, container orchestration, autoscaling—DevOps, not RM-specific.",
+      "paper_ids": [
+        "paper-0708",
+        "paper-0908",
+        "paper-0909"
+      ],
+      "decision_distribution": {
+        "Include": 1,
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Leveraging Large Language Models for Auto-remediation in Microservices Architecture",
+        "Optimizing Microservice Deployment in Edge Computing with Large Language Models: Integrating Retrieval Augmented Generation and Chain of Thought Techniques",
+        "Intent-Driven Deployment and Live Migration Using LLM"
+      ]
+    },
+    {
+      "name": "classical_mas_fuzzy",
+      "description": "Multi-agent systems with fuzzy logic, not LLM-driven.",
+      "paper_ids": [
+        "paper-0675",
+        "paper-0998"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Multi-agent system-based fuzzy constraints offer negotiation of workflow scheduling in Fog-Cloud environment",
+        "DT-LSMAS: Digital Twin-Assisted Large-Scale Multiagent System for Healthcare Workflows"
+      ]
+    },
+    {
+      "name": "scheduling_workflow_heuristics",
+      "description": "Workflow, task, job scheduling via heuristics or optimization.",
+      "paper_ids": [
+        "paper-0837",
+        "paper-0894"
+      ],
+      "decision_distribution": {
+        "Include": 1,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Optimizing Cloud Infrastructure Management Using Large Language Models: A DevOps Perspective",
+        "Optimizing Generative AI Workloads for Sustainability: Balancing Performance and Environmental Impact in Generative AI"
+      ]
+    },
+    {
+      "name": "potential_agentic_llm",
+      "description": "LLM-based agents or agentic AI for RM with possible tool use.",
+      "paper_ids": [
+        "paper-1010"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Cloud-edge-device System architecture and key technologies of industrial digital twin System based on multi-agent"
+      ]
+    }
+  ]
+}

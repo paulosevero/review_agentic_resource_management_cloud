@@ -1,0 +1,178 @@
+{
+  "batch": 2,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "multi_agent_classical_mas",
+      "description": "Multi-agent systems for resource management without LLM-based reasoning (coordination, negotiation, auction-based)",
+      "paper_ids": [
+        "paper-0112",
+        "paper-0139",
+        "paper-0144",
+        "paper-0152",
+        "paper-0155",
+        "paper-0173",
+        "paper-0184",
+        "paper-0194",
+        "paper-0229",
+        "paper-0230",
+        "paper-0233",
+        "paper-0237",
+        "paper-0257",
+        "paper-0258",
+        "paper-0284",
+        "paper-0290"
+      ],
+      "decision_distribution": {
+        "Exclude": 16
+      },
+      "example_titles": [
+        "Osmotic computing as a distributed multi-agent system: The Body Area Network scenario",
+        "Multi-agent Approach to Computational Resource Allocation in Edge Computing",
+        "A multi-agent system approach for service deployment in the cloud"
+      ]
+    },
+    {
+      "name": "telecom_network_slicing",
+      "description": "Telecommunications, 5G/6G RAN, network slicing (not cloud/edge resource orchestration)",
+      "paper_ids": [
+        "paper-0163",
+        "paper-0180",
+        "paper-0207",
+        "paper-0232",
+        "paper-0249",
+        "paper-0262",
+        "paper-0265"
+      ],
+      "decision_distribution": {
+        "Exclude": 5
+      },
+      "example_titles": [
+        "Implementing hy-ids, mobiles agents and virtual firewall to enhance the security in iaas cloud",
+        "Smart design for resources allocation in IoT application service based on multi-agent system and DCSP",
+        "Multi-agent task allocation based on the learning of managers and local preference selections"
+      ]
+    },
+    {
+      "name": "iot_process_workflow",
+      "description": "IoT, workflow nets, process orchestration, cyber-physical systems (not LLM-driven infrastructure RM)",
+      "paper_ids": [
+        "paper-0138",
+        "paper-0156",
+        "paper-0214",
+        "paper-0226",
+        "paper-0269",
+        "paper-0283",
+        "paper-0286"
+      ],
+      "decision_distribution": {
+        "Exclude": 7
+      },
+      "example_titles": [
+        "Cloud-Based Multi-Agent Cooperation for IoT Devices Using Workflow-Nets",
+        "Agent Process Modelling: When Multiagent Systems Meet Process Models and Microservices",
+        "Agent-Based control of service scheduling within the fog environment"
+      ]
+    },
+    {
+      "name": "rl_marl_non_llm",
+      "description": "Reinforcement learning and multi-agent reinforcement learning for resource management without LLM integration",
+      "paper_ids": [
+        "paper-0130",
+        "paper-0147",
+        "paper-0166",
+        "paper-0275"
+      ],
+      "decision_distribution": {
+        "Exclude": 4
+      },
+      "example_titles": [
+        "Dynamic task offloading in multi-agent mobile edge computing networks",
+        "A multi-agent system toward the green edge computing with microgrid",
+        "Model predictive control for cloud-integrated networked multiagent systems under bandwidth allocation"
+      ]
+    },
+    {
+      "name": "ambiguous_boundary",
+      "description": "Papers with unclear/missing abstracts or titles that do not map clearly to agent types or RM domains",
+      "paper_ids": [
+        "paper-0113",
+        "paper-0141",
+        "paper-0149",
+        "paper-0240"
+      ],
+      "decision_distribution": {
+        "Exclude": 4
+      },
+      "example_titles": [
+        "Distributed scheduling in Kubernetes based on MAS for Fog-in-the-loop applications",
+        "Distributed artificial intelligence with multi-agent systems for MEC",
+        "A multi-agent based flexible IoT edge computing architecture and application to ITS"
+      ]
+    },
+    {
+      "name": "task_offloading_mobile_edge",
+      "description": "Task offloading and mobile-device-centric computation on edge networks (mobility and latency focus, not orchestration)",
+      "paper_ids": [
+        "paper-0157",
+        "paper-0200",
+        "paper-0206"
+      ],
+      "decision_distribution": {
+        "Exclude": 3
+      },
+      "example_titles": [
+        "Computation offloading with multiple agents in edge-computing–supported IoT",
+        "A Multi-Agent Approach for Vehicle-to-Fog Fair Computation Offloading",
+        "Time-delay multi-agent systems for a movable cloud"
+      ]
+    },
+    {
+      "name": "energy_grid_microgrid",
+      "description": "Smart grids, microgrids, renewable energy management (not primarily cloud/edge infrastructure RM)",
+      "paper_ids": [
+        "paper-0117",
+        "paper-0148",
+        "paper-0208"
+      ],
+      "decision_distribution": {
+        "Exclude": 3
+      },
+      "example_titles": [
+        "A Hierarchical distributed energy management agent framework for smart homes, grids, and cities",
+        "Fog agents in distributed multi agent system for autonomous energy management",
+        "Artificial intelligent agent for energy savings in cloud computing environment: Implementation and performance evaluation"
+      ]
+    },
+    {
+      "name": "devops_security_incident",
+      "description": "DevOps, security incident response, anomaly detection (auxiliary to RM, not primary decision)",
+      "paper_ids": [
+        "paper-0136",
+        "paper-0197"
+      ],
+      "decision_distribution": {
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Swarm intelligence based autonomous DDoS attack detection and defense using multi agent system",
+        "An osmosis-based intelligent agent scheduling framework for cloud bursting in hybrid cloud computing environments"
+      ]
+    },
+    {
+      "name": "search_rescue_vehicle_routing",
+      "description": "Search and rescue, vehicle routing, autonomous systems (domain-specific, not cloud/edge RM)",
+      "paper_ids": [
+        "paper-0106",
+        "paper-0171"
+      ],
+      "decision_distribution": {
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Multi Agents to Search and Rescue Based on Group Intelligent Algorithm and Edge Computing",
+        "An edge-Assisted vehicle routing method based on game-Theoretic multiagent learning"
+      ]
+    }
+  ]
+}

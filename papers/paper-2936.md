@@ -1,6 +1,7 @@
 ---
 id: paper-2936
-title: Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented Generation
+title: Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented
+  Generation
 authors:
 - Zhou, Xiongjie
 - Guan, Xin
@@ -53,7 +54,8 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=0.5 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=0.5 (agentic/LLM signal in title); C2=1.0 (resource
+      management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -77,10 +79,14 @@ screening:
     locked_at: '2026-05-09T00:00:00+00:00'
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
-    overrides_applied: []
+    proposed_decision: Include
+    proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
+    winning_category: llm_agentic_ai_generic
+    overrides_applied:
+    - ovr_llm_modifier
+    - ovr_abs_llm_orchestrates
+    - ovr_rl_llm_present
+    - ovr_cls_llm_present
     my_final_decision: null
     my_justification: null
     agrees_with_regex: null
@@ -164,9 +170,23 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-2936.pdf`)_
 
----
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Talvez tenha algo de LLM e/ou Agentic AI."
+- **winning_category:** 'llm_agentic_ai_generic'
+- **overrides_applied:** ['ovr_llm_modifier', 'ovr_abs_llm_orchestrates', 'ovr_rl_llm_present', 'ovr_cls_llm_present']
+- **evidence_trail:**
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "LLM inference" }`
+  - `{ category: C_llm_as_workload, pattern_id: wl_inference_llm_a, matched_substring: "Large language models (LLMs) inference offloading and resource allocation in cloud-edge computing: A" }`
+  - `{ category: A_classical_rl_marl_no_llm, pattern_id: rl_ma_rl_combo, matched_substring: "- [14] T. Z. Gebrekidan, S. Stein, and T. J. Norman, 'Combinatorial client-master multiagent deep re" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "multiagent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_mas_term, matched_substring: "Multiagent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "agent" }`
+  - `{ category: B_classical_mas_no_llm, pattern_id: cls_agent_term, matched_substring: "Agents" }`
+  - `{ category: llm_agentic_ai_generic, pattern_id: gen_llm, matched_substring: "LLMs" }`
+
 
 ## 07 — Taxonomy
 

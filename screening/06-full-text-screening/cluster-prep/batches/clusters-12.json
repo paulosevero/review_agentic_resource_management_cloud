@@ -1,0 +1,140 @@
+{
+  "batch": 12,
+  "n_papers": 22,
+  "clusters": [
+    {
+      "name": "llm_as_workload",
+      "description": "LLM is the managed workload (resource allocation for LLM serving), not the decision-maker.",
+      "paper_ids": [
+        "paper-2846",
+        "paper-2871",
+        "paper-2881",
+        "paper-2911"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 4
+      },
+      "example_titles": [
+        "A QoE-Driven Personalized Incentive Mechanism Design for AIGC Services in Resource-Constrained Edge Networks",
+        "WDMoE: Wireless Distributed Mixture of Experts for Large Language Models",
+        "LEAF: A Lightweight Edge Agent Framework with Expert SLMs for the Industrial Internet of Things"
+      ]
+    },
+    {
+      "name": "classic_rl_marl_no_llm",
+      "description": "RL/MARL for resource management without LLM-driven reasoning loop.",
+      "paper_ids": [
+        "paper-2832",
+        "paper-2876",
+        "paper-2893",
+        "paper-2901",
+        "paper-2940"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 5
+      },
+      "example_titles": [
+        "Multi-agent-Driven Dual-Layer Serverless Adaptive Ensemble Inference Method",
+        "Dynamic Priority-Aware Task Offloading with Two-Stage Multi-Agent Optimization in Multi-AAV Assisted MEC",
+        "A Digital Twin-Assisted Multi-agent Task Offloading Method with Priority Scheduling in Vehicular Edge Networks"
+      ]
+    },
+    {
+      "name": "medical_nlp_optimization",
+      "description": "LLM inference optimization (medical NLP, healthcare) without RM or agent loop.",
+      "paper_ids": [
+        "paper-2814"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Bridging the performance gap: systematic optimization of local LLMs for Japanese medical PHI extraction"
+      ]
+    },
+    {
+      "name": "llm_augmented_non_agentic",
+      "description": "LLM or GenAI as feature/augmentation in RL/optimization, not autonomous agent loop.",
+      "paper_ids": [
+        "paper-2822",
+        "paper-2839",
+        "paper-2844",
+        "paper-2851",
+        "paper-2882"
+      ],
+      "decision_distribution": {
+        "Include": 1,
+        "Exclude": 4
+      },
+      "example_titles": [
+        "Energy-Efficient RSMA-Enabled Low-Altitude MEC Optimization via Generative AI-Enhanced Deep Reinforcement Learning",
+        "UAV-Assisted Task Offloading and Resource Allocation in Internet of Vehicles: An Integration of Digital Twin and Generative AI",
+        "HybridRAG-Based LLM Agents for Low-Carbon Optimization in Low-Altitude Economy Networks"
+      ]
+    },
+    {
+      "name": "rag_code_generation_support",
+      "description": "RAG-enhanced code generation or LLM for static support tasks (not RM closed-loop).",
+      "paper_ids": [
+        "paper-2926"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "AutoML-Pipeline: A RAG-Enhanced Code Generation Framework With Pre-Validation for Cloud-Native Machine Learning Workflows"
+      ]
+    },
+    {
+      "name": "fault_diagnosis_llm",
+      "description": "LLM fine-tuning for offline fault diagnosis; not agentic RM loop.",
+      "paper_ids": [
+        "paper-2932"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Local self-verified chain-of-thought and preference alignment: a two-stage ReVCoT-DPO fine-tuning framework for system log fault diagnosis"
+      ]
+    },
+    {
+      "name": "agentic_llm_rm_core",
+      "description": "LLM-based agentic loop for resource management (scheduling, allocation, offloading decisions).",
+      "paper_ids": [
+        "paper-2830",
+        "paper-2854",
+        "paper-2885",
+        "paper-2936"
+      ],
+      "decision_distribution": {
+        "Include": 4,
+        "Exclude": 0
+      },
+      "example_titles": [
+        "Large Language Model-based QoS-aware Resource Allocation for Multi-UAV Cooperative Edge Computing Networks",
+        "Toward 6G Edge Intelligence: Lightweight LLMs for Intent-Driven Network Automation",
+        "LLM-Aided Prediction and RL-Based Optimization for Secure Communications in Low-Altitude Economy Networks"
+      ]
+    },
+    {
+      "name": "iot_generative_ai_non_agentic",
+      "description": "Generative AI in IoT/Metaverse/communication context without agentic RM.",
+      "paper_ids": [
+        "paper-2938"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 1
+      },
+      "example_titles": [
+        "Enhancing Metaverse Fidelity and Freshness via GAI-aided Semantic Communication in Low-Altitude IoT Networks"
+      ]
+    }
+  ]
+}

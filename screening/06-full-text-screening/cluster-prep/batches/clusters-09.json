@@ -1,0 +1,145 @@
+{
+  "batch": 9,
+  "n_papers": 50,
+  "clusters": [
+    {
+      "name": "rl_without_llm_agent",
+      "description": "DRL/MARL/RL for resource management without LLM-driven agentic reasoning loop.",
+      "papers": [
+        "paper-2004",
+        "paper-2007",
+        "paper-2029",
+        "paper-2052",
+        "paper-2056",
+        "paper-2058",
+        "paper-2085",
+        "paper-2096",
+        "paper-2105",
+        "paper-2113",
+        "paper-2122",
+        "paper-2164",
+        "paper-2181",
+        "paper-2232",
+        "paper-2236"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 15
+      },
+      "example_titles": [
+        "Agentic AI for Microservices: Autonomous Optimization of High-Volume Financial Transactions in Cloud Native Environments",
+        "Inter-AGV Scheduling and a Novel Multi-Agent Collaborative Protocol for Intra-AGV Resource Allocation in MEC-Enabled Multi-AGV Scenarios",
+        "Reliability-oriented dynamic task offloading for time-varying satellite IoT: A lightweight multi-agent cooperative strategy optimization method"
+      ]
+    },
+    {
+      "name": "llm_config_yaml_nlp",
+      "description": "LLM used for config generation, YAML synthesis, or NLP support—not driving RM decisions.",
+      "papers": [
+        "paper-2015",
+        "paper-2075",
+        "paper-2107",
+        "paper-2163",
+        "paper-2194"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 5
+      },
+      "example_titles": [
+        "Leveraging Large Language Models for Intent-Based Networking: A Framework for Automated Configuration and Optimization",
+        "Circuit-AI: A Self-Hosted AI-Agent Language Model Framework for Control Loop Implementation and Simulation",
+        "Exploring Alternative Microservice Decompositions using Data-driven Techniques and LLMs"
+      ]
+    },
+    {
+      "name": "rag_llmops_inference",
+      "description": "RAG, inference ops, model serving, LLM deployment infrastructure—infrastructure for LLMs, not RM.",
+      "papers": [
+        "paper-2022",
+        "paper-2027",
+        "paper-2041",
+        "paper-2068",
+        "paper-2090",
+        "paper-2104",
+        "paper-2118",
+        "paper-2133",
+        "paper-2149",
+        "paper-2170",
+        "paper-2177",
+        "paper-2219",
+        "paper-2225"
+      ],
+      "decision_distribution": {
+        "Include": 0,
+        "Exclude": 13
+      },
+      "example_titles": [
+        "Streaming Intelligence: Securing, Scaling and Observing Cloud-Native Data Pipelines with LLMOps",
+        "Leveraging Large Language Models for Anomaly Detection in Microservices Architectures",
+        "Joint Communication and Inference User Allocation in LLM Native Networks"
+      ]
+    },
+    {
+      "name": "ambiguous_agentic_intent",
+      "description": "Mentions agents/agentic/LLM for RM but unclear if agentic loop is real or if LLM is secondary.",
+      "papers": [
+        "paper-2019",
+        "paper-2057",
+        "paper-2060",
+        "paper-2142",
+        "paper-2188",
+        "paper-2191",
+        "paper-2195",
+        "paper-2209",
+        "paper-2224"
+      ],
+      "decision_distribution": {
+        "Include": 2,
+        "Exclude": 7
+      },
+      "example_titles": [
+        "Beyond Terrestrial: LLM-Orchestrated DtS-IoT Networks for Ubiquitous Edge Intelligence",
+        "Tri-AFLLM: Resource-Efficient Adaptive Asynchronous Accelerated Federated LLMs",
+        "LLM-Enhanced Hierarchical Attention for Cloud Task Scheduling"
+      ]
+    },
+    {
+      "name": "gen_ai_support_tangential",
+      "description": "GenAI mentioned for admin/ops support, anomaly detection, or troubleshooting—not core RM.",
+      "papers": [
+        "paper-2043",
+        "paper-2120",
+        "paper-2135"
+      ],
+      "decision_distribution": {
+        "Include": 1,
+        "Exclude": 2
+      },
+      "example_titles": [
+        "Next-Generation Autonomous Troubleshooting Using Generative AI in Heterogeneous Cloud Systems",
+        "AI and Generative AI-Driven Automation for Multi-Cloud and Hybrid Cloud Architectures: Enhancing Security, Performance, and Operational Efficiency",
+        "Smart IoT-enabled Water Quality Management using Generative AI and Super-Resolution GAN for Enhanced Monitoring and Prediction"
+      ]
+    },
+    {
+      "name": "low_quality_preprint",
+      "description": "Preprint-only, demo-without-evaluation, or workshop papers lacking peer review.",
+      "papers": [
+        "paper-2028",
+        "paper-2059",
+        "paper-2067",
+        "paper-2179"
+      ],
+      "decision_distribution": {
+        "Include": 2,
+        "Exclude": 2
+      },
+      "example_titles": [
+        "LLM-based cost-aware task scheduling for cloud computing systems",
+        "Joint Request Batching and Worker Assignment in AI-RAN Edge Inference Systems",
+        "Designing an AIOps (Artificial Intelligent Operations) Framework for Energy-Efficient IT Operations: A Case Study on Cloud Computing Environment"
+      ]
+    }
+  ]
+}
