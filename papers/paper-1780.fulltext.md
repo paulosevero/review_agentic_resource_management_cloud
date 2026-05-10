@@ -1,5 +1,5 @@
 ---
-title: Agent-as-a-Service: An AI-Native Edge Computing Framework for 6G Networks
+title: "Agent-as-a-Service: An AI-Native Edge Computing Framework for 6G Networks"
 ---
 ## Agent-as-a-Service: An AI-Native Edge Computing Framework for 6G Networks
 
