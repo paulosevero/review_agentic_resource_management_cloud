@@ -32,7 +32,7 @@ locks:
   04-title-screening: locked
   05-abstract-screening: locked
   06-full-text-screening: locked
-  07-taxonomy-development: pending # has intermediate `iterating` state during inductive loop
+  07-taxonomy-development: iterating # phase 07a' deductive draft (iteration 1)
   08-analysis: pending
   09-report: pending
 ```
@@ -294,31 +294,168 @@ Conventions:
 
 ## 8. Taxonomy
 
-The taxonomy is built inductively in stage `07-taxonomy-development` and iterates until the user marks it locked. Until then, this section reflects the current iteration.
+The taxonomy is built in stage `07-taxonomy-development` and iterates until the user marks it locked. Until then, this section reflects the current iteration.
 
-**Status:** `pending` | `iterating` (with current iteration number) | `locked`
+**Status:** `iterating` (iteration 1, phase 07a' deductive draft)
+
+**Origin:** `hybrid` — twelve axes seeded deductively from sub-RQs RQ1.1–RQ4.4; RQ5.1/RQ5.2 are corpus-level synthesis questions handled in stages 08–09, not per-paper labels. Inductive open coding (Phase 07a) is reserved for emergent dimensions exposed when the seeded axes fail to cover a paper.
+
+`taxonomy.origin: hybrid`
+`taxonomy.seed_axes: [RQ1.1, RQ1.2, RQ1.3, RQ2.1, RQ2.2, RQ3.1, RQ3.2, RQ3.3, RQ4.1, RQ4.2, RQ4.3, RQ4.4]`
+
+**Adversarial mode:** `off` for this iteration. May be flipped on per-axis at Phase 07b if any axis proves contentious.
 
 ### 8.1 Axes
 
-`<Empty while pending. During iteration, lists candidate axes proposed by the open-coding + clustering loop. Each axis has a short description and the set of permitted values.>`
+Twelve axes, each linked to one sub-RQ. Value sets are first-pass drafts based on the sub-RQ text and prior literature on agentic AI for systems management; they will be refined during coverage validation. Multi-valued papers use the `mixed` suffix; papers without explicit treatment use `not_reported` or `none`.
 
-- **`<axis-name>`** — `<short description>`
-  - Values: `<v1, v2, v3, ...>`
+- **`agent_architecture`** — Topology of the perceive-reason-act loop. — seed_for: RQ1.1
+  - Values: `single_agent`, `multi_agent_collaborative`, `multi_agent_hierarchical`, `single_agent_with_tools_subroutines`, `not_specified`
+- **`infra_coupling`** — Mechanism by which the agent's action grammar binds to infrastructure controllers. — seed_for: RQ1.2
+  - Values: `kubernetes_api`, `cloud_provider_api`, `custom_tools_api`, `mcp_protocol`, `simulator_only`, `prompt_only_no_tools`, `mixed`
+- **`safety_guardrails`** — Mechanisms that constrain or vet agent actions before they reach the system. — seed_for: RQ1.3
+  - Values: `none_explicit`, `human_in_the_loop`, `action_validator`, `policy_gate`, `sandbox_or_dry_run`, `rollback_or_recovery`, `multiple`
+- **`decision_class`** — Resource-management decision delegated to the agent. — seed_for: RQ2.1
+  - Values: `scheduling`, `placement`, `scaling_autoscaling`, `offloading`, `migration`, `routing_or_traffic_steering`, `energy_or_power_management`, `remediation_fault_response`, `mixed`
+- **`autonomy_level`** — Authority the agent has over the final decision. — seed_for: RQ2.2
+  - Values: `advisory`, `supervised`, `autonomous`
+- **`reasoning_process`** — Reasoning strategy invoked by the agent during decision-making. — seed_for: RQ3.1
+  - Values: `direct_prompting`, `chain_of_thought`, `react`, `plan_and_execute`, `reflection_or_self_refine`, `debate_or_multi_agent_consensus`, `self_consistency`, `mixed`
+- **`grounding_mechanism`** — How current system state is brought into the agent's reasoning context. — seed_for: RQ3.2
+  - Values: `telemetry_only`, `rag_over_docs_or_runbooks`, `episodic_memory`, `vector_db`, `knowledge_graph`, `mixed`
+- **`domain_knowledge`** — How the LLM is conditioned with infrastructure-management knowledge. — seed_for: RQ3.3
+  - Values: `zero_shot`, `few_shot_examples`, `structured_prompting_or_dsl`, `fine_tuning`, `ontology_or_schema`, `mixed`
+- **`evaluation_environment`** — Where empirical results are produced. — seed_for: RQ4.1
+  - Values: `simulation`, `real_testbed`, `production`, `synthetic_benchmark`, `real_traces`, `mixed`
+- **`rm_perf_metrics`** — Resource-management performance metrics reported. — seed_for: RQ4.2
+  - Values: `latency`, `cost`, `energy`, `sla_violations`, `utilization`, `throughput`, `multiple`
+- **`agent_overhead_metrics`** — Agent / inference overhead metrics reported. — seed_for: RQ4.3
+  - Values: `not_reported`, `token_usage`, `inference_latency`, `monetary_cost_per_decision`, `model_size_or_footprint`, `agent_loop_throughput`, `multiple`
+- **`safety_governance_metrics`** — Safety / governance metrics reported. — seed_for: RQ4.4
+  - Values: `not_reported`, `unsafe_or_invalid_action_rate`, `human_intervention_frequency`, `audit_coverage`, `policy_compliance`, `multiple`
 
 ### 8.2 Code book
 
-`<Definition of each value in each axis, with 1–2 sentences explaining when a paper fits that value. Emerges during the open-coding stage; refined during clustering.>`
+One- to two-sentence definitions of each value. The code book is the contract the classifier follows; ambiguous cases trigger checkpoints that may refine these definitions.
 
-- `<axis>` / `<value>`: `<definition>`
+**`agent_architecture`**
+
+- `single_agent`: One LLM-driven loop reasons over the full state and emits the action; tool calls do not introduce additional autonomous agents.
+- `multi_agent_collaborative`: Two or more peer agents exchange messages or vote without a fixed coordinator; consensus emerges horizontally.
+- `multi_agent_hierarchical`: A coordinator/planner agent dispatches sub-tasks to specialized executor agents with a clear top-down structure.
+- `single_agent_with_tools_subroutines`: A single primary agent invokes non-agentic helpers (XAI module, predictor, GP/heuristic solver, RAG retriever) that do not themselves run an autonomous loop.
+- `not_specified`: The paper proposes an agentic mechanism but does not pin down the topology.
+
+**`infra_coupling`**
+
+- `kubernetes_api`: Actions are realized through Kubernetes primitives (scheduler plugin, HPA/VPA, kubectl, operator).
+- `cloud_provider_api`: Actions go through hyperscaler SDKs/CLIs (AWS/Azure/GCP) without a Kubernetes layer.
+- `custom_tools_api`: The paper defines a bespoke tool surface for the agent to call (simulator hooks, REST endpoints, in-house orchestrator).
+- `mcp_protocol`: Model Context Protocol is the explicit binding between agent and infrastructure tools.
+- `simulator_only`: The agent acts inside a simulator/emulator with no real-system coupling.
+- `prompt_only_no_tools`: The LLM emits text (a schedule, a plan) consumed externally; no tool-calling layer.
+- `mixed`: Combination of the above (e.g., kubernetes_api + custom_tools_api).
+
+**`safety_guardrails`**
+
+- `none_explicit`: No explicit guardrail mechanism is described.
+- `human_in_the_loop`: A human operator approves, edits, or vetoes actions before execution.
+- `action_validator`: A deterministic check (schema, simulator, constraint solver) validates each proposed action.
+- `policy_gate`: Declarative policies (OPA, intent rules) gate execution.
+- `sandbox_or_dry_run`: Actions are first executed in an isolated/dry-run environment before propagation.
+- `rollback_or_recovery`: Reversal mechanism kicks in when an action's effect is bad.
+- `multiple`: Two or more of the above mechanisms.
+
+**`decision_class`**
+
+- `scheduling`: Selecting which workload runs when on which resource (queue, job, batch).
+- `placement`: One-shot mapping of a service/container to a node/region; no ongoing dynamics.
+- `scaling_autoscaling`: Adjusting replica counts or resource shapes in response to load.
+- `offloading`: Choosing whether to execute locally or send work to another tier (edge↔cloud).
+- `migration`: Moving an already-running workload between hosts/tiers.
+- `routing_or_traffic_steering`: Steering requests/traffic across network paths or service instances.
+- `energy_or_power_management`: Decisions whose primary objective is energy/power/carbon.
+- `remediation_fault_response`: Closed-loop response to faults, anomalies, or incidents.
+- `mixed`: The agent handles two or more of the above.
+
+**`autonomy_level`**
+
+- `advisory`: Output is a recommendation; a human or external policy decides whether to apply it.
+- `supervised`: The agent acts, but a human or rule-based monitor can intervene/approve before effect.
+- `autonomous`: The agent's decisions reach the system without human or rule-based gating.
+
+**`reasoning_process`**
+
+- `direct_prompting`: One-shot LLM call emits the decision; no explicit reasoning scaffold.
+- `chain_of_thought`: Step-by-step reasoning traces are elicited before the action.
+- `react`: Interleaved reasoning and tool actions over multiple turns.
+- `plan_and_execute`: A plan is produced first, then executed by the same or a sub-agent.
+- `reflection_or_self_refine`: The agent critiques and revises its own output before commitment.
+- `debate_or_multi_agent_consensus`: Multiple agents argue; the resolution drives the action.
+- `self_consistency`: Multiple sampled reasonings are aggregated (majority/vote).
+- `mixed`: Multiple of the above explicitly combined.
+
+**`grounding_mechanism`**
+
+- `telemetry_only`: Live metrics/logs/traces injected into the prompt; nothing else.
+- `rag_over_docs_or_runbooks`: Retrieval over external documents (runbooks, manuals, policies).
+- `episodic_memory`: Past episodes/decisions stored and queried for similarity.
+- `vector_db`: An explicit vector database backs retrieval (RAG or memory).
+- `knowledge_graph`: Structured graph (ontology, topology) consulted at decision time.
+- `mixed`: Two or more of the above explicitly combined.
+
+**`domain_knowledge`**
+
+- `zero_shot`: A general-purpose model is used without examples or fine-tuning.
+- `few_shot_examples`: Examples of decisions or interactions are included in the prompt.
+- `structured_prompting_or_dsl`: Decision domain is captured in a structured schema/DSL the model fills in.
+- `fine_tuning`: The model is fine-tuned, LoRA-adapted, or RLHF-tuned on domain data.
+- `ontology_or_schema`: An explicit infrastructure ontology/schema scaffolds the prompt.
+- `mixed`: Combination (e.g., few_shot + ontology).
+
+**`evaluation_environment`**
+
+- `simulation`: Experiments run inside a simulator (CloudSim, EdgeSimPy, custom).
+- `real_testbed`: Physical or cloud-hosted cluster set up for the experiment.
+- `production`: Live production deployment data is used.
+- `synthetic_benchmark`: Workload generator/benchmark suite drives the evaluation.
+- `real_traces`: Real production traces replayed in simulation or testbed.
+- `mixed`: Two or more of the above explicitly combined.
+
+**`rm_perf_metrics`**
+
+- `latency`: Response time, queuing delay, makespan, end-to-end latency.
+- `cost`: Monetary cost of infrastructure (not inference cost).
+- `energy`: Energy/power consumption or carbon intensity of execution.
+- `sla_violations`: SLA/SLO miss rate or constraint violation count.
+- `utilization`: CPU/memory/bandwidth utilization.
+- `throughput`: Request rate, job rate, goodput.
+- `multiple`: Two or more of the above reported jointly.
+
+**`agent_overhead_metrics`**
+
+- `not_reported`: No agent/inference overhead metric is reported.
+- `token_usage`: Tokens consumed per decision/episode.
+- `inference_latency`: Wall-clock time of the agent's decision step.
+- `monetary_cost_per_decision`: USD/decision or USD/episode from inference.
+- `model_size_or_footprint`: Parameter count, memory footprint.
+- `agent_loop_throughput`: Decisions per second the agent can sustain.
+- `multiple`: Two or more of the above reported jointly.
+
+**`safety_governance_metrics`**
+
+- `not_reported`: No safety/governance metric is reported.
+- `unsafe_or_invalid_action_rate`: Frequency of malformed, infeasible, or unsafe proposed actions.
+- `human_intervention_frequency`: How often a human override is triggered.
+- `audit_coverage`: Fraction of decisions accompanied by audit logs/traces.
+- `policy_compliance`: Compliance rate with declared policies/intents.
+- `multiple`: Two or more of the above reported jointly.
 
 ### 8.3 Iteration history
 
 Each iteration of the taxonomy is a commit `[07] iteration-<k>`; the final state is `[07] lock`.
 
-- **Iteration 1:** `<summary: e.g., "initial open coding produced 47 free codes over 38 papers">`
-- **Iteration 2:** `<summary: e.g., "clustering proposed 5 axes; user merged two overlapping ones">`
-- **Iteration k:** `<...>`
-- **Locked:** commit `<hash>` — `<summary>`
+- **Iteration 1 (pending review):** seeded 12 deductive axes from RQ1.1–RQ4.4 (Phase 07a' draft). Excluded RQ5.1/RQ5.2 from taxonomic dimensions (synthesis-level questions). Adversarial mode off.
 
 ## 9. Anchors
 
