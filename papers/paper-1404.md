@@ -1,42 +1,42 @@
 ---
 id: paper-1404
-title: 'ARM: Autonomous Remediation & Management with LLM Agents for Intent-Driven Control'
+title: "ARM: Autonomous Remediation & Management with LLM Agents for Intent-Driven Control"
 authors:
-- Avgerinos, Vasilis
-- Ramantas, Kostas
-- Alonso, Luis
-- Verikoukis, Christos
+  - Avgerinos, Vasilis
+  - Ramantas, Kostas
+  - Alonso, Luis
+  - Verikoukis, Christos
 venue: IEEE Internet of Things Journal
 venue_type: journal
 year: 2025
 doi: 10.1109/JIOT.2025.3648858
 url: https://www.scopus.com/pages/publications/105025885742?origin=resultslist
 publisher: Institute of Electrical and Electronics Engineers Inc.
-pages: ''
+pages: ""
 keywords:
-- Agentic Systems
-- AIOps
-- Autonomous Infrastructure Management
-- Closed-Loop Control
-- Edge Computing
-- Intent-Based Networking
-- IoT Orchestration
-- Kubernetes
-- Large Language Models (LLMs)
-- SLA Monitoring
+  - Agentic Systems
+  - AIOps
+  - Autonomous Infrastructure Management
+  - Closed-Loop Control
+  - Edge Computing
+  - Intent-Based Networking
+  - IoT Orchestration
+  - Kubernetes
+  - Large Language Models (LLMs)
+  - SLA Monitoring
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
-  05-abstract-screening: exclude
-  06-full-text-screening: pending
+  05-abstract-screening: include
+  06-full-text-screening: include
   07-taxonomy-development: pending
   08-analysis: pending
 screening:
@@ -51,32 +51,32 @@ screening:
     agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM).
     winning_category: agent_llm_based
     overrides_applied:
-    - ovr_rl_llm_present
-    my_final_decision: Exclude
-    my_justification: Out of scope
+      - ovr_rl_llm_present
+    my_final_decision: Include
+    my_justification: "Revisita ao critério: o full-text confirma escopo cloud-native + edge + IoT (não 6G/RAN puro) e LLM como decisor do loop de RM. Flipado para Include."
     agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
-    proposed_decision: null
-    proposed_justification: null
-    winning_category: null
+    proposed_decision: Include
+    proposed_justification: "Agentic LLM com closed-loop RCA + mitigação executando ações de RM via MCP/kubectl."
+    winning_category: agent_llm_based
     overrides_applied: []
-    my_final_decision: null
-    my_justification: null
-    agrees_with_regex: null
+    my_final_decision: Include
+    my_justification: "ARM (Avgerinos et al., IEEE IoT Journal 2026) implementa loop fechado agentic LLM para autonomous remediation em cloud-native + edge + IoT (Sec III). Pipeline: monitoramento contínuo de SLA (Sec III-C, latência p95 + taxa de sucesso) → ao detectar violação, dispara LLM agent (GPT-5/GPT-5-mini) → o agente investiga via tool calls expostos por Model Context Protocol (MCP) server (Sec IV) → emite ações corretivas (pod rescheduling, scaling deployments, deleting pods, configuration updates via kubectl_scale, kubectl_delete_pod) → re-mede métricas e replan se necessário. LLM é decisor explícito do ciclo de RM. Avaliação (Sec V-VI) em K3s cluster com 7 nós (2 cloud + 4 edge + 1 mgmt), 3 aplicações IoT (real-time monitoring, smart manufacturing 8 μservices, smart city traffic 12 μservices), chaos engineering fault injection, comparativo GPT-5 vs GPT-5-mini. Métricas: 52.9% diagnostic accuracy, 70.7% remediation success rate, decision rounds, wall-clock time, tool utilization. Boundaries A (escopo cloud-edge-IoT), B (LLM decisor — não LLM-subordinate-to-RL) e C (RM em loop fechado: rescheduling/scaling/config) todos satisfeitos. Include puro."
+    agrees_with_regex: true
     divergence_reason: null
-    locked_at_iteration: null
-    locked_at: null
+    locked_at_iteration: iter-0
+    locked_at: "2026-05-15T00:00:00+00:00"
 taxonomy: {}
 ---
 
@@ -145,8 +145,8 @@ no duplicates found
 
 ### final
 
-- **my_final_decision:** Exclude
-- **my_justification:** "Out of scope"
+- **my_final_decision:** Include
+- **my_justification:** "Revisita ao critério: o full-text confirma escopo cloud-native + edge + IoT (não 6G/RAN puro) e LLM como decisor do loop de RM. Flipado para Include."
 - **locked_at_iteration:** iter-0
 - **locked_at:** 2026-05-09T00:00:00+00:00
 
@@ -154,7 +154,24 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-_(populated by `/screen --stage full-text`. PDF location: `raw/pdfs/paper-1404.pdf`)_
+### iter-0 (initial classification)
+
+- **regex_decision:** Include
+- **regex_justification:** "Agentic LLM com closed-loop RCA + mitigação executando ações de RM via MCP/kubectl."
+- **winning_category:** 'agent_llm_based'
+- **overrides_applied:** []
+- **evidence_trail:**
+  - `{ category: agent_llm_based, pattern_id: llm_agent_decisor, matched_substring: "LLM agent" }`
+  - `{ category: agent_llm_based, pattern_id: closed_loop, matched_substring: "closed-loop framework" }`
+
+**Pass-2 LLM reviewer (manual full-text review):**
+
+- **my_final_decision:** Include
+- **my_justification:** ARM (Avgerinos et al., IEEE IoT Journal 2026) implementa loop fechado agentic LLM para autonomous remediation em cloud-native + edge + IoT (Sec III). Pipeline: monitoramento contínuo de SLA (Sec III-C, latência p95 + taxa de sucesso) → ao detectar violação, dispara LLM agent (GPT-5/GPT-5-mini) → o agente investiga via tool calls expostos por Model Context Protocol (MCP) server (Sec IV) → emite ações corretivas (pod rescheduling, scaling deployments, deleting pods, configuration updates via kubectl_scale, kubectl_delete_pod) → re-mede métricas e replan se necessário. LLM é decisor explícito do ciclo de RM. Avaliação (Sec V-VI) em K3s cluster com 7 nós (2 cloud + 4 edge + 1 mgmt), 3 aplicações IoT (real-time monitoring, smart manufacturing 8 μservices, smart city traffic 12 μservices), chaos engineering fault injection, comparativo GPT-5 vs GPT-5-mini. Métricas: 52.9% diagnostic accuracy, 70.7% remediation success rate, decision rounds, wall-clock time, tool utilization. Boundaries A (escopo cloud-edge-IoT), B (LLM decisor — não LLM-subordinate-to-RL) e C (RM em loop fechado: rescheduling/scaling/config) todos satisfeitos. Include puro.
+- **agrees_with_regex:** True
+- **divergence_reason:** None
+- **addressed_hint:** Hint categoria: agent_llm_based. Confirmado pelo full-text.
+- **evidence_sections:** ['Sec III (Framework + Performance Monitoring)', 'Sec IV (MCP tools, kubectl_scale, kubectl_delete_pod)', 'Sec V (Experimental Framework: K3s 7-node cluster, 3 IoT apps, chaos engineering)', 'Sec VI (Results: 52.9% diagnostic accuracy, 70.7% remediation success)']
 
 ---
 
