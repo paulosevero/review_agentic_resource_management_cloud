@@ -34,7 +34,7 @@ source:
 status:
   04-title-screening: include
   05-abstract-screening: include
-  06-full-text-screening: pending
+  06-full-text-screening: include
   07-taxonomy-development: pending
   08-analysis: pending
 screening:

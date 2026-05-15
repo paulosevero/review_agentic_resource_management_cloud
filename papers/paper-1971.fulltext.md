@@ -1,250 +1,754 @@
 ---
-title: "On Combining XAI and LLMs for Trustworthy Zero-Touch Network and Service Management in 6G"
-authors:
-  - "Abdelkader Mekrache"
-  - "Mohamed Mekki"
-  - "Adlen Ksentini"
-  - "Bouziane Brik"
-  - "Christos Verikoukis"
-affiliations:
-  Abdelkader Mekrache: "EURECOM, France"
-  Mohamed Mekki: "EURECOM, France"
-  Adlen Ksentini: "EURECOM, France"
-  Bouziane Brik: "Sharjah University, UAE"
-  Christos Verikoukis: "ISI/ATH and University of Patras, Greece"
-doi: "10.1109/MCOM.002.2400276"
-abstract: |
-  Zero-touch network and service management (ZSM) is a key pillar of 6G networks. It allows the 6G management and orchestration framework to operate the networks without external (e.g., human) intervention. To effectively achieve ZSM, advanced network management procedures are required to detect and resolve anomalies within the 6G network autonomously, which usually requires artificial intelligence (AI) and machine learning (ML) models. However, relying solely on AI can raise concerns about trust due to their lack of explainability. Indeed, as these models are not explainable, it is difficult to understand and trust their decisions. To overcome this limitation, this article introduces a novel pipeline for ensuring trustworthy ZSM in 6G networks by combining AI for detecting anomalies; eXplainable AI (XAI) to identify the root causes of anomalies using feature importance analysis; and large language models (LLMs) to generate user-friendly explanations and suggest/apply corrective actions to resolve anomalies. A use case is presented using XGBoost as AI, SHAP as XAI, and Llama2 as LLM to address service level agreement (SLA) latency violations within cloud-native 6G microservices. Evaluation results obtained through real experiments demonstrate the framework's efficiency in scaling cloud resources to prevent SLA violations while providing understandable explanations to users, thereby enhancing trust in the system.
-keywords:
-  - "Zero-touch network management"
-  - "6G networks"
-  - "explainable AI"
-  - "large language models"
-  - "LLM"
-  - "XAI"
-  - "anomaly detection"
-  - "anomaly resolution"
-  - "trustworthy AI"
-  - "microservices"
-  - "dynamic scaling"
-extraction_date: "2026-05-09"
-source: "IEEE Communications Magazine"
+paper_id: "paper-1971"
+source_pdf_sha: "ae596471bafdff58cf5641cf2397dc7416cc398805e9e673d00877deeecbcea8"
+extraction_quality: medium
+extraction_method: pypdf
+extraction_flags:
+  toc_detected: false
+  headings_count: 2
+  page_count: 9
+  tables_preserved: false
+  equations_preserved: false
+manually_edited: false
 ---
 
-## On Combining XAI and LLMs for Trustworthy Zero-Touch Network and Service Management in 6G
-
-Abdelkader Mekrache, Mohamed Mekki, Adlen Ksentini, Bouziane Brik, and Christos Verikoukis
-
-## AbstrAct
-
-Zero-touch network and service management (ZSM) is a key pillar of 6G networks. It allows the 6G management and orchestration framework to operate the networks without external (e.g., human) intervention. To effectively achieve ZSM, advanced network management procedures are required to detect and resolve anomalies within the 6G network autonomously, which usually requires artificial intelligence (AI) and machine learning (ML) models. However, relying solely on AI can raise concerns about trust due to their lack of explainability. Indeed, as these models are not explainable, it is difficult to understand and trust their decisions. To overcome this limitation, this article introduces a novel pipeline for ensuring trustworthy ZSM in 6G networks by combining AI for detecting anomalies; eXplainable AI (XAI) to identify the root causes of anomalies using feature importance analysis; and large language models (LLMs) to generate user-friendly explanations and suggest/apply corrective actions to resolve anomalies. A use case is presented using XGBoost as AI, SHAP as XAI, and Llama2 as LLM to address service level agreement (SLA) latency violations within cloud-native 6G microservices. Evaluation results obtained through real experiments demonstrate the framework's efficiency in scaling cloud resources to prevent SLA violations while providing understandable explanations to users, thereby enhancing trust in the system.
-
-## IntroductIon
-
-The emergence of demanding 6G applications like autonomous vehicles and eXtended Reality (XR), along with diverse Quality of Service (QoS) requirements, has significantly increased the complexity of Network Management Systems (NMSs). This complexity emphasizes the necessity of developing the Zero-touch network and Service Management (ZSM) concept, which aims to completely automate and manage future networks without external interventions, such as human interventions. To tackle this challenge, the European Telecommunications Standards Institute (ETSI) established the ZSM group in December 2017. According to their document [1], ZSM-enabled NMSs prioritize the detection and pre- diction of network anomalies, aiming to resolve them autonomously without human intervention. This approach enables intelligent, autonomous, self-healing networks capable of making informed decisions to resolve anomalies independently. An illustrative example within a typical 6G network involves detecting Service Level Agreement (SLA) violations, such as latency or throughput issues within cloud applications and subsequently identifying the root causes behind these violations. For instance, the system might recognize that insufficient resource allocation (e.g., CPU or RAM) is causing the application's performance to degrade. The solution would then involve autonomously adjusting these resources to mitigate latency or throughput issues, all managed by the NMS without requiring human intervention.
-
-The process of ZSM anomaly resolution involves three steps: detecting anomalies, extracting the root cause of anomalies, and resolving the anomalies based on the detected root cause. To address these steps, the research community heavily relies on advanced Artificial Intelligence (AI) methods for anomaly detection [2]. However, ZSM-enabled NMS requires not only detecting but also resolving these anomalies, which necessitates understanding their root causes. This becomes challenging with opaque AI models that lack explainability. For example, using deep learning-based anomaly detection modules provides predictions without insights into how these neural networks arrived at these predictions. To address this limitation, eXplainable AI (XAI) solutions have emerged in research, offering insights into the root causes of anomalies [3]. These models provide information about which features contributed the most to the predictions, thereby revealing the root cause of the anomaly. For instance, if the CPU feature contributed the most to the latency SLA degradation, it indicates insufficient CPU resources for the given application. In this context, Mekki et al . in [3] used XAI to explain AI predictions and dynamically scale CPU and RAM resources of a microservice application based on a simple heuristic that leverages XAI values to enable ZSM.
-
-However, XAI often presents explanations in numerical values that may be challenging for
-
-Abdelkader Mekrache, Mohamed Mekki, and Adlen Ksentini are with EURECOM, France; Bouziane Brik is with Sharjah University, UAE; Christos Verikoukis is with ISI/ATH and University of Patras, Greece.
-
-Digital Object Identifier: 10.1109/MCOM.002.2400276
-
-users with limited domain knowledge to interpret, impacting the trustworthiness of ZSM systems. User-friendly explanations, on the other hand, aim to generate human-understandable explanations, ensuring they are understandable to diverse users and increasing trust in ZSM's autonomous decisions. Fortunately, with rapid advancements in Generative AI, Large Language Models (LLMs) offer a promising solution. These models can generate human-like text in various human languages [4], making them an attractive choice. Moreover, LLMs excel in reasoning tasks without requiring additional training [4], which can be leveraged to resolve anomalies, enabling trustworthy ZSM autonomously. Thus, LLMs should be explored for decision-making problems in 6G networks (e.g., resolving anomalies).
-
-To address the aforementioned challenges, we extend the work in [3] by proposing a trustworthy ZSM-enabled NMS design based on a novel anomaly detection and resolution pipeline: AI|XAI|LLM. Furthermore, we present a pipeline's use case wherein the NMS dynamically scales cloud resources (e.g., CPU and RAM) for a microservice application with specific SLA latency requirements. To achieve this, we employed: XGBoost [5] as the AI model to predict SLA latency violations; SHAP [6] as the XAI model to provide numerical explanations of these anomalies, revealing their root causes; and Llama2 [7] as the LLM to generate human-friendly explanations using natural language. Subsequently, we consider two scenarios: if ZSM is enabled, Llama2 autonomously resolves the anomaly; otherwise, it offers recommendations on how to resolve the anomaly, requiring user intervention. The main contributions of this article are as follows:
-
-- ZSM-enabled NMS: We propose a novel anomaly detection and resolution pipeline to effectively enable trustworthy ZSM in NMSs by leveraging the latest advancements in AI. This pipeline integrates AI|XAI|LLM.
-- Dynamic scaling use case with ZSM: We implemented the proposed pipeline on a real-world 6G NMS use case to dynamically scale cloud resources for a microservice application. This implementation employed XGBoost [5] for AI, SHAP [6] for XAI, and Llama2 [7] for LLM.
-- Real-world deployment and testing: The use case was deployed on an edge computing cluster managed by Kubernetes. Llama2 was deployed on a single NVIDIA A100 GPU. Comprehensive real-world tests, including multiple LLM evaluations, were conducted to optimize performance for this specific use case.
-
-The remaining sections of this article are structured as follows: The next section describes related works and background. Following that, we illustrate the pipeline-based system's architecture and use case. We then showcase the demonstration setup and results. Then we present future research directions. Finally, we conclude the article.
-
-## relAted Works And bAckground
-
-In this section, we briefly overview related works and the background of each pipeline component. Then, we present the differences between existing solutions and our approach.
-
-## AI
-
-AI-based methods have been widely used in networking anomaly detection tasks. For example, in [8], the authors proposed an anomaly detection method using the XGBoost classification algorithm to enhance network security by accurately identifying and classifying traffic anomalies. XGBoost [5] is a powerful AI technique that constructs an ensemble of decision trees to achieve high accuracy in classification tasks. However, these AI methods' lack of interpretability is a significant limitation. These models are often considered black boxes because they provide predictions without transparent insights into their decision-making process, making it difficult to understand the underlying causes of anomalies. As a result, XAI methods have been employed to provide interpretable explanations for the predictions made by these AI models.
-
-## XAI
-
-Several XAI techniques exist and can be classified into global (explaining the entire model) or local (explaining specific predictions). One popular choice is SHapley Additive exPlanations (SHAP) [6], which functions as both a local and global XAI method. It operates by decomposing the output of a model into the sums of the impact of each feature, thereby calculating a value that represents the contribution of each feature to the model's outcome. These values are used to understand the importance of each feature and explain the model's results. SHAP is widely utilized in the literature, particularly in the context of root cause analysis.
-
-## llMs
-
-LLMs are being developed to support a wide range of tasks, including text generation, machine translation, question answering, and information retrieval [4]. Although LLMs can achieve high performance on many Natural Language Processing (NLP) tasks, they are not explicitly designed for network management tasks. Two main approaches are used to adapt LLMs to other specific domains: supervised fine-tuning and in-context learning [4]. The first one involves refining the model's performance by training it on specialized datasets, while the second (e.g., zero-shot and few-shot learning) is an alternative approach by giving the knowledge in the input (prompt) without altering the LLM's weights. This adapts the LLMs to new tasks without requiring the fine-tuning computation complexity.
-
-## XAI And llMs vs our ApproAch
-
-Recent developments have extended the focus of XAI toward LLMs, wherein multiple strategies are employed to integrate XAI with LLMs. These strategies are explained in [9]. The 9th strategy in the latter concerns using LLMs to generate user-friendly explanations for XAI outputs. Our work builds upon this strategy by further exploiting LLMs' reasoning capabilities for anomaly resolution [4]. Additionally, some research works utilize LLMs for anomaly detection and explanation [10]. Furthermore, the authors of [11] proposed creating Large Multi-Model Models (LMMs) specialized for wireless systems, enabling dynamic network adaptation and improving logical reasoning. These models can be applied to use cases such as rea- The emergence of demanding 6G applications like autonomous vehicles and eXtended Reality (XR), along with diverse Quality of Service (QoS) requirements, has significantly increased the complexity of Network Management Systems. This complexity emphasizes the necessity of developing the Zero-touch network and Service Management concept, which aims to completely automate and manage future networks without external interventions...
-
-FIGURE 1. LLM-enabled trustworthy ZSM architecture design and use case.
-
-<!-- image -->
-
-soning about anomalies in the network. However, they will rely solely on LLMs for anomaly detection and resolution, which leads to triggering the LLMs more frequently, resulting in significant energy consumption. Our approach, on the other hand, only requests the LLM when anomalies are detected. This is achieved by employing smaller AI and XAI modules to handle KPI reasoning, thus effectively mitigating the energy consumption problem.
-
-## systeM desIgn
-
-In this section, we present the high-level architecture of the ZSM framework and illustrate its practical application through a use case involving the scaling of cloud resources (i.e., CPU and RAM) for 6G microservices.
-
-## hIgh-level ArchItecture
-
-The ZSM framework features a closed-control loop for managing 6G services, as illustrated in Fig. 1. It consists of three layers:
-
-- 6G Infrastructure , which includes cloud/edge clusters and radio units supporting 6G services. It encompasses components like the 6G Core Network, RAN cloud solutions, and wireless base stations.
-- NMS Anomaly Detection and Resolution , which detects and resolves anomalies in the infrastructure, such as issues in base stations or cloud clusters. It operates above the infrastructure layer.
-- User Plane , This top layer involves users deploying 6G services and interacting with the NMS. For instance, users deploying XR services may require a core network and a set of edge applications with specific SLA latency and throughput to support XR requests. These users also receive human-like explanations from the NMS regarding detected anomalies, recommendations to resolve them, or actions taken by the NMS if ZSM is enabled.
-
-As shown in Fig. 1, the design of the NMS consists of three stages:
-
-- Monitoring System (MS) , which collects KPIs from the 6G infrastructure, including network latency, packet loss, and resource usage metrics. These KPIs are essential for the ADEs to identify anomalies.
-- Anomaly Detection Engines (ADEs) , the ADEs use AI to detect anomalies and XAI to provide numerical explanations. Each ADE focuses on specific anomalies, such as QoS issues or security threats, and uses XAI to explain feature contributions.
-- Analytics Engine (AE) , the AE processes outputs from the ADEs, using an LLM to reason about predictions and explanations. It provides comprehensive explanations for root causes and suggests actions. If ZSM is enabled, the LLM can autonomously execute these actions without human intervention.
-
-## dynAMIc scAlIng use cAse
-
-This use case ensures that CPU and RAM resources for a given microservice application are dynamically adjusted to prevent SLA latency violations. For this purpose, we employed XGBoost as the AI model, SHAP for XAI, and Llama2 as the LLM. Scaling up is performed using the pipeline as illustrated in Fig. 1, whereas scaling down is implemented using a simple heuristic. Below, we describe the scaling-up process, and for more information about scaling down, readers can refer to [3].
-
-XGBoost as AI: As depicted in the right-side of Fig. 1, XGBoost receives cloud monitoring KPIs from the MS, that is, CPU and RAM-related information. This data predicts whether the application will violate the SLA latency. To achieve this, we trained it using the dataset of a microservice application presented by Mekki et al. [12]. First, we labeled the dataset's entries as SLA latency violated (y = 0) or not (y = 1) when the response time is lower or higher than a given threshold. In our case, and based on the experimental data from the dataset, we determine the threshold by measuring the application's latency when it is allocated more resources than required. This value represents the optimal response time that the application can achieve. Then, training is performed using CPU and RAM information as inputs, with SLA violation labels as the output.
-
-SHAP as XAI: The XAI module of the ADE relies on a local explanation method based on SHAP to calculate feature importance scores that influence XGBoost's output. Negative values indicate that a feature drives the model's output toward 0, while positive values indicate that a fea- ture drives the output toward 1. For example, if the CPU usage has a score of -2.56, it means that the CPU usage value pushed the model toward output 0 (SLA not respected) with a score of 2.56. Conversely, if the RAM limit has a score of +0.99, this indicates that the feature pushed the model toward output 1 (SLA respected).
-
-Llama2 as LLM: Llama2 is employed as the AE. This model is trained using in-context learning, where knowledge is injected into the prompts. From Fig. 1, we can see two prompts corresponding to two LLM tasks. E_prompt contains information on how SHAP operates, alongside the values of XGBoost and SHAP. The objective is to prompt Llama2 to employ deductive reasoning to interpret these values and provide a human-readable explanation to the user, along with recommendations on how to mitigate the SLA violation. Deductive reasoning is used here because it involves applying general rules to specific instances to draw conclusions, that is, given SHAP values, Llama2 can apply implicit rules to deduce the root causes and suggest appropriate mitigation strategies. The reasoning can be expressed through the following rules:
-
-XAI values deduce the root cause.
-
-x is the root cause increase the limits of x .
-
-For example, if the SHAP values show that CPU usage is a significant factor in SLA violations, the model can deduce that increasing the CPU is necessary. Secondly, if ZSM is enabled, D_prompt provides the E_output with some instructions to Llama2 to perform Named Entity Recognition (NER) and extract the values in a JSON format acceptable by the infrastructure ( D_output ). We opted for task decomposition into two tasks (i.e., first reasoning to generate E_output , then NER to extract D_output ) because combining them resulted in more generation errors.
-
-## perforMAnce evAluAtIon
-
-In this section, we first describe the evaluation setup. Following that, we outline three evaluation steps:
-
-- The first is for the entire framework, where we present the dynamic scaling use case results.
-- The second is for evaluating LLMs' reasoning capabilities.
-- The third is for assessing the trustworthiness of E_output .
-
-Finally, we present the evaluation conclusion.
-
-## evAluAtIon setup
-
-Our experimental setup, illustrated in Fig. 2, includes two machines hosting the Kubernetes-based cluster and the Llama2 LLM, respectively. The first machine, equipped with an Intel(R) Xeon(R) Silver 4314 CPU (2.40GHz), runs Ubuntu OS 22.04.3 LTS and Kubernetes to manage a single-node cluster hosting the MS and ADE components. The second machine, with an Intel(R) Xeon(R) Gold 6240R CPU (2.40GHz) and an NVIDIA A100 GPU (40GB vRAM), also runs Ubuntu OS 22.04.3 LTS and NVIDIA CUDA driver version 545.23.06. It uses Docker to run the Llama2 LLM facilitated by textgen-webui. The LangChain framework handles LLM prompt preparation, with parameters set to a maximum of 2000 tokens, a temperature of 0.1, and a repetition penalty of 1.15.
-
-FIGURE 2. Evaluation setup.
-
-<!-- image -->
-
-## evAluAtIon: dynAMIc scAlIng frAMeWork
-
-Scenario: We initially configured the microservice application with 0.25 CPU cores and 256 MB of RAM. To evaluate performance under load, we used ApacheBench to generate high volumes of concurrent HTTP requests. The stress tests involved executing a predefined pattern of requests five times, with varying rounds of concurrent clients ( c ) and total requests ( n ): 15 rounds with 50 c and 200 n , 10 rounds with 100 c and 400 n , 15 rounds with 300 c and 500 n , and 20 rounds with 50 c and 50 n . This pattern is illustrated in Fig. 2. Throughout the tests, we monitored CPU and RAM using Prometheus, as well as the LLM's E_output and D_output . For performance comparison, we executed two additional approaches: the state-of-the-art scaling method based on XAI and heuristic decision-making from [3] (denoted ' xai-heur ') and a basic heuristic approach without the XAI module (denoted ' no-xai '), also from [3]. The key distinction is that our approach (' xai-llm ') allows flexible resource allocation, while the heuristic approaches use fixed values. Additionally, ' no-xai ' does not use an XAI module to provide the root cause, thus updating all resources (both CPU and RAM) when a violation is predicted.
-
-Results: From Fig. 3, it is evident that CPU and RAM allocation adapt dynamically to the application load. For instance, the RAM limit increases with usage during heavier loads, and the CPU behaves similarly. The XGBoost|SHAP|Llama2 pipeline efficiently manages this dynamic scaling (demo: https://youtu.be/1CoDNVWJcqA). Additionally, before updating resources, Llama2 generates explainable, human-like E_output . Two examples are shown at the top of the figure at times t 1 and t 2 : one for updating RAM and the other for updating both CPU and RAM. This notification is sent to users to enhance trust in the pipeline's decisions. The system then extracts the new configuration from this text and generates D_output in a JSON structure, enabling efficient resource updates. However, minimal errors in CPU allocation occurred (e.g., at t3). Therefore, we evaluate Llama2's role in this pipeline in the next subsection. For more information on XGBoost and SHAP, readers can refer to [3].
-
-In Fig. 4, we compared our approach (' xaillm ') with ' xai-heur ' and ' no-xai ' by calculating the mean CPU and RAM allocations for each (n, c) pair. We found that all three approaches yielded similar latencies but with different resource allocations. The ' no-xa i' method generally allocates more CPU and RAM due to the absence of the XAI module, which results in less efficient resource use. In contrast, our approach prioritizes RAM during dense requests, possibly because the LLM, trained to understand the impact of insufficient RAM on system stability, allocates more to prevent failures. For CPU allocation, our approach generally uses less, except in dense requests where it allocated more than ' xai-heur .' Averaging these allocations across all (n, c) values, ' xai-llm ' ranks first in CPU allocation, followed by ' xai-heur ,' and then ' no-xai .' Conversely, ' xai-heur ' ranks first in RAM allocation, followed by ' xai-llm ,' and then ' no-xai .' Overall, these results demonstrate that the LLM can effectively serve as a decision-maker, competing with state-of-the-art scaling methods while offering user explanations.
-
-FIGURE 3. Dynamic CPU and RAM scaling in response to microservice load.
-
-<!-- image -->
-
-FIGURE 4. CPU and RAM allocation comparison.
-
-<!-- image -->
-
-## evAluAtIon: llM reAsonIng And decIsIon-MAkIng
-
-Scenario: In this scenario, we focused exclusively on cases where anomalies were predicted by XGBoost. We generated 100 random allocations for CPU and RAM, with values ranging between 0.25 and 2 cores for CPU, and between 128 MB and 2 GB for RAM. Alongside these allocations, we randomly assigned SHAP values between -5 and 5 to each feature. We evaluated the performance of various open-source LLMs and OpenAI's GPT-4 on generating E_output and D\_ output . The LLMs were executed on all the generated samples for evaluation. During this process, we calculated the Score of each LLM on this test: +1 if the generated JSON contained the correct new configuration, which entails: generating a correct JSON structure; including a feature in the JSON if its SHAP value is negative; and ensuring that the JSON value is greater than the randomly assigned value. A Score of +0 was assigned if these conditions were not met. Additionally, we categorized errors made by the LLMs as follows:
-
-- JSON errors , indicating failure to generate a correct JSON structure
-- Amount errors , where the new CPU or RAM limit was lower than the initial values
-- Features miss , where a feature with a negative SHAP value was missing from D_output .
-
-We also monitored the LLMs' execution times: Explanation time and Update time for E_output and D_output generation, respectively.
-
-Results: Figure 5 presents the scores and mean generation times for various LLMs on given tasks, highlighting both E_output and D_output . OpenAI's GPT-4 achieved the highest score (91/100). Among open-source LLMs, Llama2 70B scored 89/100 with 1 JSON error , 4 Amount errors , and 6 Features miss , making it the best open-source LLM for these tasks. Its execution time is 5.9 seconds (s) for E_output and 2.6s for D_output , resulting in an E2E time of 8.5 s, longer than most LLMs due to its size. CodeLlama 13B was the second-best with a score of 73/100 and an E2E time of 5s. Vicuna 30B scored 57/100 but had an E2E time of 17s. Phi2, despite being smaller (2B parameters), scored 41/100. Google's Gemma 7B scored 0/100 with 100 JSON errors. Overall, Llama2 70B scored highest among open-source models, but its size and E2E time are significant. If these values are critical for other decision-making systems, CodeLlama 13B offers a good balance.
-
-FIGURE 5. LLMs scores and E_output-D_output generation times for the dymanic scaling use case.
-
-<!-- image -->
-
-FIGURE 6. LLMs metrics score.
-
-<!-- image -->
-
-## evAluAtIon: llM's trustWorthIness
-
-Scenario: In this scenario, we evaluated the semantic quality of the E_output generated by each LLM to assess the comprehensibility of the texts and the trust users are likely to place in them. We used several established metrics for this evaluation:
-
-- BLEU assesses n-gram precision between generated and reference texts, with higher scores indicating better fluency and adequacy.
-- METEOR measures quality considering exact word matches and semantic similarity using stemming and synonymy, providing a comprehensive evaluation of fluency and semantic fidelity.
-- ROUGE-L focuses on the longest common subsequence of words between generated and reference texts, reflecting content overlap and sequence similarity.
-- BERTScore evaluates token-level semantic similarity using contextualized embeddings from BERT. Reference texts for these metrics were generated by 10 experts, representing the ideal E_output . High scores on these metrics indicate that an LLM produced well-explained and coherent text according to experts' expectations.
-
-Results: Figure 6 illustrates the aforementioned metrics applied to each LLM and sorted from highest to lowest scores. Among the evaluated models, Llama2 with 70B parameters achieves the highest metrics scores, indicating that it consistently produces text semantically similar to domain experts' expectations. Therefore, we can confidently conclude that the E_output from Llama2 is trustworthy, enabling reliable ZSM. Surprisingly, Phi2 ranks second in the metrics ranking, which suggests that it also generates high-quality text that is closely aligned with expert expectations. While the BERTScore across most LLMs is approximately 0.7, indicating a high degree of semantic similarity with expert texts, the variations in wording choices are evident as shown by BLEU , METEOR , and ROUGE-L metrics. However, overall, nearly all LLMs generate text that closely matches in meaning (high BERTScore ), albeit with differences in wording. Notably, Llama2 70B stands out as the model-producing text that aligns most closely in wording with user expectations.
-
-## evAluAtIon conclusIon
-
-We divided the performance evaluation section into three steps. Figure 3 demonstrates a real-world execution of the pipeline, showcasing its efficiency in predicting SLA violations and providing timely updates with human-readable output (demo: https://youtu.be/1CoDNVWJcqA). This illustrates the potential for LLM-based trustworthy ZSM in 6G networks. Given the minimal errors made by the LLMs, we further evaluated the decisions made by these models as depicted in Fig. 5. Our analysis identified Llama2 with 70B parameters as the best choice among open-source LLMs, particularly when execution time is not overly constrained. The explanation generation time is 5.9 s, allowing for comprehensive and explainable text generation, while the update time is approximately 2.3 s when ZSM is enabled. Additionally, Fig. 6 showcases the comprehensibility of the generated text using well-known metrics, providing insights into the trustworthiness of these texts. Llama2 ranks highest, indicating it produced text closest to expert expectations. From these explorations, we conclude that LLMs in ZSM can enable trust and powerful decision-making in 6G networks. However, there are some limitations to overcome, which we present in the next section.
-
-## lIMItAtIons And future dIrectIons
-
-Our work has successfully demonstrated the feasibility of relying on LLMs to enable trust in 6G ZSM frameworks. However, to achieve truly robust LLM-based decision-making, several areas still require future development.
-
-Our work has successfully demonstrated the feasibility of relying on LLMs to enable trust in 6G ZSM frameworks. However, to achieve truly robust LLM-based decision-making, several areas still require future development.
-
-## fAster llM Inference
-
-From Fig. 5, the main drawback of the LLMs is the long generation time. As this latter is not very scarce in our use case, it can be very important in low-level decision-making, such as in URLLC services. In such use cases, decision time is very important to be close to zero. However, relying on LLMs makes this latter very slow. Therefore, LLM generation time must be investigated to minimize it. Indeed, there are efforts in the literature aimed at increasing LLM inference speed [13].
-
-## telecoM-AWAre llMs
-
-From Fig. 3, LLMs play a key role in the ZSM framework by providing trust and facilitating decision-making. However, these models require training to understand the problem context, relying on in-context learning, which increases the prompt's information content, thus increasing generation time. To address this, the community should focus on developing Telecom-aware LLMs. These models would inherently understand Telecom problems, reducing the need for detailed context information, hence reducing generation time. Additionally, Telecom-aware LLMs can better identify and reason about Telecom-related anomalies across technological domains, an area where generic LLMs struggle without extensive context. While researchers in [14] have presented an initial framework for Telecom-aware LLMs, further research is needed.
-
-## green llMs
-
-From Fig. 5, the best-performing open-source LLM for our use case has 70B parameters. This large model is power-consuming. To address this issue, researchers should focus on developing Small Language Models (SLMs) with fewer parameters (e.g., 1B) that can match the efficiency of their larger counterparts. SLMs require significantly less power, making them environmentally friendly. Although the quality of current SLMs is continuously improving, they are not yet capable of fully replacing larger models. Therefore, the community should invest in the development of SLMs. Additionally, the power consumption challenge of LLMs can be tackled through advanced energy-efficient techniques [15], which should also be further investigated to reduce power usage.
-
-## conclusIon
-
-In this article, we presented a comprehensive framework for achieving trustworthy ZSM in 6G networks. Our approach integrates AI for anomaly detection, XAI for root cause analysis, and LLMs for generating user-friendly explanations and implementing corrective actions. The performance evaluation demonstrated the pipeline's effectiveness in predicting and addressing SLA violations, delivering timely updates and human-readable explanations that enhance user trust.
-
-## AcknoWledgMent
-
-This work is partially supported by the European Union's Horizon Program under the 6G-Bricks (Grant No. 101096954) and the 6G-Intense (Grant No. 101139266) projects.
-
-## references
-
-[1] Anon, 'Zero-Touch Network and Service Management (ZSM); Requirements Based on Documented Scenarios,' 2021;
-
-accessed online 29-Mar-2021.
-
-- [2] S. Wang et al ., 'Machine Learning in Network Anomaly Detection: A Survey,' IEEE Access , vol. 9, 2021, pp. 152,379-96. DOI: 10.1109/ACCESS. 2021.3126834
-- [3] M. Mekki et al ., 'XAI-Enabled Fine Granular Vertical Resources Autoscaler,' Proc. 2023 IEEE 9th Int'l. Conf. Network Softwarization, 2023, pp. 161-69, DOI: 10.1109/NetSoft57336.2023.10175438.
-- [4] Y. Chang et al ., 'A Survey on Evaluation of Large Language Models,' arXiv preprint arXiv:, 2023.
-- [5] T. Chen and C. Guestrin, 'Xgboost: A Scalable Tree Boosting System,' Proc. 22nd ACM SIGKDD Int'l. Conf. Knowledge Discovery and Data Mining , 2016, pp. 785-94, DOI: 10.1145/2939672.2939785.
-- [6] S. M. Lundberg and S.-I. Lee, 'A Unified Approach to Interpreting Model Predictions,' Advances in Neural Information Processing Systems , vol. 30. 2017.
-- [7] H. Touvron et al ., 'Llama 2: Open Foundation and Fine-Tuned Chat Models,' arXiv preprint arXiv:, 2023.
-- [8] D. Niu et al ., 'A Network Traffic Anomaly Detection Method Based on CNN and XGBoost,' Proc. 2020 Chinese Automation Congress , 2020, pp. 5453-57, DOI: 10.1109/ CAC51589.2020.9327030
-- [9] X. Wu et al ., 'Usable XAI: 10 Strategies Towards Exploiting Explainability in the LLM Era,' arXiv preprint arXiv:, 2024.
-- [10] J. Su et al ., 'Large Language Models for Forecasting and Anomaly Detection: A Systematic Literature Review,' arXiv preprint arXiv:, 2024.
-- [11] S. Xu et al ., 'Large Multi-Modal Models (LMMs) as Universal Foundation Models for AI-Native Wireless Systems,' arXiv preprint arXiv:, 2024.
-- [12] M. Mekki et al ., 'Microservices Configurations and the Impact on the Performance in Cloud Native Environments,' Proc. 2022 IEEE 47th Conf. Local Computer Networks , 2022, pp. 239-44 DOI: 10.1109/LCN53696.2022.9843385.
-- [13] P. Nawrot et al ., 'Dynamic Memory Compression: Retrofitting LLMs for Accelerated Inference,' arXiv preprint arXiv:, 2024.
-- [14] H. Zou et al ., 'TelecomGPT: A Framework to Build Telecom-Specific Large Language Models,' arXiv preprint arXiv:, 2024.
-- [15] J. Stojkovic et al ., 'Towards Greener LLMs: Bringing Energy-Efficiency to the Forefront of LLM Inference,' arXiv preprint arXiv:, 2024.
-
-## bIogrAphIes
-
-AbdelkAder MekrAche [M] is a PhD candidate at EURECOM's Communication Systems Department. His primary focus is on advanced network management frameworks in next-generation wireless networks under the supervision of Prof. Adlen Ksentini. He is an active participant in collaborative research and notably contributes to the OAI project, as well as multiple European projects, including 6G-Bricks, 6G-Intense, and Sunrise-6G.
-
-MohAMed Mekki [M] obtained his PhD from EURECOM, where he now works as a researcher. He specializes in the Cloud Edge Computing Continuum, focusing on utilizing containerization and WebAssembly technologies to enhance the automated management of applications, while also considering energy consumption and carbon footprint optimization. His work contributes to several European projects, including AC3, 5GDrones, and MonB5G.
-
-Adlen ksentini [SM] is a professor in the Communication Systems Department at EURECOM, leading activities on softwarization, 5G/6G, and edge computing. His research focuses on network virtualization, Software Defined Networking (SDN), and edge computing for 5G/6G networks. He has participated in several H2020 and Horizon Europe projects, including 5G!Pagoda, 5GTransformer, MonB5G, and Sunrise-6G. Currently, he is the technical manager of 6G-Intense and AC3, working on zerotouch management and the Cloud Edge Continuum. His expertise includes Markov Chains, optimization algorithms, and Machine Learning (ML). He is also a member of the OAI board of directors, overseeing Core Network and O-RAN activities.
-
-bouziAne brik [SM] is an Assistant Professor at Sharjah University. He has been (still) working on resources management and security challenges of 5G/6G network slicing in the context of H2020 European projects including MonB5G, 5GDrones, InDiD, and 5G-INSIGHT. His research interests also include 5G and Beyond networks, Explainable AI, and machine/deep learning for wireless networks.
-
-christos Verikoukis [SM] received his BSc and MSc degrees from Aristotle University of Thessaloniki in 1994 and 1997, and his PhD from the Technical University of Catalonia (UPC), Barcelona, in 2000. He is currently a professor at the University of Patras and an affiliated faculty member with ISI/ATH. He has published over 160 journal papers, 240 conference papers, co-authored 5 books, and holds 4 granted patents. He is the EiC of IEEE Networking Letters and a member of the IEEE ComSoc GITC. He has coordinated 20 EC and nationally funded projects.
+# paper-1971 — fulltext
+## §unknown-1
+
+LiLM-RDB-SFC: Lightweight Language Model with
+Relational Database-Guided DRL for Optimized
+SFC Provisioning
+Parisa Fard Moshiri 1, Xinyu Zhu 1, Poonam Lohan 1, Burak Kantarci 1, Emil Janulewicz 2,
+1University of Ottawa, Ottawa, ON, Canada
+2Ciena, 383 Terry F ox Dr , Kanata, ON K2K 2P5, Canada
+1{parisa.fard.moshiri, xzhu095, ppoonam, burak.kantarci }@uottawa.ca, 2ejanulew@ciena.com
+Abstract—Effective management of Service Function Chains
+(SFCs) and optimal Virtual Network Function (VNF) placement
+are critical challenges in modern Software-Defined Networking
+(SDN) and Network Function Virtualization (NFV) environments.
+Although Deep Reinforcement Learning (DRL) is widely adopted
+for dynamic network decision-making, its inherent dependency on
+structured data and fixed action rules often limits adaptability and
+responsiveness, particularly under unpredictable network condi-
+tions. This paper introduces LiLM-RDB-SFC, a novel approach
+combining Lightweight Language Model (LiLM) with Relational
+Database (RDB) to answer network state queries to guide DRL
+model for efficient SFC provisioning. Our proposed approach
+leverages two LiLMs, Bidirectional and Auto-Regressive Trans-
+formers (BART) and the Fine-tuned Language Net T5 (FLAN-T5),
+to interpret network data and support diverse query types related
+to SFC demands, data center resources, and VNF availability.
+Results demonstrate that FLAN-T5 outperforms BART with a
+lower test loss (0.00161 compared to 0.00734), higher accuracy
+(94.79% compared to 80.2%), and less processing time (2h 2min
+compared to 2h 38min). Moreover, when compared to the large
+language model SQLCoder, FLAN-T5 has almost same accuracy
+while cutting processing time by 96 % (SQLCoder: 54 h 43 min;
+FLAN-T5: 2 h 2 min).
+Index Terms —SFC provisioning, VNF placement, DRL, Lan-
+guage Model, FLAN-T5, BART, Network State Monitoring.
+I. I NTRODUCTION
+The advent of Software-Defined Networking (SDN) and
+Network Function Virtualization (NFV) has altered network
+management, allowing for greater flexibility and efficiency.
+Service Function Chain (SFC) provisioning involves the se-
+quential execution of different virtual network functions (VNF)
+to support complex applications such as Cloud Gaming (CG),
+Augmented Reality (AR), Video Streaming (VS), Massive IoT
+(MIoT), V oice over Internet Protocol (V oIP), and Industry
+4.0 (Ind 4.0) [1]. Satisfying these applications through SFC
+provisioning presents substantial challenges, such as resource
+allocation for VNFs placements, sequential VNF execution, and
+meeting end-to-end (E2E) latency constraints.
+Deep Reinforcement Learning (DRL) algorithms are fre-
+quently employed for optimal VNF placement and SFC provi-
+sioning due to their ability to handle complex network environ-
+ments, make effective resource allocation decisions, and adapt
+to varying service demands [2]. However, DRL techniques
+often rely on structured numerical inputs, predetermined state-
+action representations, and learned policies, restricting their
+adaptability while encountering unexpected network states or
+scenarios that significantly differ from their training phase. For
+instance, when typical data flows are interrupted by unexpected
+network outages or link failures, a DRL model trained on stable
+and structured network conditions may struggle to swiftly
+reroute traffic or reposition VNFs effectively in such a situation,
+maintaining the placement decisions or routing paths learned
+from regular operation. This could result in additional outages,
+higher latency, and poor network performance [3].
+In contrast, integrating Language Models (LMs) can signif-
+icantly enhance decision-making by exploiting their abilities
+to comprehend unstructured input, reason about context, and
+quickly adapt to unexpected network scenarios [4]. LMs can
+scan real-time textual descriptions or logs that specify the
+nature of failures, allowing for faster contextual evaluation and
+dynamic decision-making beyond the established numerical
+metrics and structured state-action restrictions inherent in DRL
+[5]. Specifically, LMs address this issue by immediately eval-
+uating the severity of partial outages or link failures from un-
+structured event data, allowing them to quickly inform the issue
+and suggest alternative routing paths or ideal VNF relocation
+strategies [3]. Thus, combining DRL and LMs enables more
+informed, adaptive, and responsive SFC provisioning and VNF
+placement decisions, minimizing the adverse effects caused by
+unexpected network events.
+In our previous work [6], VNF placement using DRL is
+addressed, focusing on the optimal allocation of storage and
+computational resources required by VNFs. The goal in [6]
+is to maximize the efficient handling of SFC requests based
+on resource constraints and VNF specifications. Initially, our
+approach in [3] involves using a textual dataset to capture
+network states information; however, in this work, we transition
+to a relational SQL database due to its superior capability
+for handling scalability and facilitating rapid reconfigurability
+across diverse DCs, varied VNFs and SFC scenarios. After
+storing network state information determined by DRL actions
+in a relational database, the dataset is fed into a Lightweight
+2025 16th International Conference on Network of the Future (NoF)
+979-8-3315-8580-8/25/$31.00 ©2025 IEEE 28
+2025 16th International Conference on Network of the Future (NoF) | 979-8-3315-8580-8/25/$31.00 ©2025 IEEE | DOI: 10.1109/NoF66640.2025.11223314
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply. 
+LM (LiLM) for comprehensive network state monitoring. This
+integration offers deep and actionable insights into network
+dynamics, allowing greater adaptability and decision-making
+precision in DRL-based VNF placement. LiLMs require sub-
+stantially fewer computational resources and less advanced
+hardware compared to Large LMs (LLM), achieving com-
+parable performance while significantly improving inference
+speed and operational efficiency [7]. Their suitability for rapid,
+cost-effective decision-making makes them highly valuable for
+dynamic network optimization tasks [5].
+In this paper, we employ both BART and FLAN-T5, two
+lightweight yet powerful language models, to translate natural-
+language (NL) query to SQL queries. BART is known for its
+strong performance in sequence-to-sequence tasks, particularly
+text generation and summarization, while FLAN-T5 stands out
+for its instruction tuning and generalization capabilities across
+diverse NL processing tasks. Both models are assessed across
+diverse question types centered on Data Center (DC), VNF, and
+SFC configurations. To benchmark the performance of LiLMs,
+we also employ a state-of-the-art LLM, SQLCoder, which
+is specifically designed for efficient SQL query generation.
+The results highlight the LiLMs capability to detect resource
+usage patterns, pinpoint performance bottlenecks, and extract
+valuable insights for future network enhancements with lower
+computational cost compared to the LLM. Consequently, the
+system evolves to be more adaptive and intelligent, enabling
+proactive handling of SFC provisioning in dynamic environ-
+ments.
+The main contributions of this paper are as follows:
+1) We design and implement a structured relational SQL
+database schema that captures essential network state
+information, including storage and computational re-
+sources of DCs, available idle VNFs, and current SFC
+demands. Additionally, a custom dataset comprising
+natural-language and SQL query pairs is curated to train
+the proposed language models for SQL query generation.
+2) Two LiLMs, BART and FLAN-T5, and a LLM, SQL-
+Coder, are trained on the custom dataset to translate
+diverse natural-language queries into corresponding SQL
+queries. These SQL queries are executed over the re-
+lational SQL database to retrieve accurate, real-time
+network state information.
+3) The proposed system demonstrates high scalability and
+adaptability to dynamic network conditions. The rela-
+tional database schema can be extended by adding new
+rows, while the trained LiLMs generalize well to unseen
+queries and scenarios without additional training.
+Based on our findings, FLAN-T5 outperforms BART with
+lower test loss, higher accuracy, higher number of correct
+predictions, and less processing time. Compared to SQLCoder,
+FLAN-T5 has almost same accuracy but with lower processing
+time. The rest of the paper is organized as follows: Section
+II provides a literature review, followed by the methodology
+in Section III. Section IV discusses performance evaluation.
+Section V concludes the paper.
+II. R ELATED WORK
+In NFV systems, deep learning methodologies have been
+investigated to enhance predictive precision for VNF resource
+management and service orchestration. Kim et al. [8] present a
+sequence modeling framework for VNF resource prediction uti-
+lizing LSTM (Long short-term memory) variations and atten-
+tion processes. Their strategy enhances prediction accuracy and
+convergence speed by utilizing the structural interdependence
+inherent in SFCs. Nonetheless, these methodologies generally
+depend on supervised training using structured time-series data
+and exhibit limited adaptation to dynamic and unstructured
+network contexts. Bunyakitanon et al. [9] introduce AREL3P, a
+RL framework employing Q-learning to independently position
+VNFs based on predictions of E2E performance. In contrast to
+supervised learning methods, AREL3P interfaces with NFV or-
+chestration platforms and facilitates online learning in dynamic
+contexts. Yet, as a tabular RL method, it encounters scalability
+constraints and lacks semantic interpretability. Although both
+supervised and non-DRL approaches possess distinct advan-
+tages, they are hindered by inflexible input representations
+and exhibit restricted adaptability in managing unstructured or
+dynamic network environments.
+DRL has been extensively utilized to tackle dynamic SFC
+provisioning and VNF placement. Fu et al. [10] present
+a method based on DRL for the embedding of VNFs in
+NFV-enabled IoT systems, disaggregating VNFs into granular
+functional components to enhance flexibility. Their Deep Q-
+Learning approach, augmented with experience replay and
+target networks, proficiently tackles traffic fluctuation and
+infrastructure heterogeneity. Jaumard et al. [11] integrate DRL
+with Graph Neural Networks (GNN) to encapsulate topo-
+logical and functional restrictions in SFC routing decisions.
+While effective, these models rely on predetermined state-
+action representations and provide limited interpretability in
+the presence of unstructured or unforeseen network alterations.
+Our methodology enhances DRL by incorporating a stream-
+lined LM module that facilitates semantic querying of DRL-
+generated judgments within a structured SQL framework.
+Recent studies have investigated the application of LMs in
+network design, forecasting, and decision-making support. Su
+et al. [12] utilize pre-trained LLaMA2 models for zero-shot
+prediction of VNF resource utilization. By tokenizing numeri-
+cal resource measurements and utilizing the sequence modeling
+capabilities of LMs, the model attains competitive accuracy
+without the need for task-specific fine-tuning. Nonetheless, it
+is constrained in organized reasoning and provides minimal
+interpretability for decision-making in operational settings.
+Nguyen et al. [13] provide NFV-Intent, a framework that uses
+in-context learning to convert user intents into JSON-formatted
+NFV configurations. Their technology attains excellent trans-
+lation accuracy and seamlessly interacts with the complete
+NFV lifecycle without necessitating fine-tuning. Li et al. [14]
+introduce LM-NOS, utilizing LMs to enhance heuristic policy
+code inside a multi-objective optimization framework for SFC
+deployment. While these solutions utilize LMs for deployment
+2025 16th International Conference on Network of the Future (NoF)
+29
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply. 
+logic or configuration abstraction, they concentrate on pre-
+deployment phases and lack support for real-time semantic
+querying of dynamic network states. Conversely, our research
+utilizes LiLM (FLAN-T5, BART) and an LLM (SQLCoder) to
+convert NL queries into SQL queries about structured network
+monitoring data, facilitating transparent and contextually aware
+interpretation of judgments generated by DRL.
+III. M ETHODOLOGY
+In our previous work [6], DRL is utilized to maximize the
+number of accepted SFC requests while considering infrastruc-
+ture constraints. Given the diverse resource demands, latency
+requirements, and unique VNF sequences of different SFC
+requests, DRL effectively learned optimal placement policies
+tailored to specific network conditions. However, DRL faces
+challenges in quickly adapting to unforeseen changes or in-
+correct decisions, often necessitating extensive retraining. To
+address these limitations, we now incorporate LMs with an
+SQL-based dataset for managing SFCs, DCs, and VNFs. The
+types of SFCs and their VNF sequences used in this work
+are provided in TABLE I. The primary VNFs of these SFCs
+can be listed as Network Address Translation (NAT), Intrusion
+Detection and Prevention System (IDPS), Video Optimization
+Controller (VOC), Firewall (FW), Traffic Monitor (TM), and
+W AN Optimizer (WO). The SQL dataset offers structured
+data organization, efficient querying capabilities, and robust
+relational integrity, enabling quick and precise access to rel-
+evant network information. We store network state information
+in SQL database following DRL actions at each time-step.
+Then, LM is leveraged to convert NL query to SQL query
+to monitor the network state, accessing the SQL database.
+NL queries are fed into the LM to dynamically investigate
+critical network state metrics such as minimum and maximum
+E2E latency for specific SFC, the number of idle VNFs, and
+available storage and computational power at a particular DC.
+By deeply understanding network state information, LMs can
+produce valuable inputs/recommendations for DC selection
+function, the output of which provides inputs to the DRL model
+for optimal VNF placements aligned with service requests
+and real-time network status. These recommendations can be
+provided either periodically or on demand.
+As shown in Fig. 1, comprehensive network state informa-
+tion is collected following the actions taken by the DRL model.
+This data is then structured into a schema compatible with a
+relational SQL database, which is provided in detail in Fig. 2.
+The schema is fully dynamic, as individual rows can be updated
+on-the-fly, enabling real-time modification of any table entry
+without interrupting normal database operations. NL queries
+are formulated to retrieve key network metrics, focusing on: (i)
+the total number of idle VNFs, (ii) the minimum E2E latency
+for a specific SFC type at a given DC, (iii) the maximum E2E
+latency for a specific SFC type at a DC, (iv) available storage
+at a DC, and (v) available computational capacity at a DC.
+Furthermore, queries may involve combinations of two metrics
+(e.g., available storage and minimum E2E latency) and three
+TABLE I: SFC characteristics [15]
+SFC Request VNF Sequence Bandwith
+(Mbps)
+E2E delay
+(msec)
+Request
+Bundle
+CG NAT-FW-VOC
+-WO-IDPS
+4 80 [40-55]
+AR NAT-FW-TM
+-VOC-IDPS
+100 10 [1-4]
+V oIP NAT-FW-TM
+-FW-NAT
+0.064 100 [100-200]
+VS NAT-FW-TM
+-VOC-IDPS
+4 100 [50-100]
+MIoT NAT-FW-IDPS [1-50] 5 [10-15]
+Ind 4.0 NAT-FW 70 8 [1-4]
+metrics (e.g., minimum and maximum E2E latency along with
+the total number of idle VNFs), allowing for more detailed
+network state analysis. These NL queries, along with the
+generated schema, are used for LM training. The LM is trained
+to translate NL queries into accurate SQL queries. When
+executed, these SQL queries retrieve relevant information from
+relational database, resulting in useful insights for network
+monitoring and decision-making processes in response to future
+network requests. Using this systematic technique, network
+management’s responsiveness, accuracy, and adaptability can
+be substantially improved, allowing for more efficient and
+proactive resource allocation strategies tailored to dynamic
+network conditions.
+A. Integration of Language Models
+T5, which stands for “Text-To-Text Transfer Transformer,” is
+a flexible language model created by Google [16]. It efficiently
+treats every natural-language processing task as a text-to-text
+challenge [16]. During the pre-training phase, parts of the text
+are hidden, and the T5 model learns to fill in the gaps, which
+helps it develop a solid grasp of grammar, structure, and mean-
+ing. Fine-tuned Language Net T5 (FLAN-T5) is an improved
+version of T5 released by Google Research. It builds upon
+the original T5 architecture and was trained to follow natural-
+language instructions across a wide range of tasks, making
+it more effective in generalization and zero-shot scenarios. In
+this research, FLAN-T5 is utilized for text-to-SQL generation.
+When given a natural-language query along with a description
+of the database schema, LiLM learns to create the SQL query
+that would provide the answer utilizing SQL database. Its
+ability to comprehend both the question’s structure and the
+schema’s relational format allows it to generate accurate SQL
+statements.
+BART (Bidirectional and Auto-Regressive Transformers) is
+also utilized as a complementary LiLM. BART, developed
+by Facebook AI, is a powerful sequence-to-sequence archi-
+tecture that integrates the strengths of BERT (bidirectional
+encoder) and GPT (autoregressive decoder) [17]. Similar to T5,
+BART is pre-trained with a denoising autoencoder objective
+and can be fine-tuned for tasks like text-to-SQL generation.
+BART’s adaptability and robustness make it a viable option
+for translating natural-language queries into executable SQL
+statements in network management. While both methods are
+effective for text-to-SQL creation, their relative efficacy may
+2025 16th International Conference on Network of the Future (NoF)
+30
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply. 
+Fig. 1: Framework Design for LiLM-RDB-SFC
+Fig. 2: Schema for Relational Database
+differ based on the dataset’s features and the specific query
+patterns used. These patterns can include, but are not limited to,
+queries requiring aggregations or joins, value comparisons, or
+filtering based on certain attributes. Other significant linguistic
+or structural changes in the query could also affect model
+performance.
+SQLCoder is an open-source LLM specifically designed
+for translating natural language queries into SQL queries with
+high fidelity. Developed by Defog.ai [18], SQLCoder builds
+upon modern transformer architectures and is fine-tuned on
+diverse datasets consisting of complex text-to-SQL datasets
+[19]. Its core design adopts a decoder-only architecture, similar
+to models like LLaMA and GPT, leveraging multi-head self-
+attention and dense feedforward layers to capture intricate
+relationships between natural language input and SQL output
+[20]. To further enhance its adaptability and reduce fine-
+tuning resource requirements, SQLCoder can be updated using
+parameter-efficient techniques such as Low-Rank Adaptation
+(LoRA), which injects small, trainable rank-decomposition
+matrices into each attention and feed-forward block. This
+enables efficient domain adaptation without retraining the full
+model [3]. To enable the efficient deployment of LLMs such
+as SQLCoder on resource-constrained hardware, quantization
+techniques are commonly applied. 4-bit and 8-bit quantization
+reduce the precision of the model weights from 16 or 32-bit
+floating point values to lower-bit integer representations. This
+2025 16th International Conference on Network of the Future (NoF)
+31
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply. 
+TABLE II: Notation Table
+Parameter Description Eq.
+i Each individual example in a batch (1) - (4)
+N The total number of examples in batch (3), (4)
+P (i)
+s Binary penalty function defined for the i-
+th example in the batch for SFC identifiers
+(1), (3)
+P (i)
+v Binary penalty function defined for the i-
+th example in the batch for idle VNFs
+identifiers
+(2), (4)
+si Expected SFC identifier for the i-th exam-
+ple
+(1)
+ˆsi Predicted SFC identifier for the i-th exam-
+ple
+(1)
+vi Expected Idle VNFs identifier for the i-th
+example
+(2)
+ˆvi Predicted Idle VNFs identifier for the i-th
+example
+(2)
+PS Average penalty regarding SFC identifiers (3), (6)
+PV Average penalty regarding idle VNFs
+identifiers
+(4), (6)
+λce Penalty weight for cross-entropy loss (5), (6)
+λs Penalty weight for SFCs mismatch (5), (6)
+λv Penalty weight for idle VNFs mismatch (5), (6)
+Lce Cross-entropy loss (6)
+L Total loss (6)
+substantially decreases both the memory footprint and com-
+putational requirements, enabling faster inference and lower
+power consumption. In practice, 8-bit quantization preserves
+much of the model’s original accuracy while offering notable
+efficiency gains, making it a standard choice for practical
+deployments. 4-bit quantization provides even greater compres-
+sion and acceleration, allowing SQLCoder models to fit into de-
+vices with limited RAM and further reducing inference latency.
+Recent research and open-source libraries, such as bitsandbytes
+[21], have demonstrated that SQLCoder and similar LLMs can
+operate with minimal performance degradation when quantized
+to 4 or 8 bits, making advanced natural language-to-SQL
+capabilities accessible on a wide range of hardware platforms.
+B. Loss Function
+In order to improve the ability of LiLMs to capture the SFC
+and idle VNF identifiers correctly, additional penalty terms are
+introduced to the loss function. The standard cross-entropy
+loss may not explicitly enforce the correct identification of
+these important components. By incorporating binary penalty
+functions for mismatches in predicting SFC and idle VNFs’
+identifiers, we can guide the model to focus on these details.
+For a batch of N examples, si is the expected SFC identifier
+and ˆsi is the predicted SFC identifier for the i-th example. In
+addition, vi is the expected idle VNF identifier and ˆvi is the
+predicted idle VNFs identifier for the i-th example. The binary
+penalty functions P (i)
+s and P (i)
+v for SFC and VNF identifier,
+respectively, are defined as follows:
+TABLE III: Configuration Parameters for LiLMs
+Parameter Value
+Learning Rate 4e-5
+Batch Size 2
+Max Length of Tokens 512
+Epochs 10
+λce 0.1
+λv 0.3
+λs 0.6
+P (i)
+s =
+(
+1 if si ̸= ˆsi
+0 if si = ˆsi
+(1)
+P (i)
+v =
+(
+1 if vi ̸= ˆvi
+0 if vi = ˆvi
+(2)
+The average penalties PS and PV for SFC and VNF identifier,
+respectively, are calculated as follows:
+PS = 1
+N
+NX
+i=1
+P (i)
+s (3)
+PV = 1
+N
+NX
+i=1
+P (i)
+v (4)
+λce, λs, and λv weights are utilized to emphasize/de-
+emphasize the contribution of cross-entropy loss, SFC and VNF
+identifier penality components, respectively, thereby controlling
+their relative impact subject to:
+λce + λs + λv = 1 (5)
+The total loss L is then defined as follows:
+L = λce Lce + λs PS + λv Pv (6)
+Where Lce denotes the standard cross-entropy loss.
+During the training phase, the combined loss function directs
+the model to minimize the cross-entropy error and accurately
+predict the SFC and Idle VNF IDs. The model’s ability to
+capture these crucial elements is reinforced by this additional
+supervision. Future extensions can include incorporation of dif-
+ferent reward functions. All of the parameters in the formulas
+are summarized in TABLE II.
+IV. P ERFORMANCE ANALYSIS
+The experiments were carried out on a system equipped
+with NVIDIA A100-PCIE-40GB GPUs, each of which features
+40GB of memory. The dataset includes schema, 16568 sets of
+natural-language queries, equivalent SQL queries and ground-
+truth answers of those queries, which are all manually crafted.
+It is divided into three parts: 75% for training, 12.5% for
+validation, and 12.5% for testing.
+2025 16th International Conference on Network of the Future (NoF)
+32
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply. 
+TABLE IV: Configuration Parameters for SQLCoder
+Parameter Value
+Learning Rate 1e-5
+Batch Size 2
+Max Length of Tokens 1024
+r 16
+α 32
+Epochs 10
+(a) Loss for FLAN-T5
+(b) Loss for BART
+(c) Loss for SQLCoder
+Fig. 3: Training, testing, and validation loss for FLAN-T5,
+BART, and SQLCoder
+Other configuration parameters are summarized in TABLE
+III, which are same for both LiLMs, thereby ensuring that
+any observed performance differences stem exclusively from
+their intrinsic architectural properties. In our experiments,
+SQLCoder is deployed with 8-bit quantization for efficient
+Fig. 4: Ground truth and correct predictions for LMs
+2025 16th International Conference on Network of the Future (NoF)
+33
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply. 
+TABLE V: Comparison of Metrics for BART, FLAN-T5, and SQLCoder
+Metric BART FLAN-T5 SQLCoder
+Accuracy (%) 80.2% 94.79% 94.54%
+Correct / Total 1661 / 2071 1963 / 2071 1958 / 2071
+Processing Time 2 h 38 min 2 h 2 min 54 h 43 min
+Perplexity 1.0073 1.0016 1.03
+memory usage and inference, and fine-tuned using LoRA. The
+LoRA configuration utilizes a rank parameter of r=16, a scaling
+factor α = 32, and a dropout rate of 0.05. All of the parameters
+are summarized in TABLE IV All of these values in TABLE
+III and TABLE IV were carefully chosen after multiple trial
+runs.
+We employ the BART-based model, which has a maximum
+sequence length of 512 tokens. This model consists of 6
+encoder and 6 decoder transformer blocks, each containing 768
+hidden dimensions, for a total of around 139 million parameters
+[17]. Additionally, we utilize the FLAN-T5-base model, which
+has a maximum sequence length of 512 tokens. FLAN-T5-
+base consists of 12 encoder and 12 decoder transformer blocks,
+each with 768 hidden dimensions and 248 million parameters
+[22]. We employ the SQLCoder model from Defog, which is
+a 15 billion-parameter decoder-only transformer [19], which
+is finetuned for our dataset by LoRA. To further reduce its
+memory footprint and speed up inference, we quantize the
+model to 8-bit precision using the bitsandbytes library, enabling
+deployment with minimal impact on accuracy [21].
+Given the maximum input sequence limitation of 512 tokens
+for both FLAN-T5 and BART, a pre-processing step is utilized
+to manage input length efficiently. In this step, based on
+specific keywords identified in the user query, only the relevant
+portions of the relational database schema are provided to the
+LiLM. For instance, if the question includes keywords such
+as ”idle VNFs”, the schema related to the idle VNFs table is
+included. Similarly, if the question pertains to a specific type of
+SFC, only the schema segments relevant to that SFC type are
+selected. For combination queries involving multiple aspects,
+the corresponding schema parts for all mentioned components
+are included. In cases where no specific keywords are detected,
+the full schema is presented to the LiLM. This targeted schema
+selection strategy helps conserve input space, ensuring critical
+information remains within the model’s token limit.
+Fig.3a presents the training, validation, and test loss curves
+for the FLAN-T5 model over ten epochs. Initially, all losses
+start at relatively high values and quickly decreasing during
+the initial epochs. Validation and test losses closely mir-
+ror the training loss trend, stabilizing swiftly and indicating
+the model’s strong generalization capabilities. Comparatively,
+Fig.3b depicts the loss curves for the BART model. The initial
+losses for BART are higher, but similarly experience rapid
+decreases within the first few epochs. By the fourth epoch,
+losses stabilize, with training loss showing the lowest values
+followed by evaluation and test losses. This rapid and stable
+convergence suggests effective training and generalization.
+Fig.3c depicts the training and validation loss curves for the
+SQLCoder model over ten epochs. The test loss is reported only
+at epoch 10 due to GPU memory constraints. Similar to LiLMs,
+training and validation loss of SQLCoder starts at high values
+and drop during few first epochs before leveling off around
+epoch 6. When comparing all three models, all exhibit efficient
+convergence and robust generalization. However, FLAN-T5
+achieves lower overall loss values.
+TABLE V compares the performance of LiLMs and the
+LLMs in terms of accuracy, correct predictions, and processing
+time. The accuracy indicates the proportion of queries gener-
+ated by the models that match exactly with the correct query
+word-for-word, thereby retrieving the correct answer from the
+relational database. FLAN-T5 achieved an accuracy of 94.79%,
+resulting in 1963 correct predictions, and completed its com-
+putations significantly faster. Conversely, BART reached an
+accuracy of 80.2% with 1661 correct predictions but required
+a considerably longer processing time. Moreover, SQLCoder
+attains the accuracy of 94.54 % ( 1958 correct answers),
+close to FLAN-T5, but with substantial computational cost
+of 54 hours and 43 minutes of processing. These results
+demonstrate FLAN-T5’s superior performance in both accuracy
+and efficiency for our dataset, specifically in generating pre-
+cise queries necessary for accurate information retrieval from
+the relational database. Additionally, we calculated perplexity,
+which measures the average number of choices the model is
+confused between when predicting the next word/token, that is,
+1.0073 for BART, and 1.03 for SQLCoder, compared to 1.0016
+for FLAN-T5, meaning that FLAN-T5 is more confident in its
+predictions.
+Two illustrative examples of correct and incorrect predic-
+tions for the LiLMs and the LLM are presented in Fig. 4
+and Fig. 5. In the case of correct predictions, Fig. 4, all
+models successfully generate accurate SQL queries, yielding
+correct execution results. Conversely, in scenarios with incor-
+rect predictions, Fig. 5, FLAN-T5 generates a SQL query
+with correct results, albeit identifying an incorrect DC ID.
+For the same question, BART not only predicts an incorrect
+DC ID but also generates a SQL query that fails to generate
+correct answer. In contrast, SQLCoder successfully generates
+the correct SQL query. Moreover, as illustrated in Fig. 4 and
+Fig. 5, without additional training, these models consistently
+produce SQL queries that are syntactically incorrect and cannot
+be executed on the database. This underscores the limitations
+of their out-of-the-box capabilities and the necessity of fine-
+tuning them on domain-specific data. The generated outputs
+by SQLCoder are depicted in Fig. 6. As shown in Fig. 6,
+SQLCoder sometimes outputs queries containing extra content,
+such as repeated natural-language questions, answers, or other
+text fragments. While training SQLCoder is computationally
+intensive, it nevertheless produces semantically correct SQL
+2025 16th International Conference on Network of the Future (NoF)
+34
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply. 
+Fig. 5: Ground truth and incorrect predictions for LMs
+ Fig. 6: Questions and generated SQL queries for SQLCoder
+2025 16th International Conference on Network of the Future (NoF)
+35
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply. 
+statements. By applying a lightweight post-processing step to
+remove those extra parts, we can recover the correct SQL query
+itself, resulting in an improvement in the SQLCoder accuracy
+from 94.54% to 100%.
+V. C ONCLUSION
+In this paper, we have proposed LiLM-RDB-SFC, a novel
+framework integrating a Light Language Model with Rela-
+tional Database-guided DRL for optimized SFC provisioning.
+Specifically, the network state information, including final VNF
+allocations determined by the DRL model, SFC configurations,
+and DC information, has been utilized by LMs to generate
+precise SQL queries corresponding to natural-language queries.
+Querying the current state of SFCs, DCs, and VNFs provides
+critical insights into real-time resource utilization and potential
+bottlenecks, significantly enhancing future resource allocation
+strategies and responsiveness to dynamic network demands.
+Our evaluations have shown that the FLAN-T5 model sig-
+nificantly outperforms BART by achieving lower loss values
+(0.00161 vs 0.00734), higher accuracy (94.79% vs 80.2%),
+shorter processing time (2 h 2 min vs 2 h 38 min) with a
+higher number of correct query predictions (1963 vs 1661).
+Compared to SQLCoder, FLAN-T5 has similar accuracy of
+94.79% compared to 94.54% for SQLCoder, but with 96%
+lower processing time. In future work, we plan to explore
+the use of alternative language models across varying demand
+profiles to further enhance the system’s adaptability and per-
+formance.
+
+## § Acknowledgment
+
+This work is supported by the Natural Sciences and En-
+gineering Research Council of Canada (NSERC) Alliance
+Program, MITACS Accelerate Program, and NSERC CREATE
+TRA VERSAL program.
+
+## § References
+
+[1] Y . Han, W. Meng, and W. Fan, “SFC Placement and Dynamic Resource
+Allocation Based on VNF Performance-Resource Function and Service
+Requirement in Cloud-Edge Environment,” Journal of Systems Engineer-
+ing and Electronics, vol. 35, no. 4, pp. 906–921, 2024.
+[2] R. Mohamed, M. Avgeris, A. Leivadeas, and I. Lambadaris,
+“Fragmentation-Aware VNF Placement: A Deep Reinforcement Learning
+Approach,” in ICC 2024 - IEEE International Conference on Communi-
+cations, 2024, pp. 5257–5262.
+[3] P. F. Moshiri, M. A. Onsu, P. Lohan, B. Kantarci, and E. Janulewicz,
+“Integrating Language Models for Enhanced Network State Monitoring in
+DRL-Based SFC Provisioning,” arXiv preprint arXiv:2502.11298, 2025.
+[4] D. T. Hoang, N. V . Huynh, D. N. Nguyen, E. Hossain, and D. Niyato,
+DRL Challenges in Wireless Networks, 2023, pp. 213–240.
+[5] G. O. Boateng, H. Sami, A. Alagha, H. Elmekki, A. Hammoud, R. Mi-
+zouni, A. Mourad, H. Otrok, J. Bentahar, S. Muhaidat et al., “A Survey
+on Large Language Models for Communication, Network, and Service
+Management: Application Insights, Challenges, and Future Directions,”
+arXiv preprint arXiv:2412.19823, 2024.
+[6] M. Arda Onsu, P. Lohan, B. Kantarci, E. Janulewicz, and S. Slobodrian,
+“Unlocking Reconfigurability for Deep Reinforcement Learning in SFC
+Provisioning,” IEEE Networking Letters, vol. 6, no. 3, pp. 193–197, 2024.
+[7] M. Hassid, T. Remez, J. Gehring, R. Schwartz, and Y . Adi, “The Larger
+the Better? Improved LLM Code-Generation via Budget Reallocation,”
+arXiv preprint arXiv:2404.00725, 2024.
+[8] H.-G. Kim, S.-Y . Jeong, D.-Y . Lee, H. Choi, J.-H. Yoo, and J. W.-
+K. Hong, “A Deep Learning Approach to VNF Resource Prediction
+using Correlation between VNFs,” in 2019 IEEE Conference on Network
+Softwarization (NetSoft), 2019, pp. 444–449.
+[9] M. Bunyakitanon, X. Vasilakos, R. Nejabati, and D. Simeonidou, “End-
+to-End Performance-Based Autonomous VNF Placement With Adopted
+Reinforcement Learning,” IEEE Transactions on Cognitive Communica-
+tions and Networking, vol. 6, no. 2, pp. 534–547, 2020.
+[10] X. Fu, F. R. Yu, J. Wang, Q. Qi, and J. Liao, “Dynamic Service
+Function Chain Embedding for NFV-Enabled IoT: A Deep Reinforcement
+Learning Approach,” IEEE Transactions on Wireless Communications,
+vol. 19, no. 1, pp. 507–519, 2020.
+[11] B. Jaumard, C. Boudreau, and E. Janulewicz, “Dynamic Service
+Function Chaining Provisioning with Reinforcement Learning Graph
+Neural Networks,” in Proceedings of the 3rd GNNet Workshop on
+Graph Neural Networking Workshop, ser. GNNet ’24. New York, NY ,
+USA: Association for Computing Machinery, 2024, p. 53–58. [Online].
+Available: https://doi.org/10.1145/3694811.3697824
+[12] J. Su, S. Nair, and L. Popokh, “Leveraging Large Language Models for
+VNF Resource Forecasting,” in 2024 IEEE 10th International Conference
+on Network Softwarization (NetSoft), 2024, pp. 258–262.
+[13] N. Van Tu, J.-H. Yoo, and J. W.-K. Hong, “Towards Intent-based Con-
+figuration for Network Function Virtualization using In-context Learning
+in Large Language Models,” in NOMS 2024-2024 IEEE Network Oper-
+ations and Management Symposium, 2024, pp. 1–8.
+[14] Y . Li, Q. Zhang, H. Yao, R. Gao, X. Xin, and M. Guizani, “Next-
+Gen Service Function Chain Deployment: Combining Multi-Objective
+Optimization with AI Large Language Models,” IEEE Network, 2025, to
+appear.
+[15] J. M. Ziazet, B. Jaumard, H. Duong, P. Khoshabi, and E. Janulewicz,
+“A dynamic traffic generator for elastic 5G network slicing,” in 2022
+IEEE International Symposium on Measurements & Networking (M&N).
+IEEE, 2022, pp. 1–6.
+[16] C. Raffel, N. Shazeer, A. Roberts, K. Lee, S. Narang, M. Matena,
+Y . Zhou, W. Li, and P. J. Liu, “Exploring the Limits of Transfer Learning
+with a Unified Text-to-Text Transformer,” CoRR, vol. abs/1910.10683,
+2019. [Online]. Available: http://arxiv.org/abs/1910.10683
+[17] M. Lewis, Y . Liu, N. Goyal, M. Ghazvininejad, A. Mohamed, O. Levy,
+V . Stoyanov, and L. Zettlemoyer, “BART: Denoising Sequence-to-
+Sequence Pre-training for Natural Language Generation, Translation,
+and Comprehension,” CoRR, vol. abs/1910.13461, 2019. [Online].
+Available: http://arxiv.org/abs/1910.13461
+[18] D. AI, “Sqlcoder: State-of-the-art llm for natural language to sql,” https:
+//github.com/defog-ai/sqlcoder, 2024.
+[19] R. Srivastava and W. Aw, “Open-sourcing sqlcoder: a state-of-the-art llm
+for sql generation,” https://defog.ai/blog/open-sourcing-sqlcoder, 2023,
+accessed: 2025-05-20.
+[20] B. Zhang, Y . Ye, G. Du, X. Hu, Z. Li, S. Yang, C. H. Liu, R. Zhao, Z. Li,
+and H. Mao, “Benchmarking the text-to-sql capability of large language
+models: A comprehensive evaluation,” arXiv preprint arXiv:2403.02951,
+2024.
+[21] T. Dettmers, “bitsandbytes: 8-bit optimizers and quantization routines,”
+https://github.com/bitsandbytes-foundation/bitsandbytes, 2023, accessed:
+2025-05-20.
+[22] H. W. Chung, L. Hou, S. Longpre, B. Zoph, Y . Tay, W. Fedus, E. Li,
+X. Wang, M. Dehghani, Z. Dai et al., “Scaling Instruction-Finetuned
+Language Models,” arXiv preprint arXiv:2210.11416, 2022.
+2025 16th International Conference on Network of the Future (NoF)
+36
+Authorized licensed use limited to: Pontificia Universidade Catolica do Rio Grande do Sul (PUC/RS). Downloaded on May 10,2026 at 20:09:03 UTC from IEEE Xplore.  Restrictions apply.

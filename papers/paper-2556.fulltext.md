@@ -1,535 +1,1465 @@
 ---
-title: "LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence With Optimization Guarantees"
-authors:
-  - GUANYU DING
-  - SHIYU YANG
-  - HAN LIN
-  - ZIFAN CHEN
-  - JIE SI YANG
-affiliations:
-  - name: "New York University"
-    location: "New York, NY 10012 USA"
-  - name: "University of California, Los Angeles"
-    location: "Los Angeles, CA 90095 USA"
-  - name: "University of Wisconsin-Madison"
-    location: "Madison, WI 53706 USA"
-  - name: "University of Pennsylvania"
-    location: "Philadelphia, PA 19104 USA"
-  - name: "The University of Utah"
-    location: "Salt Lake City, UT 84112 USA"
-corresponding_author: "GUANYU DING (gd2292@nyu.edu)"
-doi: "10.1109/OJCS.2026.3667549"
-publication_date: "24 February 2026"
-received_date: "13 January 2026"
-accepted_date: "21 February 2026"
-abstract: |
-  Cloud resource scheduling presents a fundamental challenge in modern distributed computing, where heterogeneous workloads, complex task dependencies, and multi-objective optimization requirements exceed the capabilities of traditional rule-based and small-scale machine learning approaches. Existing schedulers struggle to dynamically adapt to evolving workload patterns while simultaneously satisfying Service Level Agreement (SLA) constraints, resource efficiency targets, and fairness policies. This article introduces LLMSched, a novel Large Language Model (LLM)-driven adaptive scheduling framework that synergistically combines the contextual reasoning capabilities of foundation models with the execution guarantees of classical optimization techniques. Our approach transforms heterogeneous cluster states—including task dependency graphs, real-time resource utilization metrics, and SLA specifications—into a unified structured-textual representation that leverages LLMs' few-shot learning and causal reasoning abilities to generate intelligent scheduling candidates. These candidates are subsequently refined through a lightweight Integer Linear Programming (ILP) module that ensures feasibility and optimality under resource constraints. We evaluate LLMSched on Google's production cluster trace dataset, demonstrating significant improvements over state-of-the-art baselines: 23.7% reduction in average job completion time, 18.4% improvement in resource utilization efficiency, and 31.2% decrease in SLA violations across diverse workload scenarios. Extensive ablation studies validate the contributions of each architectural component, while robustness analysis under workload perturbations confirms the framework's practical viability. Our work establishes a new paradigm for intelligent resource management that bridges the gap between neural reasoning and algorithmic precision, opening avenues for LLM applications in systems optimization domains.
-keywords:
-  - "Cloud computing"
-  - "Resource scheduling"
-  - "Large language models (LLMs)"
-  - "Adaptive optimization"
-  - "Task orchestration"
-  - "SLA management"
+paper_id: "paper-2556"
+source_pdf_sha: "d08193e6c15df9aac36f1fe608c470797efd2b740471dca4d137273dadea0245"
+extraction_quality: high
+extraction_method: pypdf
+extraction_flags:
+  toc_detected: false
+  headings_count: 16
+  page_count: 14
+  tables_preserved: false
+  equations_preserved: false
+manually_edited: false
 ---
 
-Received 13 January 2026; accepted 21 February 2026. Date of publication 24 February 2026; date of current version 18 March 2026. The review of this article was arranged by Associate Editor Laizhong Cui.
+# paper-2556 — fulltext
+## §unknown-1
 
-Digital Object Identifier 10.1109/OJCS.2026.3667549
+Received 13 January 2026; accepted 21 February 2026. Date of publication 24 February 2026;
+date of current version 18 March 2026. The review of this article was arranged by Associate Editor Laizhong Cui.
+Digital Object Identiﬁer 10.1109/OJCS.2026.3667549
+LLM-Driven Adaptive Cloud Resource
+Scheduling: Bridging Reasoning Intelligence
+With Optimization Guarantees
+GUANYU DING 1,S H I Y UY A N G 2,H A NL I N 3 (Member, IEEE), ZIFAN CHEN 4,A N DJ I ES IY A N G 5
 
-## LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence With Optimization Guarantees
+## §1 New Y ork University, New Y ork, NY 10012 USA
 
-GUANYU DING 1 , SHIYU YANG 2 , HAN LIN 3 (Member, IEEE), ZIFAN CHEN 4 , AND JIE SI YANG 5
+<empty>
 
-### Affiliations
+## §2 University of California, Los Angeles, Los Angeles, CA 90095 USA
 
-1 New York University, New York, NY 10012 USA
-2 University of California, Los Angeles, Los Angeles, CA 90095 USA
-3 University of Wisconsin-Madison, Madison, WI 53706 USA
-4 University of Pennsylvania, Philadelphia, PA 19104 USA
-5 The University of Utah, Salt Lake City, UT 84112 USA
+3 University of Wisconsin–Madison, Madison, WI 53706 USA
 
-**Corresponding Author:** GUANYU DING (e-mail: gd2292@nyu.edu)
+## §4 University of Pennsylvania, Philadelphia, PA 19104 USA
 
-ABSTRACT Cloud resource scheduling presents a fundamental challenge in modern distributed computing, where heterogeneous workloads, complex task dependencies, and multi-objective optimization requirements exceed the capabilities of traditional rule-based and small-scale machine learning approaches. Existing schedulers struggle to dynamically adapt to evolving workload patterns while simultaneously satisfying Service Level Agreement (SLA) constraints, resource efficiency targets, and fairness policies. This article introduces LLMSched , a novel Large Language Model (LLM)-driven adaptive scheduling framework that synergistically combines the contextual reasoning capabilities of foundation models with the execution guarantees of classical optimization techniques. Our approach transforms heterogeneous cluster states-including task dependency graphs, real-time resource utilization metrics, and SLA specifications-into a unified structured-textual representation that leverages LLMs' few-shot learning and causal reasoning abilities to generate intelligent scheduling candidates. These candidates are subsequently refined through a lightweight Integer Linear Programming (ILP) module that ensures feasibility and optimality under resource constraints. We evaluate LLMSched on Google's production cluster trace dataset, demonstrating significant improvements over state-of-the-art baselines: 23.7% reduction in average job completion time, 18.4% improvement in resource utilization efficiency, and 31.2% decrease in SLA violations across diverse workload scenarios. Extensive ablation studies validate the contributions of each architectural component, while robustness analysis under workload perturbations confirms the framework's practical viability. Our work establishes a new paradigm for intelligent resource management that bridges the gap between neural reasoning and algorithmic precision, opening avenues for LLM applications in systems optimization domains.
+<empty>
 
-INDEX TERMS Cloud computing, resource scheduling, large language models (LLMs), adaptive optimization, task orchestration, SLA management.
+## §5 The University of Utah, Salt Lake City, UT 84112 USA
 
-## I. INTRODUCTION
+CORRESPONDING AUTHOR: GUANYU DING (e-mail: gd2292@nyu.edu).
+ABSTRACT Cloud resource scheduling presents a fundamental challenge in modern distributed computing,
+where heterogeneous workloads, complex task dependencies, and multi-objective optimization requirements
+exceed the capabilities of traditional rule-based and small-scale machine learning approaches. Existing
+schedulers struggle to dynamically adapt to evolving workload patterns while simultaneously satisfying
+Service Level Agreement (SLA) constraints, resource efﬁciency targets, and fairness policies. This article
+introduces LLMSched, a novel Large Language Model (LLM)-driven adaptive scheduling framework that
+synergistically combines the contextual reasoning capabilities of foundation models with the execution guar-
+antees of classical optimization techniques. Our approach transforms heterogeneous cluster states—including
+task dependency graphs, real-time resource utilization metrics, and SLA speciﬁcations—into a uniﬁed
+structured-textual representation that leverages LLMs’ few-shot learning and causal reasoning abilities to
+generate intelligent scheduling candidates. These candidates are subsequently reﬁned through a lightweight
+Integer Linear Programming (ILP) module that ensures feasibility and optimality under resource constraints.
+We evaluate LLMSched on Google’s production cluster trace dataset, demonstrating signiﬁcant improve-
+ments over state-of-the-art baselines: 23.7% reduction in average job completion time, 18.4% improvement
+in resource utilization efﬁciency, and 31.2% decrease in SLA violations across diverse workload scenarios.
+Extensive ablation studies validate the contributions of each architectural component, while robustness
+analysis under workload perturbations conﬁrms the framework’s practical viability. Our work establishes
+a new paradigm for intelligent resource management that bridges the gap between neural reasoning and
+algorithmic precision, opening avenues for LLM applications in systems optimization domains.
+INDEX TERMS Cloud computing, resource scheduling, large language models (LLMs), adaptive optimiza-
+tion, task orchestration, SLA management.
 
-Cloud computing has fundamentally reshaped modern information technology by enabling on-demand access to large-scale computational resources for applications ranging from web services to scientific computing [1], [2]. As cloud infrastructures continue to scale to millions of servers across geographically distributed datacenters [3], efficient resource scheduling has become a critical challenge affecting both operational cost and quality of service. Modern cloud platforms must coordinate heterogeneous workloads—including latency-sensitive microservices, batch analytics, and machine learning tasks—each with distinct resource demands and Service Level Agreement (SLA) requirements [4], [5].
+## § Introduction
 
-Traditional cloud schedulers primarily rely on hand-crafted heuristics and rule-based policies [6], [7], [8]. While these approaches offer predictability and low overhead, they struggle to cope with the growing complexity of modern workloads.
+Cloud computing has fundamentally reshaped modern
+information technology by enabling on-demand access to
+large-scale computational resources for applications ranging
+from web services to scientiﬁc computing [1], [2].A s
+cloud infrastructures continue to scale to millions of servers
+across geographically distributed datacenters [3], efﬁcient
+resource scheduling has become a critical challenge affecting
+both operational cost and quality of service. Modern cloud
+platforms must coordinate heterogeneous workloads—
+including latency-sensitive microservices, batch analytics,
+and machine learning tasks—each with distinct resource de-
+mands and Service Level Agreement (SLA) requirements [4],
+[5].
+Traditional cloud schedulers primarily rely on hand-crafted
+heuristics and rule-based policies [6], [7], [8]. While these ap-
+proaches offer predictability and low overhead, they struggle
+to cope with the growing complexity of modern workloads.
+© 2026 The Authors. This work is licensed under a Creative Commons Attribution 4.0 License. For more information, see https://creativecommons.org/ licenses/by/4.0/
 
-In particular, static heuristics fail to capture intricate task dependencies and data locality constraints [9], adapt to temporal workload variations [10], or balance multiple conflicting objectives such as efficiency, fairness, and latency [11]. These limitations often result in suboptimal resource utilization under dynamic conditions.
+## §560 VOLUME 7, 2026
 
-Recent advances in machine learning have motivated learning-based scheduling approaches, especially those based on deep reinforcement learning (DRL) [12], [13], [14]. While such methods show promising results in controlled environments, their deployment in production systems remains challenging. DRL schedulers require extensive training data and carefully designed reward functions, making them brittle under workload distribution shifts [15]. Moreover, the black-box nature of neural policies hinders interpretability and debugging, which are essential for mission-critical cloud systems [16]. Existing models also rely on low-dimensional numerical state representations, discarding rich semantic information available in task descriptions, dependency graphs, and system logs [17].
+In particular, static heuristics fail to capture intricate task
+dependencies and data locality constraints [9], adapt to tem-
+poral workload variations [10], or balance multiple conﬂicting
+objectives such as efﬁciency, fairness, and latency [11]. These
+limitations often result in suboptimal resource utilization un-
+der dynamic conditions.
+Recent advances in machine learning have motivated
+learning-based scheduling approaches, especially those based
+on deep reinforcement learning (DRL) [12], [13], [14]. While
+such methods show promising results in controlled envi-
+ronments, their deployment in production systems remains
+challenging. DRL schedulers require extensive training data
+and carefully designed reward functions, making them brit-
+tle under workload distribution shifts [15]. Moreover, the
+black-box nature of neural policies hinders interpretability
+and debugging, which are essential for mission-critical cloud
+systems [16]. Existing models also rely on low-dimensional
+numerical state representations, discarding rich semantic in-
+formation available in task descriptions, dependency graphs,
+and system logs [17].
+The emergence of Large Language Models (LLMs), such as
+GPT-4 [18], Claude [19], and LLaMA [20], has demonstrated
+strong capabilities in reasoning, planning, and knowledge
+synthesis [21]. These models offer several properties attrac-
+tive for scheduling, including contextual understanding of
+heterogeneous inputs [22], few-shot adaptability [23], chain-
+of-thought reasoning [24], and semantic interpretation of
+natural language constraints [25]. Early studies have explored
+their potential in code generation, system conﬁguration, and
+workﬂow optimization [26], [27], [28], suggesting promise for
+systems-level decision making.
+However, directly applying LLMs to cloud scheduling
+poses fundamental challenges. Scheduling decisions must sat-
+isfy hard constraints that cannot be guaranteed by probabilis-
+tic language model outputs [29]. Furthermore, the inference
+latency of LLMs is incompatible with the high-throughput,
+low-latency requirements of production schedulers [30].
+LLMs may also generate syntactically valid yet semantically
+incorrect plans that violate system invariants [31]. These is-
+sues highlight the need for a hybrid design that leverages
+LLM reasoning while preserving algorithmic correctness and
+efﬁciency.
+In this article, we propose LLMSched, a hybrid frame-
+work that integrates LLM-driven high-level reasoning with
+classical optimization for adaptive cloud resource schedul-
+ing. Rather than using LLMs as end-to-end decision makers,
+LLMSched positions them as policy generators that explore
+promising regions of the solution space, while delegating
+constraint enforcement and ﬁne-grained optimization to al-
+gorithmic modules. The framework consists of three stages.
+(1) Structured-Textual State Representation encodes hetero-
+geneous cluster information, including task DAGs, resource
+metrics, historical outcomes, and SLA speciﬁcations, into
+a compact textual format suitable for LLM reasoning. (2)
+LLM-Guided Candidate Generation employs few-shot and
+chain-of-thought prompting to produce diverse scheduling
+candidates that consider data locality, load balancing, and
+task priorities. (3) Optimization-Based Reﬁnement uses a
+lightweight Integer Linear Programming (ILP) solver to en-
+force hard constraints and optimize a multi-objective utility
+function, ensuring correctness and robustness. Especially, to
+mitigate inference overhead, LLMSched incorporates caching
+and workload-aware triggering mechanisms that invoke LLM
+reasoning only when signiﬁcant state changes occur. For rou-
+tine scheduling decisions, validated strategies are executed
+by fast heuristic modules, achieving sub-millisecond latency
+while retaining adaptability.
+Our contributions are summarized as follows: (1) We intro-
+duce the ﬁrst LLM-driven cloud scheduling framework that
+systematically combines foundation model reasoning with
+classical optimization. (2) We design a structured-textual state
+representation and constraint-guided prompting strategies that
+enable interpretable and effective LLM-based scheduling. (3)
+We develop a hybrid optimization architecture that guarantees
+scheduling correctness through lightweight ILP reﬁnement
+with practical overhead. (4) We conduct extensive evaluations
+on large-scale production traces, demonstrating consistent im-
+provements over diverse baselines and providing insights into
+when and why LLM-guided scheduling is effective.
+II. RELATED WORKS
+Traditional Cloud Scheduling Systems: Cloud scheduling has
+evolved from early batch systems such as Condor [32] and
+Sun Grid Engine to large-scale cluster managers designed
+for heterogeneous, multi-tenant workloads. Google’s Borg [5]
+established a production-grade centralized scheduling archi-
+tecture with admission control, priority-based preemption,
+and bin-packing, while Kubernetes [33], [34] operational-
+ized these ideas for container orchestration via extensible,
+heuristic-driven schedulers. Alternative paradigms include
+two-level schedulers that delegate decisions to application
+frameworks (e.g., Mesos [7],Y A R N [8]) and optimistic
+concurrency control for parallel scheduling (Omega [6]).
+Recent work further explores fairness- and resource-aware
+policies, such as DRF [35], multi-dimensional bin packing
+(Tetris [36]), and specialized accelerators scheduling (Car-
+byne [37]). Despite their maturity and robustness, these
+systems rely predominantly on manually designed heuristics
+and objective-speciﬁc policies, which limits their ability to
+adapt to complex, evolving workload semantics.
+Learning-Based Scheduling Approaches: Recent years
+have seen extensive efforts to apply learning-based meth-
+ods to cluster and resource scheduling. Early work such
+as DeepRM [12] formulates scheduling as an MDP and
+demonstrates that deep reinforcement learning can outper-
+form heuristic policies. Subsequent systems explore richer
+models and learning paradigms, including GNN-based depen-
+dency modeling for DAG jobs (Decima [38]), performance
+prediction via Bayesian optimization (Auto-Tune [39]), tem-
+poral workload modeling with RNNs (NNS [40]), and
+multi-agent reinforcement learning for distributed schedul-
+ing (Chronus [41]). Despite promising results, learning-based
+VOLUME 7, 2026 561
+DING ET AL.: LLM-DRIVEN ADAPTIVE CLOUD RESOURCE SCHEDULING: BRIDGING REASONING INTELLIGENCE WITH OPTIMIZATION GUARANTEES
+schedulers suffer from practical limitations, including heavy
+reliance on representative training traces [42], sensitivity
+to distribution shift [43], limited interpretability [44], and
+restricted state representations that overlook high-level se-
+mantic information [45]. To mitigate these issues, hybrid
+systems combine learning with optimization, using learned
+models for demand or cost estimation while relying on math-
+ematical solvers for decision making (e.g., Cilantro [46],
+Harmony [47]). Our work follows this hybrid philosophy and
+further extends it by leveraging the reasoning capabilities of
+large language models.
+Large Language Models in Systems Large language models
+have recently been explored beyond NLP , ﬁrst demonstrating
+strong capabilities in code generation and software engineer-
+ing tasks (e.g., Codex [26], AlphaCode [48]), with broad
+adoption in developer workﬂows. Building on this success,
+a growing body of work investigates LLMs for systems prob-
+lems, including failure diagnosis (D-Bot [49]), control and op-
+timization via natural-language reasoning (LLMLight [50]),
+and database query optimization (xTuring [51]). LLMs have
+also been applied to system conﬁguration and tuning, such
+as generating Kubernetes parameters (LLMAO [27]), rec-
+ommending Spark conﬁgurations (Conﬁg-GPT [52]), and
+automating database administration tasks (AutoAdmin [53]).
+Despite promising results, these systems largely operate in
+ofﬂine or advisory settings, with human validation prior to de-
+ployment. Direct use of LLMs for real-time or safety-critical
+control remains limited due to fundamental challenges, in-
+cluding lack of hard constraint guarantees [29], high inference
+latency [54], and susceptibility to hallucinations in numerical
+or low-level reasoning [55]. Recent work therefore advocates
+hybrid paradigms that restrict LLMs to semantic under-
+standing and heuristic generation while delegating constraint
+satisfaction to formal solvers, as exempliﬁed by LLM-modulo
+frameworks [31]. Our work follows this line of thinking by
+explicitly separating LLM reasoning from algorithmic guar-
+antees.
 
-The emergence of Large Language Models (LLMs), such as GPT-4 [18], Claude [19], and LLaMA [20], has demonstrated strong capabilities in reasoning, planning, and knowledge synthesis [21]. These models offer several properties attractive for scheduling, including contextual understanding of heterogeneous inputs [22], few-shot adaptability [23], chainof-thought reasoning [24], and semantic interpretation of natural language constraints [25]. Early studies have explored their potential in code generation, system configuration, and workflow optimization [26], [27], [28], suggesting promise for systems-level decision making.
+## § Preliminaries
 
-However, directly applying LLMs to cloud scheduling poses fundamental challenges. Scheduling decisions must satisfy hard constraints that cannot be guaranteed by probabilistic language model outputs [29]. Furthermore, the inference latency of LLMs is incompatible with the high-throughput, low-latency requirements of production schedulers [30]. LLMs may also generate syntactically valid yet semantically incorrect plans that violate system invariants [31]. These issues highlight the need for a hybrid design that leverages LLM reasoning while preserving algorithmic correctness and efficiency.
+In this section, we formalize the cloud resource schedul-
+ing problem and establish the mathematical foundations for
+our LLM-driven approach. We deﬁne key concepts including
+cluster models, task representations, resource constraints, and
+optimization objectives that guide our system design.
+A. CLUSTER MODEL
+We model a cloud cluster as a set of heterogeneous
+compute nodes N ={ n1, n2,..., nN}, where each node
+ni is characterized by its resource capacity vector ci =
+[cCPU
+i , cMEM
+i , cDISK
+i , cNET
+i ]⊤ ∈ R4
++, representing CPU cores,
+memory (GB), disk bandwidth (MB/s), and network band-
+width (Gbps), respectively. At any timet, each node maintains
+a current resource utilization state ui (t ) ∈ [0, 1]4, where ur
+i (t )
+denotes the fraction of resource type r currently allocated on
+node ni.
+Nodes may belong to different availability zones Z =
+{z1,..., zK} with varying reliability characteristics and net-
+work latencies. We denote the zone assignment function as
+ζ : N → Z, and deﬁne inter-zone latency matrix L ∈ RK×K
++ ,
+where L jk represents the average network latency between
+zones z j and zk .
+B. TASK AND JOB REPRESENTATION
+Cloud workloads consist of jobs, each comprising one or
+more interdependent tasks. We represent a job J as a di-
+rected acyclic graph (DAG) GJ = (TJ, EJ ), where: TJ =
+{t1,..., t|J|} is the set of tasks belonging to job J; EJ ⊆
+TJ × TJ represents precedence constraints, where ( ti, t j ) ∈ EJ
+indicates that task t j cannot start until task ti completes.
+Each task t ∈ TJ is characterized by: 1) Resource demand:
+dt = [dCPU
+t , dMEM
+t , dDISK
+t , dNET
+t ]⊤ ∈ R4
++; 2) Execution time:
+et : N → R+, representing the estimated duration on each
+node type; 3) Data dependencies: Dt ={ (t′, st )}, where t′ is
+a predecessor task and st ∈ R+ is the data size transferred
+from t′ to t; 4) Priority level: pt ∈{ 1, 2,..., P}, where higher
+values indicate greater urgency.
+Jobs are submitted continuously over time. Let J (t ) denote
+the set of active jobs at time t, comprising both running and
+pending jobs. Each job J has an arrival time aJ , a deadline dJ
+(for latency-sensitive jobs), and a weight wJ ∈ R+ reﬂecting
+its business importance.
+C. SCHEDULING DECISION AND CONSTRAINTS
+A scheduling decision at time t is deﬁned as a mapping
+function σt : T → N ∪{ ⊥ }, where T = ⋃
+J∈J (t ) TJ is the set
+of all active tasks, and ⊥ represents the decision to defer
+scheduling (task remains pending). To ensure that a schedul-
+ing decision is executable in a real cluster, it must satisfy a set
+of hard feasibility constraints derived from resource availabil-
+ity and job execution semantics.
+Resource Capacity Constraint: At each decision epoch t,
+every node has only limited residual resources due to previ-
+ously scheduled tasks. We denote by cr
+i the total capacity of
+resource type r on node ni, and by ur
+i (t ) ∈ [0, 1] the fraction
+of that resource already in use at time t. A task can only
+be assigned to a node if its resource demands can be fully
+accommodated by the node’s remaining capacity:
+∑
+t∈T :σt (t )=ni
+dr
+t ≤ cr
+i · (1 − ur
+i (t )),
+∀i ∈ [N], r ∈{ CPU, MEM, DISK, NET}.
+(1)
+This prevents over-allocation and guarantees that all assigned
+tasks can be executed without violating resource limits.
+Precedence Constraint: A task can only be scheduled if all
+its predecessors have completed:
+σt (t j ) ̸=⊥⇒∀ (ti, t j ) ∈ EJ : completed(ti, t ). (2)
+This constraint guarantees correct execution order and pre-
+serves data and control dependencies.
 
-In this article, we propose LLMSched, a hybrid framework that integrates LLM-driven high-level reasoning with classical optimization for adaptive cloud resource scheduling. Rather than using LLMs as end-to-end decision makers, LLMSched positions them as policy generators that explore promising regions of the solution space, while delegating constraint enforcement and fine-grained optimization to algorithmic modules. The framework consists of three stages. (1) Structured-Textual State Representation encodes heterogeneous cluster information, including task DAGs, resource metrics, historical outcomes, and SLA specifications, into a compact textual format suitable for LLM reasoning. (2) LLM-Guided Candidate Generation employs few-shot and chain-of-thought prompting to produce diverse scheduling candidates that consider data locality, load balancing, and task priorities. (3) Optimization-Based Refinement uses a lightweight Integer Linear Programming (ILP) solver to enforce hard constraints and optimize a multi-objective utility function, ensuring correctness and robustness. Especially, to mitigate inference overhead, LLMSched incorporates caching and workload-aware triggering mechanisms that invoke LLM reasoning only when significant state changes occur. For routine scheduling decisions, validated strategies are executed by fast heuristic modules, achieving sub-millisecond latency while retaining adaptability.
+## §562 VOLUME 7, 2026
 
-Our contributions are summarized as follows: (1) We introduce the first LLM-driven cloud scheduling framework that systematically combines foundation model reasoning with classical optimization. (2) We design a structured-textual state representation and constraint-guided prompting strategies that enable interpretable and effective LLM-based scheduling. (3) We develop a hybrid optimization architecture that guarantees scheduling correctness through lightweight ILP refinement with practical overhead. (4) We conduct extensive evaluations on large-scale production traces, demonstrating consistent improvements over diverse baselines and providing insights into when and why LLM-guided scheduling is effective.
+Afﬁnity Constraint: Certain tasks may have location prefer-
+ences, expressed as a set of allowed nodes Nt ⊆ N :
+σt (t ) ̸=⊥⇒ σt (t ) ∈ Nt. (3)
+For each task t,t h es e tNt ⊆ N speciﬁes the nodes on which
+the task is allowed to run, reﬂecting practical requirements
+such as hardware specialization, data locality, or geographic
+restrictions. If a task is scheduled, it must be placed on one of
+the nodes in Nt .
+Anti-Afﬁnity Constraint: For fault tolerance, replicated
+tasks of the same job should be placed on different nodes:
+∀ti, t j ∈ RJ : i ̸= j ⇒ σt (ti ) ̸= σt (t j ), (4)
+where RJ ⊆ TJ denotes the set of replicated tasks in job J.
+This ensures that tasks of the same group (e.g., replicas of the
+same service) are not co-located on the same node.
+D. PERFORMANCE METRICS AND OBJECTIVES
+We evaluate scheduling quality using several metrics that
+reﬂect key operational objectives in large-scale cloud sys-
+tems. Intuitively, an effective scheduler should complete jobs
+quickly, utilize cluster resources efﬁciently, satisfy deadline-
+driven service-level objectives (SLOs), and maintain fairness
+across jobs or users. We formally deﬁne these metrics below:
+Job Completion Time (JCT): The total time from job sub-
+mission to completion. For job J scheduled according to
+policy π, the completion time is:
+JCTπ (J ) = CJ − aJ, (5)
+where CJ is the completion time of the last task in J.T h e
+average weighted JCT across all jobs is:
+Avg-JCTπ = 1∑
+J wJ
+∑
+J∈J
+wJ · JCTπ (J ). (6)
+Resource Utilization: The fraction of cluster resources ac-
+tively used. For resource type r at time t:
+U r (t ) =
+∑N
+i=1 cr
+i · ur
+i (t )
+∑N
+i=1 .cr
+i
+. (7)
+The time-averaged utilization is:
+¯U r = 1
+T
+∫ T
+0
+U r (t ) dt. (8)
+SLA Violation Rate: The proportion of deadline-sensitive
+jobs that miss their deadlines:
+SVRπ = |{J ∈ J : CJ > dJ}|
+|{J ∈ J : dJ < ∞}| . (9)
+Fairness: We adopt the Jain’s fairness index to measure
+allocation equity across users. Let φu denote the resource
+share received by user u normalized by their demand:
+Fairness =
+(∑U
+u=1 φu
+)2
+U · ∑U
+u=1 φ2u
+. (10)
+Makespan: For batch jobs, we measure the total time to
+complete all jobs in a workload W:
+Makespanπ (W ) = max
+J∈W
+CJ − min
+J∈W
+aJ. (11)
+E. MUL TI-OBJECTIVE OPTIMIZATION PROBLEM
+The cloud scheduling problem can be formulated as a multi-
+objective optimization:
+min
+π
+L(π) = α1 · Avg-JCTπ + α2 · (1 − ¯U ) + α3 · SVRπ
++ α4 · (1 − Fairness) + α5 · Makespanπ, (12)
+subject to constraints (1)–(4), where αi ≥ 0 are weights
+reﬂecting the relative importance of each objective, and∑5
+i=1 αi = 1. The scalarized objective in (12) aggregates mul-
+tiple, potentially conﬂicting goals into a single utility function.
+This formulation captures the fundamental tension in cloud
+scheduling: minimizing completion times often requires ag-
+gressive resource allocation that may compromise fairness;
+maximizing utilization may delay low-priority jobs and vi-
+olate SLAs; achieving all objectives simultaneously under
+dynamic workload arrivals is computationally intractable for
+large-scale clusters [56].
 
-## II. RELATED WORKS
+## § Methodology
 
-Traditional Cloud Scheduling Systems: Cloud scheduling has evolved from early batch systems such as Condor [32] and Sun Grid Engine to large-scale cluster managers designed for heterogeneous, multi-tenant workloads. Google's Borg [5] established a production-grade centralized scheduling architecture with admission control, priority-based preemption, and bin-packing, while Kubernetes [33], [34] operationalized these ideas for container orchestration via extensible, heuristic-driven schedulers. Alternative paradigms include two-level schedulers that delegate decisions to application frameworks (e.g., Mesos [7], YARN [8]) and optimistic concurrency control for parallel scheduling (Omega [6]). Recent work further explores fairnessand resource-aware policies, such as DRF [35], multi-dimensional bin packing (Tetris [36]), and specialized accelerators scheduling (Carbyne [37]). Despite their maturity and robustness, these systems rely predominantly on manually designed heuristics and objective-specific policies, which limits their ability to adapt to complex, evolving workload semantics.
-
-Learning-Based Scheduling Approaches: Recent years have seen extensive efforts to apply learning-based methods to cluster and resource scheduling. Early work such as DeepRM [12] formulates scheduling as an MDP and demonstrates that deep reinforcement learning can outperform heuristic policies. Subsequent systems explore richer models and learning paradigms, including GNN-based dependency modeling for DAG jobs (Decima [38]), performance prediction via Bayesian optimization (Auto-Tune [39]), temporal workload modeling with RNNs (NNS [40]), and multi-agent reinforcement learning for distributed scheduling (Chronus [41]). Despite promising results, learning-based schedulers suffer from practical limitations, including heavy reliance on representative training traces [42], sensitivity to distribution shift [43], limited interpretability [44], and restricted state representations that overlook high-level semantic information [45]. To mitigate these issues, hybrid systems combine learning with optimization, using learned models for demand or cost estimation while relying on mathematical solvers for decision making (e.g., Cilantro [46], Harmony [47]). Our work follows this hybrid philosophy and further extends it by leveraging the reasoning capabilities of large language models.
-
-Large Language Models in Systems Large language models have recently been explored beyond NLP, first demonstrating strong capabilities in code generation and software engineering tasks (e.g., Codex [26], AlphaCode [48]), with broad adoption in developer workflows. Building on this success, a growing body of work investigates LLMs for systems problems, including failure diagnosis (D-Bot [49]), control and optimization via natural-language reasoning (LLMLight [50]), and database query optimization (xTuring [51]). LLMs have also been applied to system configuration and tuning, such as generating Kubernetes parameters (LLMAO [27]), recommending Spark configurations (Config-GPT [52]), and automating database administration tasks (AutoAdmin [53]). Despite promising results, these systems largely operate in offline or advisory settings, with human validation prior to deployment. Direct use of LLMs for real-time or safety-critical control remains limited due to fundamental challenges, including lack of hard constraint guarantees [29], high inference latency [54], and susceptibility to hallucinations in numerical or low-level reasoning [55]. Recent work therefore advocates hybrid paradigms that restrict LLMs to semantic understanding and heuristic generation while delegating constraint satisfaction to formal solvers, as exemplified by LLM-modulo frameworks [31]. Our work follows this line of thinking by explicitly separating LLM reasoning from algorithmic guarantees.
-
-## III. PRELIMINARIES
-
-In this section, we formalize the cloud resource scheduling problem and establish the mathematical foundations for our LLM-driven approach. We define key concepts including cluster models, task representations, resource constraints, and optimization objectives that guide our system design.
-
-### A. Cloud Resource Model
-
-We model a cloud cluster as a heterogeneous collection of physical machines (PMs), denoted as a set M = {M₁, M₂, . . . , Mₘ}, where m is the total number of machines. Each machine Mᵢ is characterized by its resource capacity vector cᵢ = (cpuᵢ, memᵢ, diskᵢ, gpuᵢ), representing provisioned CPU cores, memory, storage, and specialized hardware accelerators respectively. At time t, the available resource on machine Mᵢ is represented as aᵢ(t) = cᵢ − dᵢ(t), where dᵢ(t) is the total resource demand of currently running tasks. We denote the set of all running tasks at time t as T(t).
-
-### B. Task and Job Model
-
-A job consists of a directed acyclic graph (DAG) of interdependent tasks. We denote a job j as J = (T, E), where T = {T₁, T₂, . . . , Tₙ} is the set of tasks and E represents dependency edges. Each task Tₖ is characterized by:
-
-<!-- formula-not-decoded -->
-
+In this section, we present the architecture and algorithmic
+components of LLMSched. We begin with a system overview,
+then detail each module: structured-textual state encod-
+ing, LLM-guided candidate generation with constraint-aware
+prompting, optimization-based reﬁnement, and efﬁcient exe-
+cution strategies. We emphasize the design motivations and
+technical innovations that enable practical deployment.
+A. SYSTEM ARCHITECTURE OVERVIEW
+The LLMSched architecture consists of four interconnected
+modules operating in a closed-loop feedback cycle:
+1) State Encoder: Transforms heterogeneous cluster infor-
+mation into structured-textual representations suitable
+for LLM consumption
+2) LLM Reasoning Engine: Generates diverse scheduling
+candidates through carefully designed prompting strate-
+gies
+3) ILP Reﬁnement Module: V alidates and optimizes LLM-
+generated candidates to ensure constraint satisfaction
+4) Execution Controller: Manages scheduling decisions,
+monitors cluster state, and triggers LLM invocations
+adaptively
+The system operates in two modes: intelligent mode (in-
+vokes LLM for complex scenarios) and fast mode (executes
+cached strategies for routine decisions). This hybrid execu-
+tion strategy balances reasoning quality with computational
+efﬁciency.
+Design Motivation: Traditional schedulers make decisions
+in milliseconds but lack adaptability; LLM inference requires
+hundreds of milliseconds but provides superior reasoning.
+Our architecture leverages LLMs as strategic planners for
+high-level policies while delegating tactical execution to
+VOLUME 7, 2026 563
+DING ET AL.: LLM-DRIVEN ADAPTIVE CLOUD RESOURCE SCHEDULING: BRIDGING REASONING INTELLIGENCE WITH OPTIMIZATION GUARANTEES
+lightweight algorithms, achieving both intelligence and re-
+sponsiveness.
+B. STRUCTURED-TEXTUAL STATE ENCODING
+1) ENCODING RATIONALE
+LLMs excel at processing natural language but struggle with
+raw numerical data and graph structures. Conversely, tradi-
+tional ML schedulers use low-dimensional feature vectors that
+discard semantic information. Our encoding scheme bridges
+this gap by creating a hybrid representation that preserves
+both numerical precision and semantic richness.
+2) MULTI-LEVEL ENCODING STRATEGY
+We decompose cluster state into four hierarchical levels, each
+encoded differently:
+Level 1. Cluster-Wide Summary: We generate a concise
+textual summary of overall cluster health:
+CLUSTER STATE [Time: 2025-10-09 14:23:15]
+Total Nodes: 1000 | Active: 987 | Degraded: 13
+CPU Utilization: 67.3% | Memory: 72.1%
+Pending Jobs: 234 | Running Jobs: 1876
+High-Priority Queue: 45 jobs | SLA Violations (1h): 12
+This high-level context helps the LLM understand the cur-
+rent operational regime (normal, congested, under-utilized).
+Level 2. Resource Availability Matrix: For each node, we
+encode availability as a structured table. To manage context
+limits, we employ hierarchical clustering: nodes are grouped
+by resource proﬁles, and only cluster representatives are de-
+tailed:
+NodeCluster(ni ) = arg min
+k∈[K]
+∥ci − µk∥2, (13)
+where µk is the centroid of cluster k. We then encode:
+RESOURCE CLUSTERS (5 clusters, 200 nodes each)
+C1 [High-CPU]: CPU =32 cores (avg avail: 12.4)
+MEM=128 GB (avg avail: 45.2 GB) | Zone: us-west-1a
+C2 [Memory-Intensive]: CPU =16 (avail: 8.1)
+MEM=256 GB (avail: 98.7 GB) | Zone: us-west-1b
+...
+Level 3. Task Dependency Graphs: For each pending job,
+we encode its DAG structure using a custom textual format
+that preserves precedence relationships:
+JOB J_1234 [Priority: HIGH, Deadline: 180s,
+Weight: 2.5]
+T1: Map [CPU:4, MEM:8 GB, EST:30s] → {T3, T4}
+T2: Map [CPU:4, MEM:8 GB, EST:32s] → {T3, T4}
+T3: Reduce [CPU:8, MEM:16 GB, EST:45s] → {T5}
+Data from T1: 2.3GB
+Data from T2: 2.1GB
+T4: Reduce [CPU:8, MEM:16 GB, EST:43s] → {T5}
+T5: Aggregate [CPU:2, MEM:4 GB, EST:15s] → END
+Data from T3: 0.8 GB, T4: 0.9GB
+This representation explicitly shows parent-child relation-
+ships and data transfer volumes, enabling the LLM to reason
+about data locality and parallelism opportunities.
+Level 4. Constraint Speciﬁcations: We translate operational
+constraints into natural language augmented with structured
+ﬁelds:
+CONSTRAINTS:
+1. Affinity: Job J_1234 tasks must be in zone
+us-west-1
+2. Anti-Affinity: Replicated tasks T1, T2 on different
+nodes
+3. SLA: Job J_1234 deadline in 180s
+(current: 165s remaining)
+4. Resource Reservation: Node N_567 reserved for
+user U_89
+3) CONTEXT WINDOW MANAGEMENT
+Given LLM context limits (e.g., 128 K tokens for GPT-4),
+we cannot encode full cluster state for large deployments. We
+implement a relevance-based ﬁltering mechanism:
+Relevance(J, ni ) = β1 · ResourceMatch(J, ni )
++ β2 · LocalityScore(J, ni )
++ β3 · HistoricalAfﬁnity(J, ni ), (14)
 where:
-
-- rₖ = (cpu, mem, disk, gpu) is the resource demand vector
-- pₖ is the priority level (higher values indicate higher priority)
-- sₖ and dₖ represent the earliest start time and deadline respectively
-- depₖ ⊂ T denotes the set of predecessor tasks
-
-### C. SLA and Performance Model
-
-Service Level Agreements specify performance targets for submitted jobs. We model SLA constraints as latency bounds Lⱼ for each job j, representing the maximum acceptable job completion time from submission to completion. A job violates its SLA if its actual completion time exceeds Lⱼ. We define:
-
-<!-- formula-not-decoded -->
-
-where Cⱼ is the completion time of job j.
-
-### D. Scheduling Decision Space
-
-At each scheduling epoch, the scheduler makes placement and ordering decisions. A scheduling decision δ assigns each unscheduled task Tₖ ∈ T to a machine Mᵢ ∈ M and determines its execution order relative to other tasks on that machine, subject to:
-
-1. Resource feasibility: the assigned machine has sufficient available resources
-2. Dependency constraints: all predecessor tasks have completed
-3. Time constraints: placement respects deadline and priority constraints
-
-### E. Optimization Objective
-
-LLMSched optimizes a multi-objective utility function that balances competing goals:
-
-<!-- formula-not-decoded -->
-
-where:
-
-- α, β, γ, δ are weights balancing different objectives
-- Tcompletion represents average job completion time
-- Eutilization measures cluster-wide resource utilization
-- VSLA represents the count of SLA violations
-- Ffairness is a fairness metric ensuring equitable resource allocation
-
-## IV. METHODOLOGY
-
-This section describes the three-stage architecture of LLMSched: Structured-Textual State Representation, LLM-Guided Candidate Generation, and Optimization-Based Refinement.
-
-### A. Structured-Textual State Representation
-
-To enable effective LLM reasoning over heterogeneous cluster states, we design a compact, interpretable textual representation that captures essential scheduling information. The representation consists of five components:
-
-1. **Cluster Status Summary**: aggregate statistics describing current machine utilization, free resource capacity, and distribution across resource types.
-
-2. **Pending Job Queue**: a structured list of waiting jobs, each annotated with resource demands, deadlines, priorities, and dependency information encoded in a naturallanguage format.
-
-3. **Task Dependency Graph (DAG) Encoding**: for each job, we encode the task DAG as a structured text describing task sequences, data flow, and critical path constraints.
-
-4. **Historical Performance Data**: past scheduling decisions and their outcomes (completion times, resource contention, SLA violations) are summarized as patterns to guide LLM reasoning.
-
-5. **SLA and Constraint Summary**: explicit statements of active SLA deadlines, resource limits, and fairness policies expressed in natural language.
-
-The complete state representation is compiled into a single prompt context that fits within LLM context windows while preserving sufficient detail for informed decision making.
-
-### B. LLM-Guided Candidate Generation
-
-We employ a two-stage prompting strategy to generate diverse, high-quality scheduling candidates:
-
-**Stage 1 — Chain-of-Thought Reasoning**: The LLM is prompted to reason through the scheduling problem step-by-step, considering task priorities, resource availability, data locality, and deadline constraints. Prompts are designed to elicit explicit reasoning about trade-offs between efficiency, fairness, and latency. Example prompt template:
-
-> You are a cloud resource scheduler. Given the cluster state and pending jobs, reason through the following: (1) Which jobs have the most urgent deadlines? (2) Which tasks have the highest resource contention? (3) Where can data locality be exploited? (4) How should priorities be balanced? Based on your reasoning, propose a scheduling decision.
-
-**Stage 2 — Candidate Enumeration**: Building on the reasoning trace, we prompt the LLM to generate k diverse candidate placements, explicitly instructing the model to explore different trade-off points along the Pareto frontier (efficiency vs. latency vs. fairness). This diversification is critical for downstream optimization refinement.
-
-### C. Optimization-Based Refinement
-
-The candidates generated by the LLM, while semantically reasonable, may violate hard resource or temporal constraints. To guarantee feasibility and achieve optimality, we employ a lightweight Integer Linear Programming (ILP) solver to refine candidates. The ILP formulation captures:
-
-1. **Feasibility Constraints**: resource capacity constraints, dependency precedence, and temporal ordering.
-
-2. **Optimality Objective**: maximize utility across efficiency, fairness, and SLA compliance.
-
-The ILP solver operates in two modes:
-
-- **Refinement Mode**: if a candidate is infeasible, the solver repairs it by adjusting task placements while minimizing perturbation from the LLM-suggested solution.
-- **Optimization Mode**: if a candidate is feasible, the solver performs limited local optimization to improve objective value subject to a timeout budget.
-
-Both modes use solver time budgets (typically 10-100 ms) to ensure scheduling latency remains acceptable for production deployments.
-
-### D. Caching and Adaptive Triggering
-
-To mitigate LLM inference overhead, LLMSched implements an adaptive triggering mechanism:
-
-1. **State Change Detection**: monitor cluster state and incoming job queue for significant changes (e.g., new high-priority job arrival, resource availability drop below threshold, SLA violation risk).
-
-2. **LLM Invocation Decision**: trigger LLM reasoning only when state changes exceed predefined thresholds. For stable states, rely on cached decisions from previous epochs validated by heuristic checks.
-
-3. **Fallback Heuristic**: during periods of high arrival load or LLM unavailability, a fast bin-packing heuristic ensures continuous scheduling operation without LLM dependency.
-
-### E. Implementation Details
-
-LLMSched is implemented as a modular Python system with the following components:
-
-- **State Encoder**: translates cluster state snapshots into structured-textual prompts.
-- **LLM Client**: interfaces with OpenAI's GPT-4 API (or compatible LLM services).
-- **Candidate Generator**: orchestrates multi-stage prompting and collects diverse candidates.
-- **ILP Solver**: wraps the Gurobi optimization solver for constraint refinement.
-- **Scheduler Loop**: integrates all components into a continuous event-driven scheduling service.
-
-The system is designed to operate with production cluster management systems (e.g., Kubernetes, Borg-like schedulers) by translating LLMSched decisions into native scheduling commands.
-
-### F. Computational Complexity and Latency Analysis
-
-The per-scheduling-epoch latency is dominated by LLM inference time (100-500 ms for GPT-4 depending on prompt size) and ILP solver time (10-100 ms). Total end-to-end latency ranges from ~150-600 ms per epoch. This is acceptable for batch and analytics workloads but may be challenging for ultra-latency-sensitive services. The adaptive triggering mechanism reduces effective frequency of LLM invocation to ~10-20% of scheduling epochs in typical workloads, bringing average latency overhead to acceptable levels.
-
-## V. EXPERIMENTS
-
-### A. Experimental Setup
-
-**Cluster Traces**: We evaluate LLMSched using Google's Cluster Trace v2 dataset, which contains 12.5 million jobs scheduled across a heterogeneous cluster over 30 days. The trace includes detailed task resource demands, temporal patterns, and job dependencies, representing realistic production workloads.
-
-**Baseline Strategies**: We compare against:
-
-1. **Borg-Style Bin Packing** (BP): a heuristic baseline implementing Google's production Borg scheduler logic.
-2. **Best Fit Decreasing (BFD)**: a classical bin-packing algorithm.
-3. **DeepRM**: a deep reinforcement learning scheduler trained on the same trace data.
-4. **Decima**: a GNN-based learning scheduler optimized for DAG job completion time.
-5. **Harmony**: a hybrid optimization-learning scheduler combining learned cost models with mathematical optimization.
-
-**Evaluation Metrics**:
-
-- **Average Job Completion Time (AJCT)**: mean time from submission to completion across all jobs.
-- **Resource Utilization**: cluster-wide average utilization across all resource types.
-- **SLA Violations**: percentage of jobs exceeding their deadline constraints.
-- **Fairness Index (Jain's Index)**: measures equitable resource allocation across jobs.
-
-**LLMSched Configuration**: We use GPT-4 as the underlying LLM, k=5 candidate generation, ILP solver timeout of 50 ms, and triggering threshold set to detect 15% state change magnitude.
-
-### B. Main Results
-
-LLMSched achieves significant improvements over all baselines:
-
-<!-- formula-not-decoded -->
-
-**Key Findings**:
-
-1. **Completion Time**: LLMSched reduces AJCT by 23.7% compared to Borg, the strongest heuristic baseline. Improvements are driven by better task ordering and data locality exploitation via LLM reasoning.
-
-2. **Resource Utilization**: LLMSched improves cluster-wide utilization by 18.4% over Borg, suggesting more efficient task-to-machine assignments that reduce fragmentation.
-
-3. **SLA Compliance**: LLMSched achieves a 31.2% reduction in SLA violations compared to Borg, indicating superior adherence to deadline constraints.
-
-4. **Fairness**: LLMSched maintains or slightly improves fairness compared to baselines, avoiding concentration of resources in high-priority jobs at the expense of lower-priority ones.
-
-5. **Computational Overhead**: The average per-epoch latency is ~220 ms, but with adaptive triggering reducing LLM invocation frequency to ~15%, the effective scheduling latency overhead remains acceptable.
-
-### C. Sensitivity Analysis
-
-We analyze the impact of key design parameters:
-
-**LLM Model Size**: Smaller models (GPT-3.5) produce lower-quality candidates, reducing AJCT improvement to ~15%. Larger models (GPT-4-Turbo) provide marginal additional gains (~2%) at higher cost.
-
-**Candidate Count (k)**: Increasing k from 1 to 7 shows diminishing returns. k=5 offers a good balance between solution quality and computational cost.
-
-**ILP Solver Timeout**: Increasing timeout from 10 ms to 100 ms provides modest improvements (~3-5%), but diminishing returns suggest 50 ms is near-optimal for production use.
-
-**Triggering Threshold**: Lower thresholds trigger LLM more frequently, improving solution quality but increasing latency. Threshold of 15% provides a practical balance.
-
-### D. Ablation Study
-
-We evaluate the contribution of each component:
-
-<!-- formula-not-decoded -->
-
-**Findings**:
-
-- **Structured-Textual Representation Effectiveness**: removing LLM reasoning (using only random candidate generation) reduces improvements to <5%, validating that LLM reasoning provides substantial value.
-- **Optimization-Based Refinement**: disabling ILP refinement causes 8-12% degradation in SLA compliance, as infeasible or suboptimal candidates from LLM are not corrected.
-- **Caching and Adaptive Triggering**: disabling the triggering mechanism (invoking LLM every epoch) improves solution quality by ~2-3% but increases latency by 4-5×, making it impractical.
-
-### E. Robustness Under Workload Perturbations
-
-We test LLMSched resilience to workload distribution shifts by evaluating on synthetic traces generated via:
-
-1. **Job arrival rate variation**: ±25% perturbation to inter-arrival times.
-2. **Resource demand scaling**: ±20% uniform scaling of task resource vectors.
-3. **Deadline tightening**: reducing deadline slack by 15%.
-
-Results show LLMSched maintains performance degradation <8% under these perturbations, outperforming baselines (which degrade 15-25%), suggesting better generalization.
-
-### F. Generalization to Smaller Clusters
-
-We evaluate scalability by running experiments on sub-sampled traces representing smaller clusters (100 machines, 1000 machines, 5000 machines vs. the full 10,000 machines in the original trace). LLMSched maintains improvement margins across all cluster sizes, with slightly larger improvements on smaller clusters due to reduced problem complexity.
-
-### G. Real System Deployment
-
-We conducted a limited production trial integrating LLMSched with a Kubernetes cluster hosting internal microservices (scope: ~200 nodes, ~5000 running containers). Over a one-week trial period, we observed:
-
-- 12% reduction in average pod startup latency
-- 8% improvement in cluster resource utilization
-- Zero safety incidents or constraint violations
-
-This validates practical feasibility, though the trial was limited in scale and duration.
-
-## VI. CONCLUSION AND FUTURE WORKS
-
-This work introduces LLMSched, a hybrid framework that systematically combines Large Language Model reasoning with classical optimization for adaptive cloud resource scheduling. By positioning LLMs as policy generators that explore diverse solution regions and delegating constraint enforcement to algorithmic modules, we bridge the semantic understanding of foundation models with the correctness guarantees of formal methods.
-
-Our evaluation on production-scale traces demonstrates significant improvements: 23.7% reduction in average job completion time, 18.4% improvement in resource utilization, and 31.2% decrease in SLA violations. The framework exhibits robustness under workload perturbations and practical feasibility in limited production trials.
-
-**Future Research Directions**:
-
-(i) **Efficient LLM Inference**: explore model quantization, distillation, or specialized LLM architectures to reduce per-epoch latency, enabling application to ultra-low-latency services.
-
-(ii) **Extended State Representations**: incorporate richer semantic information from application metadata, historical performance logs, and system anomaly predictions to enable even more informed LLM reasoning.
-
-(iii) **Decentralized and Federated Variants**: extend the framework to edge computing and fog environments where centralized LLM inference may be impractical, exploring distributed reasoning architectures.
-
-(iv) **Multi-Objective Pareto Frontier Exploration**: enhance LLM prompting to explicitly enumerate trade-off points along the Pareto frontier, providing schedulers more fine-grained control over optimization objectives.
-
-(v) **Safety and Interpretability Guarantees**: develop formal verification methods to certify scheduling safety properties, and enhance interpretability through structured explanation generation.
-
-(vi) **Learning from Deployment Feedback**: incorporate online learning mechanisms that refine LLM prompting strategies and ILP solver objectives based on real deployment outcomes.
-
-## APPENDIX
-
-### A. Prompt Templates
-
-**Chain-of-Thought Reasoning Prompt Template:**
-
-```
-You are an expert cloud resource scheduler with deep knowledge of distributed systems optimization.
-
-Cluster State Summary:
-{cluster_state}
-
-Pending Jobs:
-{pending_jobs}
-
-Your task is to reason through the following scheduling problem step-by-step:
-
-1. Identify the top 3 jobs with the most urgent deadlines.
-2. For each of these jobs, determine their critical path (longest sequence of dependent tasks).
-3. Analyze current resource availability and identify bottleneck resources.
-4. Propose a placement strategy that addresses deadline urgency while maintaining fairness.
-5. Identify potential data locality opportunities that could reduce network transfer overhead.
-
-Based on your reasoning, describe your proposed scheduling decision with clear justification for each choice.
-```
-
-**Candidate Enumeration Prompt:**
-
-```
-Based on your previous reasoning, generate 5 distinct scheduling candidates that explore different trade-off points:
-
-Candidate 1 (Deadline-Optimized): prioritize jobs with tight deadlines, even if this increases resource fragmentation.
-Candidate 2 (Efficiency-Optimized): prioritize resource utilization and minimize fragmentation.
-Candidate 3 (Fairness-Optimized): balance resources across all jobs to maximize fairness.
-Candidate 4 (Data-Locality-Optimized): prioritize placement decisions that maximize local cache hits.
-Candidate 5 (Hybrid-Balanced): balance all objectives with equal weight.
-
-For each candidate, specify the assignment of each pending task to a machine and the execution order on that machine.
-```
-
-### B. ILP Formulation Details
-
-The complete ILP formulation includes:
-
-**Decision Variables**:
-
-<!-- formula-not-decoded -->
-
-**Constraints**:
-
-<!-- formula-not-decoded -->
-
-**Objective Function**:
-
-<!-- formula-not-decoded -->
-
-### C. Google Cluster Trace Data Characteristics
-
-The Google Cluster Trace v2 dataset spans 30 days and includes:
-
-- **12.5 million jobs** with varying durations (seconds to hours)
-- **Task dependency graphs** with average depth 3.5 and average breadth 2.8
-- **Heterogeneous resource demands**: CPU (0.1–8 cores), memory (32 MB–512 GB), disk (100 MB–10 TB)
-- **Temporal patterns**: clear diurnal cycles with peak utilization during business hours
-
-### D. Robustness Evaluation Methodology
-
-For robustness analysis, synthetic traces are generated by applying transformations to the original Google trace:
-
-**Arrival Rate Variation**: Multiply all task arrival times by a random factor sampled uniformly from [0.75, 1.25].
-
-**Resource Demand Scaling**: Multiply all resource demands by a random factor sampled uniformly from [0.8, 1.2].
-
-**Deadline Tightening**: Reduce deadline slack (deadline − estimated_execution_time) by a factor uniformly sampled from [0.85, 1.0].
-
-### E. Experimental Reproducibility
-
-All experiments were conducted on a dedicated cluster running Ubuntu 20.04 with:
-
-- **Cluster Simulation Environment**: Custom Python-based discrete-event simulator implementing Google Cluster Trace replay.
-- **LLM Interface**: OpenAI API with GPT-4 (gpt-4-1106-preview model).
-- **Optimization Solver**: Gurobi 10.0.3 for ILP solving.
-- **Source Code**: Available at https://github.com/example/llmsched (anonymized for review).
-
-### F. Extended Comparison with Learning Baselines
-
-Detailed performance breakdown for learning-based baselines:
-
-<!-- formula-not-decoded -->
-
-DeepRM and Decima show promise but suffer from:
-
-1. **Distribution Shift**: performance degrades significantly under workload perturbations (see robustness analysis).
-2. **Training Data Requirements**: both require extensive offline training (24+ hours on production traces).
-3. **Limited Interpretability**: neural policies provide no explanation for scheduling decisions.
-
-LLMSched avoids these issues through its hybrid architecture.
-
-## REFERENCES
-
-[1] M. Armbrust, A. Fox, R. Griffith, et al., "A view of cloud computing," Commun. ACM, vol. 53, no. 4, pp. 50–58, 2010.
-
-[2] L. Vaquero, L. Rodero-Merino, J. Caceres, and M. Lindner, "A break in the clouds: towards a cloud definition," SIGCOMM Comput. Commun. Rev., vol. 39, no. 1, pp. 50–55, 2008.
-
-[3] J. Hamilton, "On designing and deploying internet-scale services," in Proc. 21st Large Installation System Administration Conf. (LISA), 2007.
-
-[4] E. Nygren, R. K. Sitaraman, and J. Sun, "The Akamai network: a platform for high-performance internet applications," SIGOPS Oper. Syst. Rev., vol. 44, no. 3, pp. 2–7, 2010.
-
-[5] A. Verma, L. Pedrosa, M. Korupolu, D. Oppenheimer, E. Tune, and J. Wilkes, "Large-scale cluster management at Google with Borg," in Proc. 10th ACM SIGOPS Eur. Conf. Comput. Syst. (EuroSys), 2015.
-
-[6] A. Schwarzkopf, A. Konwinski, M. Abd-El-Malek, and J. Wilkes, "Omega: flexible, scalable schedulers for large compute clusters," in Proc. 8th ACM Eur. Conf. Comput. Syst. (EuroSys), 2013.
-
-[7] B. Hindman, A. Konwinski, M. Zaharia, et al., "Mesos: a platform for fine-grained resource sharing in the data center," in Proc. 8th ACM Symp. Oper. Syst. Des. Implementation (OSDI), 2011.
-
-[8] V. K. Vasudevan, A. Phanishayee, D. Greenberg, S. Ananthanarayanan, R. Andersen, S. Gupta, R. Greaseley, and K. P. Ganger, "Safe: a scalable and efficient framework for cluster computing," in Proc. 22nd Symp. Oper. Syst. Principles (SOSP), 2009.
-
-[9] J. Gray and D. Siewiorek, "High-availability computer systems," Computer, vol. 24, no. 9, pp. 39–48, 1991.
-
-[10] L. Golding, I. Giurgiu, and O. Weisman, "Elasticity policies for distributed data processing," in Proc. 26th ACM Symp. Oper. Syst. Principles (SOSP), 2017.
-
-[11] A. Phanishayee, E. Krevat, V. Vasudevan, D. Andersen, G. Ganger, S. Seshan, and I. Stoica, "Measurement and analysis of TCP throughput collapse in cluster-based storage systems," in Proc. 6th USENIX Conf. File Storage Technol. (FAST), 2008.
-
-[12] M. Mao, J. Li, M. Humphrey, "Auto-scaling to minimize cost and meet application deadlines in cloud workflows," in Proc. 2011 International Conference on High Performance Computing, Networking, Storage and Analysis (SC), 2011.
-
-[13] J. Ousterhout, A. Gopalan, A. Gupta, et al., "The case for RAMCloud," SIGCOMM Comput. Commun. Rev., vol. 41, no. 4, pp. 12–17, 2011.
-
-[14] C. Delimitrou and C. Kozyrakis, "Quasar: resource-efficient and QoS-aware cluster management," in Proc. 19th Int. Conf. Archit. Support Programm. Lang. Oper. Syst. (ASPLOS), 2014.
-
-[15] G. Ananthanarayanan, A. Ghodsi, A. Wang, D. Borthakur, S. Kandula, S. Shenker, and I. Stoica, "PACMan: a protocol for efficient, topology-aware aggregate queries," in Proc. 17th USENIX Conf. Netw. Syst. Des. Implementation (NSDI), 2010.
-
-[16] A. D. Josephson and R. H. Campbell, "Resource management in virtualized environments," IEEE Parallel Distrib. Technol., vol. 26, no. 4, pp. 82–88, 2008.
-
-[17] S. Kandula, S. Sengupta, A. Greenberg, P. PFolland, and R. Thatagal, "The nature of data center traffic: measurements and implications," in Proc. 9th ACM SIGCOMM Conf. Internet Measurement (IMC), 2009.
-
-[18] O. OpenAI, "GPT-4 Technical Report," CoRR, vol. abs/2303.08774, 2023.
-
-[19] Anthropic, "Claude: A Constitutional AI Assistant," 2023.
-
-[20] H. Touvron, L. Martin, K. Stone, et al., "Llama 2: Open foundation and fine-tuned chat models," CoRR, vol. abs/2307.09288, 2023.
-
-[21] S. Kojima, S. S. Gu, M. Reid, Y. Matsuo, and Y. Koichi, "Large language models are zero-shot reasoners," in Advances in Neural Information Processing Systems 35 (NeurIPS 2022), 2022.
-
-[22] T. Brown, B. Mann, N. Redd, et al., "Language models are few-shot learners," in Advances in Neural Information Processing Systems 33 (NeurIPS 2020), 2020.
-
-[23] A. Wei, X. Wang, D. Schuurmans, et al., "Chain-of-thought prompting elicits reasoning in large language models," in Advances in Neural Information Processing Systems 35 (NeurIPS 2022), 2022.
-
-[24] J. Hoffmann, S. Borgeaud, A. Mensch, et al., "Training compute-optimal large language models," in Proc. 39th Int. Conf. Mach. Learn. (ICML), 2022.
-
-[25] X. Li, Z. Yin, J. Sun, T. Mao, and M. Fang, "Prompt-based learning for supervised multimodal learning," in Proc. 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2023.
-
-[26] M. Chen, J. Tworek, H. Jun, et al., "Evaluating large language models trained on code," CoRR, vol. abs/2107.03374, 2021.
-
-[27] D. Weisz, R. Rajkumar, and S. Biswas, "LLMAO: Learning Large Language Model Assignments for Orchestration," in Proc. 2023 USENIX Annual Technical Conference (USENIX ATC), 2023.
-
-[28] X. Lu, L. Leung, D. Nellans, et al., "Exploring the design space of static and dynamic heterogeneous multicore processors with multiple memory controllers," in Proc. 2013 IEEE 19th International Symposium on High Performance Computer Architecture (HPCA), 2013.
-
-[29] D. Amodei and D. Hernandez, "AI and compute," OpenAI Blog, 2018. [Online]. Available: https://openai.com/blog/ai-and-compute
-
-[30] V. Goyal, Z. Wu, and Q. Gu, "A polynomial time algorithm for learning latent variable models," in Proc. 18th International Conference on Artificial Intelligence and Statistics (AISTATS), 2015.
-
-[31] V. Weiss, D. Freeman, and Y. Weiss, "The power of ensembles for active learning in image classification," in Proc. 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016.
-
-[32] D. Thain, T. Tannenbaum, and M. Livny, "Distributed computing in practice: The Condor experience," Concurrency and Computation: Practice and Experience, vol. 17, no. 2-4, pp. 323–356, 2005.
-
-[33] B. Burns, B. Grant, D. Oppenheimer, E. Brewer, and J. Wilkes, "Borg, Omega, and Kubernetes," Commun. ACM, vol. 59, no. 5, pp. 50–57, 2016.
-
-[34] J. Nieh, S. Peiravian, and S. Forrest, "Virtualization Challenges: Devices and Drivers," SIGOPS Oper. Syst. Rev., vol. 41, no. 2, pp. 1–7, 2007.
-
-[35] A. Ghodsi, M. Zaharia, B. Hindman, A. Konwinski, S. Shenker, and I. Stoica, "Dominant resource fairness: fair allocation of multiple resource types," in Proc. 8th USENIX Symposium on Networked Systems Design and Implementation (NSDI), 2011.
-
-[36] X. Zhou, Z. Peng, C. Spanos, and D. E. Culler, "Fault Detection in Complex Systems Using Sparse Sensor Networks," in IEEE Sensors Journal, vol. 10, no. 11, pp. 1701–1709, 2010.
-
-[37] N. Deepak, R. Ravindran, and H. Kacmarcik, "Carbyne: Network Resource Scheduling via LLM-guided Negotiation," in Proc. IEEE International Conference on Cloud and Edge Computing (ICCE), 2024.
-
-[38] J. Weng, M. Subramanian, Y. Diao, and W. Pfaff, "Decima: Towards Optimal Scheduling of Distributed ML Training Jobs," in Proc. 2021 USENIX Annual Technical Conference (USENIX ATC), 2021.
-
-[39] J. Chen, L. Zhu, G. Olsson, and R. Sundaram, "Auto-Tune: Towards Automated Performance Tuning for Cloud Databases," in Proc. 2016 ACM SIGMOD International Conference on Management of Data, 2016.
-
-[40] K. Ren, Y. Zheng, W. Wang, K. Sui, Y. Yuan, and Z. Yang, "Predictive Data Analytics for Efficient Operation of Smart Microgrids," IEEE Access, vol. 5, pp. 6932–6945, 2017.
-
-[41] Z. Jia, L. Shao, Z. Guo, et al., "Pollux: Co-adaptive Cluster Scheduling for Goodput-Optimized Deep Learning," in Proc. 15th USENIX Symposium on Operating Systems Design and Implementation (OSDI), 2021.
-
-[42] D. Narayanan, A. Phanishayee, V. Akella, P. Mitzenmacher, and S. Zaharia, "The Tail at Scale," Commun. ACM, vol. 56, no. 2, pp. 74–80, 2013.
-
-[43] D. Hendrycks and T. Diettelow, "Benchmarking Neural Network Robustness to Common Corruptions," in Proc. 2019 ICCV, 2019.
-
-[44] Z. Lipton, "The Mythos of Model Interpretability in Machine Learning," in Proc. 2016 ICML Workshop on Definitions, Properties and Applications of Fairness, 2016.
-
-[45] V. Panicker, P. Nair, and R. Sundaram, "On the Interpretability of Deep Reinforcement Learning for Autonomous Driving," IEEE Access, vol. 8, pp. 226906–226924, 2020.
-
-[46] W. Pfaff, S. Neumann, and D. Kraft, "Cilantro: A Hybrid Optimization Framework for Batch Job Scheduling," in Proc. 2020 IEEE International Conference on Cluster Computing (CLUSTER), 2020.
-
-[47] J. Sparso and E. Høgh, "Harmony: A Synergistic Resource Scheduler for Heterogeneous Datacenters," ACM Transactions on Computer Systems, vol. 38, no. 4, pp. 1–34, 2020.
-
-[48] Y. Li, D. Choi, J. Chung, et al., "AlphaCode: Competitive Programming with a Large Language Model," Science, vol. 378, pp. 207–214, 2022.
-
-[49] R. Agrawal and A. Wunderlich, "D-Bot: Intelligent Failure Diagnosis via Large Language Model Prompting," in Proc. 2023 USENIX Annual Technical Conference (USENIX ATC), 2023.
-
-[50] H. Kasai, B. Prabhakar, and B. Farzin, "LLMLight: Neural Network Feedback Control via Large Language Model Reasoning," in Proc. 2024 IEEE International Conference on Robotics and Automation (ICRA), 2024.
-
-[51] A. Kipf, Y. Marcus, A. Gottschlich, B. Dey, D. Rottensteiner, J. Wendt, and C. Kraska, "xTuring: A Data-Centric Approach for Database Tuning via Large Language Models," in Proc. 21st USENIX Conference on File and Storage Technologies (FAST), 2023.
-
-[52] Y. Yao, J. Cao, and X. Zhang, "Config-GPT: Configuration Recommendation via Large Language Models," in Proc. 2024 International Conference on Machine Learning (ICML), 2024.
-
-[53] D. Jayasiri, J. Weng, A. Kipf, and A. L. Krikorian, "AutoAdmin: Autonomous Database Administration via Large Language Models," in Proc. 2024 ACM SIGMOD International Conference on Management of Data (SIGMOD), 2024.
-
-[54] H. Hoffmann, "Autoscaling Hadoop Clusters," in Proc. USENIX Symposium on Networked Systems Design and Implementation (NSDI), 2012.
-
-[55] Y. Zhang, M. Li, and Z. Yin, "Mitigating Hallucinations in Large Language Models: Techniques and Evaluation Metrics," arXiv preprint arXiv:2310.01798, 2023.
-
-**AUTHOR BIOGRAPHIES**
-
-**GUANYU DING** (M'24) received the B.S. degree in computer science and mathematics from MIT in 2021 and the M.S. degree in computer science from New York University in 2023. He is currently pursuing the Ph.D. degree in computer science at New York University. His research interests include large language models for systems optimization, cloud resource scheduling, and intelligent infrastructure management.
-
-**SHIYU YANG** (M'23) is a Ph.D. candidate in computer science at UCLA, focusing on the intersection of machine learning and distributed systems. Her research explores efficient resource allocation in heterogeneous clusters and the application of foundation models to systems problems.
-
-**HAN LIN** (M'22, SM'24) is an Associate Professor in the Department of Computer Science and Engineering at the University of Wisconsin-Madison. His research interests span cloud computing, edge systems, and the application of machine learning to infrastructure management.
-
-**ZIFAN CHEN** received the Ph.D. degree in computer science from the University of Pennsylvania in 2022. He is currently a postdoctoral researcher at the University of Pennsylvania, working on formal verification and safety guarantees for AI-driven systems.
-
-**JIE SI YANG** (M'20) is an Assistant Professor of Computer Science at the University of Utah. His research focuses on resource management in cloud and edge infrastructures, with recent interests in applying LLMs to systems optimization problems.
+r ResourceMatch(J, ni ) = exp(−∥ dJ − cavail
+i ∥2 ) mea-
+sures resource ﬁt,
+r LocalityScore(J, ni ) reﬂects data locality based on pre-
+decessor task placements,
+r HistoricalAfﬁnity(J, ni ) captures learned preferences
+from past executions.
+We select the top- M most relevant nodes for each job,
+where M is dynamically adjusted to ﬁt context limits while
+ensuring sufﬁcient scheduling options.
+Design Motivation: This multi-level encoding preserves the
+semantic structure that LLMs leverage during pre-training
+(hierarchies, dependencies, natural language speciﬁcations)
+while maintaining computational tractability. Unlike pure
+numerical embeddings, our representation remains human-
+interpretable, facilitating debugging and operator trust.
+C. LLM-GUIDED CANDIDATE GENERATION
+1) PROMPTING STRATEGY DESIGN
+We employ a carefully crafted prompting pipeline that guides
+the LLM through the scheduling reasoning process:
+System Prompt: Establishes the LLM’s role and operational
+context:
+You are an expert cloud resource scheduler managing a large-
+scale distributed cluster . Your goal is to assign pending tasks to
+compute nodes while optimizing job completion time, resource uti-
+lization, and SLA compliance. Consider task dependencies, data
+locality, resource constraints, and fairness across users.
+Few-Shot Examples: We provide 3-5 carefully selected ex-
+emplars demonstrating effective scheduling decisions:
+Example 1: F or a high-priority MapReduce job with tight dead-
+line, the scheduler co-located map tasks near input data and
+placed reduce tasks on high-memory nodes to avoid swapping...
+
+## §564 VOLUME 7, 2026
+
+These examples encode domain best practices (data local-
+ity, load balancing, priority handling) that guide the LLM’s
+reasoning.
+Chain-of-Thought Prompting: We explicitly request step-
+by-step reasoning:
+Before providing task assignments, reason through: (1) Which jobs
+are most urgent? (2) What are the critical resource bottlenecks?
+(3) How can we minimize data movement? (4) Are there opportu-
+nities for task co-location?
+This structured reasoning improves decision quality and
+provides interpretability.
+2) CANDIDATE GENERATION PROCESS
+Given the encoded state St , we query the LLM multiple times
+with varying temperatures to generate a diverse candidate
+set C ={ c1,..., cK}. We use temperatures τ∈ [0.3, 0.8] to
+balance between conservative (low τ) and exploratory (high
+τ) strategies. Lower temperatures are used for high-priority
+jobs requiring reliable decisions, while higher temperatures
+enable creative solutions for complex scenarios.
+3) CONSTRAINT-GUIDED GENERATION
+To improve the feasibility of LLM outputs, we augment
+prompts with explicit constraint reminders:
+Pconstrained = Pbase ⊕ “CRITICAL: Task T3 requires
+≥ 16 GB memory.Only nodes N_45, N_78, N_102
+satisfy this.” (15)
+For each task with strict requirements, we inject speciﬁc
+constraint reminders into the prompt. This constraint-aware
+prompting signiﬁcantly reduces invalid assignments (from
+34% to 8% in our experiments).
+Design Motivation: Directly applying LLMs without guid-
+ance produces syntactically valid but semantically poor sched-
+ules. Our prompting strategy injects domain expertise through
+few-shot examples and structures the reasoning process
+through chain-of-thought, mimicking how human schedulers
+approach complex decisions. Temperature diversity ensures
+solution exploration while constraint-guided generation im-
+proves feasibility.
+D. OPTIMIZATION-BASED REFINEMENT
+1) MOTIVATION FOR HYBRID OPTIMIZATION
+LLM-generated candidates provide intelligent starting points
+but may violate hard constraints or exhibit suboptimal re-
+source packing. We employ Integer Linear Programming
+(ILP) to reﬁne candidates while preserving their high-level
+strategic decisions.
+2) ILP FORMULATION
+Let xtj ∈{ 0, 1} be a binary variable indicating whether task t
+is assigned to node n j . The reﬁnement problem is formulated
+as:
+min
+x
+∑
+t∈T
+N∑
+j=1
+wt · et (n j ) · xtj + λ·
+∑
+t∈T
+N∑
+j=1
+dLLM (t, n j ) · xtj ,
+(16)
+subject to:
+N∑
+j=1
+xtj = 1, ∀t ∈ T , (17)
+∑
+t∈T
+dr
+t · xtj ≤ cr
+j · (1 − ur
+j ), ∀j, r, (18)
+xti j · Cti ≤ Stk , ∀(ti, tk ) ∈ E, j, (19)
+xtj = 0, ∀t, j : n j /∈ Nt, (20)
+where (16) minimizes weighted completion time plus de-
+viation from LLM suggestions, dLLM (t, n j ) = 0 if LLM
+suggested assigning t to n j ,e l s edLLM (t, n j ) = 1, λ controls
+the trade-off between optimization and LLM guidance (we
+use λ= 0.3), (17) ensures each task is assigned exactly once,
+(18) enforces resource capacity, (19) maintains precedence
+constraints ( Cti : completion time, Stk : start time), and (20)
+respects afﬁnity constraints.
+3) LIGHTWEIGHT SOLVING STRATEGY
+Full ILP solving is expensive for large problem instances. We
+employ several acceleration techniques:
+Warm Starting: Initialize the ILP solver with the LLM
+candidate as a feasible starting solution (after minimal cor-
+rections). This reduces solving time by 60-80%.
+Time-Limited Solving: We impose a strict time budget
+(50 ms) on the ILP solver. If optimality is not reached, the
+best feasible solution found is returned. This ensures bounded
+latency.
+Decomposition: For very large jobs, we decompose the
+problem into independent sub-problems based on DAG struc-
+ture:
+T = T1 ∪ T2 ∪···∪ TP, (21)
+where Ti are weakly connected components. Each sub-
+problem is solved independently in parallel, substantially
+reducing computational overhead while preserving optimality.
+Constraint Pruning: We eliminate obviously infeasible as-
+signments before ILP formulation:
+F (t ) ={ n j : dr
+t ≤ cr
+j · (1 − ur
+j ),∀r}, (22)
+restricting xtj to j ∈ F (t ), reducing problem size by ∼ 40%.
+Nodes that cannot satisfy the task’s resource demands under
+the current utilization state are excluded in advance, reducing
+the number of decision variables and accelerating the ILP
+solver without sacriﬁcing feasibility.
+Design Motivation: Pure optimization approaches struggle
+with semantic reasoning, while pure LLM outputs lack cor-
+rectness guarantees. Our hybrid formulation uses the LLM
+VOLUME 7, 2026 565
+DING ET AL.: LLM-DRIVEN ADAPTIVE CLOUD RESOURCE SCHEDULING: BRIDGING REASONING INTELLIGENCE WITH OPTIMIZATION GUARANTEES
+candidate as a “soft constraint” (via λterm), guiding optimiza-
+tion toward intelligent solutions while maintaining feasibility.
+The time-limited solving ensures predictable latency, critical
+for production deployment.
+E. INTELLIGENT EXECUTION AND CACHING
+1) WORKLOAD-AWARE TRIGGERING
+Invoking the LLM for every scheduling decision is compu-
+tationally prohibitive. We develop a triggering policy that
+invokes the LLM only when signiﬁcant cluster state changes
+occur:
+TriggerLLM =
+{ True, if /Delta1(St, St− 1 ) >θ
+False, otherwise, (23)
+where /Delta1(St, St− 1 ) measures state change magnitude:
+/Delta1(St, St− 1 ) = α · ∥Ut − Ut− 1∥2
+∥Ut− 1∥2
++ β · |Jt△Jt− 1|
+|Jt− 1|
++ γ · ISLA-risk. (24)
+Here, Ut is the cluster utilization vector, Jt△Jt− 1 denotes
+symmetric difference in job sets, and ISLA-risk is an indicator
+for approaching SLA violations. We set θ= 0.15 based on
+sensitivity analysis.
+2) STRATEGY CACHING AND REUSE
+When the LLM is not triggered, we execute cached strategies
+from previous LLM invocations. We maintain a strategy li-
+brary L ={ (Si,σi, Qi )}, where:
+r Si is a past cluster state (abstracted to resource availabil-
+ity proﬁle),
+r σi is the corresponding scheduling strategy,
+r Qi is the quality score (achieved objective value).
+For a new state St , we retrieve the most similar cached
+strategy:
+σcached = arg max
+σi∈L
+Similarity(St, Si ) · Qi, (25)
+where similarity is computed via cosine distance on normal-
+ized state vectors. We then adapt σcached to current state using
+fast greedy adjustments.
+3) ONLINE LEARNING AND FEEDBACK
+LLMSched incorporates closed-loop feedback to improve
+over time:
+Q(σt ) =− L(σt ) =− [α1 · JCTt + α2 · (1 − Ut )
++ α3 · SVRt ] . (26)
+After executing schedule σt , we observe actual performance
+and update the strategy library:
+L ← L ∪{ (St,σt, Q(σt ))}. (27)
+Low-quality strategies ( Q <θQ) are periodically pruned to
+maintain library quality. This online learning allows the sys-
+tem to continuously improve without explicit retraining.
+Design Motivation: The caching and triggering mecha-
+nisms amortize expensive LLM inference across multiple
+scheduling epochs. By invoking the LLM only during sig-
+niﬁcant regime changes (workload spikes, failures, new job
+patterns), we achieve < 5ms average scheduling latency while
+retaining adaptability. The feedback loop enables continuous
+improvement without the brittleness of ofﬂine-trained models.
+F. HANDLING FAILURES AND ROBUSTNESS
+Cloud environments experience frequent failures (node
+crashes, network partitions). LLMSched incorporates several
+robustness mechanisms: Fallback Policies: If LLM inference
+fails (timeout, API error) or ILP reﬁnement produces no fea-
+sible solution, we fall back to a reliable baseline (Kubernetes
+default scheduler or DRF); Task Rescheduling: When a node
+fails, affected tasks are immediately rescheduled using cached
+strategies without invoking the LLM, ensuring fast recovery;
+Partial Schedule Execution: If only a subset of tasks can
+be feasibly scheduled, we execute partial schedules and re-
+invoke scheduling for remaining tasks, avoiding starvation;
+Anomaly Detection: We monitor scheduling quality metrics in
+real-time. If performance suddenly degrades, we trigger LLM
+invocation to generate a new strategy, adapting to unexpected
+conditions.
+V . EXPERIMENTS
+We conduct extensive experiments to evaluate LLMSched’s
+performance across diverse workload scenarios, comparing
+against state-of-the-art baselines and analyzing key architec-
+tural components.
+A. EXPERIMENT SETUP
+1) DATASETS
+We use the Google cluster trace dataset [57], [58], which
+contains production workload data from an 11,000-machine
+cluster over a 29-day period in May 2011. The dataset in-
+cludes: 1) Scale: 672,090 jobs comprising 25,462,124 tasks;
+2) Heterogeneity: Tasks span diverse types including batch an-
+alytics, serving jobs, and long-running daemons; 3) Resource
+characteristics: CPU, memory, and disk usage proﬁles; 4)
+Task dependencies: Parent-child relationships forming com-
+plex DAGs; 5) Priorities: Jobs classiﬁed into 12 priority levels
+(0=lowest, 11=highest).
+To ensure experimental rigor while managing computa-
+tional costs, we extract representative subsets: 1) Training Set:
+Days 1-20 (480 hours) containing 523,145 jobs, used for base-
+line training and strategy library initialization; 2) V alidation
+Set: Days 21-24 (96 hours) containing 78,223 jobs, used for
+hyperparameter tuning; 3) Test Set: Days 25-29 (120 hours)
+containing 70,722 jobs, used for ﬁnal evaluation. We further
+partition the test set into three scenarios: Normal Load (40
+hours): Average cluster utilization 60-70%, High Load (40
+hours): Average cluster utilization 80-90%, Bursty Load (40
+hours): Utilization ﬂuctuates between 40-95% with workload
+spikes.
+
+## §566 VOLUME 7, 2026
+
+To simulate realistic stochasticity, we introduce controlled
+variations: Execution time variance: Actual task durations
+sampled from N (μt, 0.15μt ) where μt is the historical mean;
+Resource demand variance: Actual resource consumption
+varies by ±10% from declared values; Arrival time jitter:
+Job arrivals perturbed by ±5 seconds to model submission
+randomness.
+Each experiment is repeated 5 times with different random
+seeds, and we report mean values with 95% conﬁdence inter-
+vals.
+2) BASELINES
+We compare LLMSched against six representative schedulers
+spanning different design paradigms:
+B1. Kubernetes Default Scheduler: [33]: Score-based
+heuristic scheduler that ranks nodes by resource availability
+and spreads pods across nodes for load balancing. Represents
+industry-standard practice.
+B2. Dominant Resource Fairness (DRF) [35]: Max-min
+fairness algorithm that equalizes dominant resource shares
+across users. Strong fairness baseline.
+B3. Tetris [36]: Multi-dimensional bin packing with align-
+ment scores to minimize fragmentation. State-of-the-art tradi-
+tional optimizer.
+B4. DeepRM [12]: Deep reinforcement learning scheduler
+trained on the training set. Represents learning-based ap-
+proaches.
+B5. Decima [38]: Graph neural network-based scheduler
+that models task dependencies. State-of-the-art DRL method
+for DAG workloads.
+B6. Random: Assigns tasks to nodes uniformly at random
+(subject to capacity constraints). Lower bound baseline.
+For DeepRM and Decima, we train models on the training
+set for 200 epochs following the original articles’ conﬁgura-
+tions, using their open-source implementations with hyperpa-
+rameters tuned on the validation set.
+3) EVALUATION METRICS
+We measure performance across ﬁve dimensions:
+Average Job Completion Time (Avg-JCT): Mean time from
+job submission to completion, weighted by job importance.
+Lower is better.
+Resource Utilization: Time-averaged cluster-wide CPU and
+memory utilization (8). Higher is better.
+SLA Violation Rate (SVR): Percentage of deadline-sensitive
+jobs that miss deadlines (9). Lower is better.
+Fairness Index: Jain’s fairness index (10) measuring alloca-
+tion equity. Higher is better (closer to 1.0).
+P99 Scheduling Latency: 99th percentile time from task
+becoming schedulable to assignment. Lower is better.
+4) EXPERIMENT CONFIGURATIONS
+Hardware Conﬁguration: Experiments run on a simulated
+cluster with 1,000 heterogeneous nodes categorized into 5
+resource proﬁles matching the Google trace distribution.
+TAB LE 1. Overall Performance Comparison on Google Cluster Trace
+Simulation executes on a 64-core AMD EPYC server with
+512 GB RAM.
+LLM Conﬁguration: We use GPT-4-Turbo (gpt-4-1106-
+preview) with 128 K context window. Prompts are limited
+to 8 K tokens through relevance-based ﬁltering. We gen-
+erate K = 5 candidates per invocation with temperatures
+{0.3, 0.4, 0.5, 0.6, 0.8}.
+ILP Solver: We use Gurobi 10.0 with 50 ms time limit and
+4 threads. Optimization gaps at timeout average 3.2%.
+Hyperparameters: Objective weights α1 = 0.4,α2 =
+0.25,α3 = 0.25,α4 = 0.1 (prioritizing JCT and SLA
+compliance). LLM-ILP trade-off λ= 0.3. Triggering
+threshold θ= 0.15. Strategy library capacity 1,000 entries.
+B. OVERALL PERFORMANCE COMPARISON
+Table 1 presents the main results across all test scenarios.
+From the table, we have several observations: 1) Job Comple-
+tion Time: LLMSched achieves 417.9 s average JCT, outper-
+forming the best baseline (Decima) by 5.9% and Kubernetes
+by 23.7%. The improvement stems from LLMSched’s ability
+to reason about complex task dependencies and data locality.
+Conﬁdence intervals show consistent superiority across ran-
+dom seeds (non-overlapping with baselines); 2) Resource Uti-
+lization: LLMSched achieves 76.6% CPU utilization, 4.4%
+higher than Decima and 18.4% higher than Kubernetes. This
+efﬁciency gain results from intelligent task packing guided
+by LLM’s semantic understanding of resource requirements.
+Memory utilization follows similar trends (74.3% vs. 71.1%
+for Decima). 3) SLA Compliance: LLMSched reduces SLA
+violations to 11.9%, a 31.2% reduction compared to Decima.
+This dramatic improvement reﬂects LLM’s contextual prior-
+itization of deadline-sensitive jobs and proactive scheduling
+to avoid last-minute resource contention. 4) Fairness: While
+DRF achieves the highest fairness (0.891) by design, LLM-
+Sched attains competitive fairness (0.823) while signiﬁcantly
+improving other metrics. This demonstrates effective multi-
+objective balancing.
+C. PERFORMANCE BREAKDOWN BY WORKLOAD
+SCENARIO
+Fig. 1 plots JCT distributions across scenarios, showing
+LLMSched consistently shifts the distribution leftward (faster
+completions).
+VOLUME 7, 2026 567
+DING ET AL.: LLM-DRIVEN ADAPTIVE CLOUD RESOURCE SCHEDULING: BRIDGING REASONING INTELLIGENCE WITH OPTIMIZATION GUARANTEES
+FIGURE 1. Job completion time distributions across three workload
+scenarios. Box plots show median, quartiles, and variance across 5
+experimental runs. LLMSched consistently achieves lower JCT with tighter
+distributions, indicating both better performance and higher consistency.
+TAB LE 2. Ablation Study Results
+Normal Load: LLMSched achieves 6.1% lower JCT than
+Decima with modest improvements in utilization. This sce-
+nario represents steady-state operation where all schedulers
+perform reasonably well.
+High Load: The performance gap widens signiﬁcantly—
+LLMSched reduces JCT by 7.1% vs. Decima and SVR by
+32.0%. Under resource contention, LLM’s reasoning about
+task priorities and deadline urgency becomes critical. Note the
+increased variance (± 15-17 s) reﬂecting realistic stochasticity
+in high-contention scenarios.
+Bursty Load: LLMSched maintains 4.3% JCT advantage
+and 31.8% SVR reduction despite workload unpredictability.
+This demonstrates robustness—the LLM adapts to sudden
+load changes through its triggering mechanism, while cached
+strategies handle routine periods efﬁciently. V ariance in-
+creases further (± 17-19 s) due to arrival time jitter interacting
+with burst patterns.
+D. ABLATION STUDIES
+We evaluate the contribution of each LLMSched compo-
+nent by systematically disabling modules. Table 2 presents
+results. The component-wise analysis is as follows: 1) ILP
+Reﬁnement: Removing ILP increases JCT by 9.2% and SVR
+by 36.1%. Without constraint enforcement, LLM outputs
+frequently violate resource limits, causing execution fail-
+ures and rescheduling overhead. This validates our hybrid
+design—LLMs provide intelligence, ILP ensures correct-
+ness; 2) Constraint Prompting: Disabling constraint-aware
+TAB LE 3. Robustness Under Workload Distribution Shift
+prompts degrades JCT by 5.7% and SVR by 23.5%. Explicit
+constraint injection improves LLM output quality, reducing
+infeasible assignments from 26% to 8% (measured on val-
+idation set); 3) Strategy Caching: Removing caching has
+minimal performance impact (JCT +0.4%) but dramatically
+increases computational cost (see latency analysis). This con-
+ﬁrms caching is primarily an efﬁciency optimization; 4)
+Multi-Level Encoding: Flat encoding (concatenating all state
+information without hierarchical structure) increases JCT by
+4.9%. Hierarchical representation helps LLMs focus on rel-
+evant information while respecting context limits; 5) Online
+Learning: Disabling feedback loops increases JCT by 2.0%.
+Performance gap grows over time—by day 29, the gap reaches
+5.3%, demonstrating continuous improvement from strategy
+library reﬁnement; 6) LLM-Only vs. ILP-Only: Both pure ap-
+proaches perform poorly. LLM-Only suffers from constraint
+violations (SVR +66.4%), while ILP-Only lacks semantic rea-
+soning (JCT +20.1%). This strikingly validates the necessity
+of hybrid integration.
+E. ROBUSTNESS UNDER DISTRIBUTION SHIFT
+We evaluate robustness by testing on workload patterns not
+seen during training. We construct two shifted test sets:
+1) Priority Shift: Increase high-priority job proportion from
+15% to 40%, simulating urgent workload surge; 2) Task
+Structure Shift: Introduce jobs with deeper DAGs (depth
+8-12 vs. training average of 4-6), simulating complex ana-
+lytics pipelines. From results presents in Table 3,w eh a v e
+following ﬁndings: LLMSched exhibits superior robustness—
+degradation remains below 8% across shifts, while DRL
+baselines degrade by 13-17%. This advantage stems from
+LLM’s pre-trained reasoning capabilities, which generalize
+to unseen scenarios without explicit retraining. In contrast,
+DRL policies overﬁt to training distributions and struggle
+with novel patterns. Under priority shift, LLMSched’s seman-
+tic understanding of urgency allows it to dynamically adjust
+scheduling strategies. Under structure shift, the multi-level
+encoding captures complex dependencies that graph neural
+networks miss due to limited training on deep DAGs.
+F. FAILURE RECOVERY ANAL YSIS
+We inject three failure types to test resilience: 1) Node
+Failures: Random 5% node crashes during execution;
+2) Network Partitions: 10-minute inter-zone disconnections
+
+## §568 VOLUME 7, 2026
+
+TAB LE 4. Performance Under Failure Scenarios
+TAB LE 5. Scheduling Latency Breakdown
+affecting 15% of trafﬁc; 3) Task Failures: Random 8% task
+crashes requiring rescheduling. From the recovery perfor-
+mance shown in Table 4, LLMSched recovers 22.8-40.4%
+faster than baselines. The fallback mechanism immediately
+reschedules affected tasks using cached strategies without
+invoking expensive LLM inference, ensuring rapid recovery.
+JCT overhead remains modest (4.8-6.2%) due to intelligent
+rescheduling that considers newly available resources.
+G. COMPUTATIONAL COST ANAL YSIS
+Table 5 analyzes scheduling latency breakdown.
+Latency Measurement and Breakdown: All latency num-
+bers are measured as end-to-end wall-clock time at the
+scheduler side. Speciﬁcally, the reported LLM inference la-
+tency includes the complete API roundtrip, encompassing
+request transmission, server-side model inference, and re-
+sponse reception. The scheduler issues synchronous API calls
+and records elapsed time from request dispatch to response
+arrival. The P50 LLM inference latency of 342.7 ms there-
+fore reﬂects the full end-to-end cost of invoking the language
+model. The total Intelligent Mode latency of 362.3 ms further
+includes lightweight local processing, such as prompt con-
+struction, relevance-based ﬁltering, and result postprocessing.
+These local operations introduce a small and stable overhead
+of approximately 20 ms, which explains the difference be-
+tween the two values.
+Latency Analysis: In fast mode, which accounts for 96.8%
+of scheduling decisions, LLMSched achieves a P50 latency
+of 4.2 ms, comparable to Kubernetes (2.1 ms) and more
+than 2 × faster than Decima. The P99 latency remains be-
+low 14 ms, satisfying the latency requirements of production
+schedulers. In intelligent mode, triggered for only 3.2% of
+decisions, latency increases due to LLM inference (342.7 ms)
+and ILP reﬁnement (18.4 ms). This higher latency is amor-
+tized by the low invocation frequency, resulting in an average
+scheduling latency of only 15.7 ms across all decisions. The
+relatively low LLM latency is enabled by two key design
+choices. First, relevance-based ﬁltering restricts the prompt to
+a compact and informative subset of the cluster state, ensuring
+that the prompt length remains below 8 K tokens. Second,
+the language model is used to generate high-level schedul-
+ing guidance rather than long-horizon, step-by-step reasoning
+over the entire cluster state, which signiﬁcantly reduces infer-
+ence time.
+Cost-Effectiveness: At current GPT-4 pricing ($0.01 per
+1K tokens), the average LLM cost is $0.032 per hour for
+a 1,000-node cluster. Given that the 18.4% improvement in
+resource utilization corresponds to approximately $420 per
+hour in infrastructure savings (assuming $50 per node per
+hour), the resulting return on investment exceeds 10 4×.
+VI. CONCLUSION AND FUTURE WORKS
+This article presents LLMSched, a novel hybrid framework
+that synergistically combines Large Language Model reason-
+ing with classical optimization for cloud resource scheduling.
+By positioning LLMs as high-level policy generators and
+delegating constraint satisfaction to lightweight ILP solvers,
+our approach achieves both intelligent adaptability and algo-
+rithmic correctness. Comprehensive experiments on Google
+cluster traces demonstrate signiﬁcant improvements over
+state-of-the-art baselines: 23.7% reduction in job completion
+time, 18.4% improvement in resource utilization, and 31.2%
+decrease in SLA violations. Our work establishes a new
+paradigm for integrating foundation models into systems op-
+timization, demonstrating that careful architectural design can
+harness LLMs’ reasoning capabilities while preserving the
+reliability and performance guarantees essential for mission-
+critical infrastructure.
+Future research directions include extending LLMSched
+to multi-datacenter scenarios with geographic distribution,
+ﬁne-tuning specialized models for domain-speciﬁc work-
+loads, and developing conversational interfaces for operator
+interaction. Investigating the theoretical foundations of when
+LLM-guided optimization outperforms traditional methods
+could provide valuable insights for broader applicability.
+Beyond scheduling, the hybrid LLM-optimization paradigm
+shows promise for other systems problems including network
+routing, storage tiering, and database query optimization,
+opening exciting avenues for foundation model applications
+in distributed systems management.
+VOLUME 7, 2026 569
+DING ET AL.: LLM-DRIVEN ADAPTIVE CLOUD RESOURCE SCHEDULING: BRIDGING REASONING INTELLIGENCE WITH OPTIMIZATION GUARANTEES
+Algorithm 1: LLM Candidate Generation.
+1: Input: Encoded state St , number of candidates K,
+temperatures τ1,...,τ K
+2: Output: Candidate set C
+3: C ←∅
+4: for i = 1t o K do
+5: Construct prompt
+Pi ← SystemPrompt ⊕ FewShot ⊕ St ⊕ CoT
+6: ci ← LLM(Pi,τi ) {Query LLM with temperature
+τi}
+7: Parse ci into structured assignments
+{(t, n): t ∈ T , n ∈ N}
+8: C ← C ∪{ ci}
+9: end for
+10: return C
+
+## § Appendix
+
+A. PROBLEM COMPLEXITY AND CHALLENGES
+The cloud scheduling problem exhibits several characteristics
+that motivate our LLM-driven approach:
+Computational Hardness: Even simpliﬁed variants (e.g.,
+minimizing makespan for independent tasks on identical ma-
+chines) are NP-hard [59]. The presence of DAG dependencies,
+heterogeneous resources, and multiple objectives exacerbates
+complexity.
+Dynamic and Stochastic Nature: Jobs arrive continuously
+with uncertain execution times and resource demands. Opti-
+mal ofﬂine solutions cannot be computed; online algorithms
+must make irrevocable decisions with incomplete informa-
+tion.
+High-Dimensional State Space: At each decision point, the
+scheduler observes O(N ·| T |· R) state variables (where R is
+the number of resource types), leading to exponential growth
+in large clusters.
+Multi-Modal Information: Effective scheduling requires
+reasoning about numerical resource metrics, graph-structured
+task dependencies, temporal patterns, and semantic con-
+straints expressed in natural language (e.g., SLA speciﬁca-
+tions, afﬁnity rules).
+These challenges render traditional optimization methods
+(which assume complete information and static workloads)
+and pure machine learning approaches (which struggle with
+interpretability and constraint satisfaction) insufﬁcient. Our
+hybrid LLM-driven framework is designed to address these
+limitations by combining ﬂexible reasoning with algorithmic
+rigor, as detailed in the following section.
+B. ALGORITHMS
+We summarize the detailed process for LLM Candidate Gen-
+eration (Section IV -C2) and Candidate Reﬁnement via ILP
+(Section IV -D3) in Algorithms 1 and 2, respectively.
+C. VISUALIZATION OF SCHEDULING DECISIONS
+Fig. 2 visualizes scheduling quality over time, comparing
+LLMSched against Decima. The plot shows: 1) Cluster
+Algorithm 2: Candidate Reﬁnement via ILP .
+Require: LLM candidate c, cluster state
+(N, T, constraints )
+Ensure: Reﬁned schedule σ∗
+1: V alidatec and identify constraint violations V
+2: if |V| > 0.3 ·| T | then
+3: return ⊥ ⊿ Too many violations, reject candidate
+4: else
+5: Construct ILP formulation (Eq. (16)–(20))
+6: Warm-start solver with corrected c
+7: σ∗ ← Solve-ILP(time_limit = 50 ms)
+8: if σ∗ is infeasible then
+9: σ∗ ← Greedy-Bin-Packing(c) ⊿ Fallback
+heuristic
+10: end if
+11: return σ∗
+12: end if
+FIGURE 2. Scheduling quality comparison over 48-hour continuous
+operation. Top: LLMSched maintains higher and more stable utilization.
+Bottom: Cumulative SLA violations show LLMSched incurs 68% fewer
+violations, particularly during high-load periods (shaded orange).
+FIGURE 3. Task placement visualization in 2D resource space
+(CPU-Memory). LLMSched (left) places tasks tightly around node cluster
+centers (red X markers), minimizing resource fragmentation. Decima (right)
+exhibits scattered placements with poor resource matching, leading to
+lower utilization efﬁciency.
+utilization traces: LLMSched maintains consistently higher
+utilization with fewer oscillations; 2) Job completion events:
+LLMSched completes jobs more steadily, avoiding bursts of
+simultaneous completions that indicate poor load balancing;
+3) SLA violation incidents: Marked as red vertical bars—
+LLMSched exhibits 68% fewer violations. Fig. 3 presents a
+
+## §570 VOLUME 7, 2026
+
+FIGURE 4. Case study: Scheduling a 47-task DAG job with 8 levels. Gantt
+charts compare Decima (top) and LLMSched (bottom). LLMSched’s
+intelligent data locality awareness reduces completion time by 22.3%
+(287s→ 223 s) and inter-node data transfer by 47% (18.3GB → 9.7 GB).
+Tasks are colored by DAG level; dashed arrows indicate data transfers.
+t-SNE visualization of task placement decisions in 2D re-
+source space. LLMSched’s placements form tighter clusters
+around node capacities, indicating better resource matching
+compared to Decima’s scattered placements.
+D. CASE STUDY: DEEP DAG SCHEDULING
+We analyze a representative complex job with 47 tasks form-
+ing an 8-level DAG (depth =8, width=12). Fig. 4 illustrates
+the scheduling decisions:
+Decima: Places tasks greedily based on resource availabil-
+ity, resulting in suboptimal data locality. Total completion
+time: 287 s with 18.3 GB of inter-node data transfer.
+LLMSched: The LLM reasons: ”Tasks T1-T6 (map phase)
+should be co-located with input data in zone us-west-1a.
+Reduce tasks T7-T12 require high memory—place on node
+cluster C2. Final aggregation T47 should be near reduce
+outputs to minimize transfer latency. ” Resulting completion
+time: 223 s with only 9.7 GB transfer—22.3% faster due to
+intelligent locality-aware placement.
+This case study exempliﬁes LLMSched’s ability to per-
+form high-level reasoning about data ﬂow and resource
+requirements—capabilities that pure optimization or pattern-
+matching approaches cannot easily capture.
+E. LESSONS LEARNED FROM LLM-ASSISTED SCHEDULING
+Our experience with integrating large language models into
+a production-oriented scheduling framework yields several
+practical insights that may generalize to other LLM-assisted
+decision-making systems.
+LLMs excel at high-level heuristics but not hard feasibility:
+Few-shot prompting and Chain-of-Thought reasoning enable
+the LLM to capture high-level scheduling heuristics, such as
+balancing load, prioritizing critical jobs, and avoiding obvious
+bottlenecks. However, without explicit guidance, the model
+may generate semantically invalid assignments that violate
+hard resource or placement constraints. In our experiments,
+such invalid outputs occurred in up to 34% of cases when no
+constraints were enforced.
+Constraint-guided prompting is effective but not sufﬁcient
+alone: Incorporating explicit constraints into the prompt sub-
+stantially reduces hallucinations by narrowing the model’s
+solution space. This design reduces the rate of invalid as-
+signments to approximately 8%. Nevertheless, soft prompting
+alone cannot guarantee strict feasibility, especially under com-
+plex multi-resource and precedence constraints.
+Symbolic solvers provide a reliable safety net: Delegating
+ﬁnal decision validation and correction to an optimization-
+based solver ensures that all hard constraints are satisﬁed.
+Rather than treating the solver as a fallback, our framework
+treats it as a complementary component that converts high-
+level, potentially imperfect LLM proposals into executable
+schedules.
+A layered architecture is more robust than end-to-end
+learning: Our results suggest that combining LLM reason-
+ing with symbolic optimization yields a more robust system
+than relying solely on end-to-end learned policies. The LLM
+focuses on strategic guidance, while the solver enforces cor-
+rectness. This separation of concerns improves reliability and
+mitigates the impact of hallucinations without requiring re-
+training or ﬁne-tuning of model weights.
+These lessons highlight a general principle for LLM-
+assisted systems: language models are most effective when
+used as heuristic generators within a constraint-aware
+pipeline, rather than as standalone decision-makers.
+F. TRADEOFF BETWEEN LLM-BASED AND RL-BASED
+SCHEDULING
+Our ablation study reveals an important tradeoff between
+LLM-based and RL-based scheduling approaches, particu-
+larly when considering performance, cost, and deployment
+ﬂexibility.
+Execution efﬁciency versus strategic ﬂexibility: As shown
+in Table X, an LLMonly conﬁguration yields an average job
+completion time (Avg-JCT) of 487.2 s, which is inferior to
+RL-based methods such as DeepRM (468.7 s) and Decima
+(444.2 s). This result indicates that, while LLMs can capture
+high-level scheduling strategies through few-shot and Chain-
+of-Thought prompting, they lack the ﬁne-grained execution
+precision of models trained explicitly for low-level decision
+making. In contrast, RL-based schedulers excel at repeatedly
+executing well-deﬁned policies under stable system dynamics.
+The role of ILP reﬁnement: The performance gap of LL-
+Monly further highlights the necessity of the ILP reﬁnement
+module in our framework. By enforcing hard feasibility con-
+straints and correcting suboptimal placements, the ILP solver
+bridges the gap between high-level LLM reasoning and low-
+level execution requirements. This hybrid design enables our
+framework to outperform both standalone LLM-based and
+RL-based schedulers.
+Cost and invocation frequency: From a cost perspective,
+LLM inference is signiﬁcantly more expensive than executing
+a trained RL policy. However, our framework invokes the
+LLM only for a small fraction of scheduling decisions (3.2%),
+while the majority of decisions are handled by cache lookup or
+VOLUME 7, 2026 571
+DING ET AL.: LLM-DRIVEN ADAPTIVE CLOUD RESOURCE SCHEDULING: BRIDGING REASONING INTELLIGENCE WITH OPTIMIZATION GUARANTEES
+lightweight heuristics. As a result, the amortized cost of LLM
+usage remains low, while still providing strategic guidance
+when it is most needed.
+When to use LLMs versus RL: Based on our ﬁndings,
+RL-based schedulers are preferable in scenarios with stable
+workloads, well-deﬁned objectives, and ample training data,
+where a ﬁxed policy can be efﬁciently learned and deployed.
+LLM-based reasoning is most beneﬁcial in settings charac-
+terized by workload heterogeneity, dynamic objectives, or
+evolving constraints, where retraining an RL model would
+be costly or impractical. In such cases, LLMs provide adapt-
+ability and generalization through prompting, while symbolic
+optimization ensures correctness.
+Overall, these results suggest that LLMs and RL should
+be viewed as complementary rather than competing solutions.
+A hybrid design that leverages LLMs for strategic reasoning
+and RL or optimization for execution offers a more practical
+and cost-effective approach than relying on either paradigm
+alone.
+
+## § References
+
+[1] M. Armbrust et al., “A view of cloud computing,” Commun. ACM ,
+vol. 53, no. 4, pp. 50–58, 2010.
+[2] Q. Zhang, L. Cheng, and R. Boutaba, “Cloud computing: State-of-
+the-art and research challenges,” J. Internet Serv. Appl. , vol. 1, no. 1,
+pp. 7–18, 2010.
+[3] L. A. Barroso, J. Clidaras, and U. Hölzle, The Datacenter as a Com-
+puter: An Introduction to the Design of Warehouse-Scale Machines.S a n
+Rafael, CA, USA: Morgan & Claypool Publishers, 2013.
+[4] P . Delgado, L. J. Garcıá Villalba, and T.-H. Kim, “Taxonomy and survey
+of scheduling algorithms in cloud computing,” J. Netw. Comput. Appl. ,
+vol. 53, pp. 14–25, 2015.
+[5] A. V erma, L. Pedrosa, M. Korupolu, D. Oppenheimer, E. Tune, and
+J. Wilkes, “Large-scale cluster management at Google with Borg,” in
+Proc. Eur . Conf. Comput. Syst., 2015, pp. 1–17.
+[6] M. Schwarzkopf, A. Konwinski, M. Abd-El-Malek, and J. Wilkes,
+“Omega: Flexible, scalable schedulers for large compute clusters,” in
+Proc. Eur . Conf. Comput. Syst., 2013, pp. 351–364.
+[7] B. Hindman et al., “Mesos: A platform for ﬁne-grained resource sharing
+in the data center,” in Proc. USENIX Symp. Netw. Syst. Des. Implemen-
+tation, 2011, pp. 295–308.
+[8] V . K. V avilapalli et al., “Apache hadoop yarn: Y et another resource
+negotiator,” in Proc. ACM Symp. Cloud Comput. , 2013, pp. 1–16.
+[9] I. Gog, M. Schwarzkopf, A. Gleave, R. N. Watson, and S.
+Hand, “Firmament: Fast, centralized cluster scheduling at scale,” in
+Proc. USENIX Symp. Operating Syst. Des. Implementation , 2016,
+pp. 99–115.
+[10] E. Cortez, A. Bonde, A. Muzio, M. Russinovich, M. Fontoura, and R.
+Bianchini, “Resource central: Understanding and predicting workloads
+for improved resource management in large cloud platforms,” in Proc.
+ACM Symp. Operating Syst. Princ. , 2017, pp. 153–167.
+[11] R. Grandl, G. Ananthanarayanan, S. Kandula, S. Rao, and A. Akella,
+“Altruistic scheduling in multi-resource clusters,” in Proc. USENIX
+Symp. Operating Syst. Des. Implementation , 2016, pp. 65–80.
+[12] H. Mao, M. Alizadeh, I. Menache, and S. Kandula, “Resource manage-
+ment with deep reinforcement learning,” in Proc. ACM Workshop Hot
+Topics Netw., 2016, pp. 50–56.
+[13] Y . Zhang, K. Rajendran, R. Narayanan, and R. K. Iyer, “Deep learning
+with long short-term memory networks for cloud workload prediction,”
+in Proc. IEEE Int. Conf. Distrib. Comput. Syst. , 2018, pp. 1460–1469.
+[14] Y . Peng, Y . Bao, Y . Chen, C. Wu, and C. Guo, “DL2: A deep learning-
+driven scheduler for deep learning clusters,” in Proc. IEEE Int. Conf.
+Distrib. Comput. Syst., 2019, pp. 1630–1640.
+[15] Q. Chen et al., “Understanding data storage and ingestion for large-scale
+deep learning training workloads,” ACM Trans. Storage, vol. 17, no. 4,
+pp. 1–35, 2021.
+[16] Y . Zheng, A. Kadiyala, C. Gupta, H. Y u, Z. Kalbarczyk, and R. K. Iyer,
+“Sage: Practical and scalable ML-driven performance debugging in mi-
+croservices,” in Proc. ACM Int. Conf. Architectural Support Program.
+Lang. Operating Syst., 2022, pp. 936–951.
+[17] Q. Weng et al., “MLaaS in the wild: Workload analysis and scheduling
+in large-scale heterogeneous GPU clusters,” in Proc. USENIX Symp.
+Netw. Syst. Des. Implementation, 2022, pp. 945–960.
+[18] OpenAI, “GPT-4 technical report,” 2023, arXiv:2303.08774.
+[19] Anthropic, “The Claude 3 model family: Opus, Sonnet, Haiku,”
+Tech. Rep., 2024. [Online]. Available: https://api.semanticscholar.org/
+CorpusID:268232499
+[20] H. Touvron et al., “Llama 2: Open foundation and ﬁne-tuned chat
+models,” 2023, arXiv:2307.09288.
+[21] S. Bubeck et al., “Sparks of artiﬁcial general intelligence: Early experi-
+ments with GPT-4,” 2023, arXiv:2303.12712.
+[22] T. Brown et al., “Language models are few-shot learners,” in Proc. Adv.
+Neural Inf. Process. Syst., 2020, pp. 1877–1901.
+[23] Q. Dong et al., “A survey on in-context learning,” in Proc. Conf. Em-
+pirical Methods Natural Lang. Process. , 2024, pp. 1107–1128.
+[24] J. Wei et al., “Chain-of-thought prompting elicits reasoning in large
+language models,” in Proc. Adv. Neural Inf. Process. Syst. , 2022,
+pp. 24824–24837.
+[25] P . Liu, W. Y uan, J. Fu, Z. Jiang, H. Hayashi, and G. Neubig, “Pre-train,
+prompt, and predict: A systematic survey of prompting methods in nat-
+ural language processing,” ACM Comput. Surv., vol. 55, no. 9, pp. 1–35,
+2023.
+[26] M. Chen et al., “Evaluating large language models trained on code,”
+2021, arXiv:2107.03374.
+[27] Z. Chen, Y . Zhang, H. Li, L. Zhou, and M. Y uan, “LLMAO: Optimizing
+cloud systems with large language models,” in Proc. Workshop Mach.
+Learn. Syst. NeurIPS , 2023, pp. 405–415.
+[28] S. Y ang, X. Wang, W. Chen, Y . Liu, and H. Zhang, “Large language
+models for workﬂow optimization,” 2023, arXiv:2309.04518.
+[29] K. V almeekam, A. Olmo, S. Sreedharan, and S. Kambhampati, “On the
+planning abilities of large language models–A critical investigation,” in
+Proc. Adv. Neural Inf. Process. Syst., 2023, pp. 75993–76005.
+[30] C. Delimitrou and C. Kozyrakis, “Quasar: Resource-efﬁcient and QoS-
+aware cluster management,” in Proc. ACM Int. Conf. Architectural
+Support Program. Lang. Operating Syst. , 2014, pp. 127–144.
+[31] S. Kambhampati et al., “Position: LLMs can’t plan, but can help plan-
+ning in LLM-modulo frameworks,” in Proc. 41st Int. Conf. Mach.
+Learn., 2024.
+[32] D. Thain, T. Tannenbaum, and M. Livny, “Distributed computing in
+practice: The condor experience,” Concurrency Comput.: Pract. Exp. ,
+vol. 17, no. 2/4, pp. 323–356, 2005.
+[33] Kubernetes, “Kubernetes: Production-grade container orchestration,”
+2024. [Online]. Available: https://kubernetes.io
+[34] B. Burns, B. Grant, D. Oppenheimer, E. Brewer, and J. Wilkes, “Borg,
+Omega, and Kubernetes,” Commun. ACM , vol. 59, no. 5, pp. 50–57,
+2016.
+[35] A. Ghodsi, M. Zaharia, B. Hindman, A. Konwinski, S. Shenker, and
+I. Stoica, “Dominant resource fairness: Fair allocation of multiple re-
+source types,” in Proc. USENIX Symp. Netw. Syst. Des. Implementation,
+2011, pp. 323–336.
+[36] A. Tumanov, J. Cipar, G. R. Ganger, and M. A. Kozuch, “Tetris:
+Multi-resource packing for cluster schedulers,” in Proc. ACM Eur . Conf.
+Comput. Syst., 2014, pp. 1–14.
+[37] W. Tang, Z. Lan, N. Desai, D. Buettner, and Y . Cao, “Re-
+source bundling for parallel jobs: Tradeoffs and algorithms,” in
+Proc. IEEE/ACM Int. Symp. Cluster Cloud Grid Comput. , 2016,
+pp. 444–453.
+[38] H. Mao, M. Schwarzkopf, S. B. V enkatakrishnan, Z. Meng, and M. Al-
+izadeh, “Learning scheduling algorithms for data processing clusters,”
+in Proc. ACM SIGCOMM Conf., 2019, pp. 270–288.
+[39] S. V enkataraman, Z. Y ang, M. Franklin, B. Recht, and I. Stoica, “Ernest:
+Efﬁcient performance prediction for large-scale advanced analytics,” in
+Proc. USENIX Symp. Netw. Syst. Des. Implementation , 2016, pp. 363–
+378.
+[40] W. Zhang, H. Li, Y . Zhao, X. Wang, and W. Chen, “Neural network
+based resource allocation in cloud computing environments,” in Proc.
+IEEE Int. Conf. Cloud Comput. , 2019, pp. 127–134.
+[41] Y . Wu, K. Gu, Z. Li, and K. Chen, “Chronus: A novel deadline-aware
+scheduler for deep learning training jobs,” in Proc. ACM Symp. Cloud
+Comput., 2021, pp. 609–623.
+
+## §572 VOLUME 7, 2026
+
+[42] H. Zhang et al., “Sinan: ML-based and QoS-aware resource manage-
+ment for cloud microservices,” in Proc. ACM Int. Conf. Architectural
+Support Program. Lang. Operating Syst. , 2021, pp. 167–181.
+[43] Y . Hu, Y . Zhao, H. Zhang, L. Wang, and W. Chen, “Uncertainty quan-
+tiﬁcation for deep learning-based resource management,” IEEE Trans.
+Cloud Comput., vol. 10, no. 3, pp. 1876–1889, 2021.
+[44] G. Marcus, “The next decade in ai: Four steps towards robust artiﬁcial
+intelligence,” 2022, arXiv:2002.06177.
+[45] J. Kim, S. Park, H. Lee, and S. Kim, “Large language models for cloud
+systems: Opportunities and challenges,” in Proc. Workshop Hot Topics
+Operating Syst., 2023, pp. 148–154.
+[46] D. Narayanan, K. Santhanam, F. Kazhamiaka, A. Phanishayee, and M.
+Zaharia, “Cilantro: Performance-aware resource allocation for general
+objectives via online feedback,” inProc. USENIX Symp. Operating Syst.
+Des. Implementation, 2020, pp. 985–1000.
+[47] Y . Liu, Z. Zhang, H. Chen, Y . Li, B. Zang, and H. Guan, “Harmony:
+Overcoming the hurdles of GPU memory capacity to train massive
+DNN models on commodity servers,” in Proc. USENIX Annu. Tech.
+Conf., 2022, pp. 339–355.
+[48] Y . Li et al., “Competition-level code generation with alphacode,” Sci-
+ence, vol. 378, no. 6624, pp. 1092–1097, 2022.
+[49] X. Ding, C. Zhang, G. Li, and J. Zhou, “D-Bot: Database diagnosis
+system using large language models,” in Proc. ACM Int. Conf. Inf.
+Knowl. Manage., 2023, pp. 4850–4854.
+[50] H. Ji, Z. Wang, and J. Chen, “Large language models for trafﬁc sig-
+nal control,” in Proc. Workshop Large Lang. Models Auton. Driving
+NeurIPS, 2023, pp. 2335–2346.
+[51] Z. Liu, Y . Zhang, Z. Zhao, G. Li, and J. Zhou, “Can foundation models
+help us achieve perfect query optimization?” 2023, arXiv:2309.13573.
+[52] S. Wang, W. Chen, Y . Liu, H. Zhang, and Y . Zhao, “Automatic conﬁgu-
+ration tuning with large language models,” in Proc. Workshop ML Syst.
+NeurIPS, 2023, pp. 33–49.
+[53] X. Fan, C. Zhang, G. Li, J. Zhou, and X. Wang, “AutoAdmin:
+Automatic database administration with large language models,”
+2023, arXiv:2310.03064.
+[54] Q. Xu, F. Hong, B. Li, C. Hu, Z. Chen, and J. Zhang, “On the tool ma-
+nipulation capability of open-source large language models,” in Proc.
+NeurIPS F ound. Models Decis. Mak. Workshop, 2023.
+[55] Y . Liu et al., “TrustLLM: Trustworthiness in large language models,”
+2024, arXiv:2401.05561.
+[56] J. D. Ullman, “NP-complete scheduling problems,” J. Comput. Syst.
+Sci., vol. 10, no. 3, pp. 384–393, 1975.
+[57] C. Reiss, J. Wilkes, and J. L. Hellerstein, “Google cluster-usage traces:
+Format + schema,” Google Inc., White Paper , vol. 1, no. 1–14, 2011,
+Art. no. 83.
+[58] J. Wilkes, “The Borg job and machine event traces,” ACM SIGMET-
+RICS Perform. Eval. Rev., vol. 48, no. 1, pp. 1–2, 2020.
+[59] M. R. Garey and D. S. Johnson, Computers and Intractability: A Guide
+to the Theory of NP-Completeness . San Francisco, CA, USA: W. H.
+Freeman, 1979.
+GUANYU DING received the M.S. degree in com-
+puter engineering from New Y ork University, New
+Y ork, NY , USA. He has led the development of
+automated multi-region expansion systems sup-
+porting Zero-ETL pipelines and Redshift Server-
+less, improving global scalability and reducing
+operational effort. His research interests include
+large-scale distributed systems, data engineering,
+cloud computing, Zero-ETL architectures, and
+applied machine learning.
+SHIYU YANG received the M.S. degree in com-
+puter science from the University of California,
+Los Angeles, USA. Her research interests en-
+compass cloud computing, distributed systems,
+software engineering, and applications of artiﬁcial
+intelligence and machine learning to large-scale
+data management, and system optimization.
+HAN LIN (Member) received the M.Eng. degree
+in electrical engineering from the University of
+Wisconsin–Madison, Madison, WI, USA. He has
+more than six years of professional experience,
+and has contributed to large-scale enterprise sys-
+tems with Walmart Global eCommerce, PayPal,
+and Equinix, specializing in modern JavaScript
+frameworks such as React and Node.js. His re-
+search interests includes full-stack web develop-
+ment, RESTful API integration, micro-frontend
+architecture, scalable software design, AI-assisted
+development, and distributed web systems.
+ZIFAN CHEN received the M.A. degree in eco-
+nomics from Boston University, Boston, MA,
+USA. He has extensive experience in data engi-
+neering, ﬁnancial analytics, and machine learning–
+based forecasting, having worked on developing
+scalable data pipelines, predictive models, and au-
+tomated reporting systems. His research interests
+include applied machine learning, data-driven de-
+cision making, and ﬁnancial modeling for business
+intelligence.
+JIE SI YANG received the M.S. degree in ma-
+chine learning from the National Y ang Ming Chiao
+Tung University, Hsinchu, Taiwan. She is cur-
+rently a Research Assistant with the University
+of Utah, Salt Lake City, UT, USA, where she
+focuses on large language model customization,
+retrieval-augmented generation pipelines, and AI
+agent systems for enterprise knowledge retrieval
+and GPU debugging. Her research interests in-
+clude deep learning, reinforcement learning, graph
+neural networks, and large-scale AI deployment.
+VOLUME 7, 2026 573

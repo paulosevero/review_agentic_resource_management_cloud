@@ -17,7 +17,7 @@ This file is the authoritative protocol for this review. It declares the theme, 
 - **Repo:** `/Users/paulosouza/Documents/Carreira/Pesquisa/Código/review_agentic_resource_management_cloud`
 - **Created:** `2026-04-25`
 - **Migrated to v3.2.0:** `2026-05-09`
-- **Current stage:** `05-abstract-screening (locked); next: 06-full-text-screening`
+- **Current stage:** `06-full-text-screening (locked); next: 07-taxonomy-development`
 
 ## 1. Locks (machine-readable)
 
@@ -25,16 +25,16 @@ Agents use this block to decide whether a given stage can run. A stage can only 
 
 ```yaml
 locks:
-  00-new-review:                locked    # pending | locked
-  01-research-questions:        locked
-  02-search-string:             locked
+  00-new-review: locked # pending | locked
+  01-research-questions: locked
+  02-search-string: locked
   03-parse-references-metadata: locked
-  04-title-screening:           locked
-  05-abstract-screening:        locked
-  06-full-text-screening:       pending
-  07-taxonomy-development:      pending   # has intermediate `iterating` state during inductive loop
-  08-analysis:                  pending
-  09-report:                    pending
+  04-title-screening: locked
+  05-abstract-screening: locked
+  06-full-text-screening: locked
+  07-taxonomy-development: pending # has intermediate `iterating` state during inductive loop
+  08-analysis: pending
+  09-report: pending
 ```
 
 ## 2. Theme
@@ -270,14 +270,14 @@ Stages 04 (title) and 05 (abstract) were screened in the legacy pipeline (pre-v3
 
 ```yaml
 models:
-  title-screening:      claude-haiku-4-5
-  abstract-screening:   claude-sonnet-4-6
-  full-text-screening:  claude-haiku-4-5
+  title-screening: claude-haiku-4-5
+  abstract-screening: claude-sonnet-4-6
+  full-text-screening: claude-haiku-4-5
 
 classifier_configs:
-  title-screening:      protocols/classifier-config.json
-  abstract-screening:   protocols/classifier-config.json
-  full-text-screening:  protocols/classifier-config-fulltext.json   # split at first run of stage 06
+  title-screening: protocols/classifier-config.json
+  abstract-screening: protocols/classifier-config.json
+  full-text-screening: protocols/classifier-config-fulltext.json # split at first run of stage 06
 ```
 
 Conventions:
@@ -341,6 +341,7 @@ Populated during `07-taxonomy-development`. Each anchor pins a paper to a protot
 ## 10. Notes
 
 **Spreadsheet formatting requirements (stages 05 and 06):** The full spec lives in `protocols/spreadsheet-formatting.md`. Every agent that writes a screening tab must apply all three rules before committing:
+
 1. Background fill on ID and Title columns — green (`#e7ffee`) for Include, red (`#ffeff0`) for Exclude.
 2. Sort order — Excluded rows first (red block), then Included rows (green block); within each block sort by sub-agent disagreement descending.
 3. Bold strategic keywords in Title and Abstract cells using rich-text cell formatting (not markdown) to surface the reason for inclusion/exclusion at a glance.
