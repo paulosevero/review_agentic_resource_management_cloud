@@ -71,8 +71,8 @@ screening:
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied: []
-    my_final_decision: Include
-    my_justification: "Reanálise com critério mais flexível: MicroIntent usa LLM para fazer parsing de intents naturais em SLOs estruturados (Seção III-B); o placement generator determinístico (Seção III-C) consome essa saída para decidir microservice placement. Padrão idêntico ao anchor paper-1644 — LLM em papel material de pre-processing semântico para RM em edge. Inclusão."
+    my_final_decision: "Include (Borderline)"
+    my_justification: "Reanálise com critério mais flexível: MicroIntent usa LLM para fazer parsing de intents naturais em SLOs estruturados (Seção III-B); o placement generator determinístico (Seção III-C) consome essa saída para decidir microservice placement. Ou seja, quem toma a decisão ainda é uma heurística."
     agrees_with_regex: false
     divergence_reason: Regex 'agent_llm_based' é permissivo demais; exige agentic
       loop (perceive-reason-act autônomo). Aqui apenas fase 1 (parse) é LLM; fases
@@ -175,8 +175,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Include
-- **my_justification:** Reanálise com critério mais flexível: MicroIntent usa LLM para fazer parsing de intents naturais em SLOs estruturados (Seção III-B); o placement generator determinístico (Seção III-C) consome essa saída para decidir microservice placement. Padrão idêntico ao anchor paper-1644 — LLM em papel material de pre-processing semântico para RM em edge. Inclusão.
+- **my_final_decision:** Include (Borderline)
+- **my_justification:** Reanálise com critério mais flexível: MicroIntent usa LLM para fazer parsing de intents naturais em SLOs estruturados (Seção III-B); o placement generator determinístico (Seção III-C) consome essa saída para decidir microservice placement. Ou seja, quem toma a decisão ainda é uma heurística.
 - **agrees_with_regex:** False
 - **divergence_reason:** Regex 'agent_llm_based' é permissivo demais; exige agentic loop (perceive-reason-act autônomo). Aqui apenas fase 1 (parse) é LLM; fases 2-3 (generate+deploy) não têm autonomous reasoning.
 - **evidence_sections:** ['III. PROPOSED ARCHITECTURE', 'III-B. Intent Parser', 'III-C. Placement Generator', 'IV. EVALUATION']

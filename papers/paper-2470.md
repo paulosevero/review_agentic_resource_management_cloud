@@ -72,8 +72,8 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: Include
-    my_justification: "Reanálise com critério mais flexível: IBSM usa fine-tuned LLM para classificar intents (Seção III.B) e gerar policy tree (Seção III.C) em multi-cloud storage management. LLM exerce papel material em pipeline de intent-driven RM em escopo cloud. Inclusão."
+    my_final_decision: "Include (Borderline)"
+    my_justification: "IBSM usa fine-tuned LLM para classificar intents (Seção III.B) e gerar policy tree (Seção III.C) em multi-cloud storage management. LLM exerce papel no pipeline de intent-driven RM. Não toma a decisão diretamente."
     agrees_with_regex: true
     divergence_reason: 'regex (pass 1) flagou H_llm_supports_other_method e excluiu.
       Full-text confirma: LLM é componente de NLP-to-config (intent parser), não agente
@@ -170,8 +170,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Include
-- **my_justification:** Reanálise com critério mais flexível: IBSM usa fine-tuned LLM para classificar intents (Seção III.B) e gerar policy tree (Seção III.C) em multi-cloud storage management. LLM exerce papel material em pipeline de intent-driven RM em escopo cloud. Inclusão.
+- **my_final_decision:** Include (Borderline)
+- **my_justification:** IBSM usa fine-tuned LLM para classificar intents (Seção III.B) e gerar policy tree (Seção III.C) em multi-cloud storage management. LLM exerce papel no pipeline de intent-driven RM. Não toma a decisão diretamente.
 - **agrees_with_regex:** True
 - **divergence_reason:** regex (pass 1) flagou H_llm_supports_other_method e excluiu. Full-text confirma: LLM é componente de NLP-to-config (intent parser), não agente autônomo dirigindo RM.
 - **addressed_hint:** hint_categories=[quality]: avaliação foca em accuracy de classificação intent (>90%), não em impacto de decisões RM ou qualidade de alocação de storage. Ciclo fechado (observe estado→ação) ausente.

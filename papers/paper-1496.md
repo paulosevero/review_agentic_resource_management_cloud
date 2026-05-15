@@ -66,8 +66,8 @@ screening:
     proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA, geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: Include
-    my_justification: "Reanálise com critério mais flexível: LLM converte intents de usuário em representação estruturada (JSON) que alimenta o solver ASP (Clingo) responsável pela decisão de service management — pipeline análogo ao anchor paper-1644 (LLM gera entrada estruturada; módulo determinístico decide). Intent-based service management em ambiente cloud/edge está em escopo. Inclusão."
+    my_final_decision: "Include (Borderline)"
+    my_justification: "LLM converte intents de usuário em representação estruturada (JSON) que alimenta o solver ASP (Clingo) responsável pela decisão de service management. Ou seja, quem toma a decisão é o Solver ASP, não o LLM."
     agrees_with_regex: true
     divergence_reason: 'Categoria regex ''D_devops_or_logs_not_rm'' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é ''LLM-support-to-symbolic-solver'': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico).'
     locked_at_iteration: null
@@ -161,8 +161,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Include
-- **my_justification:** Reanálise com critério mais flexível: LLM converte intents de usuário em representação estruturada (JSON) que alimenta o solver ASP (Clingo) responsável pela decisão de service management — pipeline análogo ao anchor paper-1644 (LLM gera entrada estruturada; módulo determinístico decide). Intent-based service management em ambiente cloud/edge está em escopo. Inclusão.
+- **my_final_decision:** Include (Borderline)
+- **my_justification:** LLM converte intents de usuário em representação estruturada (JSON) que alimenta o solver ASP (Clingo) responsável pela decisão de service management. Ou seja, quem toma a decisão é o Solver ASP, não o LLM.
 - **agrees_with_regex:** True
 - **divergence_reason:** Categoria regex 'D_devops_or_logs_not_rm' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é 'LLM-support-to-symbolic-solver': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico).
 

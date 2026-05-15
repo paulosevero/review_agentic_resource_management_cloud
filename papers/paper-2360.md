@@ -72,8 +72,8 @@ screening:
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: Include
-    my_justification: "Reanálise com critério mais flexível: framework propõe intelligent planning stage (Seção III.C) que utiliza LLM para resource management prediction em Kubernetes cloud-native — escopo claramente em alvo, papel decisório do LLM. As limitações de avaliação anteriormente apontadas (predição apenas, sem closed-loop completo) são relaxadas pela flexibilidade. Inclusão."
+    my_final_decision: "Exclude"
+    my_justification: "Revisita manual: paper apresenta framework preditivo de RM em Kubernetes cloud-native, mas LLM atua sobre predição/forecasting, sem fechar o loop com ação corretiva. Sem decisão de RM no pipeline."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -168,8 +168,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Include
-- **my_justification:** Reanálise com critério mais flexível: framework propõe intelligent planning stage (Seção III.C) que utiliza LLM para resource management prediction em Kubernetes cloud-native — escopo claramente em alvo, papel decisório do LLM. As limitações de avaliação anteriormente apontadas (predição apenas, sem closed-loop completo) são relaxadas pela flexibilidade. Inclusão.
+- **my_final_decision:** Exclude
+- **my_justification:** Revisita manual: paper apresenta framework preditivo de RM em Kubernetes cloud-native, mas LLM atua sobre predição/forecasting, sem fechar o loop com ação corretiva. Sem decisão de RM no pipeline.
 - **agrees_with_regex:** True
 - **addressed_hint:** Hint 'quality' não procedia — paper tem estrutura clara. Divergência real: regex acertou em excluir (D_devops_or_logs), mas motivo errado. Exclusão correta é: LLM used for prediction only, not agentic closed-loop RM decision-making.
 - **evidence_sections:** ["Section III.C: Intelligent Planning Stage mentions LLM for 'resource management'", 'Section IV: Experimental evaluation focuses on prediction accuracy metrics only', 'No evidence of agent-driven resource allocation, scaling, or placement decisions', 'Framework treats LLM as component of monitoring–analysis–planning pipeline, not autonomous decision-making agent']
