@@ -296,7 +296,7 @@ Conventions:
 
 The taxonomy is built in stage `07-taxonomy-development` and iterates until the user marks it locked. Until then, this section reflects the current iteration.
 
-**Status:** `iterating` (iteration 1 consolidated; coverage validation pending)
+**Status:** `iterating` (iteration 1 refined post-validation; awaiting lock)
 
 **Origin:** `hybrid`. Iteration 1 began with 12 deductively seeded axes (one per sub-RQ in RQ1.1–RQ4.4) and converged, through user review against the corpus, on 7 faceted axes that span the same conceptual ground but at a coarser granularity better suited to a 20-paper corpus. RQ5.1/RQ5.2 are corpus-level synthesis questions handled in stages 08–09 and are not encoded as per-paper labels.
 
@@ -312,19 +312,20 @@ The taxonomy is built in stage `07-taxonomy-development` and iterates until the 
 Seven axes; every included paper must classify on every axis with ≥ MED confidence (faceted taxonomy, no orphan permitted).
 
 - **`infrastructure`** (⋆) — Tier of the infrastructure the agent controls. — seed_for: RQ1.2 (infrastructure scope of coupling).
-  - Values: `Cloud`, `Edge`, `Continuum`.
+  - Values: `Cloud-Only`, `Edge-Cloud Continuum`.
 
 - **`decision`** (▲) — Class(es) of resource-management decision delegated to the agent. — seed_for: RQ2.1.
   - Values: `Scheduling`, `Placement & Offloading`, `Scaling`, `Routing & Slicing`, `Remediation`.
 
-- **`agentic_configuration`** (⋆) — Configuration of the agentic system in terms of the agent's role in the decision cycle (sole decider vs pipeline contributor) and the coordination topology among LLM agents (single vs multi). The four values are the cross-product. — seed_for: RQ1.1 + RQ1.3 (architecture + role).
-  - Values: `Sole Decider, Single Agent`, `Sole Decider, Multi-Agent`, `Pipeline Contributor, Single Agent`, `Pipeline Contributor, Multi-Agent`.
+- **`agentic_configuration`** — Configuration of the agentic system, captured as a two-facet axis. A paper carries exactly one value in each facet; the facets are evaluated independently and reported jointly. The cross-product `Pipeline Contributor × Multi-Agent` is empirically empty in the current corpus, and that vacancy is noted as a research-opportunity observation rather than a coverage gap — the two facets remain valid axes on their own. — seed_for: RQ1.1 + RQ1.3 (architecture + role).
+  - Facet **`decision_role`** (⋆): `Sole Decider`, `Pipeline Contributor`.
+  - Facet **`coordination_topology`** (⋆): `Single Agent`, `Multi-Agent`.
 
 - **`reasoning_approach`** (▲) — Reasoning and grounding mechanisms employed by the agent. Multi-select: a paper may combine, e.g., `Prompting` + `Knowledge Retrieval`. — seed_for: RQ3.1 + RQ3.2 + RQ3.3.
   - Values: `Prompting`, `Iterative Reasoning`, `Knowledge Retrieval`, `Model Specialization`.
 
 - **`autonomy_level`** (⋆) — Authority the agent holds over the action that reaches the system. — seed_for: RQ2.2 + RQ1.3.
-  - Values: `Advisory`, `Supervised`, `Autonomous`.
+  - Values: `Supervised`, `Autonomous`.
 
 - **`metric`** (▲) — Families of metrics reported in the evaluation. Multi-select: every paper reports at least `RM Performance Metric`; many also report `Agent Performance Metric`. — seed_for: RQ4.2 + RQ4.3 + RQ4.4.
   - Values: `RM Performance Metric`, `Agent Performance Metric`.
@@ -338,9 +339,8 @@ One- to two-sentence definitions of every value. Borderline cases trigger checkp
 
 **`infrastructure`**
 
-- `Cloud`: Centralized datacenters operated by a hyperscaler or in-house provider; the paper's controlled tier is exclusively cloud (IaaS, PaaS, SaaS, or Kubernetes clusters in a single region).
-- `Edge`: Resources close to end-devices (edge servers, MEC nodes, fog gateways); the paper's controlled tier is exclusively edge/fog and the cloud is not an active participant in the decision.
-- `Continuum`: Cloud + Edge/Fog are jointly considered; decisions can place, move, or route workloads across tiers.
+- `Cloud-Only`: Centralized datacenters operated by a hyperscaler or in-house provider. Includes Kubernetes clusters in a single region, IaaS/PaaS/SaaS scopes, and multi-cloud arrangements that remain inside cloud datacenters. Edge or fog resources are not part of the controlled tier.
+- `Edge-Cloud Continuum`: Cloud + Edge/Fog are jointly considered; decisions can place, move, route, scale, or remediate across tiers. Papers framed as "edge computing" that nevertheless reach back to a cloud layer (typical case in the corpus) fall here.
 
 **`decision`**
 
@@ -350,12 +350,19 @@ One- to two-sentence definitions of every value. Borderline cases trigger checkp
 - `Routing & Slicing`: Steering requests or traffic across network paths, service instances, or service-mesh routes; includes network-slice composition and admission control on slices.
 - `Remediation`: Closed-loop response to faults, anomalies, or incidents (root-cause analysis followed by an automated repair action: restart, rollback, reconfigure, scale-out as repair).
 
-**`agentic_configuration`**
+**`agentic_configuration`** (two facets)
 
-- `Sole Decider, Single Agent`: A single LLM-agent emits the final resource-management action; no other agent (LLM or non-LLM) decides in its place. Tools, retrievers, or solvers invoked by the agent are subordinate (they do not hold decision authority).
-- `Sole Decider, Multi-Agent`: Two or more LLM-agents cooperate (peer collaboration or hierarchical coordinator + executors) and the cooperation itself produces the final action; no non-LLM mechanism decides in their place. Topology details (peer vs hierarchical) are described in the text.
-- `Pipeline Contributor, Single Agent`: A single LLM-agent contributes to a larger pipeline in which a non-LLM mechanism (heuristic, optimizer, rules, RL agent, classical scheduler) participates actively in the decision. The LLM suggests candidates, classifies intent, generates a heuristic, or translates to policy, but the non-LLM component holds the final say.
-- `Pipeline Contributor, Multi-Agent`: Two or more LLM-agents cooperate inside a larger pipeline that also contains active non-LLM mechanisms. _Reserved_ — no paper observed in the current corpus; kept for conceptual closure of the 2×2 matrix.
+Facet `decision_role` — Who holds the authority over the final RM action.
+
+- `Sole Decider`: The LLM-agent(s) emit the final resource-management action; no non-LLM mechanism (heuristic, optimizer, rules, RL, classical scheduler) decides in their place. Tools and retrievers invoked by the agent are subordinate (they execute the agent's plan but do not decide).
+- `Pipeline Contributor`: The LLM-agent(s) contribute to a larger pipeline in which a non-LLM mechanism participates actively in the decision. The LLM suggests candidates, parses intent, generates a heuristic, classifies inputs, or translates to policy, but the non-LLM component holds the final say.
+
+Facet `coordination_topology` — How many LLM-agents coordinate inside the loop.
+
+- `Single Agent`: One LLM-agent in the loop. Auxiliary modules (XAI, retrievers, solvers, schedulers) are not themselves LLM-agents.
+- `Multi-Agent`: Two or more LLM-agents cooperate in the loop, either as peers (debate, vote, message-passing) or as a coordinator + specialized executors. Topology details (peer vs hierarchical) are described in the text.
+
+Cross-product `Pipeline Contributor × Multi-Agent` is empirically empty in the current corpus and reported in stage 09 as a research-opportunity observation, not as a coverage gap of the taxonomy.
 
 **`reasoning_approach`**
 
@@ -366,7 +373,6 @@ One- to two-sentence definitions of every value. Borderline cases trigger checkp
 
 **`autonomy_level`**
 
-- `Advisory`: The agent emits a recommendation; whether to apply it is decided externally (human operator, policy engine, or another system). The agent itself never causes an action to land.
 - `Supervised`: The agent acts, but an external gate (human-in-the-loop, deterministic validator, policy engine like OPA, or dry-run sandbox) can intercept, approve, edit, or veto the action before its effect reaches the system.
 - `Autonomous`: The agent's decisions reach the system without any external human or rule-based gate. Self-imposed safety mechanisms internal to the LLM (e.g., self-reflection on its own plan) still count as `Autonomous`.
 
@@ -385,7 +391,8 @@ One- to two-sentence definitions of every value. Borderline cases trigger checkp
 Each iteration of the taxonomy is a commit `[07] iteration-<k>`; the final state is `[07] lock`.
 
 - **Iteration 1 — `[07] origin: hybrid`:** Seeded 12 deductive axes from RQ1.1–RQ4.4 (Phase 07a' first draft). RQ5.1/RQ5.2 excluded as synthesis-level. Adversarial mode off. _Outcome:_ draft too granular for a 20-paper corpus; flagged for consolidation against user feedback and corpus validation.
-- **Iteration 1 (consolidated) — `[07] iteration-1: 7-axis taxonomy consolidated`:** Twelve seed axes consolidated to seven faceted axes through user dialog and empirical validation against the 20 included papers. Decisions captured: (a) `decision` drops `Energy` as a class (energy is cross-cutting and lives in `metric.RM Performance Metric`); (b) `agentic_configuration` unifies role-in-cycle and coordination-topology into a single 2×2 axis (4 cells, 1 reserved); (c) `reasoning_approach` consolidates 3 seed axes (RQ3.1+RQ3.2+RQ3.3) into 4 multi-select families; (d) `metric` consolidates RQ4.2+RQ4.3+RQ4.4 into 2 multi-select families with energy living inside RM Performance Metric; (e) `evaluation_method` reduces to `Simulation` / `Real Testbed` with production-traces and synthetic-benchmarks discussed in text; (f) safety/governance dimensions live within `autonomy_level` (gate posture) and `metric.Agent Performance Metric` (governance metrics). _Pending:_ coverage validation pass over all 20 papers before lock.
+- **Iteration 1 (consolidated) — `[07] iteration-1: 7-axis taxonomy consolidated`:** Twelve seed axes consolidated to seven faceted axes through user dialog and empirical validation against the 20 included papers. Decisions captured: (a) `decision` drops `Energy` as a class (energy is cross-cutting and lives in `metric.RM Performance Metric`); (b) `agentic_configuration` initially unified role-in-cycle and coordination-topology into a single 2×2 axis (4 cells, 1 reserved); (c) `reasoning_approach` consolidates 3 seed axes (RQ3.1+RQ3.2+RQ3.3) into 4 multi-select families; (d) `metric` consolidates RQ4.2+RQ4.3+RQ4.4 into 2 multi-select families with energy living inside RM Performance Metric; (e) `evaluation_method` reduces to `Simulation` / `Real Testbed` with production-traces and synthetic-benchmarks discussed in text; (f) safety/governance dimensions live within `autonomy_level` (gate posture) and `metric.Agent Performance Metric` (governance metrics).
+- **Iteration 1 (refined post-validation) — `[07] iteration-1: post-validation refinements`:** After Phase 07a' coverage validation on the 20 papers, three refinements were applied to eliminate empty single-value cells and restructure the agentic-system axis. (a) `infrastructure` renamed `Cloud` → `Cloud-Only` and `Continuum` → `Edge-Cloud Continuum`; `Edge` dropped (empirically empty — every "edge" paper in the corpus also reaches the cloud, so all such papers fall under `Edge-Cloud Continuum`). (b) `autonomy_level` dropped `Advisory` (empirically empty in the corpus); axis is now `Supervised` / `Autonomous`. (c) `agentic_configuration` restructured from a single axis with cross-product values to a two-facet axis: facet `decision_role` (`Sole Decider` / `Pipeline Contributor`) and facet `coordination_topology` (`Single Agent` / `Multi-Agent`). The two facets are valid axes on their own; the absence of the `Pipeline Contributor × Multi-Agent` combination in the corpus is reported in stage 09 as a research opportunity, not a taxonomy gap. _Status:_ coverage validation re-confirmed clean across all 20 papers; awaiting Phase 07b classification before final lock.
 
 ## 9. Anchors
 
