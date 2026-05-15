@@ -2,11 +2,12 @@
 id: paper-1593
 title: Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions
 authors:
-- Ginarsa, Nyoman Agus Nugraha
-- Santoso, Bagus Jati
-venue: 'Proceedings - 2025 4th International Conference on Electronics Representation
-  and Algorithm: Artificial Intelligence: Creating Tomorrow''s World Today, ICERA
-  2025'
+  - Ginarsa, Nyoman Agus Nugraha
+  - Santoso, Bagus Jati
+venue:
+  "Proceedings - 2025 4th International Conference on Electronics Representation
+  and Algorithm: Artificial Intelligence: Creating Tomorrow's World Today, ICERA
+  2025"
 venue_type: conference
 year: 2025
 doi: 10.1109/ICERA66156.2025.11087276
@@ -14,30 +15,31 @@ url: https://www.scopus.com/pages/publications/105013473906?origin=resultslist
 publisher: Institute of Electrical and Electronics Engineers Inc.
 pages: 400--404
 keywords:
-- Amazon Bedrock
-- autoscaling
-- generative AI
-- Kubernetes
+  - Amazon Bedrock
+  - autoscaling
+  - generative AI
+  - Kubernetes
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+    proposed_justification:
+      C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
       management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
@@ -46,21 +48,21 @@ screening:
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied:
-    - ovr_rl_llm_present
-    - ovr_cls_llm_present
+      - ovr_rl_llm_present
+      - ovr_cls_llm_present
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Include
@@ -68,18 +70,32 @@ screening:
     winning_category: llm_agentic_ai_generic
     overrides_applied: []
     my_final_decision: Include
-    my_justification: 'Paper implementa loop agentic para autoscaling Kubernetes.
+    my_justification:
+      "Paper implementa loop agentic para autoscaling Kubernetes.
       Seção III.D descreve predição via generative AI (Claude 3.7 Sonnet via Amazon
       Bedrock) que analisa métricas coletadas em Prometheus e gera recomendação de
       pod count para próximos 5 min. Loop: coleta dados → LLM raciocina sobre estado
       → decisão de scaling executada em EKS. Seção IV.3 confirma sistema integrado,
       automático e adaptativo. Satisfaz C18 (design agentic descrito) e C19 (avaliação
-      apresentada com resultados).'
+      apresentada com resultados)."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Cloud-Only
+  decision:
+    - Scaling
+  agentic_configuration:
+    decision_role: Sole Decider
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Prompting
+  autonomy_level: Autonomous
+  metric:
+    - RM Performance Metric
+    - Agent Performance Metric
+  evaluation_method: Practical Testbed
 ---
 
 # paper-1593 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions
@@ -156,7 +172,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Include
@@ -180,10 +195,23 @@ no duplicates found
 - **agrees_with_regex:** True
 - **evidence_sections:** ['III.D Prediction Through Generative AI', 'I.INTRODUCTION (motivation e CloudNative scope)', 'IV.RESULTS AND DISCUSSION (implementação e avaliação)']
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                                            | evidence                                                                                                                            | location                                | rationale (neighbor not chosen)                                                                                                                                        |
+| ------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| infrastructure                              | Cloud-Only                                       | "This research uses Amazon Web Services (AWS) as a cloud infrastructure provider... Amazon Elastic Kubernetes Service (Amazon EKS)" | §III-A Kubernetes Cluster Preparation   | Not `Edge-Cloud` because the deployment runs entirely on AWS EKS in the cloud; no edge tier.                                                                 |
+| decision                                    | Scaling                                          | "prediction-based autoscaling approach using the Claude 3.7 Sonnet generative AI model"                                             | §Abstract                               | _multi-select; the agent adjusts replica count of a Kubernetes deployment over time — horizontal autoscaling, not job-scheduling, placement, routing, or remediation._ |
+| agentic_configuration.decision_role         | Sole Decider                                     | "this service will update the number of replicas on the sample application deployment"                                              | §III-D Prediction Through Generative AI | Not `Pipeline Contributor` because the LLM's predicted pod count is applied directly via the Kubernetes API.                                                           |
+| agentic_configuration.coordination_topology | Single Agent                                     | "the Claude 3.7 Sonnet model from Anthropic accessed through the Amazon Bedrock service is used"                                    | §I Introduction                         | Not `Multi-Agent` because a single LLM call per cycle generates the predicted replica count.                                                                           |
+| reasoning_approach                          | Prompting                                        | "To obtain the appropriate prompt, prompt testing was carried out through the playground on the Amazon Bedrock console."            | §III-C Optimal Prompt Determination     | _structured prompt + CSV context; no chain-of-thought reflection ("No explanation needed"), no retrieval over external KB, no fine-tuning._                            |
+| autonomy_level                              | Autonomous                                       | "The prediction results are then automatically applied to the Amazon EKS cluster via the Kubernetes API."                           | §Abstract                               | Not `Supervised` because the service rewrites the deployment replicas without HITL gating.                                                                             |
+| metric                                      | RM Performance Metric + Agent Performance Metric | "this approach can improve resource utilization efficiency and maintain service stability during traffic fluctuations"              | §Abstract                               | _multi-select; CPU/memory utilization + stability (RM side) and prompt-accuracy / model-quality dependence (agent side) are both reported._                            |
+| evaluation_method                           | Practical Testbed                                     | "The system was tested under various conditions, including when CPU utilization increased significantly"                            | §III-E Testing                          | Not `Simulation` because load testing runs against a deployed Go REST API on an EKS cluster with K6 generating real traffic.                                           |
+
+**Confidence (weakest axis):** HIGH
+**Adversarial mode:** off
 
 ---
 

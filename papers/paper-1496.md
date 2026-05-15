@@ -2,37 +2,37 @@
 id: paper-1496
 title: Investigating Neurosymbolic AI for Intent-based Service Management
 authors:
-- Colombi, Lorenzo
-- Cavicchi, Sara
-- Poltronieri, Filippo
-- Tortonesi, Mauro
-- Stefanelli, Cesare
-- Varga, Pal
-venue: 'Proceedings of the 2025 21st International Conference on Network and Service Management: AI and Sustainability in the Future of Network and Service Management, CNSM 2025'
+  - Colombi, Lorenzo
+  - Cavicchi, Sara
+  - Poltronieri, Filippo
+  - Tortonesi, Mauro
+  - Stefanelli, Cesare
+  - Varga, Pal
+venue: "Proceedings of the 2025 21st International Conference on Network and Service Management: AI and Sustainability in the Future of Network and Service Management, CNSM 2025"
 venue_type: conference
 year: 2025
 doi: 10.23919/CNSM67658.2025.11297547
 url: https://www.scopus.com/pages/publications/105032150681?origin=resultslist
 publisher: Institute of Electrical and Electronics Engineers Inc.
-pages: ''
+pages: ""
 keywords:
-- Intent-based Service Management
-- Large Language Model
-- Neurosymbolic AI
+  - Intent-based Service Management
+  - Large Language Model
+  - Neurosymbolic AI
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
@@ -46,20 +46,20 @@ screening:
     agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied:
-    - ovr_rl_llm_present
+      - ovr_rl_llm_present
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Exclude
@@ -69,10 +69,22 @@ screening:
     my_final_decision: "Include (Borderline)"
     my_justification: "LLM converte intents de usuário em representação estruturada (JSON) que alimenta o solver ASP (Clingo) responsável pela decisão de service management. Ou seja, quem toma a decisão é o Solver ASP, não o LLM."
     agrees_with_regex: true
-    divergence_reason: 'Categoria regex ''D_devops_or_logs_not_rm'' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é ''LLM-support-to-symbolic-solver'': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico).'
+    divergence_reason: "Categoria regex 'D_devops_or_logs_not_rm' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é 'LLM-support-to-symbolic-solver': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico)."
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Edge-Cloud
+  decision:
+    - Placement & Offloading
+  agentic_configuration:
+    decision_role: Pipeline Contributor
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Prompting
+  autonomy_level: Supervised
+  metric:
+    - RM Performance Metric
+  evaluation_method: Simulation
 ---
 
 # paper-1496 — Investigating Neurosymbolic AI for Intent-based Service Management
@@ -83,7 +95,7 @@ Imported from `legacy/papers/` during v3.2.0 migration. Full machine-readable fi
 
 **Abstract**
 
-> The increasing complexity and increasing demands of IT applications, especially in federated multi-cluster environments, pose significant challenges for service orchestration. To address these, Zero-Touch Service Management (ZSM) and intent-based management paradigms are gaining traction, allowing users to specify high-level goals rather than low-level configurations. However, current intent-driven approaches often rely on rigid Domain Specific Languages (DSLs) or graphic user interfaces, limiting expressiveness and usability. In this work, we propose a neurosymbolic intent-based platform that leverages Large Language Models (LLMs) for natural language intent ingestion and Answer Set Programming (ASP), a declarative programming paradigm used for solving complex combinatorial problems. The system translates natural language descriptions of microservice requirements into structured policies, enabling explainable service-to-cluster matching across federated Kubernetes environments. We validate our approach through experiments that evaluate both the syntactic correctness and efficiency of various LLMs in intent translation, as well as the computational time of the symbolic placement algorithm.  © 2025 IFIP.
+> The increasing complexity and increasing demands of IT applications, especially in federated multi-cluster environments, pose significant challenges for service orchestration. To address these, Zero-Touch Service Management (ZSM) and intent-based management paradigms are gaining traction, allowing users to specify high-level goals rather than low-level configurations. However, current intent-driven approaches often rely on rigid Domain Specific Languages (DSLs) or graphic user interfaces, limiting expressiveness and usability. In this work, we propose a neurosymbolic intent-based platform that leverages Large Language Models (LLMs) for natural language intent ingestion and Answer Set Programming (ASP), a declarative programming paradigm used for solving complex combinatorial problems. The system translates natural language descriptions of microservice requirements into structured policies, enabling explainable service-to-cluster matching across federated Kubernetes environments. We validate our approach through experiments that evaluate both the syntactic correctness and efficiency of various LLMs in intent translation, as well as the computational time of the symbolic placement algorithm. © 2025 IFIP.
 
 **Dedup notes**
 
@@ -149,7 +161,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Exclude
@@ -166,10 +177,23 @@ no duplicates found
 - **agrees_with_regex:** True
 - **divergence_reason:** Categoria regex 'D_devops_or_logs_not_rm' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é 'LLM-support-to-symbolic-solver': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico).
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                  | evidence                                                                                                                                                              | location                     | rationale (neighbor not chosen)                                                                                                                                                                |
+| ------------------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| infrastructure                              | Edge-Cloud   | "a unified API-driven infrastructure that spans cloud, edge, and fog layer, the so-called compute continuum"                                                          | §I Introduction              | Not `Cloud-Only` because the platform explicitly addresses federated multi-cluster Kubernetes across the compute continuum (cloud + edge + fog).                                               |
+| decision                                    | Placement & Offloading | "automatically derive valid, explainable, and optimized service placements across many Kubernetes (K8s) clusters"                                                     | §I Introduction              | _multi-select; the system maps microservices to clusters (placement), with no scheduling, scaling, routing, or remediation actions._                                                           |
+| agentic_configuration.decision_role         | Pipeline Contributor   | "the use of ASP and Clingo is limited to cluster filtering; thus, the output consists of a list of service placement solutions that satisfy the required constraints" | §III NeSy Solution           | Not `Sole Decider` because the LLM only translates natural-language intent to JSON; the placement decision is made by the symbolic Clingo/ASP solver.                                          |
+| agentic_configuration.coordination_topology | Single Agent           | "both the ingestion and the translation components could be implemented using a single LLM"                                                                           | §III NeSy Solution           | Not `Multi-Agent` because a single LLM does ingestion + translation; ASP solver is not an agent in the agentic sense.                                                                          |
+| reasoning_approach                          | Prompting              | "we prompted the LLMs with natural language inputs alongside a predefined JSON template and a series of illustrative examples"                                        | §IV-A LLM Intent Translation | _one-shot / few-shot prompting with template schema; no iterative self-reflection, no retrieval over external KB, no fine-tuning._                                                             |
+| autonomy_level                              | Supervised             | "In case of ambiguity, the user is asked to provide the missing details necessary for a correct translation."                                                         | §III NeSy Solution           | Not `Autonomous` because the pipeline expects user interaction whenever the intent is unclear or the JSON fails validation.                                                                    |
+| metric                                      | RM Performance Metric  | "we measured the execution time of Clingo, an ASP solver, to compute all possible stable models, or, in other words, the service-to-cluster matching solutions"       | §IV-B ASP experiments        | _single-select reported here; RM-side computation time of the placement solver is reported, alongside LLM accuracy/latency in §IV-A, but the locked classification keeps only RM Performance._ |
+| evaluation_method                           | Simulation             | "We randomly generated a series of clusters and services with their respective constraints using Python and the Clingo Python module."                                | §IV-B ASP experiments        | Not `Practical Testbed` because clusters and services are randomly generated synthetic scenarios, not measurements on a deployed federation.                                                        |
+
+**Confidence (weakest axis):** MED
+**Adversarial mode:** off
 
 ---
 

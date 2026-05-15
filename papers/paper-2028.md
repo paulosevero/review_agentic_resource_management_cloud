@@ -2,45 +2,46 @@
 id: paper-2028
 title: LLM-based cost-aware task scheduling for cloud computing systems
 authors:
-- Pei, Haoran
-- Gu, Yan
-- Sun, Yajuan
-- Wang, Qingle
-- Liu, Cong
-- Chen, Xiaomin
-- Cheng, Long
+  - Pei, Haoran
+  - Gu, Yan
+  - Sun, Yajuan
+  - Wang, Qingle
+  - Liu, Cong
+  - Chen, Xiaomin
+  - Cheng, Long
 venue: Journal of Cloud Computing
 venue_type: journal
 year: 2025
 doi: 10.1186/s13677-025-00822-0
 url: https://www.scopus.com/pages/publications/105026116476?origin=resultslist
 publisher: Springer Science and Business Media Deutschland GmbH
-pages: ''
+pages: ""
 keywords:
-- Cloud computing
-- Deep reinforcement learning
-- Large language models
-- Task scheduling
+  - Cloud computing
+  - Deep reinforcement learning
+  - Large language models
+  - Task scheduling
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+    proposed_justification:
+      C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
       management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
@@ -49,25 +50,26 @@ screening:
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM).
     winning_category: agent_llm_based
     overrides_applied:
-    - ovr_rl_llm_present
-    - ovr_llm_modifier
+      - ovr_rl_llm_present
+      - ovr_llm_modifier
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM).
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: O LLM aparece em papel de suporte (gera heurísticas, embeddings,
+    proposed_justification:
+      O LLM aparece em papel de suporte (gera heurísticas, embeddings,
       features ou recompensas para RL/MARL/otimização clássica). Não há loop agentic
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
@@ -78,7 +80,21 @@ screening:
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Cloud-Only
+  decision:
+    - Scheduling
+  agentic_configuration:
+    decision_role: Sole Decider
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Prompting
+    - Model Specialization
+  autonomy_level: Autonomous
+  metric:
+    - RM Performance Metric
+    - Agent Performance Metric
+  evaluation_method: Simulation
 ---
 
 # paper-2028 — LLM-based cost-aware task scheduling for cloud computing systems
@@ -155,7 +171,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Exclude
@@ -174,10 +189,23 @@ no duplicates found
 - **agrees_with_regex:** True
 - **evidence_sections:** ["Abstract — 'LLMs as high-level decision agents' (claim), mas pipeline revela offline fine-tuning", 'Seção System model — DRL agents train, generate dataset, LLM fine-tuned', 'Seção LLMs for cloud task scheduling (Related Work) — LLM como surrogate para DRL generalization', 'Seção Experimental results — LLM inference performance, não agent loop evaluation']
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                                            | evidence                                                                                                                                             | location                            | rationale (neighbor not chosen)                                                                                                                                |
+| ------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| infrastructure                              | Cloud-Only                                       | "this paper proposes LarS, a scheduling framework that employs Large Language Models (LLMs) as high-level decision agents for cloud task scheduling" | §Abstract                           | Not `Edge-Cloud` because the framework targets VMs in cloud computing systems, no edge tier.                                                         |
+| decision                                    | Scheduling                                       | "Cloud task scheduling faces significant challenges due to resource heterogeneity"                                                                   | §Abstract                           | _multi-select; the agent assigns tasks to VMs over time — task scheduling, not service placement, scaling, routing, or remediation._                           |
+| agentic_configuration.decision_role         | Sole Decider                                     | "LarS, a cloud task scheduling framework that leverages an LLM as a high-level decision agent"                                                       | §I Introduction                     | Not `Pipeline Contributor` because the fine-tuned LLM produces the final scheduling action; DRL is only used during dataset curation, not at runtime.          |
+| agentic_configuration.coordination_topology | Single Agent                                     | "GPT-4o generates scheduling decisions with reasoning trajectories for given environments and states"                                                | §I Introduction                     | Not `Multi-Agent` because a single LLM (after fine-tuning) emits each scheduling decision.                                                                     |
+| reasoning_approach                          | Prompting + Model Specialization                 | "This dataset is then used to fine-tune the LLM via LoRA, enhancing its generalization capability"                                                   | §I Introduction                     | _structured prompting + LoRA fine-tuning of LLaMA-2-13B; no iterative ReAct loop, no external KB retrieval at inference._                                      |
+| autonomy_level                              | Autonomous                                       | "LarS achieves strong generalization across heterogeneous cloud deployments"                                                                         | §Abstract                           | Not `Supervised` because the trained LarS makes online scheduling decisions without HITL gating.                                                               |
+| metric                                      | RM Performance Metric + Agent Performance Metric | "average response time, task success rate, and average rental cost"                                                                                  | §Abstract                           | _multi-select; response time / success rate / cost (RM-side) plus the LLM's accuracy of decisions across fine-tuning sample counts (agent side) are reported._ |
+| evaluation_method                           | Simulation                                       | "We evaluate nine scheduling strategies on an 11-VM test environment consisting of 5 High CPU and 6 High I/O VMs."                                   | §Experiments evaluation — Baselines | Not `Practical Testbed` because the cloud environment is a synthetic test environment with modelled VMs, not a deployed cloud platform.                             |
+
+**Confidence (weakest axis):** MED
+**Adversarial mode:** off
 
 ---
 

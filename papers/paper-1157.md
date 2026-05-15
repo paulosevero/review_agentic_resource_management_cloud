@@ -1,16 +1,17 @@
 ---
 id: paper-1157
-title: 'ECO-LLM: LLM-based Edge Cloud Optimization'
+title: "ECO-LLM: LLM-based Edge Cloud Optimization"
 authors:
-- Rao, Kunal
-- Coviello, Giuseppe
-- Benedetti, Priscilla
-- De Vita, Ciro Giuseppe
-- Mellone, Gennaro
-- Chakradhar, Srimat
-venue: 'AI4Sys 2024 - Proceedings of the 2024 Workshop on AI For Systems, Part of:  HPDC
+  - Rao, Kunal
+  - Coviello, Giuseppe
+  - Benedetti, Priscilla
+  - De Vita, Ciro Giuseppe
+  - Mellone, Gennaro
+  - Chakradhar, Srimat
+venue:
+  "AI4Sys 2024 - Proceedings of the 2024 Workshop on AI For Systems, Part of:  HPDC
   2024 - 33rd International Symposium on High-Performance Parallel and Distributed
-  Computing'
+  Computing"
 venue_type: conference
 year: 2024
 doi: 10.1145/3660605.3660941
@@ -18,34 +19,35 @@ url: https://www.scopus.com/pages/publications/85204973236?origin=resultslist
 publisher: Association for Computing Machinery, Inc
 pages: 7--12
 keywords:
-- cloud computing
-- customization
-- edge computing
-- generative artificial intelligence (GenAI)
-- large language models (LLM)
-- machine learning (ML)
-- optimization
-- video analytics
+  - cloud computing
+  - customization
+  - edge computing
+  - generative artificial intelligence (GenAI)
+  - large language models (LLM)
+  - machine learning (ML)
+  - optimization
+  - video analytics
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource
+    proposed_justification:
+      C1=1.0 (agentic/LLM signal in title); C2=0.5 (resource
       management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
@@ -54,40 +56,54 @@ screening:
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied:
-    - ovr_rl_llm_present
+      - ovr_rl_llm_present
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (Agent+LLM).
     winning_category: agent_llm_based
     overrides_applied:
-    - ovr_rl_llm_present
-    - ovr_cls_llm_present
+      - ovr_rl_llm_present
+      - ovr_cls_llm_present
     my_final_decision: Include
-    my_justification: 'Paper implementa loop agentic-AI completo para placement dinâmico
+    my_justification:
+      "Paper implementa loop agentic-AI completo para placement dinâmico
       de microserviços. Ciclo de percepção (coleta de workload via DataX) → raciocínio
       (análise de LLM via prompt estruturado) → ação (aplicar placement) → feedback
       (latência reportada) é explícito. LLM dirige decisão alocativa em tempo real
       respondendo a mudanças de workload na arquitetura edge-cloud. Atende critério
-      essencial: agentic-AI loop DIRIGE resource management.'
+      essencial: agentic-AI loop DIRIGE resource management."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Edge-Cloud
+  decision:
+    - Placement & Offloading
+  agentic_configuration:
+    decision_role: Sole Decider
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Prompting
+  autonomy_level: Autonomous
+  metric:
+    - RM Performance Metric
+    - Agent Performance Metric
+  evaluation_method: Practical Testbed
 ---
 
 # paper-1157 — ECO-LLM: LLM-based Edge Cloud Optimization
@@ -164,7 +180,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Include
@@ -185,10 +200,23 @@ no duplicates found
 - **my_justification:** Paper implementa loop agentic-AI completo para placement dinâmico de microserviços. Ciclo de percepção (coleta de workload via DataX) → raciocínio (análise de LLM via prompt estruturado) → ação (aplicar placement) → feedback (latência reportada) é explícito. LLM dirige decisão alocativa em tempo real respondendo a mudanças de workload na arquitetura edge-cloud. Atende critério essencial: agentic-AI loop DIRIGE resource management.
 - **agrees_with_regex:** True
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                                            | evidence                                                                                                                                                                                 | location                        | rationale (neighbor not chosen)                                                                                                                                          |
+| ------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| infrastructure                              | Edge-Cloud                             | "dynamically adjust placement of application tasks across edge and cloud computing tiers"                                                                                                | §Abstract                       | Not `Cloud-Only` because the system explicitly spans edge machines (Edge-1, Edge-2) and AWS cloud as concurrent compute tiers.                                           |
+| decision                                    | Placement & Offloading                           | "ECO-LLM, which leverages Large Language Models (LLMs) to handle dynamic placement of microservices on a multi-tiered computing infrastructure"                                          | §1 Introduction (contributions) | _multi-select; placement of microservices across tiers is offloading, not job scheduling over time, not horizontal scaling, not network routing, not fault remediation._ |
+| agentic_configuration.decision_role         | Sole Decider                                     | "uses the second instruction to obtain placement recommendation from LLM. ECO-LLM then checks if the placement recommended by the LLM is the same or different"                          | §5 System Design                | Not `Pipeline Contributor` because the LLM's recommendation is applied directly via DataX with no separate algorithmic decision module between it and deployment.        |
+| agentic_configuration.coordination_topology | Single Agent                                     | "ECO-LLM uses OpenAI's APIs to send prompts and receive responses"                                                                                                                       | §5 System Design (footnote 1)   | Not `Multi-Agent` because a single LLM instance handles all placement queries; no agent-to-agent coordination.                                                           |
+| reasoning_approach                          | Prompting                                        | "We use the basic principles of prompt engineering discussed in [16], [10], [14], etc. and craft the 'prompt' such that the LLM is able to perform data-driven placement recommendation" | §4 Custom instructions          | _structured prompting + periodic feedback loop; no chain-of-thought scaffolding, no retrieval over external KB, no fine-tuning._                                         |
+| autonomy_level                              | Autonomous                                       | "ECO-LLM is able to automatically generate code on-the-fly and adapt placement of application tasks across edge and cloud computing tiers"                                               | §Abstract                       | Not `Supervised` because placement decisions are applied directly without HITL gating during the 1440 daily decisions.                                                   |
+| metric                                      | RM Performance Metric + Agent Performance Metric | "the difference is only 1.45% for human attributes detection and face recognition, and 1.11% for license plate recognition"                                                              | §6.2 Automatic                  | _multi-select; placement-correctness vs baseline (RM-side) is reported alongside LLM behaviour (correctness of responses verified in §6.1)._                             |
+| evaluation_method                           | Practical Testbed | "for edge, we use two different edge machines denoted as Edge-1 ... while for cloud we use c4.8xlarge VM instance in AWS cloud"                                                          | §3 Motivation                   | Not `Simulation` because evaluation runs on real edge machines and a real AWS cloud VM, not on a simulator.                   |
+
+**Confidence (weakest axis):** HIGH
+**Adversarial mode:** off
 
 ---
 

@@ -13,7 +13,7 @@ This file is the authoritative protocol for this review. It declares the theme, 
 
 ## 0. Meta
 
-- **Topic:** `Agentic AI (LLM-based agents) for resource management decisions in Cloud, Edge, Fog, and the Edge-Cloud Continuum`
+- **Topic:** `Agentic AI (LLM-based agents) for resource management decisions in Cloud, Edge, Fog, and the Edge-Cloud`
 - **Repo:** `/Users/paulosouza/Documents/Carreira/Pesquisa/Código/review_agentic_resource_management_cloud`
 - **Created:** `2026-04-25`
 - **Migrated to v3.2.0:** `2026-05-09`
@@ -32,7 +32,7 @@ locks:
   04-title-screening: locked
   05-abstract-screening: locked
   06-full-text-screening: locked
-  07-taxonomy-development: iterating # phase 07a' deductive draft (iteration 1)
+  07-taxonomy-development: locked
   08-analysis: pending
   09-report: pending
 ```
@@ -296,7 +296,7 @@ Conventions:
 
 The taxonomy is built in stage `07-taxonomy-development` and iterates until the user marks it locked. Until then, this section reflects the current iteration.
 
-**Status:** `iterating` (iteration 1 refined post-validation; awaiting lock)
+**Status:** `locked` (iteration 1; all 20 included papers classified with §07b blocks).
 
 **Origin:** `hybrid`. Iteration 1 began with 12 deductively seeded axes (one per sub-RQ in RQ1.1–RQ4.4) and converged, through user review against the corpus, on 7 faceted axes that span the same conceptual ground but at a coarser granularity better suited to a 20-paper corpus. RQ5.1/RQ5.2 are corpus-level synthesis questions handled in stages 08–09 and are not encoded as per-paper labels.
 
@@ -312,7 +312,7 @@ The taxonomy is built in stage `07-taxonomy-development` and iterates until the 
 Seven axes; every included paper must classify on every axis with ≥ MED confidence (faceted taxonomy, no orphan permitted).
 
 - **`infrastructure`** (⋆) — Tier of the infrastructure the agent controls. — seed_for: RQ1.2 (infrastructure scope of coupling).
-  - Values: `Cloud-Only`, `Edge-Cloud Continuum`.
+  - Values: `Cloud-Only`, `Edge-Cloud`.
 
 - **`decision`** (▲) — Class(es) of resource-management decision delegated to the agent. — seed_for: RQ2.1.
   - Values: `Scheduling`, `Placement & Offloading`, `Scaling`, `Routing & Slicing`, `Remediation`.
@@ -331,7 +331,7 @@ Seven axes; every included paper must classify on every axis with ≥ MED confid
   - Values: `RM Performance Metric`, `Agent Performance Metric`.
 
 - **`evaluation_method`** (⋆) — Empirical environment in which the results are produced. Use of production traces or synthetic benchmarks is discussed in the text under the chosen value, not encoded as a separate value. — seed_for: RQ4.1.
-  - Values: `Simulation`, `Real Testbed`.
+  - Values: `Simulation`, `Practical Testbed`.
 
 ### 8.2 Code book
 
@@ -340,7 +340,7 @@ One- to two-sentence definitions of every value. Borderline cases trigger checkp
 **`infrastructure`**
 
 - `Cloud-Only`: Centralized datacenters operated by a hyperscaler or in-house provider. Includes Kubernetes clusters in a single region, IaaS/PaaS/SaaS scopes, and multi-cloud arrangements that remain inside cloud datacenters. Edge or fog resources are not part of the controlled tier.
-- `Edge-Cloud Continuum`: Cloud + Edge/Fog are jointly considered; decisions can place, move, route, scale, or remediate across tiers. Papers framed as "edge computing" that nevertheless reach back to a cloud layer (typical case in the corpus) fall here.
+- `Edge-Cloud`: Cloud + Edge/Fog are jointly considered; decisions can place, move, route, scale, or remediate across tiers. Papers framed as "edge computing" that nevertheless reach back to a cloud layer (typical case in the corpus) fall here.
 
 **`decision`**
 
@@ -384,15 +384,16 @@ Cross-product `Pipeline Contributor × Multi-Agent` is empirically empty in the 
 **`evaluation_method`**
 
 - `Simulation`: Experiments run inside a simulator or emulator (CloudSim, EdgeSimPy, custom-built). Workloads can be synthetic, drawn from a benchmark suite, or replayed from real traces; the discriminating fact is that the _execution substrate_ is simulated.
-- `Real Testbed`: Experiments run on a physical cluster or cloud-hosted resources provisioned for the study. Includes Kubernetes clusters in real clouds, on-prem racks, and edge testbeds. Replay of production traces against real resources falls here, not under `Simulation`.
+- `Practical Testbed`: Experiments run on a physical cluster or cloud-hosted resources provisioned for the study. Includes Kubernetes clusters in real clouds, on-prem racks, and edge testbeds. Replay of production traces against real resources falls here, not under `Simulation`.
 
 ### 8.3 Iteration history
 
 Each iteration of the taxonomy is a commit `[07] iteration-<k>`; the final state is `[07] lock`.
 
 - **Iteration 1 — `[07] origin: hybrid`:** Seeded 12 deductive axes from RQ1.1–RQ4.4 (Phase 07a' first draft). RQ5.1/RQ5.2 excluded as synthesis-level. Adversarial mode off. _Outcome:_ draft too granular for a 20-paper corpus; flagged for consolidation against user feedback and corpus validation.
-- **Iteration 1 (consolidated) — `[07] iteration-1: 7-axis taxonomy consolidated`:** Twelve seed axes consolidated to seven faceted axes through user dialog and empirical validation against the 20 included papers. Decisions captured: (a) `decision` drops `Energy` as a class (energy is cross-cutting and lives in `metric.RM Performance Metric`); (b) `agentic_configuration` initially unified role-in-cycle and coordination-topology into a single 2×2 axis (4 cells, 1 reserved); (c) `reasoning_approach` consolidates 3 seed axes (RQ3.1+RQ3.2+RQ3.3) into 4 multi-select families; (d) `metric` consolidates RQ4.2+RQ4.3+RQ4.4 into 2 multi-select families with energy living inside RM Performance Metric; (e) `evaluation_method` reduces to `Simulation` / `Real Testbed` with production-traces and synthetic-benchmarks discussed in text; (f) safety/governance dimensions live within `autonomy_level` (gate posture) and `metric.Agent Performance Metric` (governance metrics).
-- **Iteration 1 (refined post-validation) — `[07] iteration-1: post-validation refinements`:** After Phase 07a' coverage validation on the 20 papers, three refinements were applied to eliminate empty single-value cells and restructure the agentic-system axis. (a) `infrastructure` renamed `Cloud` → `Cloud-Only` and `Continuum` → `Edge-Cloud Continuum`; `Edge` dropped (empirically empty — every "edge" paper in the corpus also reaches the cloud, so all such papers fall under `Edge-Cloud Continuum`). (b) `autonomy_level` dropped `Advisory` (empirically empty in the corpus); axis is now `Supervised` / `Autonomous`. (c) `agentic_configuration` restructured from a single axis with cross-product values to a two-facet axis: facet `decision_role` (`Sole Decider` / `Pipeline Contributor`) and facet `coordination_topology` (`Single Agent` / `Multi-Agent`). The two facets are valid axes on their own; the absence of the `Pipeline Contributor × Multi-Agent` combination in the corpus is reported in stage 09 as a research opportunity, not a taxonomy gap. _Status:_ coverage validation re-confirmed clean across all 20 papers; awaiting Phase 07b classification before final lock.
+- **Iteration 1 (consolidated) — `[07] iteration-1: 7-axis taxonomy consolidated`:** Twelve seed axes consolidated to seven faceted axes through user dialog and empirical validation against the 20 included papers. Decisions captured: (a) `decision` drops `Energy` as a class (energy is cross-cutting and lives in `metric.RM Performance Metric`); (b) `agentic_configuration` initially unified role-in-cycle and coordination-topology into a single 2×2 axis (4 cells, 1 reserved); (c) `reasoning_approach` consolidates 3 seed axes (RQ3.1+RQ3.2+RQ3.3) into 4 multi-select families; (d) `metric` consolidates RQ4.2+RQ4.3+RQ4.4 into 2 multi-select families with energy living inside RM Performance Metric; (e) `evaluation_method` reduces to `Simulation` / `Practical Testbed` with production-traces and synthetic-benchmarks discussed in text; (f) safety/governance dimensions live within `autonomy_level` (gate posture) and `metric.Agent Performance Metric` (governance metrics).
+- **Iteration 1 (lock) — `[07] lock`:** Phase 07b classification written into every `papers/paper-NNNN.md` (verbatim evidence + neighbor-not-chosen rationale per axis cell). Two final renames applied for clarity: `Edge-Cloud Continuum` → `Edge-Cloud` (broader; not every cloud+edge system is a continuum) and `Real Testbed` → `Practical Testbed`. Five evidence-driven cell corrections applied after Phase 07b: paper-0930, paper-1157, paper-2470, paper-2723 → `evaluation_method = Practical Testbed`; paper-1404 → `infrastructure = Edge-Cloud`. Final distribution: `infrastructure` Cloud-Only 9 / Edge-Cloud 11; `agentic_configuration.decision_role` Sole Decider 14 / Pipeline Contributor 6; `agentic_configuration.coordination_topology` Single Agent 18 / Multi-Agent 2; `autonomy_level` Supervised 5 / Autonomous 15; `evaluation_method` Simulation 13 / Practical Testbed 7. Multi-select totals in stages/07-taxonomy-development.md.
+- **Iteration 1 (refined post-validation) — `[07] iteration-1: post-validation refinements`:** After Phase 07a' coverage validation on the 20 papers, three refinements were applied to eliminate empty single-value cells and restructure the agentic-system axis. (a) `infrastructure` renamed `Cloud` → `Cloud-Only` and `Continuum` → `Edge-Cloud`; `Edge` dropped (empirically empty — every "edge" paper in the corpus also reaches the cloud, so all such papers fall under `Edge-Cloud`). (b) `autonomy_level` dropped `Advisory` (empirically empty in the corpus); axis is now `Supervised` / `Autonomous`. (c) `agentic_configuration` restructured from a single axis with cross-product values to a two-facet axis: facet `decision_role` (`Sole Decider` / `Pipeline Contributor`) and facet `coordination_topology` (`Single Agent` / `Multi-Agent`). The two facets are valid axes on their own; the absence of the `Pipeline Contributor × Multi-Agent` combination in the corpus is reported in stage 09 as a research opportunity, not a taxonomy gap. _Status:_ coverage validation re-confirmed clean across all 20 papers; awaiting Phase 07b classification before final lock.
 
 ## 9. Anchors
 

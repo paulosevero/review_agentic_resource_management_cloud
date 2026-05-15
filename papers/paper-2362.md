@@ -1,16 +1,17 @@
 ---
 id: paper-2362
-title: 'AutoHMA-LLM: Efficient Task Coordination and Execution in Heterogeneous Multi-Agent
-  Systems Using Hybrid Large Language Models'
+title:
+  "AutoHMA-LLM: Efficient Task Coordination and Execution in Heterogeneous Multi-Agent
+  Systems Using Hybrid Large Language Models"
 authors:
-- Yang, Tingting
-- Feng, Ping
-- Guo, Qixin
-- Zhang, Jindi
-- Zhang, Xiufeng
-- Ning, Jiahong
-- Wang, Xinghan
-- Mao, Zhongyang
+  - Yang, Tingting
+  - Feng, Ping
+  - Guo, Qixin
+  - Zhang, Jindi
+  - Zhang, Xiufeng
+  - Ning, Jiahong
+  - Wang, Xinghan
+  - Mao, Zhongyang
 venue: IEEE Transactions on Cognitive Communications and Networking
 venue_type: journal
 year: 2025
@@ -19,32 +20,33 @@ url: https://www.scopus.com/pages/publications/105002485279?origin=resultslist
 publisher: Institute of Electrical and Electronics Engineers Inc.
 pages: 987--998
 keywords:
-- cloud computing
-- communication coordination
-- dynamic task allocation
-- Generative AI
-- heterogeneous multi-agent system (HMAS)
-- large language model (LLM)
+  - cloud computing
+  - communication coordination
+  - dynamic task allocation
+  - Generative AI
+  - heterogeneous multi-agent system (HMAS)
+  - large language model (LLM)
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0 (no resource
+    proposed_justification:
+      C1=1.0 (agentic/LLM signal in title); C2=0 (no resource
       management signal); C3=0 (no infra signal)
     winning_category: null
     overrides_applied: []
@@ -53,41 +55,54 @@ screening:
     agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM).
     winning_category: mas_llm_based
     overrides_applied:
-    - ovr_rl_llm_present
+      - ovr_rl_llm_present
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM).
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI (MAS+LLM).
     winning_category: mas_llm_based
     overrides_applied:
-    - ovr_with_llm
-    - ovr_using_llm
-    - ovr_llm_modifier
-    - ovr_llm_agents
-    - ovr_abs_llm_decides
-    - ovr_abs_llm_orchestrates
-    - ovr_rl_llm_present
-    - ovr_cls_llm_present
+      - ovr_with_llm
+      - ovr_using_llm
+      - ovr_llm_modifier
+      - ovr_llm_agents
+      - ovr_abs_llm_decides
+      - ovr_abs_llm_orchestrates
+      - ovr_rl_llm_present
+      - ovr_cls_llm_present
     my_final_decision: Include
     my_justification: "Reanálise com critério mais flexível: AutoHMA-LLM coordena multi-agentes heterogêneos via LLM para task coordination/execution. Considerando que ambientes heterogêneos podem mapear a edge/cloud e o LLM exerce papel material na coordenação, inclusão por flexibilidade. Anotada como candidata a verificação fina de domínio."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Edge-Cloud
+  decision:
+    - Scheduling
+  agentic_configuration:
+    decision_role: Sole Decider
+    coordination_topology: Multi-Agent
+  reasoning_approach:
+    - Iterative Reasoning
+  autonomy_level: Autonomous
+  metric:
+    - RM Performance Metric
+    - Agent Performance Metric
+  evaluation_method: Simulation
 ---
 
 # paper-2362 — AutoHMA-LLM: Efficient Task Coordination and Execution in Heterogeneous Multi-Agent Systems Using Hybrid Large Language Models
@@ -164,7 +179,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Include
@@ -189,10 +203,23 @@ no duplicates found
 - **addressed_hint:** Hint 'support' não procedia. LLM não é suporte a outro método — é central planner dirigindo dynamic task allocation + scheduling + communication coordination em multi-agent system.
 - **evidence_sections:** ["Abstract: 'task coordination and scheduling in complex, dynamic environments'", "Section I: LLM for 'communication coordination, dynamic task decomposition, and scheduling'", 'Section III (System Definition): multi-tier architecture with Cloud LLM planner + Device LLM + Generative Agents', 'Section V.B–E: Task completion accuracy, communication steps, token usage metrics (RM outcomes)']
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                                            | evidence                                                                                                                                                                    | location                        | rationale (neighbor not chosen)                                                                                                                                                      |
+| ------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| infrastructure                              | Edge-Cloud                             | "The framework is designed with a multi-tier architecture, utilizing a cloud-based LLM as the central planner alongside device-specific LLMs and Generative Agents"         | §Abstract                       | Not `Cloud-Only` because the system explicitly couples a cloud-side planner to on-device LLMs and edge generative agents.                                                            |
+| decision                                    | Scheduling                                       | "the system enhances resource utilization and stabilizes task execution through refined task scheduling and real-time feedback mechanisms"                                  | §Abstract                       | _multi-select; the framework coordinates and schedules tasks across heterogeneous agents — task scheduling, not placement of services, scaling, routing, or fault remediation._      |
+| agentic_configuration.decision_role         | Sole Decider                                     | "a control layer, Cloud LLM, Device LLM, and Generative Agents collaborating to optimize task allocation and resource utilization"                                          | §I Introduction                 | Not `Pipeline Contributor` because the LLM-driven agent ensemble emits the final scheduling and coordination decisions.                                                              |
+| agentic_configuration.coordination_topology | Multi-Agent                                      | "AutoHMA-LLM, a novel framework that combines Large Language Models (LLMs) with classical control algorithms to address the challenges of task coordination and scheduling" | §Abstract                       | Not `Single Agent` because Cloud LLM, Device LLMs, and Generative Agents collaborate, and the paper explicitly discusses centralized vs decentralized coordination strategies.       |
+| reasoning_approach                          | Iterative Reasoning                              | "our approach introduces a novel multi-agent framework that employs LLMs for real-time task reasoning and strategy adjustment"                                              | §II-B LLMs for Multi-Agent      | _iterative reasoning between agents with real-time strategy adjustment; not bare prompting, no explicit retrieval-augmented module, no fine-tuning emphasized as the main approach._ |
+| autonomy_level                              | Autonomous                                       | "Construction of a wireless multi-agent generative AI autonomous network capable of perceiving environmental changes, reasoning about task states, and achieving goals"     | §I Introduction (contributions) | Not `Supervised` because the framework operates as an autonomous network reasoning and scheduling tasks without HITL gating.                                                         |
+| metric                                      | RM Performance Metric + Agent Performance Metric | "AutoHMA-LLM demonstrated a 5.7% improvement in task completion accuracy, a 46% reduction in communication steps, and a 31% decrease in token usage and API calls"          | §Abstract                       | _multi-select; task completion / communication steps (RM-side) and token usage / API call counts (agent-side) are both quantified._                                                  |
+| evaluation_method                           | Simulation                                       | "the experimental part, which first introduces how the simulation environment was built and the definition of test indicators"                                              | §I Introduction                 | Not `Practical Testbed` because evaluation runs in a simulation environment over logistics / inspection / search-and-rescue scenarios.                                                    |
+
+**Confidence (weakest axis):** MED
+**Adversarial mode:** off
 
 ---
 

@@ -1,13 +1,14 @@
 ---
 id: paper-1947
-title: On Combining XAI and LLMs for Trustworthy Zero-Touch Network and Service Management
+title:
+  On Combining XAI and LLMs for Trustworthy Zero-Touch Network and Service Management
   in 6G
 authors:
-- Mekrache, Abdelkader
-- Mekki, Mohamed
-- Ksentini, Adlen
-- Brik, Bouziane
-- Verikoukis, Christos
+  - Mekrache, Abdelkader
+  - Mekki, Mohamed
+  - Ksentini, Adlen
+  - Brik, Bouziane
+  - Verikoukis, Christos
 venue: IEEE Communications Magazine
 venue_type: journal
 year: 2025
@@ -16,38 +17,39 @@ url: https://www.scopus.com/pages/publications/105003271705?origin=resultslist
 publisher: Institute of Electrical and Electronics Engineers Inc.
 pages: 154--160
 keywords:
-- Problem oriented languages
-- Advanced networks
-- Artificial intelligence learning
-- Human intervention
-- Language model
-- Machine learning models
-- Management IS
-- Management procedures
-- Network and service managements
-- Networks management
-- Servicelevel agreement (SLA)
-- Artificial intelligence
+  - Problem oriented languages
+  - Advanced networks
+  - Artificial intelligence learning
+  - Human intervention
+  - Language model
+  - Machine learning models
+  - Management IS
+  - Management procedures
+  - Network and service managements
+  - Networks management
+  - Servicelevel agreement (SLA)
+  - Artificial intelligence
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=0 (no resource
+    proposed_justification:
+      C1=1.0 (agentic/LLM signal in title); C2=0 (no resource
       management signal); C3=0.5 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
@@ -56,25 +58,26 @@ screening:
     agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied:
-    - ovr_rl_llm_present
-    - ovr_abs_llm_orchestrates
+      - ovr_rl_llm_present
+      - ovr_abs_llm_orchestrates
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA,
+    proposed_justification:
+      Tarefa de DevOps/observabilidade (incident triage, RCA,
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
@@ -84,7 +87,20 @@ screening:
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Edge-Cloud
+  decision:
+    - Remediation
+  agentic_configuration:
+    decision_role: Sole Decider
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Prompting
+  autonomy_level: Autonomous
+  metric:
+    - RM Performance Metric
+    - Agent Performance Metric
+  evaluation_method: Practical Testbed
 ---
 
 # paper-1947 — On Combining XAI and LLMs for Trustworthy Zero-Touch Network and Service Management in 6G
@@ -161,7 +177,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Exclude
@@ -180,10 +195,23 @@ no duplicates found
 - **addressed_hint:** support
 - **evidence_sections:** ['Abstract: zero-touch management', 'System Design: incident detection/network management', 'Evaluation: not SLA/scaling/placement metrics']
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                                            | evidence                                                                                                                                 | location                        | rationale (neighbor not chosen)                                                                                                                                    |
+| ------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| infrastructure                              | Edge-Cloud                             | "The use case was deployed on an edge computing cluster managed by Kubernetes."                                                          | §I Introduction (contributions) | Not `Cloud-Only` because the testbed is an edge Kubernetes cluster servicing cloud-native microservices.                                                           |
+| decision                                    | Remediation                                      | "novel anomaly detection and resolution pipeline"                                                                                        | §I Introduction                 | _multi-select; the loop scales CPU/RAM in response to detected SLA-violation anomalies — fault-driven remediation, not steady-state scheduling/placement/routing._ |
+| agentic_configuration.decision_role         | Sole Decider                                     | "if ZSM is enabled, Llama2 autonomously resolves the anomaly"                                                                            | §I Introduction                 | Not `Pipeline Contributor` because in the ZSM mode the LLM directly issues the corrective scaling action; XAI feeds context but does not decide.                   |
+| agentic_configuration.coordination_topology | Single Agent                                     | "Llama2 was deployed on a single NVIDIA A100 GPU."                                                                                       | §I Introduction (contributions) | Not `Multi-Agent` because a single LLM produces the resolution; XGBoost and SHAP are auxiliary models, not agents.                                                 |
+| reasoning_approach                          | Prompting                                        | "LLMs excel in reasoning tasks without requiring additional training [4], which can be leveraged to resolve anomalies"                   | §Introduction                   | _structured single-shot prompting with XAI explanation context; no iterative ReAct loop, no external KB retrieval, no fine-tuning._                                |
+| autonomy_level                              | Autonomous                                       | "if ZSM is enabled, Llama2 autonomously resolves the anomaly; otherwise, it offers recommendations"                                      | §I Introduction                 | Not `Supervised` because the ZSM-enabled path closes the loop without human approval.                                                                              |
+| metric                                      | RM Performance Metric + Agent Performance Metric | "Comprehensive real-world tests, including multiple LLM evaluations, were conducted to optimize performance for this specific use case." | §I Introduction (contributions) | _multi-select; the framework's SLA-latency outcome (RM) and multiple LLM evaluation results (agent side) are both reported._                                       |
+| evaluation_method                           | Practical Testbed                                     | "The use case was deployed on an edge computing cluster managed by Kubernetes. Llama2 was deployed on a single NVIDIA A100 GPU."         | §I Introduction (contributions) | Not `Simulation` because the evaluation runs on real Kubernetes + GPU hardware, not a simulator.                                                                   |
+
+**Confidence (weakest axis):** HIGH
+**Adversarial mode:** off
 
 ---
 

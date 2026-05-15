@@ -37,7 +37,7 @@ status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
@@ -77,7 +77,20 @@ screening:
     divergence_reason: null
     locked_at_iteration: iter-0
     locked_at: "2026-05-15T00:00:00+00:00"
-taxonomy: {}
+taxonomy:
+  infrastructure: Edge-Cloud
+  decision:
+    - Remediation
+  agentic_configuration:
+    decision_role: Sole Decider
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Iterative Reasoning
+  autonomy_level: Autonomous
+  metric:
+    - RM Performance Metric
+    - Agent Performance Metric
+  evaluation_method: Practical Testbed
 ---
 
 # paper-1404 — ARM: Autonomous Remediation & Management with LLM Agents for Intent-Driven Control
@@ -177,7 +190,21 @@ no duplicates found
 
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                                            | evidence                                                                                                                                                                       | location                              | rationale (neighbor not chosen)                                                                                                                                                 |
+| ------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| infrastructure                              | Edge-Cloud | "two cloud nodes, four edge nodes (two per edge site), and one management node"                                                                                                | §V-A Infrastructure and Cluster Setup | Not `Cloud-Only` because the testbed explicitly spans cloud and edge tiers with edge nodes participating in decisions. |
+| decision                                    | Remediation                                      | "the agent identifies likely root causes and selects corrective actions—such as pod rescheduling, scaling, or configuration updates"                                           | §Abstract                             | _multi-select; the closed loop is triggered by SLA violations and executes fault-recovery actions, not steady-state scheduling/placement._                                      |
+| agentic_configuration.decision_role         | Sole Decider                                     | "an LLM agent is triggered to investigate the underlying cause and execute an appropriate mitigation strategy"                                                                 | §I Introduction                       | Not `Pipeline Contributor` because the LLM agent both diagnoses and executes corrective tool calls without a downstream rule-based decider.                                     |
+| agentic_configuration.coordination_topology | Single Agent                                     | "An LLM-powered control agent capable of investigating anomalies and executing infrastructure-level reconfiguration using tool calling and dynamic planning."                  | §I Introduction (contributions)       | Not `Multi-Agent` because one agent owns the full RCA + mitigation loop; no peer agents debate or coordinate.                                                                   |
+| reasoning_approach                          | Iterative Reasoning                              | "Influenced by the React framework [14], which interleaving reasoning and acting in a more interactive manner"                                                                 | §IV (Agent design)                    | _ReAct-style interleaved reasoning + tool calls + replanning; not bare prompting, no external KB retrieval, no fine-tuning._                                                    |
+| autonomy_level                              | Autonomous                                       | "this is the first LLM-driven agentic system that not only identifies root causes of SLA violations but also autonomously mitigates them through infrastructure-level actions" | §I Introduction                       | Not `Supervised` because the closed loop executes kubectl actions without HITL approval.                                                                                        |
+| metric                                      | RM Performance Metric + Agent Performance Metric | "Results show that the agent identifies SLA violations with 52.9% accuracy and mitigates 70.7% of them successfully."                                                          | §Abstract                             | _multi-select; mitigation success (RM) and reasoning rounds / wall-clock per recovery (agent-side) are both reported._                                                          |
+| evaluation_method                           | Practical Testbed                                     | "Cluster management and workload scheduling are handled by a k3s Kubernetes distribution deployed on top of QEMU-virtualized servers."                                         | §V-A Infrastructure and Cluster Setup | Not `Simulation` because workloads run on a virtualized K3s cluster with chaos injection on real Kubernetes — not an event-driven simulator.                                    |
+
+**Confidence (weakest axis):** HIGH
+**Adversarial mode:** off
 
 ---
 

@@ -1,14 +1,16 @@
 ---
 id: paper-1563
-title: Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice
+title:
+  Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice
   Deployment
 authors:
-- Fang, Zhengxin
-- Ma, Hui
-- Chen, Gang
-- Hartmann, Sven
-- Wang, Chen
-venue: Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial
+  - Fang, Zhengxin
+  - Ma, Hui
+  - Chen, Gang
+  - Hartmann, Sven
+  - Wang, Chen
+venue:
+  Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial
   Intelligence and Lecture Notes in Bioinformatics)
 venue_type: conference
 year: 2025
@@ -17,31 +19,32 @@ url: https://www.scopus.com/pages/publications/85210811923?origin=resultslist
 publisher: Springer Science and Business Media Deutschland GmbH
 pages: 86--97
 keywords:
-- cloud computing
-- dynamic microservice deployment
-- genetic programming
-- hyper-heuristics
-- LLM
+  - cloud computing
+  - dynamic microservice deployment
+  - genetic programming
+  - hyper-heuristics
+  - LLM
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+    proposed_justification:
+      C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
       management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
@@ -50,24 +53,25 @@ screening:
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied:
-    - ovr_rl_llm_present
+      - ovr_rl_llm_present
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: O LLM aparece em papel de suporte (gera heurísticas, embeddings,
+    proposed_justification:
+      O LLM aparece em papel de suporte (gera heurísticas, embeddings,
       features ou recompensas para RL/MARL/otimização clássica). Não há loop agentic
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
@@ -78,7 +82,20 @@ screening:
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Edge-Cloud
+  decision:
+    - Scheduling
+  agentic_configuration:
+    decision_role: Pipeline Contributor
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Prompting
+  autonomy_level: Autonomous
+  metric:
+    - RM Performance Metric
+    - Agent Performance Metric
+  evaluation_method: Simulation
 ---
 
 # paper-1563 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice Deployment
@@ -155,7 +172,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Exclude
@@ -174,10 +190,23 @@ no duplicates found
 - **addressed_hint:** support
 - **evidence_sections:** ['4.5 LLM Evolution', '3 Problem Definition (GPHH é o método principal)', '4.1 Overview (role de LLM em geração de heurísticas)']
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                                            | evidence                                                                                                                                           | location                        | rationale (neighbor not chosen)                                                                                                                                                                                                        |
+| ------------------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| infrastructure                              | Edge-Cloud                             | "to improve the performance of GPHH in terms of jointly optimizing CO and EC for dynamic MEC problems"                                             | §I Introduction (contributions) | Not `Cloud-Only` per locked classification; the body emphasizes container-based clouds, but the contributions reference dynamic MEC problems, motivating the continuum label. FLAG: most of the formulation is data-center cloud only. |
+| decision                                    | Scheduling                                       | "a VM selection heuristic is required to either select existing VMs or create new VM instances for real-time microservice applications deployment" | §I Introduction                 | _multi-select; the heuristic chooses which existing VM/PM serves an arriving microservice at runtime — scheduling assignment, not capacity scaling or routing._                                                                        |
+| agentic_configuration.decision_role         | Pipeline Contributor                             | "the most effective method... use heuristics in the prompt and the number of response heuristics"                                                  | §V Experimental Evaluation      | Not `Sole Decider` because the LLM generates GP individuals (candidate heuristics) inside an evolutionary loop; the evolved heuristic, not the LLM, makes the runtime deployment decisions.                                            |
+| agentic_configuration.coordination_topology | Single Agent                                     | "GPT-3.5-turbo-0613 API is used in this paper"                                                                                                     | §V Experimental Evaluation      | Not `Multi-Agent` because one LLM endpoint produces heuristics each generation; no agents collaborate or debate.                                                                                                                       |
+| reasoning_approach                          | Prompting                                        | "a prompt is generated... which includes three parts: task description... promising heuristics... response heuristics"                             | §IV Algorithm                   | _structured prompt with few-shot exemplars (high-fitness heuristics); no ReAct/reflection loop, no external retrieval, no fine-tuning._                                                                                                |
+| autonomy_level                              | Autonomous                                       | "automatically generate VM selection heuristic and PM selection heuristic to minimize both EC and CO in cloud data centers"                        | §I Introduction                 | Not `Supervised` because heuristic generation runs without HITL approval inside the GP evolutionary loop.                                                                                                                              |
+| metric                                      | RM Performance Metric + Agent Performance Metric | "Our experiments demonstrate that the proposed LLM-GPHH can effectively generate better heuristics than existing algorithms in most scenarios"     | §I Introduction (contributions) | _multi-select; EC and CO (RM metrics) are evaluated alongside LLM-side prompt configuration / generated-individuals counts in §V._                                                                                                     |
+| evaluation_method                           | Simulation                                       | "Simulation. We simulate the state of a cloud data center by using a real-..."                                                                     | §V Experimental Evaluation      | Not `Practical Testbed` because the evaluation is a cloud data-center simulator driven by a real-world dataset.                                                                                                                             |
+
+**Confidence (weakest axis):** MED
+**Adversarial mode:** off
 
 ---
 

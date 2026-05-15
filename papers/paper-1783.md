@@ -1,49 +1,52 @@
 ---
 id: paper-1783
-title: Can LLMs only talk? Experimental studies on task scheduling with Large Language
+title:
+  Can LLMs only talk? Experimental studies on task scheduling with Large Language
   Models
 authors:
-- Li, Mengjuan
-- Chen, Zhengguang
-- Zhou, Huan
-- Wang, Zhipeng
-- Chen, Yingwen
-- Zhao, Baokang
-- Ouyang, Xue
-- Su, Jinshu
-venue: Proceedings - International Conference on Computer Communications and Networks,
+  - Li, Mengjuan
+  - Chen, Zhengguang
+  - Zhou, Huan
+  - Wang, Zhipeng
+  - Chen, Yingwen
+  - Zhao, Baokang
+  - Ouyang, Xue
+  - Su, Jinshu
+venue:
+  Proceedings - International Conference on Computer Communications and Networks,
   ICCCN
 venue_type: conference
 year: 2025
 doi: 10.1109/ICCCN65249.2025.11133882
 url: https://www.scopus.com/pages/publications/105016133227?origin=resultslist
 publisher: Institute of Electrical and Electronics Engineers Inc.
-pages: ''
+pages: ""
 keywords:
-- experimental study
-- LLMs
-- prompt
-- task scheduling
+  - experimental study
+  - LLMs
+  - prompt
+  - task scheduling
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+    proposed_justification:
+      C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
       management signal); C3=0 (no infra signal)
     winning_category: null
     overrides_applied: []
@@ -52,24 +55,25 @@ screening:
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied:
-    - ovr_rl_llm_present
+      - ovr_rl_llm_present
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA,
+    proposed_justification:
+      Tarefa de DevOps/observabilidade (incident triage, RCA,
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
@@ -79,7 +83,20 @@ screening:
     divergence_reason: null
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Cloud-Only
+  decision:
+    - Scheduling
+  agentic_configuration:
+    decision_role: Sole Decider
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Prompting
+  autonomy_level: Autonomous
+  metric:
+    - RM Performance Metric
+    - Agent Performance Metric
+  evaluation_method: Simulation
 ---
 
 # paper-1783 — Can LLMs only talk? Experimental studies on task scheduling with Large Language Models
@@ -156,7 +173,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Exclude
@@ -174,10 +190,23 @@ no duplicates found
 - **addressed_hint:** regex hint 'D_devops_or_logs_not_rm' é falso positivo; o problema é que não há loop agentic, não questão de DevOps.
 - **evidence_sections:** ['Experiment Design § Model', 'Experiment Design § Scheduling with LLMs', 'Experimental Results and Analysis']
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                                            | evidence                                                                                                                                                          | location        | rationale (neighbor not chosen)                                                                                                                                    |
+| ------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| infrastructure                              | Cloud-Only                                       | "we model a typical task scheduling scenario in cloud computing and transfer scheduling problems as natural language prompts"                                     | §Abstract       | Not `Edge-Cloud` because the case study is online multi-resource cluster scheduling in a single cloud; no edge tier.                                     |
+| decision                                    | Scheduling                                       | "We selected the online multi-resource cluster scheduling as the case study for simulation experiments."                                                          | §I Introduction | _multi-select; the LLM picks which job to schedule next on the cluster — pure scheduling, not placement of long-lived services, scaling, routing, or remediation._ |
+| agentic_configuration.decision_role         | Sole Decider                                     | "The outputs from the LLMs were then parsed to extract the next scheduling strategy, which was used to update the available resources and the pending job queue." | §I Introduction | Not `Pipeline Contributor` because the LLM emits the next scheduling decision directly; no downstream policy module.                                               |
+| agentic_configuration.coordination_topology | Single Agent                                     | "Using the Langchain framework, prompts were generated and fed into the LLMs."                                                                                    | §I Introduction | Not `Multi-Agent` because the framework invokes a single LLM per scheduling step.                                                                                  |
+| reasoning_approach                          | Prompting                                        | "we employed a prompt-based approach to enable LLMs to perform inference within the task scheduling context, without extra training or any fine-tuning"           | §I Introduction | _template-based prompt only; no chain-of-thought reflection loop, no retrieval over external KB, no fine-tuning._                                                  |
+| autonomy_level                              | Autonomous                                       | "The above process was repeated until all jobs were completed."                                                                                                   | §I Introduction | Not `Supervised` because the closed loop runs without operator intervention until the workload completes.                                                          |
+| metric                                      | RM Performance Metric + Agent Performance Metric | "the larger parameter size of the LLMs has, the better scheduling performance it achieves"                                                                        | §Abstract       | _multi-select; job completion time / job slowdown (RM side) and per-LLM parameter-size / inference behaviour (agent side) are compared._                           |
+| evaluation_method                           | Simulation                                       | "online multi-resource cluster scheduling as the case study for simulation experiments"                                                                           | §I Introduction | Not `Practical Testbed` because experiments run on a simulated cluster environment.                                                                                     |
+
+**Confidence (weakest axis):** HIGH
+**Adversarial mode:** off
 
 ---
 

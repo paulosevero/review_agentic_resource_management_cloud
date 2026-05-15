@@ -1,10 +1,11 @@
 ---
 id: paper-2779
-title: 'Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language
-  Processing'
+title:
+  "Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language
+  Processing"
 authors:
-- Sliwko, Leszek
-- Mizeria-Pietraszko, Jolanta
+  - Sliwko, Leszek
+  - Mizeria-Pietraszko, Jolanta
 venue: IEEE Access
 venue_type: journal
 year: 2026
@@ -13,32 +14,33 @@ url: https://www.scopus.com/pages/publications/105030579766?origin=resultslist
 publisher: Institute of Electrical and Electronics Engineers Inc.
 pages: 28054--28074
 keywords:
-- Artificial intelligence
-- Kubernetes
-- load balancing
-- semantic parsing
-- soft-affinity
-- task assignment
+  - Artificial intelligence
+  - Kubernetes
+  - load balancing
+  - semantic parsing
+  - soft-affinity
+  - task assignment
 language: English
 source:
   databases:
-  - Scopus
+    - Scopus
   exports:
-  - scopus-2026-04-26.bib
+    - scopus-2026-04-26.bib
   dedup:
     merged_from: []
-    merge_reason: ''
+    merge_reason: ""
 status:
   04-title-screening: include
   05-abstract-screening: include
   06-full-text-screening: include
-  07-taxonomy-development: pending
+  07-taxonomy-development: classified
   08-analysis: pending
 screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
+    proposed_justification:
+      C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
       management signal); C3=0.5 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
@@ -47,20 +49,20 @@ screening:
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   05-abstract-screening:
     last_iteration: 0
     proposed_decision: Include
     proposed_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     winning_category: llm_agentic_ai_generic
     overrides_applied:
-    - ovr_rl_llm_present
+      - ovr_rl_llm_present
     my_final_decision: Include
     my_justification: Talvez tenha algo de LLM e/ou Agentic AI.
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: iter-0
-    locked_at: '2026-05-09T00:00:00+00:00'
+    locked_at: "2026-05-09T00:00:00+00:00"
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Include
@@ -70,11 +72,24 @@ screening:
     my_final_decision: "Include (Borderline)"
     my_justification: "GPT-4 faz one-shot NLP parsing de annotations de usuário para extrair semantic soft affinity constraints; o scheduler Kubernetes consome esses constraints e toma a decisão."
     agrees_with_regex: false
-    divergence_reason: Regex flagged as llm_agentic_ai_generic; full-text reveals
+    divergence_reason:
+      Regex flagged as llm_agentic_ai_generic; full-text reveals
       NLP parsing is support tool, not agentic RM loop.
     locked_at_iteration: null
     locked_at: null
-taxonomy: {}
+taxonomy:
+  infrastructure: Cloud-Only
+  decision:
+    - Scheduling
+  agentic_configuration:
+    decision_role: Pipeline Contributor
+    coordination_topology: Single Agent
+  reasoning_approach:
+    - Prompting
+  autonomy_level: Supervised
+  metric:
+    - RM Performance Metric
+  evaluation_method: Simulation
 ---
 
 # paper-2779 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language Processing
@@ -151,7 +166,6 @@ no duplicates found
 
 ## 06 — Full-Text Screening
 
-
 ### iter-0 (initial classification)
 
 - **regex_decision:** Include
@@ -177,10 +191,23 @@ no duplicates found
 - **addressed_hint:** hint_categories=[devops] partially applies — system is config/orchestration tooling, not resource management (placement is deterministic post-parsing).
 - **evidence_sections:** ["INTRODUCTION: 'intent analyzer that transforms natural language...[into]...constraints...coupled with...multi-objective...framework'", "PROTOTYPE AND TESTBED DESIGN > Intent Analyzer: 'sends structured prompt to GPT-4...parsed into structured representation used by scoring model'", 'SCORING MODEL: deterministic utility-function evaluation, no autonomous iteration']
 
-
 ## 07 — Taxonomy
 
-_(populated by `/05-code-taxonomy` after stage 06 lock.)_
+### 07b — Final classification
+
+| axis                                        | value                 | evidence                                                                                                                                                                                  | location                          | rationale (neighbor not chosen)                                                                                                                                          |
+| ------------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| infrastructure                              | Cloud-Only            | "introduces a semantic, intent-driven scheduling paradigm for cluster systems using Natural Language Processing"                                                                          | §Abstract                         | Not `Edge-Cloud` because the target is a Kubernetes datacenter cluster; no edge tier.                                                                          |
+| decision                                    | Scheduling            | "The system employs a Large Language Model (LLM) integrated via a Kubernetes scheduler extender to interpret natural language allocation hint annotations for soft affinity preferences." | §Abstract                         | _multi-select; the LLM informs Kubernetes scheduling (pod placement at job-time), not service placement, scaling, routing, or remediation._                              |
+| agentic_configuration.decision_role         | Pipeline Contributor  | "the scheduler assigns scores to the valid machines based on these preferences"                                                                                                           | §I Introduction                   | Not `Sole Decider` because the LLM parses intent into soft-affinity preferences that feed the Kubernetes Score Extender; final scheduling is performed by the scheduler. |
+| agentic_configuration.coordination_topology | Single Agent          | "an intent analyzer (using AWS Bedrock) was developed"                                                                                                                                    | §Abstract                         | Not `Multi-Agent` because one LLM (via Bedrock) handles intent parsing per pod.                                                                                          |
+| reasoning_approach                          | Prompting             | "The presented approach allows new scheduling behaviors to be introduced dynamically by defining new Intent classes and updating the LLM prompt"                                          | §I Introduction                   | _structured prompting with Intent class schemas; no iterative ReAct loop, no fine-tuning, no external KB retrieval._                                                     |
+| autonomy_level                              | Supervised            | "The current prototype is intended as a research artifact to demonstrate the feasibility and is not production-ready."                                                                    | §I Introduction                   | Not `Autonomous` because the prototype runs as a research artifact, with developers providing the natural-language hints per workload.                                   |
+| metric                                      | RM Performance Metric | "Scheduling quality tests across six scenarios showed the prototype achieved superior or equivalent placement compared to standard Kubernetes configurations"                             | §Abstract                         | _single-select; placement-quality (RM-side) is the headline metric; LLM accuracy is reported but the locked classification keeps RM only._                               |
+| evaluation_method                           | Simulation            | "The testbed is built around a multi-node Kubernetes cluster simulated using Minikube"                                                                                                    | §III Prototype and Testbed Design | Not `Practical Testbed` because the experiments run on a simulated Minikube-based cluster, not a deployed production environment.                                             |
+
+**Confidence (weakest axis):** MED
+**Adversarial mode:** off
 
 ---
 
