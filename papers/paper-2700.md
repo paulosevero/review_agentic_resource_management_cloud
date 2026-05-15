@@ -72,10 +72,7 @@ screening:
     winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: 'LLM papel subordinado em reward design (§IV.B). D3QN é o agent
-      (DRL-based, não LLM-backed). Não há loop agentic AI dirigindo decisões: LLM
-      gera heurísticas/rewards pré-treinamento de RL. Boundary A (agentic loop) não
-      atendido.'
+    my_justification: "LLM gera reward design e orientações pré-treinamento para o agente D3QN, decisor de RM em multi-UAV MEC. LLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -172,7 +169,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** LLM papel subordinado em reward design (§IV.B). D3QN é o agent (DRL-based, não LLM-backed). Não há loop agentic AI dirigindo decisões: LLM gera heurísticas/rewards pré-treinamento de RL. Boundary A (agentic loop) não atendido.
+- **my_justification:** LLM gera reward design e orientações pré-treinamento para o agente D3QN, decisor de RM em multi-UAV MEC. LLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **addressed_hint:** support — LLM apenas suporta RL via reward engineering
 - **evidence_sections:** ['IV.B: LLM-Empowered Reward Design', 'Algorithm 1: D3QN without LLM in closed loop']

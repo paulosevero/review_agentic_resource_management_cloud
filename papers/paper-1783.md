@@ -73,17 +73,8 @@ screening:
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: Exclude
-    my_justification: Paper propõe scheduling via prompt-template estático enviado
-      a LLMs (GPT-3.5, LLaMA, etc.), onde o contexto do cluster e tarefas pendentes
-      são formatados em texto. LLMs geram sugestões de scheduling, mas a decisão final
-      depende de parsing e rule-based logic pós-processamento. Não há loop agentic
-      autônomo (perceive→reason→tool-use→act) dirigindo a decisão de RM — o pipeline
-      é offline prompting + extraction, não agentic reasoning. Seção 'Experiment Design'
-      descreve input/output prompts estáticos; seção 'Scheduling with LLMs' mostra
-      template-based approach sem agência. Comparação contra heurísticos e um modelo
-      RL básico (seção Experimental Results), confirmando que LLM atua como um preditor
-      estático, não agente autônomo.
+    my_final_decision: Include
+    my_justification: "Escopo cloud computing task scheduling (Boundary C IN). LLMs são o decisor — geram diretamente decisões de scheduling a partir de prompts. RL aparece apenas como baseline para comparação (não combinado no pipeline). Inclusão."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -177,8 +168,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Exclude
-- **my_justification:** Paper propõe scheduling via prompt-template estático enviado a LLMs (GPT-3.5, LLaMA, etc.), onde o contexto do cluster e tarefas pendentes são formatados em texto. LLMs geram sugestões de scheduling, mas a decisão final depende de parsing e rule-based logic pós-processamento. Não há loop agentic autônomo (perceive→reason→tool-use→act) dirigindo a decisão de RM — o pipeline é offline prompting + extraction, não agentic reasoning. Seção 'Experiment Design' descreve input/output prompts estáticos; seção 'Scheduling with LLMs' mostra template-based approach sem agência. Comparação contra heurísticos e um modelo RL básico (seção Experimental Results), confirmando que LLM atua como um preditor estático, não agente autônomo.
+- **my_final_decision:** Include
+- **my_justification:** Escopo cloud computing task scheduling (Boundary C IN). LLMs são o decisor — geram diretamente decisões de scheduling a partir de prompts. RL aparece apenas como baseline para comparação (não combinado no pipeline). Inclusão.
 - **agrees_with_regex:** True
 - **addressed_hint:** regex hint 'D_devops_or_logs_not_rm' é falso positivo; o problema é que não há loop agentic, não questão de DevOps.
 - **evidence_sections:** ['Experiment Design § Model', 'Experiment Design § Scheduling with LLMs', 'Experimental Results and Analysis']

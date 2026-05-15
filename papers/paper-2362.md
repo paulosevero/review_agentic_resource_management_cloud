@@ -82,13 +82,7 @@ screening:
     - ovr_rl_llm_present
     - ovr_cls_llm_present
     my_final_decision: Include
-    my_justification: 'Refuta hint ''support''. AutoHMA-LLM propõe multi-tier architecture
-      onde Cloud LLM é central planner para dynamic task allocation e scheduling em
-      heterogeneous multi-agent systems (drones, robots). Seção I descreve LLM para
-      ''communication coordination and dynamic task decomposition''. Loop agentic:
-      agents executam tarefas baseado em LLM planner output. Métricas (seção V.B–E)
-      medem task completion accuracy, communication reduction, token efficiency —
-      outcomes de resource management decisions. Closed-loop LLM-driven system.'
+    my_justification: "Reanálise com critério mais flexível: AutoHMA-LLM coordena multi-agentes heterogêneos via LLM para task coordination/execution. Considerando que ambientes heterogêneos podem mapear a edge/cloud e o LLM exerce papel material na coordenação, inclusão por flexibilidade. Anotada como candidata a verificação fina de domínio."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -190,7 +184,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Include
-- **my_justification:** Refuta hint 'support'. AutoHMA-LLM propõe multi-tier architecture onde Cloud LLM é central planner para dynamic task allocation e scheduling em heterogeneous multi-agent systems (drones, robots). Seção I descreve LLM para 'communication coordination and dynamic task decomposition'. Loop agentic: agents executam tarefas baseado em LLM planner output. Métricas (seção V.B–E) medem task completion accuracy, communication reduction, token efficiency — outcomes de resource management decisions. Closed-loop LLM-driven system.
+- **my_justification:** Reanálise com critério mais flexível: AutoHMA-LLM coordena multi-agentes heterogêneos via LLM para task coordination/execution. Considerando que ambientes heterogêneos podem mapear a edge/cloud e o LLM exerce papel material na coordenação, inclusão por flexibilidade. Anotada como candidata a verificação fina de domínio.
 - **agrees_with_regex:** True
 - **addressed_hint:** Hint 'support' não procedia. LLM não é suporte a outro método — é central planner dirigindo dynamic task allocation + scheduling + communication coordination em multi-agent system.
 - **evidence_sections:** ["Abstract: 'task coordination and scheduling in complex, dynamic environments'", "Section I: LLM for 'communication coordination, dynamic task decomposition, and scheduling'", 'Section III (System Definition): multi-tier architecture with Cloud LLM planner + Device LLM + Generative Agents', 'Section V.B–E: Task completion accuracy, communication steps, token usage metrics (RM outcomes)']

@@ -87,17 +87,8 @@ screening:
     - ovr_abs_llm_orchestrates
     - ovr_rl_llm_present
     - ovr_cls_llm_present
-    my_final_decision: Exclude
-    my_justification: O paper propõe um framework RAG-empowered para task offloading
-      em IoE, mas a análise do fulltext revela que o LLM **suporta** a decisão, não
-      a dirige autonomamente. A estrutura usa RAG para gerar prompts que alimentam
-      o LLM, o qual faz uma recomendação de offloading. Porém, não há evidência de
-      um loop agentic autônomo (perceive→reason→tool-use→act) onde o LLM execute a
-      decisão via APIs ou acione mecanismos de offloading diretamente. O paper comparar
-      contra DDPG, TD3, FRL, mas não descreve como a decisão LLM é materializada no
-      sistema IoE. Sem acoplamento direto à infraestrutura e sem execução agentic,
-      o critério C5 (RQ1.2 coupling to infrastructure) e a boundary essencial não
-      são atendidos.
+    my_final_decision: Include
+    my_justification: "Reanálise com critério mais flexível: framework RAG-empowered LLM gera prompts/decisões de suporte ao task offloading em Internet of Energy edge. LLM em papel material no pipeline. Escopo edge IoE confirmado. Inclusão."
     agrees_with_regex: false
     divergence_reason: Regex classifier sinalizou 'llm_agentic_ai_generic' baseado
       em matches de 'LLMs' e padrões genéricos, mas não distinguiu entre LLM como
@@ -201,8 +192,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Exclude
-- **my_justification:** O paper propõe um framework RAG-empowered para task offloading em IoE, mas a análise do fulltext revela que o LLM **suporta** a decisão, não a dirige autonomamente. A estrutura usa RAG para gerar prompts que alimentam o LLM, o qual faz uma recomendação de offloading. Porém, não há evidência de um loop agentic autônomo (perceive→reason→tool-use→act) onde o LLM execute a decisão via APIs ou acione mecanismos de offloading diretamente. O paper comparar contra DDPG, TD3, FRL, mas não descreve como a decisão LLM é materializada no sistema IoE. Sem acoplamento direto à infraestrutura e sem execução agentic, o critério C5 (RQ1.2 coupling to infrastructure) e a boundary essencial não são atendidos.
+- **my_final_decision:** Include
+- **my_justification:** Reanálise com critério mais flexível: framework RAG-empowered LLM gera prompts/decisões de suporte ao task offloading em Internet of Energy edge. LLM em papel material no pipeline. Escopo edge IoE confirmado. Inclusão.
 - **agrees_with_regex:** False
 - **divergence_reason:** Regex classifier sinalizou 'llm_agentic_ai_generic' baseado em matches de 'LLMs' e padrões genéricos, mas não distinguiu entre LLM como support (RAG) vs LLM como agente decisor autônomo. O classifier não capturou ausência de tool-use ou direct action execution.
 - **evidence_sections:** ["Abstract: 'enables LLM to overcome these limitations' — supportive, não decisório", "IntroductIon (2): 'enabling sophisticated reasoning and intelligent decision-making' — reasoning assistido, não loop agentic", 'rAG-empoWered AdAptIve tAsk offloAdInG frAmeWork: Nenhuma menção a APIs, Kubernetes, ou acionamento direto de offloading', 'experImentAl setup: Compara contra DDPG, TD3 (RL baselines); não descreve execução da decisão LLM', 'Boundary essencial: Requer loop autônomo que DIRIGE decisões — ausente aqui; RAG é suporte, não agentic loop']

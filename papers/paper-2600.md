@@ -75,12 +75,7 @@ screening:
     - ovr_rl_llm_present
     - ovr_cls_llm_present
     my_final_decision: Exclude
-    my_justification: Paper propõe Graph-GAN vehicle trajectory prediction integrado
-      com 5G resource slicing para task offloading em IoV/MEC. GAI (Generative AI
-      / GAN) é usada apenas para trajectory prediction (input); a decisão de offloading/slicing
-      segue modelo de otimização clássico (delay model, modulation schemes, bandwidth
-      allocation). Não há agentic loop — GAI não dirige o raciocínio de RM. Loop de
-      decisão é determinístico/otimizado, não autônomo reasoning+acting de agente.
+    my_justification: "Escopo IoV/V2X com 5G slicing — V2X-adjacente, fora do escopo per Gate A. Adicionalmente, Graph-GAN atua como modelo preditivo de trajetória (não decisor de RM)."
     agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: null
@@ -182,7 +177,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** Paper propõe Graph-GAN vehicle trajectory prediction integrado com 5G resource slicing para task offloading em IoV/MEC. GAI (Generative AI / GAN) é usada apenas para trajectory prediction (input); a decisão de offloading/slicing segue modelo de otimização clássico (delay model, modulation schemes, bandwidth allocation). Não há agentic loop — GAI não dirige o raciocínio de RM. Loop de decisão é determinístico/otimizado, não autônomo reasoning+acting de agente.
+- **my_justification:** Escopo IoV/V2X com 5G slicing — V2X-adjacente, fora do escopo per Gate A. Adicionalmente, Graph-GAN atua como modelo preditivo de trajetória (não decisor de RM).
 - **agrees_with_regex:** False
 - **addressed_hint:** support — GAI como preditor/feature extractor para método clássico de resource slicing, não como decisor agentic
 - **evidence_sections:** ['§B Graph-GAN Vehicle Trajectory Prediction Model — GAN gera previsões; não toma decisão', '§C RSUs Resource Slicing Model — formulas de otimização clássicas (delay, bandwidth, MCS allocation)', '§IV Problem Description — model determinístico de alocação sem agentic reasoning']

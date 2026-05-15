@@ -75,9 +75,7 @@ screening:
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: LLM gera features/heurísticas para otimizador DRL. Loop autônomo
-      é dirigido por RL, não por agentic-AI. O LLM está em papel de suporte (entrada
-      para outro método), não dirige decisões. Não atende Boundary A.
+    my_justification: "LiLM atua como gerador de features/heurísticas que alimentam o otimizador DRL, decisor de SFC provisioning. LLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: 'Classifier marcou D_devops_or_logs_not_rm, mas real problema
       é H_llm_supports_other_method: LLM apoia DRL, não dirige loop.'
@@ -174,7 +172,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** LLM gera features/heurísticas para otimizador DRL. Loop autônomo é dirigido por RL, não por agentic-AI. O LLM está em papel de suporte (entrada para outro método), não dirige decisões. Não atende Boundary A.
+- **my_justification:** LiLM atua como gerador de features/heurísticas que alimentam o otimizador DRL, decisor de SFC provisioning. LLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **divergence_reason:** Classifier marcou D_devops_or_logs_not_rm, mas real problema é H_llm_supports_other_method: LLM apoia DRL, não dirige loop.
 - **addressed_hint:** support

@@ -66,11 +66,7 @@ screening:
     winning_category: C_llm_as_workload
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: SLM funciona como gerador de features para QTD-Learning (§4,
-      Algorithm 1). Placement decisions são governadas pelo agente de RL treinado
-      com features SLM, não por um loop agentic-AI que perceba estado dinâmico e tome
-      decisões autônomas de placement. SLM subordinado ao RL; sem perceive-reason-act
-      loop dirigindo RM.
+    my_justification: "SLM atua como gerador de features para o agente QTD-Learning, que é o decisor de placement em fog. SLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -165,7 +161,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** SLM funciona como gerador de features para QTD-Learning (§4, Algorithm 1). Placement decisions são governadas pelo agente de RL treinado com features SLM, não por um loop agentic-AI que perceba estado dinâmico e tome decisões autônomas de placement. SLM subordinado ao RL; sem perceive-reason-act loop dirigindo RM.
+- **my_justification:** SLM atua como gerador de features para o agente QTD-Learning, que é o decisor de placement em fog. SLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **addressed_hint:** support — confirmado: SLM dá suporte ao método QTD-Learning (RL) subjacente
 - **evidence_sections:** ['4. Proposed Work: SLM-guided QTDL com SLM como gerador de política-shaping', 'Algorithm 1: QTD-Learning loop com SLM features (não agentic loop)', '6. Results: policy convergence via RL, sem raciocínio agentic autônomo']

@@ -70,15 +70,7 @@ screening:
     winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: 'Paper propõe LLM-empowered multi-expert para industrial edge
-      security. Arquitetura: múltiplos especialistas DRL treinados (cada um para tarefa
-      distinta) + LLM gate network. LLM replace conventional gate networks para interpretar
-      reqs de tarefa e ativar/sintetizar outputs de DRL experts. MAS: a decisão final
-      é ainda do DRL expert selecionado. LLM é orchestrator/gating mechanism, não
-      agente que toma decisão de RM. Seção ''Multiple Experts'' + ''LLM-Based Orchestration''
-      detalham: LLM parse task reqs e seleciona expert, mas ação final vem do policy
-      π_k (DRL). 13% melhoria é sobre DRL single-task baseline, não vs. non-agentic
-      baselines.'
+    my_justification: "LLM atua como gate network roteando entre policies expert do DRL multi-expert — o RL ainda é o executor final das policies. LLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -177,7 +169,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** Paper propõe LLM-empowered multi-expert para industrial edge security. Arquitetura: múltiplos especialistas DRL treinados (cada um para tarefa distinta) + LLM gate network. LLM replace conventional gate networks para interpretar reqs de tarefa e ativar/sintetizar outputs de DRL experts. MAS: a decisão final é ainda do DRL expert selecionado. LLM é orchestrator/gating mechanism, não agente que toma decisão de RM. Seção 'Multiple Experts' + 'LLM-Based Orchestration' detalham: LLM parse task reqs e seleciona expert, mas ação final vem do policy π_k (DRL). 13% melhoria é sobre DRL single-task baseline, não vs. non-agentic baselines.
+- **my_justification:** LLM atua como gate network roteando entre policies expert do DRL multi-expert — o RL ainda é o executor final das policies. LLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **addressed_hint:** Pre-flagged hint='support' procede: LLM governa seleção de expert (gating), DRL especialista toma ação.
 - **evidence_sections:** ['Introduction § Critical bottleneck / task-specific customization', 'LLM-Based Orchestration § How can ... adaptive optimizations', 'Multiple Experts § LLM-based orchestrator']

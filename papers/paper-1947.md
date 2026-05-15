@@ -78,10 +78,8 @@ screening:
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: Exclude
-    my_justification: Artigo aborda gerenciamento de rede/serviços (triage de incidentes,
-      RCA) usando LLM como ferramenta de suporte. É uma tarefa de DevOps/observabilidade,
-      não de resource management. Não atende à Boundary B (RM decisions em loop fechado).
+    my_final_decision: Include
+    my_justification: "NOTA: o framing 6G é decoração — o use case real construído é autoscaling de microsserviços cloud-native. Pipeline: XGBoost detecta anomaly, SHAP extrai feature importance, e Llama2 gera explicações em linguagem natural + sugere/aplica corrective actions de scaling para prevenir SLA violations em microsserviços cloud-native. Avaliação com experimentos reais em pipeline cloud-native (não em RAN/PHY). LLM em papel material no loop RM (corrective scaling actions). Inclusão; framing 6G ignorado."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -176,8 +174,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Exclude
-- **my_justification:** Artigo aborda gerenciamento de rede/serviços (triage de incidentes, RCA) usando LLM como ferramenta de suporte. É uma tarefa de DevOps/observabilidade, não de resource management. Não atende à Boundary B (RM decisions em loop fechado).
+- **my_final_decision:** Include
+- **my_justification:** NOTA: o framing 6G é decoração — o use case real construído é autoscaling de microsserviços cloud-native. Pipeline: XGBoost detecta anomaly, SHAP extrai feature importance, e Llama2 gera explicações em linguagem natural + sugere/aplica corrective actions de scaling para prevenir SLA violations em microsserviços cloud-native. Avaliação com experimentos reais em pipeline cloud-native (não em RAN/PHY). LLM em papel material no loop RM (corrective scaling actions). Inclusão; framing 6G ignorado.
 - **agrees_with_regex:** True
 - **addressed_hint:** support
 - **evidence_sections:** ['Abstract: zero-touch management', 'System Design: incident detection/network management', 'Evaluation: not SLA/scaling/placement metrics']

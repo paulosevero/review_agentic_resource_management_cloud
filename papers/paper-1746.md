@@ -68,11 +68,7 @@ screening:
     winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: 'LLM funciona como módulo de suporte (§4, Algorithm 1): gera
-      heurísticas para Q-shaping no agente SARSA. O loop de decisão de scheduling
-      é governado pelo RL, não por um loop agentic-AI percebendo o estado da infraestrutura
-      e agindo autonomamente. LLM não percebe, raciocina ou invoca ações de RM. Critério
-      de boundary: LLM-guided (subordinado) não LLM-driven (agentic).'
+    my_justification: "LLM gera heurísticas para Q-shaping no agente SARSA, que é o decisor final de scheduling. LLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -174,7 +170,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** LLM funciona como módulo de suporte (§4, Algorithm 1): gera heurísticas para Q-shaping no agente SARSA. O loop de decisão de scheduling é governado pelo RL, não por um loop agentic-AI percebendo o estado da infraestrutura e agindo autonomamente. LLM não percebe, raciocina ou invoca ações de RM. Critério de boundary: LLM-guided (subordinado) não LLM-driven (agentic).
+- **my_justification:** LLM gera heurísticas para Q-shaping no agente SARSA, que é o decisor final de scheduling. LLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **addressed_hint:** support — confirmado: LLM apenas dá suporte ao método RL subjacente
 - **evidence_sections:** ['4. Proposed Work: LLM-guided SARSA architecture com LLM como gerador de heurísticas', 'Algorithm 1: SARSA loop (estados, ações, recompensas) com heurísticas LLM, sem loop agentic', 'Conclusões: task scheduling decisions driven by Q-learning convergence, not agent reasoning']

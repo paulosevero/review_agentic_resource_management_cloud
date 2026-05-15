@@ -68,14 +68,8 @@ screening:
       geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: Include
-    my_justification: Refuta hint 'networks'. Paper proposes UnifiedKP, um knowledge
-      plane para LLM-enabled agent coordination em 6G networks. Seção V.D descreve
-      Edge AI Service Orchestration Results; algoritmos 1–2 detalham semantic knowledge
-      retrieval e distributed consistency management que dirigem decisões de alocação
-      de recursos entre agentes. A loop agentic (agents coordenam via shared knowledge
-      plane + LLM retrieval + RL adaptation) dirige decisões de resource management
-      em continuum edge. Não é tarefa de DevOps/logs.
+    my_final_decision: Exclude
+    my_justification: "UnifiedKP propõe knowledge plane para 6G networks com foco em RAN/network knowledge management. Mesmo aplicando flexibilidade, o domínio primário é network management 6G — não resource management em cloud/edge/fog/continuum (Boundary C). Mantida exclusão."
     agrees_with_regex: false
     divergence_reason: Regex classificou como D_devops_or_logs_not_rm (incident triage,
       RCA). Full-text revela agentic resource management architecture para orquestração
@@ -175,8 +169,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Include
-- **my_justification:** Refuta hint 'networks'. Paper proposes UnifiedKP, um knowledge plane para LLM-enabled agent coordination em 6G networks. Seção V.D descreve Edge AI Service Orchestration Results; algoritmos 1–2 detalham semantic knowledge retrieval e distributed consistency management que dirigem decisões de alocação de recursos entre agentes. A loop agentic (agents coordenam via shared knowledge plane + LLM retrieval + RL adaptation) dirige decisões de resource management em continuum edge. Não é tarefa de DevOps/logs.
+- **my_final_decision:** Exclude
+- **my_justification:** UnifiedKP propõe knowledge plane para 6G networks com foco em RAN/network knowledge management. Mesmo aplicando flexibilidade, o domínio primário é network management 6G — não resource management em cloud/edge/fog/continuum (Boundary C). Mantida exclusão.
 - **agrees_with_regex:** False
 - **divergence_reason:** Regex classificou como D_devops_or_logs_not_rm (incident triage, RCA). Full-text revela agentic resource management architecture para orquestração de serviços edge em 6G, não DevOps.
 - **addressed_hint:** Hint 'networks' procedia: paper é sobre redes. Mas não é 'estritamente redes/telecom' — é agentic AI driving resource orchestration decisions em infraestrutura 6G/edge.

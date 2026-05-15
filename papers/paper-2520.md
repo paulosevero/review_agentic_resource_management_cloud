@@ -70,11 +70,7 @@ screening:
     winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: TLM (Tiny Language Model) atua apenas como guia para o algoritmo
-      Flow Q-Learning. O loop agentic-AI não dirige a decisão de scheduling em fog
-      computing; FQL é um algoritmo de RL clássico que toma a decisão final. Seção
-      4 (Proposed Work) e Algorithm 1 mostram o TLM como módulo de entrada para heurísticas/features
-      do FQL, não como agente autônomo com loop perceive-reason-act dirigindo RM.
+    my_justification: "Tiny LM atua como guia da política do agente Flow Q-Learning, decisor final de task scheduling em fog. LLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -171,7 +167,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** TLM (Tiny Language Model) atua apenas como guia para o algoritmo Flow Q-Learning. O loop agentic-AI não dirige a decisão de scheduling em fog computing; FQL é um algoritmo de RL clássico que toma a decisão final. Seção 4 (Proposed Work) e Algorithm 1 mostram o TLM como módulo de entrada para heurísticas/features do FQL, não como agente autônomo com loop perceive-reason-act dirigindo RM.
+- **my_justification:** Tiny LM atua como guia da política do agente Flow Q-Learning, decisor final de task scheduling em fog. LLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **addressed_hint:** support
 - **evidence_sections:** ["Abstract: 'The neutrality and fine-tuning capability of the TLM is combined with the quick generable ability of the FQL algorithm.'", 'Section 4 (Proposed Work): TLM guiding FQL framework, where FQL makes scheduling decisions.', 'Algorithm 1: TLM input encoded into FQL action-value function, FQL selects actions.']

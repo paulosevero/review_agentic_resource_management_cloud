@@ -69,8 +69,8 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: Exclude
-    my_justification: ''
+    my_final_decision: Include
+    my_justification: "Escopo edge-cloud continuum explícito (Boundary C IN). LLM consome workflow abstrato + restrições e gera service mapping/placement em ambientes heterogêneos. LLM é o módulo decisório — padrão idêntico ao anchor paper-1644. Avaliação experimental presente."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -168,8 +168,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Exclude
-- **my_justification:** 
+- **my_final_decision:** Include
+- **my_justification:** Escopo edge-cloud continuum explícito (Boundary C IN). LLM consome workflow abstrato + restrições e gera service mapping/placement em ambientes heterogêneos. LLM é o módulo decisório — padrão idêntico ao anchor paper-1644. Avaliação experimental presente.
 - **agrees_with_regex:** True
 
 

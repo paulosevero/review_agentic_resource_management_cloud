@@ -75,13 +75,7 @@ screening:
     - ovr_rl_llm_present
     - ovr_cls_llm_present
     my_final_decision: Exclude
-    my_justification: 'Paper proposes iterative algorithm decomposing resource allocation
-      into two sub-problems: (1) satellite computation via convex Lagrange-multiplier
-      method, (2) task offloading via LLM-based optimizer. LLM is one component in
-      an alternating optimization loop, not an autonomous agentic system. No perceive-reason-act
-      cycle; LLM is stateless prompt-response tool generating solutions evaluated
-      deterministically. Section II and Algorithm 1 show LLM as generator module within
-      optimization, not decision driver.'
+    my_justification: "Escopo satellite edge computing — próximo a Orbital Edge Computing, fora do escopo per Gate A."
     agrees_with_regex: false
     divergence_reason: Regex flagged as mas_llm_based; full-text reveals LLM is sub-solver,
       not agentic multi-agent system. Aligns with hint_status=pre_flagged_disagree.
@@ -184,7 +178,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** Paper proposes iterative algorithm decomposing resource allocation into two sub-problems: (1) satellite computation via convex Lagrange-multiplier method, (2) task offloading via LLM-based optimizer. LLM is one component in an alternating optimization loop, not an autonomous agentic system. No perceive-reason-act cycle; LLM is stateless prompt-response tool generating solutions evaluated deterministically. Section II and Algorithm 1 show LLM as generator module within optimization, not decision driver.
+- **my_justification:** Escopo satellite edge computing — próximo a Orbital Edge Computing, fora do escopo per Gate A.
 - **agrees_with_regex:** False
 - **divergence_reason:** Regex flagged as mas_llm_based; full-text reveals LLM is sub-solver, not agentic multi-agent system. Aligns with hint_status=pre_flagged_disagree.
 - **addressed_hint:** hint_categories=[networks] partially applies — satellite MEC is edge infrastructure, but LLM role is optimization tool (support) not agentic RM loop.

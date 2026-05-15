@@ -73,15 +73,7 @@ screening:
     winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: 'Paper propõe LLM-optimized fuzzy state fusion acoplado a RL
-      (PPO). O LLM treina membership functions dinamicamente para mapear estados em
-      espaço semântico unificado; o RL (policy gradient) toma decisões de scheduling
-      via MOALO (multi-objective ant lion optimizer). Arquitetura é dual-loop: LLM→fuzzy
-      state, RL→action. O loop agentic (perceive→reason→act) é dirigido pelo RL, não
-      pelo LLM. LLM dá suporte ao RL otimizando entrada fuzzy. Seção ''1 Introduction''
-      e Problem Statement confirmam: ''LLM-enhanced fuzzy state fusion'' + ''RL-driven
-      Dynamic Parameter Optimization'' = LLM suporte a RL. Não há agentic reasoning
-      loop dirigindo RM.'
+    my_justification: "LLM treina membership functions de fuzzy state fusion alimentando o agente PPO, que é o decisor de service resource scheduling. LLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -183,7 +175,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** Paper propõe LLM-optimized fuzzy state fusion acoplado a RL (PPO). O LLM treina membership functions dinamicamente para mapear estados em espaço semântico unificado; o RL (policy gradient) toma decisões de scheduling via MOALO (multi-objective ant lion optimizer). Arquitetura é dual-loop: LLM→fuzzy state, RL→action. O loop agentic (perceive→reason→act) é dirigido pelo RL, não pelo LLM. LLM dá suporte ao RL otimizando entrada fuzzy. Seção '1 Introduction' e Problem Statement confirmam: 'LLM-enhanced fuzzy state fusion' + 'RL-driven Dynamic Parameter Optimization' = LLM suporte a RL. Não há agentic reasoning loop dirigindo RM.
+- **my_justification:** LLM treina membership functions de fuzzy state fusion alimentando o agente PPO, que é o decisor de service resource scheduling. LLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **addressed_hint:** Pre-flagged hint='support' procede: LLM otimiza features/estados (fuzzy membership), RL dirige decisão.
 - **evidence_sections:** ['1 Introduction § Challenges', 'Problem Statement § LLM-enhanced fuzzy state fusion']

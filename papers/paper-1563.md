@@ -72,14 +72,8 @@ screening:
       AI dirigindo decisão de RM.
     winning_category: H_llm_supports_other_method
     overrides_applied: []
-    my_final_decision: Exclude
-    my_justification: 'LLM aparece em papel de suporte dentro da evolução GP. Seção
-      4.5 descreve LLM-Evolution como componente que gera tokens baseado em alto-fitness
-      individuos de GPHH, mas a decisão de colocação de microsserviços é dirigida
-      pelo algoritmo genético híbrido (GPHH), não por um loop agentic do LLM. Não
-      há perceive-reason-act autônomo: o LLM não monitora estado da infra, não raciocina
-      sobre alternativas de alocação, não executa ações. Assim, não satisfaz boundary
-      essencial (seção 3 CLAUDE.md).'
+    my_final_decision: Include
+    my_justification: "LLM-enhanced Genetic Programming Hyper-Heuristic (LLM-GPHH) para dynamic microservice deployment em cloud. O LLM desempenha papel decisório material gerando os operadores genéticos do GP (mutação/crossover); o GP é apenas o framework dentro do qual o LLM opera. Não é família LLM-subordinate-to-RL (é GP, não RL). Escopo cloud confirmado. Inclusão."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -174,8 +168,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Exclude
-- **my_justification:** LLM aparece em papel de suporte dentro da evolução GP. Seção 4.5 descreve LLM-Evolution como componente que gera tokens baseado em alto-fitness individuos de GPHH, mas a decisão de colocação de microsserviços é dirigida pelo algoritmo genético híbrido (GPHH), não por um loop agentic do LLM. Não há perceive-reason-act autônomo: o LLM não monitora estado da infra, não raciocina sobre alternativas de alocação, não executa ações. Assim, não satisfaz boundary essencial (seção 3 CLAUDE.md).
+- **my_final_decision:** Include
+- **my_justification:** LLM-enhanced Genetic Programming Hyper-Heuristic (LLM-GPHH) para dynamic microservice deployment em cloud. O LLM desempenha papel decisório material gerando os operadores genéticos do GP (mutação/crossover); o GP é apenas o framework dentro do qual o LLM opera. Não é família LLM-subordinate-to-RL (é GP, não RL). Escopo cloud confirmado. Inclusão.
 - **agrees_with_regex:** True
 - **addressed_hint:** support
 - **evidence_sections:** ['4.5 LLM Evolution', '3 Problem Definition (GPHH é o método principal)', '4.1 Overview (role de LLM em geração de heurísticas)']

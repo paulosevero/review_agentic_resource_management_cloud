@@ -71,13 +71,7 @@ screening:
     winning_category: E_strict_telecom
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: Paper proposes generative AI (diffusion models)-enhanced DRL
-      for UAV-based low-altitude MEC resource optimization. Diffusion models are embedded
-      in the DRL actor network to improve exploration in hybrid action spaces. Core
-      agent is DRL, not LLM-based agentic AI. Generative AI is augmentation to DRL
-      actor, not an autonomous LLM-driven reasoning loop. Sections II (SYSTEM MODEL)
-      and III (Generative AI enhancement) confirm DRL is decision engine; diffusion
-      is support mechanism.
+    my_justification: "Escopo RSMA-enabled low-altitude UAV MEC com PHY-layer optimization — fora do escopo per Gate A. Adicionalmente, diffusion model atua embutido no DRL actor (GAI-subordinate-to-RL)."
     agrees_with_regex: true
     divergence_reason: Paper uses generative AI (diffusion) in DRL context, not agentic
       LLM-based system. Regex boundary unclear; full-text shows classical RL+GenAI
@@ -176,7 +170,7 @@ abstract: \"UAV-based MEC system with RSMA for uplink task offloadin" }`
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** Paper proposes generative AI (diffusion models)-enhanced DRL for UAV-based low-altitude MEC resource optimization. Diffusion models are embedded in the DRL actor network to improve exploration in hybrid action spaces. Core agent is DRL, not LLM-based agentic AI. Generative AI is augmentation to DRL actor, not an autonomous LLM-driven reasoning loop. Sections II (SYSTEM MODEL) and III (Generative AI enhancement) confirm DRL is decision engine; diffusion is support mechanism.
+- **my_justification:** Escopo RSMA-enabled low-altitude UAV MEC com PHY-layer optimization — fora do escopo per Gate A. Adicionalmente, diffusion model atua embutido no DRL actor (GAI-subordinate-to-RL).
 - **agrees_with_regex:** True
 - **divergence_reason:** Paper uses generative AI (diffusion) in DRL context, not agentic LLM-based system. Regex boundary unclear; full-text shows classical RL+GenAI fusion, not agentic-AI-for-RM per scope.
 - **addressed_hint:** hint_categories=[networks] applies strongly — 6G/5G/UAV-MEC is telecom/RAN focus (uplink RSMA, interference, satellite). Out-of-scope per boundary exclusion list.

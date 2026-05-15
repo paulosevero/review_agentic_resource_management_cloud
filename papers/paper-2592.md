@@ -74,12 +74,7 @@ screening:
     winning_category: C_llm_as_workload
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: 'Paper usa foundation models (BERT/GPT) e LoRA fine-tuning para
-      feature extraction em tarefas de task offloading veicular, mas o loop de decisão
-      é um Q-learning agent clássico (BMQN), não um agentic AI loop. Foundation model
-      atua como feature encoder; o agente RL toma a decisão de offloading. Não satisfaz
-      boundary: LLM/FM não dirige o loop autônomo de decisão de RM. Hint ''support''
-      confirmado — FM apenas suporta RL clássico.'
+    my_justification: "Escopo R2X/V2X vehicular multi-hop — fora do escopo per Gate A. Adicionalmente, foundation models (BERT/GPT) atuam como feature extractors subordinados ao agente Q-learning (LLM-subordinate-to-RL)."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -176,7 +171,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** Paper usa foundation models (BERT/GPT) e LoRA fine-tuning para feature extraction em tarefas de task offloading veicular, mas o loop de decisão é um Q-learning agent clássico (BMQN), não um agentic AI loop. Foundation model atua como feature encoder; o agente RL toma a decisão de offloading. Não satisfaz boundary: LLM/FM não dirige o loop autônomo de decisão de RM. Hint 'support' confirmado — FM apenas suporta RL clássico.
+- **my_justification:** Escopo R2X/V2X vehicular multi-hop — fora do escopo per Gate A. Adicionalmente, foundation models (BERT/GPT) atuam como feature extractors subordinados ao agente Q-learning (LLM-subordinate-to-RL).
 - **agrees_with_regex:** True
 - **addressed_hint:** support — FM como feature extractor, não como decisor agentic
 - **evidence_sections:** ['§II.A Foundation Model — descreve arquitetura BERT/LoRA', '§III System Model — formação Q-learning (BMQN) toma decisão final', '§IV não menciona agentic loop ou multi-step reasoning — apenas RL classico']

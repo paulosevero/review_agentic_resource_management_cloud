@@ -72,14 +72,8 @@ screening:
     - ovr_with_llm
     - ovr_rl_llm_present
     - ovr_cls_llm_present
-    my_final_decision: Include
-    my_justification: 'Framework integra GAI (Transformer+RAG com federated learning)
-      e game-theoretic models para offloading e resource allocation em vehicular edge
-      computing. Vehicles funcionam como strategic agents que autonomamente decidem
-      offloading strategies em iteração até Nash equilibrium (Seção III-C). Loop agentico:
-      sensor telemetry→Augmented Intelligence layer (GAI+RAG)→Decision layer (game-theoretic
-      agents)→offloading decisions. Evaluation: simulação com 25-35% menor latency,
-      20-30% menor energia vs. métodos tradicionais.'
+    my_final_decision: Exclude
+    my_justification: "Escopo V2X/vehicular networks. Per Gate A (Boundary C estrito), V2X é tratado como adjacente a Orbital Edge Computing e fora do escopo. Abstract também sinaliza qualidade fraca (tratamento genérico de GenAI sem sistema construído)."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -180,8 +174,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Include
-- **my_justification:** Framework integra GAI (Transformer+RAG com federated learning) e game-theoretic models para offloading e resource allocation em vehicular edge computing. Vehicles funcionam como strategic agents que autonomamente decidem offloading strategies em iteração até Nash equilibrium (Seção III-C). Loop agentico: sensor telemetry→Augmented Intelligence layer (GAI+RAG)→Decision layer (game-theoretic agents)→offloading decisions. Evaluation: simulação com 25-35% menor latency, 20-30% menor energia vs. métodos tradicionais.
+- **my_final_decision:** Exclude
+- **my_justification:** Escopo V2X/vehicular networks. Per Gate A (Boundary C estrito), V2X é tratado como adjacente a Orbital Edge Computing e fora do escopo. Abstract também sinaliza qualidade fraca (tratamento genérico de GenAI sem sistema construído).
 - **agrees_with_regex:** True
 - **evidence_sections:** ['I. INTRODUCTION', 'III. GAI-BASED COMPUTATION OFFLOADING AND RESOURCE MANAGEMENT', 'III-C. System model (3-layer architecture)', 'III-D. Decision-Making Algorithm', 'IV. RESULTS AND DISCUSSION']
 

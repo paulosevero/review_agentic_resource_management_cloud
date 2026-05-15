@@ -94,15 +94,8 @@ screening:
     - ovr_abs_llm_orchestrates
     - ovr_rl_llm_present
     - ovr_cls_llm_present
-    my_final_decision: Include
-    my_justification: Paper apresenta agent-based architecture com cloud agent, RSU
-      agents, e vehicle agents que coletam telemetria (state), usam D-LAM e DM-LAM
-      (large AI models com sequence modeling) para inferência e decision-making em
-      tempo real, e atuam sobre alocação de recursos (task offloading, power allocation).
-      Loop perceive→(telemetry)→reason(LAM inference)→act(resource allocation) está
-      claramente descrito (§Workflow, §Multi-layer architecture). Satisfaz RQ1 (arquitetura),
-      RQ2 (task offloading como decisão delegada), RQ3 (reasoning via LAM com RAG/multi-scenario
-      dataset), RQ4 (avaliação em IoV scenarios).
+    my_final_decision: Exclude
+    my_justification: "Escopo V2V/V2I vehicle-road-cloud collaboration — V2X-adjacente, fora do escopo per Gate A."
     agrees_with_regex: true
     divergence_reason: 'regex classificou como ''networks'' (hint exclude), mas paper
       é claramente agentic-RM: describe loop completo perceive-reason-act com LAM
@@ -205,8 +198,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Include
-- **my_justification:** Paper apresenta agent-based architecture com cloud agent, RSU agents, e vehicle agents que coletam telemetria (state), usam D-LAM e DM-LAM (large AI models com sequence modeling) para inferência e decision-making em tempo real, e atuam sobre alocação de recursos (task offloading, power allocation). Loop perceive→(telemetry)→reason(LAM inference)→act(resource allocation) está claramente descrito (§Workflow, §Multi-layer architecture). Satisfaz RQ1 (arquitetura), RQ2 (task offloading como decisão delegada), RQ3 (reasoning via LAM com RAG/multi-scenario dataset), RQ4 (avaliação em IoV scenarios).
+- **my_final_decision:** Exclude
+- **my_justification:** Escopo V2V/V2I vehicle-road-cloud collaboration — V2X-adjacente, fora do escopo per Gate A.
 - **agrees_with_regex:** True
 - **divergence_reason:** regex classificou como 'networks' (hint exclude), mas paper é claramente agentic-RM: describe loop completo perceive-reason-act com LAM dirigindo decisões de RM em edge-cloud-vehicle continuum.
 - **addressed_hint:** networks flag não procede — apesar do contexto 6G/V2X, o foco é agentic AI para resource management, não telecom/network slicing per se

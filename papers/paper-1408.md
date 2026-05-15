@@ -9,8 +9,7 @@ authors:
 - Guo, Jianxiong
 - Wang, Tian
 - Jia, Weijia
-venue: Proceedings - 2025 IEEE International Conference on Security, Privacy, Anonymity
-  in Computation and Communication and Storage, SpaCCS 2025
+venue: Proceedings - 2025 IEEE International Conference on Security, Privacy, Anonymity in Computation and Communication and Storage, SpaCCS 2025
 venue_type: conference
 year: 2025
 doi: 10.1109/SpaCCS67922.2025.00012
@@ -40,8 +39,7 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Include
-    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource
-      management signal); C3=1.0 (infra/cloud-edge signal)
+    proposed_justification: C1=1.0 (agentic/LLM signal in title); C2=1.0 (resource management signal); C3=1.0 (infra/cloud-edge signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
@@ -78,7 +76,7 @@ screening:
     - ovr_abs_llm_orchestrates
     - ovr_cls_llm_present
     my_final_decision: Include
-    my_justification: ''
+    my_justification: "LLMScheduler (Seção IV) posiciona o LLM como participante ativo do ciclo de scheduling: pontua nós candidatos e seleciona o ótimo em tempo real para o cluster Kubernetes heterogêneo. Loop perceive→reason→act explícito — LLM recebe estado real do cluster e dos pods pendentes, raciocina sobre constraints e objetivos, emite decisão de binding pod→node. HybridScheduler complementa: LLM gera offline strategic intents que parametrizam a scoring function de produção, padrão análogo ao anchor paper-1644. Avaliação (Seção V) mostra +7% scheduling success rate em alta contenção e latência ms-level no HybridScheduler. Escopo Kubernetes em edge computing confirmado."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -180,7 +178,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Include
-- **my_justification:** 
+- **my_justification:** LLMScheduler (Seção IV) posiciona o LLM como participante ativo do ciclo de scheduling: pontua nós candidatos e seleciona o ótimo em tempo real para o cluster Kubernetes heterogêneo. Loop perceive→reason→act explícito — LLM recebe estado real do cluster e dos pods pendentes, raciocina sobre constraints e objetivos, emite decisão de binding pod→node. HybridScheduler complementa: LLM gera offline strategic intents que parametrizam a scoring function de produção, padrão análogo ao anchor paper-1644. Avaliação (Seção V) mostra +7% scheduling success rate em alta contenção e latência ms-level no HybridScheduler. Escopo Kubernetes em edge computing confirmado.
 - **agrees_with_regex:** True
 
 

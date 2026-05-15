@@ -71,11 +71,7 @@ screening:
     winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: 'LLM aparece em papel de suporte ao DRL — gera design de recompensas
-      e orientações de policy (Seção IV: ''LLM-guided reward design''). O loop de
-      decisão de resource management é governado pelo D3QN (Deep RL), não por um agente
-      agentic AI baseado em LLM. Não há loop autônomo perceive→reason→tool-use→act
-      dirigido pelo LLM.'
+    my_justification: "LLM gera reward design e orientações de policy para o agente D3QN, que é o decisor de RM em multi-cluster MEC. LLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -176,7 +172,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** LLM aparece em papel de suporte ao DRL — gera design de recompensas e orientações de policy (Seção IV: 'LLM-guided reward design'). O loop de decisão de resource management é governado pelo D3QN (Deep RL), não por um agente agentic AI baseado em LLM. Não há loop autônomo perceive→reason→tool-use→act dirigido pelo LLM.
+- **my_justification:** LLM gera reward design e orientações de policy para o agente D3QN, que é o decisor de RM em multi-cluster MEC. LLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **addressed_hint:** support (pre_flagged_align confirmado)
 - **evidence_sections:** ['Seção I — LLM-Guided DRL (título framework)', 'Seção IV — proposed LGD framework: reward design by LLM, D3QN executa scheduling', 'Seção II — system model: MEC task scheduling (RM scope)', 'Seção V — evaluation: D3QN agent performance, não LLM agent']

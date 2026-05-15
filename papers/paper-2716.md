@@ -87,12 +87,8 @@ screening:
     - ovr_with_llm
     - ovr_llm_modifier
     - ovr_abs_llm_orchestrates
-    my_final_decision: Include
-    my_justification: 'GenAI (LLM-backed) fecha loop agentic: predict (ML) → reason
-      (GenAI §III.B) → allocate (§III.E). GenAI explanations + uncertainty flags trigger
-      fallback guardrails. Decision-making é dirigido por GenAI reasoning, não suporte
-      passivo. Real-time adaptation loop (1-10s) evidencia autonomous decisions em
-      resource allocation (traffic steering, priority).'
+    my_final_decision: Exclude
+    my_justification: "Escopo Internet2 traffic (WAN-backbone traffic engineering) — fora do escopo per Gate A."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -193,8 +189,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Include
-- **my_justification:** GenAI (LLM-backed) fecha loop agentic: predict (ML) → reason (GenAI §III.B) → allocate (§III.E). GenAI explanations + uncertainty flags trigger fallback guardrails. Decision-making é dirigido por GenAI reasoning, não suporte passivo. Real-time adaptation loop (1-10s) evidencia autonomous decisions em resource allocation (traffic steering, priority).
+- **my_final_decision:** Exclude
+- **my_justification:** Escopo Internet2 traffic (WAN-backbone traffic engineering) — fora do escopo per Gate A.
 - **agrees_with_regex:** True
 - **addressed_hint:** support flagged but not confirmed — GenAI actively reasons & decides, not passive support
 - **evidence_sections:** ['III.B Hybrid ML+GenAI Workflow (Prediction→GenAI Reasoning→Decision&Allocation)', 'III.E Behavior-Aware Allocation (uncertainty-aware fallback mode)', 'Real-Time Adaptation Loop with GenAI explanations']

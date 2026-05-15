@@ -75,11 +75,7 @@ screening:
     winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: 'Paper sobre microservice deployment com LLM + CoT + RAG + Deep
-      RL. LLM é usado em papel de suporte: gera sugestões de decomposição de problema
-      (sub-problems em CoT) e hints para o RL agent. A decisão de deployment é governada
-      por Deep Reinforcement Learning (Section 3.4), não pelo loop agentic do LLM.
-      Loop causal: human → LLM (code-generation support) → RL (decision) → action.'
+    my_justification: "LLM atua como encoder/hint-generator (CoT + RAG) que orienta Deep RL como decisor final (Sec 3.4). LLM subordinado ao RL — exclui per Gate B."
     agrees_with_regex: true
     divergence_reason: 'Regex sugeriu Exclude corretamente (H_llm_supports_other_method),
       mas para confirmar: fulltext mostra ''Deep Reinforce Learning'' (Sec 3.4) como
@@ -183,7 +179,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** Paper sobre microservice deployment com LLM + CoT + RAG + Deep RL. LLM é usado em papel de suporte: gera sugestões de decomposição de problema (sub-problems em CoT) e hints para o RL agent. A decisão de deployment é governada por Deep Reinforcement Learning (Section 3.4), não pelo loop agentic do LLM. Loop causal: human → LLM (code-generation support) → RL (decision) → action.
+- **my_justification:** LLM atua como encoder/hint-generator (CoT + RAG) que orienta Deep RL como decisor final (Sec 3.4). LLM subordinado ao RL — exclui per Gate B.
 - **agrees_with_regex:** True
 - **divergence_reason:** Regex sugeriu Exclude corretamente (H_llm_supports_other_method), mas para confirmar: fulltext mostra 'Deep Reinforce Learning' (Sec 3.4) como decision-maker, LLM como encoder/hint-generator.
 - **addressed_hint:** Hint categoria: support. Verificado e confirmado.

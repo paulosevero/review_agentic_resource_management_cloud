@@ -73,13 +73,7 @@ screening:
     winning_category: E_strict_telecom
     overrides_applied: []
     my_final_decision: Exclude
-    my_justification: Paper propõe intent-based network automation via multimodal
-      Generative AI para 'management and orchestration' em redes 5G/6G. Sec. 3.1-3.3
-      descreve LLM para traduzir high-level intents em configurações de rede. Focus
-      é em RAN/spectrum slicing e network QoS, não em resource management de cloud/edge/continuum
-      (scheduling, placement, scaling, admission de aplicações). Menção a 'cloud-edge
-      continuum' (sec. 1) é contexto apenas; core problem é telecom/network-as-a-service
-      domain, fora do escopo da review.
+    my_justification: "Escopo 5G/6G network slicing/RAN management — fora do escopo per Gate A (Boundary C exclui PHY-layer wireless, RAN e network slicing strict)."
     agrees_with_regex: true
     divergence_reason: null
     locked_at_iteration: null
@@ -174,7 +168,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Exclude
-- **my_justification:** Paper propõe intent-based network automation via multimodal Generative AI para 'management and orchestration' em redes 5G/6G. Sec. 3.1-3.3 descreve LLM para traduzir high-level intents em configurações de rede. Focus é em RAN/spectrum slicing e network QoS, não em resource management de cloud/edge/continuum (scheduling, placement, scaling, admission de aplicações). Menção a 'cloud-edge continuum' (sec. 1) é contexto apenas; core problem é telecom/network-as-a-service domain, fora do escopo da review.
+- **my_justification:** Escopo 5G/6G network slicing/RAN management — fora do escopo per Gate A (Boundary C exclui PHY-layer wireless, RAN e network slicing strict).
 - **agrees_with_regex:** True
 - **addressed_hint:** no_hint
 - **evidence_sections:** ['Sec. 1 Introduction (RAN/5G/6G focus)', 'Sec. 2.2 Network-as-a-Service (spectrum slicing)', 'Sec. 3.2 Large language model (intent-to-config translation)']

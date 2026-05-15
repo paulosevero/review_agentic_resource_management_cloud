@@ -8,9 +8,7 @@ authors:
 - Tortonesi, Mauro
 - Stefanelli, Cesare
 - Varga, Pal
-venue: 'Proceedings of the 2025 21st International Conference on Network and Service
-  Management: AI and Sustainability in the Future of Network and Service Management,
-  CNSM 2025'
+venue: 'Proceedings of the 2025 21st International Conference on Network and Service Management: AI and Sustainability in the Future of Network and Service Management, CNSM 2025'
 venue_type: conference
 year: 2025
 doi: 10.23919/CNSM67658.2025.11297547
@@ -40,15 +38,11 @@ screening:
   04-title-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: C1=0.5 (agentic/LLM signal in title); C2=0 (no resource
-      management signal); C3=0 (no infra signal)
+    proposed_justification: C1=0.5 (agentic/LLM signal in title); C2=0 (no resource management signal); C3=0 (no infra signal)
     winning_category: null
     overrides_applied: []
     my_final_decision: Include
-    my_justification: Talvez Intent-Based e Neurosymbolic AI sejam indicativos que
-      o artigo é interessante para a review (e.g., intent-based é comumente usado
-      em conjunto com LLM-based agents, e Neurosymbolic AI pode usar LLMs por baixo
-      dos panos).
+    my_justification: Talvez Intent-Based e Neurosymbolic AI sejam indicativos que o artigo é interessante para a review (e.g., intent-based é comumente usado em conjunto com LLM-based agents, e Neurosymbolic AI pode usar LLMs por baixo dos panos).
     agrees_with_regex: false
     divergence_reason: null
     locked_at_iteration: iter-0
@@ -69,18 +63,13 @@ screening:
   06-full-text-screening:
     last_iteration: 0
     proposed_decision: Exclude
-    proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA,
-      geração de manifestos) — não é decisão de resource management.
+    proposed_justification: Tarefa de DevOps/observabilidade (incident triage, RCA, geração de manifestos) — não é decisão de resource management.
     winning_category: D_devops_or_logs_not_rm
     overrides_applied: []
-    my_final_decision: Exclude
-    my_justification: ''
+    my_final_decision: Include
+    my_justification: "Reanálise com critério mais flexível: LLM converte intents de usuário em representação estruturada (JSON) que alimenta o solver ASP (Clingo) responsável pela decisão de service management — pipeline análogo ao anchor paper-1644 (LLM gera entrada estruturada; módulo determinístico decide). Intent-based service management em ambiente cloud/edge está em escopo. Inclusão."
     agrees_with_regex: true
-    divergence_reason: 'Categoria regex ''D_devops_or_logs_not_rm'' é imprecisa. O
-      paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA,
-      ou IaC). O padrão real é ''LLM-support-to-symbolic-solver'': LLM faz intent
-      translation (NL → JSON), ASP faz placement decisions. Classificação corrigida:
-      H_llm_supports_other_method (suporte a método simbólico).'
+    divergence_reason: 'Categoria regex ''D_devops_or_logs_not_rm'' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é ''LLM-support-to-symbolic-solver'': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico).'
     locked_at_iteration: null
     locked_at: null
 taxonomy: {}
@@ -172,8 +161,8 @@ no duplicates found
 
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
-- **my_final_decision:** Exclude
-- **my_justification:** 
+- **my_final_decision:** Include
+- **my_justification:** Reanálise com critério mais flexível: LLM converte intents de usuário em representação estruturada (JSON) que alimenta o solver ASP (Clingo) responsável pela decisão de service management — pipeline análogo ao anchor paper-1644 (LLM gera entrada estruturada; módulo determinístico decide). Intent-based service management em ambiente cloud/edge está em escopo. Inclusão.
 - **agrees_with_regex:** True
 - **divergence_reason:** Categoria regex 'D_devops_or_logs_not_rm' é imprecisa. O paper NÃO é DevOps/logging (não há incident triage, log summarization, RCA, ou IaC). O padrão real é 'LLM-support-to-symbolic-solver': LLM faz intent translation (NL → JSON), ASP faz placement decisions. Classificação corrigida: H_llm_supports_other_method (suporte a método simbólico).
 

@@ -72,11 +72,7 @@ screening:
     winning_category: H_llm_supports_other_method
     overrides_applied: []
     my_final_decision: Include
-    my_justification: 'Seção II.C descreve 4 agentes LLM-driven (Account Manager,
-      System Architect, Scheduler, OAM) que executam loop autônomo: percepção de intenção
-      → planejamento → decisões de alocação → monitoramento. Agents invocam ferramentas
-      para alocar subcarriers. Atende Boundary A (agentic loop) e B (RM decisions:
-      scheduling + resource allocation).'
+    my_justification: "Reanálise com critério mais flexível: workflow agentic LLM-driven multi-agente com quatro fases (requirement analysis, planning, scheduling, evaluation). Os agentes parseiam intents, geram parâmetros da utility function, decidem entre processar localmente ou offloading, e ajustam alocação de subcarriers. Escopo IIoT/edge confirmado. Inclusão; qualidade textual fraca permanece anotação para análise downstream."
     agrees_with_regex: false
     divergence_reason: Classifier marcou H_llm_supports_other_method, mas fulltext
       mostra LLM como motor principal do agentic workflow, não suporte.
@@ -172,7 +168,7 @@ no duplicates found
 **Pass-2 LLM reviewer (Haiku 4.5):**
 
 - **my_final_decision:** Include
-- **my_justification:** Seção II.C descreve 4 agentes LLM-driven (Account Manager, System Architect, Scheduler, OAM) que executam loop autônomo: percepção de intenção → planejamento → decisões de alocação → monitoramento. Agents invocam ferramentas para alocar subcarriers. Atende Boundary A (agentic loop) e B (RM decisions: scheduling + resource allocation).
+- **my_justification:** Reanálise com critério mais flexível: workflow agentic LLM-driven multi-agente com quatro fases (requirement analysis, planning, scheduling, evaluation). Os agentes parseiam intents, geram parâmetros da utility function, decidem entre processar localmente ou offloading, e ajustam alocação de subcarriers. Escopo IIoT/edge confirmado. Inclusão; qualidade textual fraca permanece anotação para análise downstream.
 - **agrees_with_regex:** False
 - **divergence_reason:** Classifier marcou H_llm_supports_other_method, mas fulltext mostra LLM como motor principal do agentic workflow, não suporte.
 - **evidence_sections:** ['II.C: All agents are LLM-driven', 'II.C: agents invoke tools to change resource allocation', 'Experiments: task offloading + subcarrier scheduling via agent decisions', 'Multi-agent planning + execution in closed loop']
