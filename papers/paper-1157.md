@@ -228,3 +228,4 @@ no duplicates found
 - `reasoning-distribution` (anchor: `RQ3.1`) — contributes: `Prompting`.
 - `evaluation-distribution` (anchor: `RQ4.1`) — contributes: `Practical Testbed`.
 - `metric-distribution` (anchor: `RQ4.2`) — contributes: `RM Performance Metric`, `Agent Performance Metric`.
+- `agent-coordination-distribution` (anchor: `RQ1.1`) — contributes: `Single Agent`.

@@ -255,6 +255,18 @@ notes: |
 
 ## Materialization log
 
+### `agent-coordination-distribution`
+
+- **Type:** `distribution` · **rq_anchor:** `RQ1.1` · **rows:** `agentic_configuration.coordination_topology` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (20 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| Single Agent | 18 |
+| Multi-Agent | 2 |
+
+Single-agent topology dominates (18/20). The two Multi-Agent papers (1991, 2362) both adopt Iterative Reasoning, hinting that multi-agent is currently coupled with explicit planning/reflection loops rather than one-shot prompting.
+
 ### `metric-distribution`
 
 - **Type:** `distribution` · **rq_anchor:** `RQ4.2` · **rows:** `metric` · **cols:** `—`
