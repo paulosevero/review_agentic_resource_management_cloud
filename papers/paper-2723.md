@@ -230,3 +230,4 @@ no duplicates found
 - `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Routing & Slicing` × `Autonomous`, `Scaling` × `Autonomous`.
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Iterative Reasoning` × `Routing & Slicing`, `Iterative Reasoning` × `Scaling`.
 - `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Routing & Slicing` × `Practical Testbed`, `Scaling` × `Practical Testbed`.
+- `metric-by-autonomy` (anchor: `RQ4.4`) — contributes: `RM Performance Metric` × `Autonomous`, `Agent Performance Metric` × `Autonomous`.

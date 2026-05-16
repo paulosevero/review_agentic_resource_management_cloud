@@ -228,3 +228,4 @@ The impressive natural language understanding and inference" }`
 - `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Scheduling` × `Autonomous`.
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Prompting` × `Scheduling`.
 - `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Scheduling` × `Simulation`.
+- `metric-by-autonomy` (anchor: `RQ4.4`) — contributes: `RM Performance Metric` × `Autonomous`, `Agent Performance Metric` × `Autonomous`.

@@ -232,3 +232,4 @@ no duplicates found
 - `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Placement & Offloading` × `Supervised`.
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Prompting` × `Placement & Offloading`, `Knowledge Retrieval` × `Placement & Offloading`.
 - `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Placement & Offloading` × `Simulation`.
+- `metric-by-autonomy` (anchor: `RQ4.4`) — contributes: `RM Performance Metric` × `Supervised`.

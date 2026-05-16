@@ -255,6 +255,18 @@ notes: |
 
 ## Materialization log
 
+### `metric-by-autonomy`
+
+- **Type:** `pivot` · **rq_anchor:** `RQ4.4` · **rows:** `metric` · **cols:** `autonomy_level`
+- **Coverage:** 20/20 papers contribute (35 cell entries; multi-counted for multi-select axes).
+
+| value | Autonomous | Supervised | total |
+| --- | --- | --- | --- |
+| RM Performance Metric | 15 | 5 | 20 |
+| Agent Performance Metric | 15 | 0 | 15 |
+
+Strong, near-deterministic pattern: all 15 Autonomous papers report Agent Performance Metric (token cost, inference latency, decision accuracy); 0 of the 5 Supervised papers do. Every paper, regardless of autonomy, reports an RM Performance Metric. The vacancy in the Supervised × Agent-Performance cell is the strongest single signal in the corpus and the central evidence for the RQ4.4 governance-gap discussion at stage 09.
+
 ### `evaluation-by-decision`
 
 - **Type:** `pivot` · **rq_anchor:** `RQ4.1` · **rows:** `decision` · **cols:** `evaluation_method`

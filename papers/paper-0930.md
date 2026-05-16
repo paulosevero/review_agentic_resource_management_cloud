@@ -247,3 +247,4 @@ no duplicates found
 - `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Placement & Offloading` × `Autonomous`.
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Prompting` × `Placement & Offloading`.
 - `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Placement & Offloading` × `Practical Testbed`.
+- `metric-by-autonomy` (anchor: `RQ4.4`) — contributes: `RM Performance Metric` × `Autonomous`, `Agent Performance Metric` × `Autonomous`.
