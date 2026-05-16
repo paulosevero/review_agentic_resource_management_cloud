@@ -213,4 +213,4 @@ no duplicates found
 
 ## 08 — Analysis contributions
 
-_(populated by `/06-analyze` after taxonomy lock.)_
+- `decision-distribution` (anchor: `RQ2.1`) — contributes: `Scheduling`.

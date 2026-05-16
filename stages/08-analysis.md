@@ -255,6 +255,21 @@ notes: |
 
 ## Materialization log
 
+### `decision-distribution`
+
+- **Type:** `distribution` · **rq_anchor:** `RQ2.1` · **rows:** `decision` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (21 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| Placement & Offloading | 9 |
+| Scheduling | 7 |
+| Remediation | 2 |
+| Scaling | 2 |
+| Routing & Slicing | 1 |
+
+Placement & Offloading and Scheduling dominate (9 + 7 of 21 multi-counted contributions, 16 of the 20 papers contribute to one of these two classes). Scaling, Routing & Slicing, and Remediation appear in 5 papers combined; Remediation is uniformly tied to root-cause-analysis + repair pipelines, and Routing & Slicing only surfaces in 6G/network-management work.
+
 (One entry per view as it is committed; populated below as the views are written.)
 
 ## Checkpoints
