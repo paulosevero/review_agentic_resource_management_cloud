@@ -219,3 +219,4 @@ no duplicates found
 - `autonomy-distribution` (anchor: `RQ2.2`) — contributes: `Supervised`.
 - `infrastructure-distribution` (anchor: `RQ1.2`) — contributes: `Cloud-Only`.
 - `reasoning-distribution` (anchor: `RQ3.1`) — contributes: `Prompting`, `Model Specialization`.
+- `evaluation-distribution` (anchor: `RQ4.1`) — contributes: `Practical Testbed`.

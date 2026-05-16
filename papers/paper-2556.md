@@ -217,3 +217,4 @@ no duplicates found
 - `autonomy-distribution` (anchor: `RQ2.2`) — contributes: `Autonomous`.
 - `infrastructure-distribution` (anchor: `RQ1.2`) — contributes: `Cloud-Only`.
 - `reasoning-distribution` (anchor: `RQ3.1`) — contributes: `Prompting`.
+- `evaluation-distribution` (anchor: `RQ4.1`) — contributes: `Simulation`.

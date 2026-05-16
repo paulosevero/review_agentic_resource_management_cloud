@@ -255,6 +255,18 @@ notes: |
 
 ## Materialization log
 
+### `evaluation-distribution`
+
+- **Type:** `distribution` · **rq_anchor:** `RQ4.1` · **rows:** `evaluation_method` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (20 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| Simulation | 13 |
+| Practical Testbed | 7 |
+
+Simulation (13) is more common than Practical Testbed (7). The split is not random: Scheduling work uses simulation exclusively, while Remediation, Scaling, and Routing & Slicing use real testbeds exclusively (see `evaluation-by-decision`).
+
 ### `reasoning-distribution`
 
 - **Type:** `distribution` · **rq_anchor:** `RQ3.1` · **rows:** `reasoning_approach` · **cols:** `—`
