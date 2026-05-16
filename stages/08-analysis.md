@@ -255,6 +255,20 @@ notes: |
 
 ## Materialization log
 
+### `reasoning-distribution`
+
+- **Type:** `distribution` · **rq_anchor:** `RQ3.1` · **rows:** `reasoning_approach` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (23 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| Prompting | 15 |
+| Iterative Reasoning | 4 |
+| Knowledge Retrieval | 2 |
+| Model Specialization | 2 |
+
+Prompting dominates at 15/20. Iterative Reasoning (4), Knowledge Retrieval (2), and Model Specialization (2) appear, often combined with Prompting in the same paper (multi-select). No paper uses Knowledge Retrieval or Model Specialization in isolation without a prompt-driven outer loop.
+
 ### `infrastructure-distribution`
 
 - **Type:** `distribution` · **rq_anchor:** `RQ1.2` · **rows:** `infrastructure` · **cols:** `—`
