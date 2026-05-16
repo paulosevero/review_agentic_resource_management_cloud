@@ -223,3 +223,4 @@ no duplicates found
 - `decision-role-distribution` (anchor: `RQ1.3`) — contributes: `Pipeline Contributor`.
 - `agentic-config-cross` (anchor: `RQ1.1`) — contributes: `Pipeline Contributor` × `Single Agent`.
 - `infrastructure-by-decision` (anchor: `RQ1.2`) — contributes: `Scheduling` × `Cloud-Only`.
+- `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Scheduling` × `Supervised`.

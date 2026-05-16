@@ -255,6 +255,21 @@ notes: |
 
 ## Materialization log
 
+### `decision-by-autonomy`
+
+- **Type:** `pivot` · **rq_anchor:** `RQ2.2` · **rows:** `decision` · **cols:** `autonomy_level`
+- **Coverage:** 20/20 papers contribute (21 cell entries; multi-counted for multi-select axes).
+
+| value | Autonomous | Supervised | total |
+| --- | --- | --- | --- |
+| Placement & Offloading | 5 | 4 | 9 |
+| Scheduling | 6 | 1 | 7 |
+| Remediation | 2 | 0 | 2 |
+| Scaling | 2 | 0 | 2 |
+| Routing & Slicing | 1 | 0 | 1 |
+
+Scheduling (6/7), Remediation (2/2), Scaling (2/2), and Routing & Slicing (1/1) are predominantly Autonomous. Placement & Offloading is the only class with substantial Supervised representation (4 of 9), reflecting the intent-/policy-compilation pipelines that emit placement plans for downstream solvers.
+
 ### `infrastructure-by-decision`
 
 - **Type:** `pivot` · **rq_anchor:** `RQ1.2` · **rows:** `decision` · **cols:** `infrastructure`

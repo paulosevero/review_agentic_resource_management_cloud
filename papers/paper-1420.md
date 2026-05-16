@@ -219,3 +219,4 @@ no duplicates found
 - `decision-role-distribution` (anchor: `RQ1.3`) — contributes: `Sole Decider`.
 - `agentic-config-cross` (anchor: `RQ1.1`) — contributes: `Sole Decider` × `Single Agent`.
 - `infrastructure-by-decision` (anchor: `RQ1.2`) — contributes: `Placement & Offloading` × `Edge-Cloud`.
+- `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Placement & Offloading` × `Autonomous`.
