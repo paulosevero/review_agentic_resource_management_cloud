@@ -255,6 +255,20 @@ notes: |
 
 ## Materialization log
 
+### `reasoning-by-decision`
+
+- **Type:** `pivot` · **rq_anchor:** `RQ3.1` · **rows:** `reasoning_approach` · **cols:** `decision`
+- **Coverage:** 20/20 papers contribute (24 cell entries; multi-counted for multi-select axes).
+
+| value | Placement & Offloading | Scheduling | Remediation | Scaling | Routing & Slicing | total |
+| --- | --- | --- | --- | --- | --- | --- |
+| Prompting | 7 | 6 | 1 | 1 | 0 | 15 |
+| Iterative Reasoning | 1 | 1 | 1 | 1 | 1 | 5 |
+| Knowledge Retrieval | 2 | 0 | 0 | 0 | 0 | 2 |
+| Model Specialization | 1 | 1 | 0 | 0 | 0 | 2 |
+
+Prompting is used across every decision class except Routing & Slicing (1 paper, Iterative Reasoning). Iterative Reasoning spans all five classes at low count (1 each). Knowledge Retrieval is observed only in Placement & Offloading. Model Specialization appears once each in Placement and Scheduling.
+
 ### `decision-by-autonomy`
 
 - **Type:** `pivot` · **rq_anchor:** `RQ2.2` · **rows:** `decision` · **cols:** `autonomy_level`
