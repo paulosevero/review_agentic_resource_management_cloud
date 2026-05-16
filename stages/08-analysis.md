@@ -255,6 +255,18 @@ notes: |
 
 ## Materialization log
 
+### `agentic-config-cross`
+
+- **Type:** `pivot` · **rq_anchor:** `RQ1.1` · **rows:** `agentic_configuration.decision_role` · **cols:** `agentic_configuration.coordination_topology`
+- **Coverage:** 20/20 papers contribute (20 cell entries; multi-counted for multi-select axes).
+
+| value | Single Agent | Multi-Agent | total |
+| --- | --- | --- | --- |
+| Sole Decider | 12 | 2 | 14 |
+| Pipeline Contributor | 6 | 0 | 6 |
+
+Three of the four cells of the 2×2 are populated; `Pipeline Contributor × Multi-Agent` is empty in the current corpus. This vacancy is reported as a research-opportunity observation, not a coverage gap of the taxonomy (the two facets remain independently valid). The dominant configuration is `Sole Decider × Single Agent` (12/20).
+
 ### `decision-role-distribution`
 
 - **Type:** `distribution` · **rq_anchor:** `RQ1.3` · **rows:** `agentic_configuration.decision_role` · **cols:** `—`

@@ -225,3 +225,4 @@ no duplicates found
 - `metric-distribution` (anchor: `RQ4.2`) — contributes: `RM Performance Metric`, `Agent Performance Metric`.
 - `agent-coordination-distribution` (anchor: `RQ1.1`) — contributes: `Single Agent`.
 - `decision-role-distribution` (anchor: `RQ1.3`) — contributes: `Sole Decider`.
+- `agentic-config-cross` (anchor: `RQ1.1`) — contributes: `Sole Decider` × `Single Agent`.
