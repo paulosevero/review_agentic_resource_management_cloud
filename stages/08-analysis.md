@@ -255,6 +255,19 @@ notes: |
 
 ## Materialization log
 
+### `temporal-included`
+
+- **Type:** `temporal` · **rq_anchor:** `RQ1` · **rows:** `year` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (20 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| 2024 | 2 |
+| 2025 | 14 |
+| 2026 | 4 |
+
+2024: 2 · 2025: 14 · 2026: 4. The 2026 count is partial because the search window cuts mid-year. The 2024 figure marks the empirical onset of agentic-AI-for-resource-management work in the indexed literature (Transformer-era boundary set at 2017 by the protocol; the field only crosses the screening bar in 2024).
+
 ### `reasoning-temporal`
 
 - **Type:** `temporal` · **rq_anchor:** `RQ3.1` · **rows:** `year` · **cols:** `reasoning_approach`

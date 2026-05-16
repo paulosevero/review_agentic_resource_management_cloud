@@ -230,3 +230,4 @@ no duplicates found
 - `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Placement & Offloading` × `Practical Testbed`.
 - `metric-by-autonomy` (anchor: `RQ4.4`) — contributes: `RM Performance Metric` × `Supervised`.
 - `reasoning-temporal` (anchor: `RQ3.1`) — contributes: `2025` × `Prompting`, `2025` × `Model Specialization`.
+- `temporal-included` (anchor: `RQ1`) — contributes: `2025`.
