@@ -34,7 +34,7 @@ status:
   05-abstract-screening: include
   06-full-text-screening: include
   07-taxonomy-development: classified
-  08-analysis: pending
+  08-analysis: analyzed
 screening:
   04-title-screening:
     last_iteration: 0
