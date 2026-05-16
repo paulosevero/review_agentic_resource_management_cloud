@@ -229,3 +229,4 @@ no duplicates found
 - `infrastructure-by-decision` (anchor: `RQ1.2`) — contributes: `Scaling` × `Cloud-Only`.
 - `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Scaling` × `Autonomous`.
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Prompting` × `Scaling`.
+- `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Scaling` × `Practical Testbed`.

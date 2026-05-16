@@ -227,3 +227,4 @@ The impressive natural language understanding and inference" }`
 - `infrastructure-by-decision` (anchor: `RQ1.2`) — contributes: `Scheduling` × `Cloud-Only`.
 - `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Scheduling` × `Autonomous`.
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Prompting` × `Scheduling`.
+- `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Scheduling` × `Simulation`.

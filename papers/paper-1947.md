@@ -229,3 +229,4 @@ no duplicates found
 - `infrastructure-by-decision` (anchor: `RQ1.2`) — contributes: `Remediation` × `Edge-Cloud`.
 - `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Remediation` × `Autonomous`.
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Prompting` × `Remediation`.
+- `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Remediation` × `Practical Testbed`.

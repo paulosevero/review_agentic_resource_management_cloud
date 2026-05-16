@@ -237,3 +237,4 @@ no duplicates found
 - `infrastructure-by-decision` (anchor: `RQ1.2`) — contributes: `Scheduling` × `Edge-Cloud`.
 - `decision-by-autonomy` (anchor: `RQ2.2`) — contributes: `Scheduling` × `Autonomous`.
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Iterative Reasoning` × `Scheduling`.
+- `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Scheduling` × `Simulation`.

@@ -255,6 +255,21 @@ notes: |
 
 ## Materialization log
 
+### `evaluation-by-decision`
+
+- **Type:** `pivot` · **rq_anchor:** `RQ4.1` · **rows:** `decision` · **cols:** `evaluation_method`
+- **Coverage:** 20/20 papers contribute (21 cell entries; multi-counted for multi-select axes).
+
+| value | Simulation | Practical Testbed | total |
+| --- | --- | --- | --- |
+| Placement & Offloading | 6 | 3 | 9 |
+| Scheduling | 7 | 0 | 7 |
+| Remediation | 0 | 2 | 2 |
+| Scaling | 0 | 2 | 2 |
+| Routing & Slicing | 0 | 1 | 1 |
+
+Sharp axis-aligned split: Scheduling (7/7) is evaluated exclusively in Simulation; Remediation (2/2), Scaling (2/2), and Routing & Slicing (1/1) are exclusively Practical Testbed. Placement & Offloading mixes (6 Sim / 3 Testbed). The pattern suggests that evaluation venue follows the maturity of the underlying infrastructure tooling rather than the algorithmic novelty.
+
 ### `reasoning-by-decision`
 
 - **Type:** `pivot` · **rq_anchor:** `RQ3.1` · **rows:** `reasoning_approach` · **cols:** `decision`
