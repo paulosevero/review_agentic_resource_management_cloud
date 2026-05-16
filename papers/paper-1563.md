@@ -214,3 +214,4 @@ no duplicates found
 
 - `decision-distribution` (anchor: `RQ2.1`) — contributes: `Scheduling`.
 - `autonomy-distribution` (anchor: `RQ2.2`) — contributes: `Autonomous`.
+- `infrastructure-distribution` (anchor: `RQ1.2`) — contributes: `Edge-Cloud`.

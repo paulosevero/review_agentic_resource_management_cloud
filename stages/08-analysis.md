@@ -255,6 +255,18 @@ notes: |
 
 ## Materialization log
 
+### `infrastructure-distribution`
+
+- **Type:** `distribution` · **rq_anchor:** `RQ1.2` · **rows:** `infrastructure` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (20 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| Edge-Cloud | 11 |
+| Cloud-Only | 9 |
+
+Edge-Cloud accounts for 11 of 20 papers vs 9 for Cloud-Only — close to parity. Every paper that mentions an edge tier also reaches a cloud tier (per §8.2 code-book definition), so a pure edge-only configuration is empirically absent.
+
 ### `autonomy-distribution`
 
 - **Type:** `distribution` · **rq_anchor:** `RQ2.2` · **rows:** `autonomy_level` · **cols:** `—`
