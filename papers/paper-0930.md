@@ -235,3 +235,4 @@ no duplicates found
 ## 08 — Analysis contributions
 
 - `decision-distribution` (anchor: `RQ2.1`) — contributes: `Placement & Offloading`.
+- `autonomy-distribution` (anchor: `RQ2.2`) — contributes: `Autonomous`.

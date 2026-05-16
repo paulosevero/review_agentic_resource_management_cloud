@@ -255,6 +255,18 @@ notes: |
 
 ## Materialization log
 
+### `autonomy-distribution`
+
+- **Type:** `distribution` · **rq_anchor:** `RQ2.2` · **rows:** `autonomy_level` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (20 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| Autonomous | 15 |
+| Supervised | 5 |
+
+Autonomous deployments outnumber Supervised 15:5. The Supervised group concentrates around intent-/policy-translation pipelines (1496, 1680, 2470, 2779, 2936) where a non-LLM component lands the final action; the Autonomous group includes every paper where the LLM emits the executable decision.
+
 ### `decision-distribution`
 
 - **Type:** `distribution` · **rq_anchor:** `RQ2.1` · **rows:** `decision` · **cols:** `—`
