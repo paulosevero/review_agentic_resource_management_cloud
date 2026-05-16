@@ -218,3 +218,4 @@ no duplicates found
 - `infrastructure-distribution` (anchor: `RQ1.2`) — contributes: `Cloud-Only`.
 - `reasoning-distribution` (anchor: `RQ3.1`) — contributes: `Prompting`.
 - `evaluation-distribution` (anchor: `RQ4.1`) — contributes: `Simulation`.
+- `metric-distribution` (anchor: `RQ4.2`) — contributes: `RM Performance Metric`.

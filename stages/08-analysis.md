@@ -255,6 +255,18 @@ notes: |
 
 ## Materialization log
 
+### `metric-distribution`
+
+- **Type:** `distribution` · **rq_anchor:** `RQ4.2` · **rows:** `metric` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (35 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| RM Performance Metric | 20 |
+| Agent Performance Metric | 15 |
+
+RM Performance Metric is reported by every paper (20/20). Agent Performance Metric is reported by 15/20 — exactly the Autonomous subset; the 5 Supervised papers do not surface agent-side metrics (token cost, inference latency, decision accuracy) at all (see `metric-by-autonomy`).
+
 ### `evaluation-distribution`
 
 - **Type:** `distribution` · **rq_anchor:** `RQ4.1` · **rows:** `evaluation_method` · **cols:** `—`
