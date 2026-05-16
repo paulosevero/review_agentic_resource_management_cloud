@@ -222,3 +222,4 @@ no duplicates found
 - `evaluation-distribution` (anchor: `RQ4.1`) — contributes: `Practical Testbed`.
 - `metric-distribution` (anchor: `RQ4.2`) — contributes: `RM Performance Metric`.
 - `agent-coordination-distribution` (anchor: `RQ1.1`) — contributes: `Single Agent`.
+- `decision-role-distribution` (anchor: `RQ1.3`) — contributes: `Pipeline Contributor`.

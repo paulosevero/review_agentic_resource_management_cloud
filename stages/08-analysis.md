@@ -255,6 +255,18 @@ notes: |
 
 ## Materialization log
 
+### `decision-role-distribution`
+
+- **Type:** `distribution` · **rq_anchor:** `RQ1.3` · **rows:** `agentic_configuration.decision_role` · **cols:** `—`
+- **Coverage:** 20/20 papers contribute (20 cell entries; multi-counted for multi-select axes).
+
+| value | count |
+| --- | --- |
+| Sole Decider | 14 |
+| Pipeline Contributor | 6 |
+
+Sole Decider outnumbers Pipeline Contributor 14:6. The Pipeline Contributor group is structurally the same set as the Supervised autonomy group plus paper-1563 (GP hyper-heuristic) — i.e., the LLM feeds a downstream non-LLM decider that holds the final say.
+
 ### `agent-coordination-distribution`
 
 - **Type:** `distribution` · **rq_anchor:** `RQ1.1` · **rows:** `agentic_configuration.coordination_topology` · **cols:** `—`
