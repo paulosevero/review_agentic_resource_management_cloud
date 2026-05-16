@@ -255,6 +255,19 @@ notes: |
 
 ## Materialization log
 
+### `reasoning-temporal`
+
+- **Type:** `temporal` · **rq_anchor:** `RQ3.1` · **rows:** `year` · **cols:** `reasoning_approach`
+- **Coverage:** 20/20 papers contribute (23 cell entries; multi-counted for multi-select axes).
+
+| value | Prompting | Iterative Reasoning | Knowledge Retrieval | Model Specialization | total |
+| --- | --- | --- | --- | --- | --- |
+| 2024 | 2 | 0 | 0 | 0 | 2 |
+| 2025 | 11 | 3 | 1 | 2 | 17 |
+| 2026 | 2 | 1 | 1 | 0 | 4 |
+
+2024 corpus members (2) use Prompting only. 2025 (14) introduces Iterative Reasoning (3), Knowledge Retrieval (1), and Model Specialization (2). 2026 (4) drops one of each into the mix. The Prompting-only baseline persists across years; new reasoning paradigms accumulate on top rather than displace it.
+
 ### `metric-by-autonomy`
 
 - **Type:** `pivot` · **rq_anchor:** `RQ4.4` · **rows:** `metric` · **cols:** `autonomy_level`

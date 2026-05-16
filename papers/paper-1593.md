@@ -231,3 +231,4 @@ no duplicates found
 - `reasoning-by-decision` (anchor: `RQ3.1`) — contributes: `Prompting` × `Scaling`.
 - `evaluation-by-decision` (anchor: `RQ4.1`) — contributes: `Scaling` × `Practical Testbed`.
 - `metric-by-autonomy` (anchor: `RQ4.4`) — contributes: `RM Performance Metric` × `Autonomous`, `Agent Performance Metric` × `Autonomous`.
+- `reasoning-temporal` (anchor: `RQ3.1`) — contributes: `2025` × `Prompting`.
