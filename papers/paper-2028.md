@@ -220,3 +220,4 @@ no duplicates found
 - `agent-coordination-distribution` (anchor: `RQ1.1`) — contributes: `Single Agent`.
 - `decision-role-distribution` (anchor: `RQ1.3`) — contributes: `Sole Decider`.
 - `agentic-config-cross` (anchor: `RQ1.1`) — contributes: `Sole Decider` × `Single Agent`.
+- `infrastructure-by-decision` (anchor: `RQ1.2`) — contributes: `Scheduling` × `Cloud-Only`.

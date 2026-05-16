@@ -243,3 +243,4 @@ no duplicates found
 - `agent-coordination-distribution` (anchor: `RQ1.1`) — contributes: `Single Agent`.
 - `decision-role-distribution` (anchor: `RQ1.3`) — contributes: `Pipeline Contributor`.
 - `agentic-config-cross` (anchor: `RQ1.1`) — contributes: `Pipeline Contributor` × `Single Agent`.
+- `infrastructure-by-decision` (anchor: `RQ1.2`) — contributes: `Placement & Offloading` × `Edge-Cloud`.

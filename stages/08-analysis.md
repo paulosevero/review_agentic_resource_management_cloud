@@ -255,6 +255,21 @@ notes: |
 
 ## Materialization log
 
+### `infrastructure-by-decision`
+
+- **Type:** `pivot` · **rq_anchor:** `RQ1.2` · **rows:** `decision` · **cols:** `infrastructure`
+- **Coverage:** 20/20 papers contribute (21 cell entries; multi-counted for multi-select axes).
+
+| value | Edge-Cloud | Cloud-Only | total |
+| --- | --- | --- | --- |
+| Placement & Offloading | 6 | 3 | 9 |
+| Scheduling | 2 | 5 | 7 |
+| Remediation | 2 | 0 | 2 |
+| Scaling | 1 | 1 | 2 |
+| Routing & Slicing | 1 | 0 | 1 |
+
+Placement & Offloading skews Edge-Cloud (6 of 9). Scheduling skews Cloud-Only (5 of 7). Remediation and Routing & Slicing appear only in Edge-Cloud or only in Cloud-Only respectively; Scaling is split 1:1.
+
 ### `agentic-config-cross`
 
 - **Type:** `pivot` · **rq_anchor:** `RQ1.1` · **rows:** `agentic_configuration.decision_role` · **cols:** `agentic_configuration.coordination_topology`
