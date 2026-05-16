@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taxonomy Visualization Alternatives — Rapid Review on Agentic AI for Resource Management</title>
+<style>
+:root{
+  --ivory:#faf9f5;--paper:#fff;--slate:#141413;
+  --clay:#d97757;--clay-d:#b85c3e;--oat:#e3dacc;
+  --olive:#788c5d;--rust:#b04a3f;
+  --g100:#f0eee6;--g200:#e6e3da;--g300:#d1cfc5;
+  --g500:#87867f;--g700:#3d3d3a;
+  --serif:ui-serif,Georgia,"Times New Roman",Times,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Monaco,Consolas,monospace;
+  --radius:12px;--border:1.5px solid var(--g300);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding:48px 24px 96px;background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.page{max-width:1280px;margin:0 auto}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.eyebrow::before{content:"";width:24px;height:1.5px;background:var(--clay)}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-.015em;margin:0 0 12px}
+h2{font-family:var(--serif);font-weight:500;font-size:24px;margin:48px 0 8px;padding-top:8px;border-top:1px solid var(--g300)}
+h2 .variant-tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;background:var(--clay);color:#fff;padding:3px 9px;border-radius:999px;vertical-align:middle;margin-right:10px;text-transform:uppercase}
+h3{font-family:var(--sans);font-weight:600;font-size:15px;margin:18px 0 8px}
+.lede{color:var(--g700);max-width:780px;margin:0 0 28px}
+.tldr{background:var(--g100);border:var(--border);border-left:4px solid var(--clay);border-radius:var(--radius);padding:18px 22px;margin:24px 0 40px;max-width:880px}
+.tldr p{margin:0}
+.tldr .eyebrow{margin-bottom:8px}
+.section{margin-bottom:48px}
+.section-tldr{font-style:italic;color:var(--g700);max-width:760px;margin:4px 0 18px;font-size:14px}
+.section-meta{font-family:var(--mono);font-size:11px;color:var(--g500);margin-bottom:14px;display:flex;gap:18px;flex-wrap:wrap}
+.section-meta span strong{color:var(--slate)}
+.variant-card{background:var(--paper);border:var(--border);border-radius:var(--radius);padding:24px;overflow-x:auto}
+.variant-card svg{display:block;margin:0 auto;max-width:100%;height:auto}
+a{color:var(--clay);text-decoration-color:var(--oat);text-underline-offset:3px}
+
+/* Variant B — pills */
+.pills-wrap{display:flex;flex-direction:column;gap:14px}
+.pillrow{display:grid;grid-template-columns:240px 1fr;gap:18px;align-items:center;padding:12px 16px;background:var(--g100);border-radius:8px;border:1px solid var(--g200)}
+.pillrow-label{font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px}
+.pillrow-label .grouped{color:var(--g500);font-weight:500;font-size:13px}
+.pillrow-values{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--mono);font-size:11.5px;background:var(--paper);border:var(--border);border-radius:999px;padding:5px 11px;display:inline-flex;align-items:center;gap:6px}
+.pill em{font-style:normal;color:var(--clay);font-weight:700;font-size:11px;background:var(--g100);padding:1px 6px;border-radius:6px}
+.marker-single{color:#1f4fd9;font-size:14px;font-weight:700}
+.marker-multi{color:#d9442e;font-size:14px;font-weight:700}
+
+/* Variant C — cards */
+.facet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.facet-card{background:var(--paper);border:var(--border);border-radius:10px;padding:16px 18px}
+.facet-card.composite{grid-column:span 2;background:linear-gradient(180deg,#f8f5f0 0%,var(--paper) 30%)}
+.facet-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--g300);padding-bottom:10px;margin-bottom:10px;gap:8px}
+.facet-name{font-weight:600;font-size:15px;font-family:var(--sans)}
+.facet-type{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--g500)}
+.facet-list{list-style:none;padding:0;margin:0}
+.facet-list li{display:flex;justify-content:space-between;padding:5px 0;font-size:13.5px;border-bottom:1px dashed var(--g200)}
+.facet-list li:last-child{border-bottom:none}
+.vcount{font-family:var(--mono);font-weight:700;color:var(--clay)}
+.facet-sub{margin-top:10px}
+.facet-sub-head{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--g700);text-transform:uppercase;margin-bottom:4px}
+.facet-card.composite .facet-sub + .facet-sub{margin-top:14px;border-top:1px solid var(--g200);padding-top:10px}
+
+/* Variant D — cross-product */
+.cross{border-collapse:separate;border-spacing:0;margin:8px 0;font-family:var(--mono);font-size:13px}
+.cross th,.cross td{border:1.25px solid var(--g300);padding:14px 18px;text-align:center;background:var(--paper);min-width:140px}
+.cross th{background:var(--g100);font-family:var(--sans);font-weight:600;font-size:13px}
+.cross th em{font-style:normal;color:var(--clay);font-weight:700;font-size:11px}
+.cross .rowhead{text-align:left;background:var(--g100)}
+.cross .cell .cell-count{font-family:var(--serif);font-size:32px;font-weight:500;color:var(--slate)}
+.cross .cell .cell-label{font-size:11px;color:var(--g500);margin-top:3px}
+.cross .cell.empty{background:repeating-linear-gradient(45deg,#fff,#fff 6px,#ffeff0 6px,#ffeff0 12px)}
+.cross .cell.empty .cell-count{color:var(--rust);font-style:italic}
+.cross .cell.empty .cell-label{color:var(--rust);font-weight:600}
+.cross .rowtot{background:var(--g100);font-weight:600;color:var(--clay)}
+.cross .rowtot.grand{background:var(--clay);color:#fff}
+
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:11px;color:var(--g500);margin-bottom:14px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+
+@media (max-width:880px){
+  .pillrow{grid-template-columns:1fr}
+  .facet-card.composite{grid-column:auto}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">Rapid review · Stage 09 · Taxonomy figure</div>
+  <h1>Four visual alternatives for the 7-axis taxonomy</h1>
+  <p class="lede">Same data, four renderings. Pick the one that matches the venue's expected figure style, then keep one variant in <code>report/index.md</code> (or the manuscript) and discard the others. Distributions in every variant come from the locked stage 08 analysis (<a href="../stages/08-analysis.md">stages/08-analysis.md</a>); numbers next to each value denote the count of papers contributing to it (multi-select axes sum to more than 20).</p>
+
+  <aside class="tldr">
+    <div class="eyebrow">How to pick</div>
+    <p><strong>A — Hierarchical tree (IEEE/ACM style)</strong> is the safest match for a reviewer's expectation and most closely mirrors the reference figures (Fig. 4 / Fig. 8). <strong>B — Compact axis pills</strong> prints best on a single column of an A4/letter manuscript. <strong>C — Faceted cards</strong> is the web-friendly variant. <strong>D — Cross-product matrix</strong> is supplementary: it isolates the <code>Pipeline Contributor × Multi-Agent</code> empty cell that becomes a discussion point in stage 09 RQ5.2.</p>
+  </aside>
+
+  <div class="legend">
+    <span><span class="marker-single">★</span> single-select axis (one value per paper)</span>
+    <span><span class="marker-multi">▲</span> multi-select axis (one or more values per paper)</span>
+    <span>n<sub>i</sub> next to a value = papers contributing to that value</span>
+    <span>total corpus n = 20</span>
+  </div>
+
+  <div class="section">
+    <h2><span class="variant-tag">A</span>Hierarchical tree (IEEE-style)</h2>
+    <p class="section-tldr">Mirrors the reference figures (Fig. 4 — stateful serverless taxonomy; Fig. 8 — maintenance taxonomy). Root → axis columns → leaves with star/triangle markers.</p>
+    <div class="section-meta">
+      <span><strong>Pros:</strong> familiar to reviewers · scales to 7+ axes · prints well</span>
+      <span><strong>Cons:</strong> wide; may need 2-column landscape on small page</span>
+    </div>
+    <div class="variant-card"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1740 526" width="100%" preserveAspectRatio="xMidYMin meet" role="img" aria-label="Taxonomy tree">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#141413"/></marker></defs>
+<rect x="600.0" y="22" width="540" height="50" rx="8" fill="#e3f5e3" stroke="#141413" stroke-width="1.5"/>
+<text x="870.0" y="52.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="15" fill="#141413">Taxonomy of Agentic AI for Resource Management</text>
+<line x1="870.0" y1="72" x2="870.0" y2="94" stroke="#141413" stroke-width="1.5"/>
+<line x1="135.0" y1="94" x2="1605.0" y2="94" stroke="#141413" stroke-width="1.5"/>
+<line x1="135.0" y1="94" x2="135.0" y2="124" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="42.5" y="124" width="185" height="44" rx="6" fill="#e3f5e3" stroke="#141413" stroke-width="1.5"/>
+<text x="125.0" y="151.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="13" fill="#141413">Infrastructure</text>
+<text x="215.5" y="139" text-anchor="middle" font-size="13" fill="#1f4fd9" font-weight="700">★</text>
+<line x1="60.5" y1="168" x2="60.5" y2="333.0" stroke="#141413" stroke-width="1.25"/>
+<rect x="72.5" y="276" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="60.5" y1="293.0" x2="72.5" y2="293.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="82.5" y="297.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Cloud-Only</text>
+<text x="217.5" y="297.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">9</text>
+<rect x="72.5" y="316" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="60.5" y1="333.0" x2="72.5" y2="333.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="82.5" y="337.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Edge-Cloud</text>
+<text x="217.5" y="337.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">11</text>
+<line x1="345.0" y1="94" x2="345.0" y2="124" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="252.5" y="124" width="185" height="44" rx="6" fill="#e3f5e3" stroke="#141413" stroke-width="1.5"/>
+<text x="335.0" y="151.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="13" fill="#141413">Decision</text>
+<text x="425.5" y="139" text-anchor="middle" font-size="13" fill="#d9442e" font-weight="700">▲</text>
+<line x1="270.5" y1="168" x2="270.5" y2="453.0" stroke="#141413" stroke-width="1.25"/>
+<rect x="282.5" y="276" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="270.5" y1="293.0" x2="282.5" y2="293.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="292.5" y="297.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="9" fill="#141413">Placement & Offloading</text>
+<text x="427.5" y="297.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">9</text>
+<rect x="282.5" y="316" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="270.5" y1="333.0" x2="282.5" y2="333.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="292.5" y="337.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Scheduling</text>
+<text x="427.5" y="337.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">7</text>
+<rect x="282.5" y="356" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="270.5" y1="373.0" x2="282.5" y2="373.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="292.5" y="377.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Scaling</text>
+<text x="427.5" y="377.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">2</text>
+<rect x="282.5" y="396" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="270.5" y1="413.0" x2="282.5" y2="413.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="292.5" y="417.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Routing & Slicing</text>
+<text x="427.5" y="417.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">1</text>
+<rect x="282.5" y="436" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="270.5" y1="453.0" x2="282.5" y2="453.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="292.5" y="457.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Remediation</text>
+<text x="427.5" y="457.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">2</text>
+<line x1="660.0" y1="94" x2="660.0" y2="124" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="466.5" y="124" width="387.0" height="44" rx="6" fill="#e3f5e3" stroke="#141413" stroke-width="1.5"/>
+<text x="660.0" y="151.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="13" fill="#141413">Agentic Configuration</text>
+<text x="843.5" y="138" text-anchor="end" font-size="9.5" fill="#87867f" font-family="ui-monospace,SF Mono,Menlo,monospace" letter-spacing="0.05em">composite · 2 facets</text>
+<line x1="660.0" y1="168" x2="660.0" y2="184" stroke="#141413" stroke-width="1.5"/>
+<line x1="555.0" y1="184" x2="765.0" y2="184" stroke="#141413" stroke-width="1.5"/>
+<line x1="555.0" y1="184" x2="555.0" y2="206" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="462.5" y="206" width="185" height="40" rx="6" fill="#dfeefb" stroke="#141413" stroke-width="1.25"/>
+<text x="545.0" y="231.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="12.5" fill="#141413">Decision Role</text>
+<text x="635.5" y="220" text-anchor="middle" font-size="12" fill="#1f4fd9" font-weight="700">★</text>
+<line x1="480.5" y1="246" x2="480.5" y2="333.0" stroke="#141413" stroke-width="1.25"/>
+<rect x="492.5" y="276" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="480.5" y1="293.0" x2="492.5" y2="293.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="502.5" y="297.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Sole Decider</text>
+<text x="637.5" y="297.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">14</text>
+<rect x="492.5" y="316" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="480.5" y1="333.0" x2="492.5" y2="333.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="502.5" y="337.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="10" fill="#141413">Pipeline Contributor</text>
+<text x="637.5" y="337.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">6</text>
+<line x1="765.0" y1="184" x2="765.0" y2="206" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="672.5" y="206" width="185" height="40" rx="6" fill="#dfeefb" stroke="#141413" stroke-width="1.25"/>
+<text x="755.0" y="231.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="12.5" fill="#141413">Coordination Topology</text>
+<text x="845.5" y="220" text-anchor="middle" font-size="12" fill="#1f4fd9" font-weight="700">★</text>
+<line x1="690.5" y1="246" x2="690.5" y2="333.0" stroke="#141413" stroke-width="1.25"/>
+<rect x="702.5" y="276" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="690.5" y1="293.0" x2="702.5" y2="293.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="712.5" y="297.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Single Agent</text>
+<text x="847.5" y="297.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">18</text>
+<rect x="702.5" y="316" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="690.5" y1="333.0" x2="702.5" y2="333.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="712.5" y="337.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Multi-Agent</text>
+<text x="847.5" y="337.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">2</text>
+<line x1="975.0" y1="94" x2="975.0" y2="124" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="882.5" y="124" width="185" height="44" rx="6" fill="#e3f5e3" stroke="#141413" stroke-width="1.5"/>
+<text x="965.0" y="151.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="13" fill="#141413">Reasoning Approach</text>
+<text x="1055.5" y="139" text-anchor="middle" font-size="13" fill="#d9442e" font-weight="700">▲</text>
+<line x1="900.5" y1="168" x2="900.5" y2="413.0" stroke="#141413" stroke-width="1.25"/>
+<rect x="912.5" y="276" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="900.5" y1="293.0" x2="912.5" y2="293.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="922.5" y="297.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Prompting</text>
+<text x="1057.5" y="297.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">15</text>
+<rect x="912.5" y="316" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="900.5" y1="333.0" x2="912.5" y2="333.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="922.5" y="337.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#141413">Iterative Reasoning</text>
+<text x="1057.5" y="337.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">4</text>
+<rect x="912.5" y="356" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="900.5" y1="373.0" x2="912.5" y2="373.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="922.5" y="377.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#141413">Knowledge Retrieval</text>
+<text x="1057.5" y="377.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">2</text>
+<rect x="912.5" y="396" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="900.5" y1="413.0" x2="912.5" y2="413.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="922.5" y="417.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="10" fill="#141413">Model Specialization</text>
+<text x="1057.5" y="417.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">2</text>
+<line x1="1185.0" y1="94" x2="1185.0" y2="124" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="1092.5" y="124" width="185" height="44" rx="6" fill="#e3f5e3" stroke="#141413" stroke-width="1.5"/>
+<text x="1175.0" y="151.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="13" fill="#141413">Autonomy Level</text>
+<text x="1265.5" y="139" text-anchor="middle" font-size="13" fill="#1f4fd9" font-weight="700">★</text>
+<line x1="1110.5" y1="168" x2="1110.5" y2="333.0" stroke="#141413" stroke-width="1.25"/>
+<rect x="1122.5" y="276" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="1110.5" y1="293.0" x2="1122.5" y2="293.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="1132.5" y="297.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Autonomous</text>
+<text x="1267.5" y="297.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">15</text>
+<rect x="1122.5" y="316" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="1110.5" y1="333.0" x2="1122.5" y2="333.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="1132.5" y="337.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Supervised</text>
+<text x="1267.5" y="337.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">5</text>
+<line x1="1395.0" y1="94" x2="1395.0" y2="124" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="1302.5" y="124" width="185" height="44" rx="6" fill="#e3f5e3" stroke="#141413" stroke-width="1.5"/>
+<text x="1385.0" y="151.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="13" fill="#141413">Metric</text>
+<text x="1475.5" y="139" text-anchor="middle" font-size="13" fill="#d9442e" font-weight="700">▲</text>
+<line x1="1320.5" y1="168" x2="1320.5" y2="333.0" stroke="#141413" stroke-width="1.25"/>
+<rect x="1332.5" y="276" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="1320.5" y1="293.0" x2="1332.5" y2="293.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="1342.5" y="297.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="10" fill="#141413">RM Performance Metric</text>
+<text x="1477.5" y="297.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">20</text>
+<rect x="1332.5" y="316" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="1320.5" y1="333.0" x2="1332.5" y2="333.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="1342.5" y="337.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="9" fill="#141413">Agent Performance Metric</text>
+<text x="1477.5" y="337.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">15</text>
+<line x1="1605.0" y1="94" x2="1605.0" y2="124" stroke="#141413" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="1512.5" y="124" width="185" height="44" rx="6" fill="#e3f5e3" stroke="#141413" stroke-width="1.5"/>
+<text x="1595.0" y="151.0" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="13" fill="#141413">Evaluation Method</text>
+<text x="1685.5" y="139" text-anchor="middle" font-size="13" fill="#1f4fd9" font-weight="700">★</text>
+<line x1="1530.5" y1="168" x2="1530.5" y2="333.0" stroke="#141413" stroke-width="1.25"/>
+<rect x="1542.5" y="276" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="1530.5" y1="293.0" x2="1542.5" y2="293.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="1552.5" y="297.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Simulation</text>
+<text x="1687.5" y="297.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">13</text>
+<rect x="1542.5" y="316" width="155" height="34" rx="5" fill="#ffffff" stroke="#141413" stroke-width="1.25"/>
+<line x1="1530.5" y1="333.0" x2="1542.5" y2="333.0" stroke="#141413" stroke-width="1.25" marker-end="url(#arr)"/>
+<text x="1552.5" y="337.0" text-anchor="start" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#141413">Practical Testbed</text>
+<text x="1687.5" y="337.0" text-anchor="end" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#d97757" font-weight="700">7</text>
+<text x="30" y="508" font-family="ui-monospace,SF Mono,Menlo,monospace" font-size="11" fill="#87867f">★ single-select  ·  ▲ multi-select  ·  number = papers contributing to value  ·  total corpus n = 20</text>
+</svg></div>
+  </div>
+
+  <div class="section">
+    <h2><span class="variant-tag">B</span>Compact axis pills (single column)</h2>
+    <p class="section-tldr">One row per axis (or facet). Values rendered as pills with inline counts. Optimized for vertical real estate.</p>
+    <div class="section-meta">
+      <span><strong>Pros:</strong> fits an A4 single column · easy scan · counts inline</span>
+      <span><strong>Cons:</strong> less "figure-like"; closer to a typeset table</span>
+    </div>
+    <div class="variant-card"><div class="pills-wrap"><div class="pillrow"><div class="pillrow-label"><span class="marker-single">★</span> Infrastructure</div><div class="pillrow-values"><span class="pill">Cloud-Only <em>9</em></span><span class="pill">Edge-Cloud <em>11</em></span></div></div><div class="pillrow"><div class="pillrow-label"><span class="marker-multi">▲</span> Decision</div><div class="pillrow-values"><span class="pill">Placement & Offloading <em>9</em></span><span class="pill">Scheduling <em>7</em></span><span class="pill">Scaling <em>2</em></span><span class="pill">Routing & Slicing <em>1</em></span><span class="pill">Remediation <em>2</em></span></div></div><div class="pillrow"><div class="pillrow-label"><span class="marker-single">★</span> <span class="grouped">Agentic Configuration ·</span> Decision Role</div><div class="pillrow-values"><span class="pill">Sole Decider <em>14</em></span><span class="pill">Pipeline Contributor <em>6</em></span></div></div><div class="pillrow"><div class="pillrow-label"><span class="marker-single">★</span> <span class="grouped">Agentic Configuration ·</span> Coordination Topology</div><div class="pillrow-values"><span class="pill">Single Agent <em>18</em></span><span class="pill">Multi-Agent <em>2</em></span></div></div><div class="pillrow"><div class="pillrow-label"><span class="marker-multi">▲</span> Reasoning Approach</div><div class="pillrow-values"><span class="pill">Prompting <em>15</em></span><span class="pill">Iterative Reasoning <em>4</em></span><span class="pill">Knowledge Retrieval <em>2</em></span><span class="pill">Model Specialization <em>2</em></span></div></div><div class="pillrow"><div class="pillrow-label"><span class="marker-single">★</span> Autonomy Level</div><div class="pillrow-values"><span class="pill">Autonomous <em>15</em></span><span class="pill">Supervised <em>5</em></span></div></div><div class="pillrow"><div class="pillrow-label"><span class="marker-multi">▲</span> Metric</div><div class="pillrow-values"><span class="pill">RM Performance Metric <em>20</em></span><span class="pill">Agent Performance Metric <em>15</em></span></div></div><div class="pillrow"><div class="pillrow-label"><span class="marker-single">★</span> Evaluation Method</div><div class="pillrow-values"><span class="pill">Simulation <em>13</em></span><span class="pill">Practical Testbed <em>7</em></span></div></div></div></div>
+  </div>
+
+  <div class="section">
+    <h2><span class="variant-tag">C</span>Faceted cards (web/print-grid)</h2>
+    <p class="section-tldr">Each axis is a card with its values and counts. Composite axis (<code>agentic_configuration</code>) gets a wider card with both facets stacked.</p>
+    <div class="section-meta">
+      <span><strong>Pros:</strong> dense · responsive · stable for the web companion</span>
+      <span><strong>Cons:</strong> grid layout depends on viewport width; harder to print cleanly</span>
+    </div>
+    <div class="variant-card"><div class="facet-grid"><div class="facet-card"><div class="facet-head"><span class="facet-name">★ Infrastructure</span><span class="facet-type">single-select</span></div><ul class="facet-list"><li><span class="vlabel">Cloud-Only</span><span class="vcount">9</span></li><li><span class="vlabel">Edge-Cloud</span><span class="vcount">11</span></li></ul></div><div class="facet-card"><div class="facet-head"><span class="facet-name">▲ Decision</span><span class="facet-type">multi-select</span></div><ul class="facet-list"><li><span class="vlabel">Placement & Offloading</span><span class="vcount">9</span></li><li><span class="vlabel">Scheduling</span><span class="vcount">7</span></li><li><span class="vlabel">Scaling</span><span class="vcount">2</span></li><li><span class="vlabel">Routing & Slicing</span><span class="vcount">1</span></li><li><span class="vlabel">Remediation</span><span class="vcount">2</span></li></ul></div><div class="facet-card composite"><div class="facet-head"><span class="facet-name">Agentic Configuration</span><span class="facet-type">composite · 2 facets</span></div><div class="facet-sub"><div class="facet-sub-head">★ Decision Role</div><ul class="facet-list"><li><span class="vlabel">Sole Decider</span><span class="vcount">14</span></li><li><span class="vlabel">Pipeline Contributor</span><span class="vcount">6</span></li></ul></div><div class="facet-sub"><div class="facet-sub-head">★ Coordination Topology</div><ul class="facet-list"><li><span class="vlabel">Single Agent</span><span class="vcount">18</span></li><li><span class="vlabel">Multi-Agent</span><span class="vcount">2</span></li></ul></div></div><div class="facet-card"><div class="facet-head"><span class="facet-name">▲ Reasoning Approach</span><span class="facet-type">multi-select</span></div><ul class="facet-list"><li><span class="vlabel">Prompting</span><span class="vcount">15</span></li><li><span class="vlabel">Iterative Reasoning</span><span class="vcount">4</span></li><li><span class="vlabel">Knowledge Retrieval</span><span class="vcount">2</span></li><li><span class="vlabel">Model Specialization</span><span class="vcount">2</span></li></ul></div><div class="facet-card"><div class="facet-head"><span class="facet-name">★ Autonomy Level</span><span class="facet-type">single-select</span></div><ul class="facet-list"><li><span class="vlabel">Autonomous</span><span class="vcount">15</span></li><li><span class="vlabel">Supervised</span><span class="vcount">5</span></li></ul></div><div class="facet-card"><div class="facet-head"><span class="facet-name">▲ Metric</span><span class="facet-type">multi-select</span></div><ul class="facet-list"><li><span class="vlabel">RM Performance Metric</span><span class="vcount">20</span></li><li><span class="vlabel">Agent Performance Metric</span><span class="vcount">15</span></li></ul></div><div class="facet-card"><div class="facet-head"><span class="facet-name">★ Evaluation Method</span><span class="facet-type">single-select</span></div><ul class="facet-list"><li><span class="vlabel">Simulation</span><span class="vcount">13</span></li><li><span class="vlabel">Practical Testbed</span><span class="vcount">7</span></li></ul></div></div></div>
+  </div>
+
+  <div class="section">
+    <h2><span class="variant-tag">D</span>Cross-product matrix — <code>decision_role × coordination_topology</code></h2>
+    <p class="section-tldr">Supplementary figure that isolates the 2×2 of the two facets of <code>agentic_configuration</code>. The hatched cell is the <code>Pipeline Contributor × Multi-Agent</code> vacancy — central to the RQ5.2 governance-gap discussion.</p>
+    <div class="section-meta">
+      <span><strong>Pros:</strong> single-point evidence for an empty cell · trivial to read</span>
+      <span><strong>Cons:</strong> covers only 2 axes of 7; pair it with A or B as the main figure</span>
+    </div>
+    <div class="variant-card" style="text-align:center"><table class="cross"><thead><tr><th></th><th><span class="marker-single">★</span> Single Agent<br><em>18</em></th><th><span class="marker-single">★</span> Multi-Agent<br><em>2</em></th><th>row total</th></tr></thead><tbody><tr><th class="rowhead"><span class="marker-single">★</span> Sole Decider<br><em>14</em></th><td class="cell"><div class="cell-count">12</div><div class="cell-label">12 papers</div></td><td class="cell"><div class="cell-count">2</div><div class="cell-label">2 papers</div></td><td class="rowtot">14</td></tr><tr><th class="rowhead"><span class="marker-single">★</span> Pipeline Contributor<br><em>6</em></th><td class="cell"><div class="cell-count">6</div><div class="cell-label">6 papers</div></td><td class="cell empty"><div class="cell-count">0</div><div class="cell-label">∅ empty (research opportunity)</div></td><td class="rowtot">6</td></tr><tr><th class="rowtot">col total</th><td class="rowtot">18</td><td class="rowtot">2</td><td class="rowtot grand">20</td></tr></tbody></table></div>
+  </div>
+
+</div>
+</body>
+</html>

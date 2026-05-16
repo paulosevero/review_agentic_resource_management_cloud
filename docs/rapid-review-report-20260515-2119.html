@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapid Review Report — Agentic AI for Resource Management</title>
+<style>
+:root{
+  --ivory:#faf9f5; --paper:#fff; --slate:#141413;
+  --clay:#d97757; --clay-d:#b85c3e; --oat:#e3dacc;
+  --olive:#788c5d; --rust:#b04a3f;
+  --g100:#f0eee6; --g200:#e6e3da; --g300:#d1cfc5;
+  --g500:#87867f; --g700:#3d3d3a;
+  --serif:ui-serif,Georgia,"Times New Roman",Times,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Monaco,Consolas,monospace;
+  --radius-panel:12px; --radius-row:8px; --radius-pill:999px;
+  --border:1.5px solid var(--g300);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.layout{display:grid;grid-template-columns:240px 1fr;max-width:1360px;margin:0 auto;gap:48px;padding:56px 24px 120px}
+.toc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow-y:auto;font-size:13px}
+.toc ul{list-style:none;padding:0;margin:8px 0 0;border-left:1.5px solid var(--g300)}
+.toc li{margin:0}
+.toc a{display:block;padding:6px 0 6px 12px;color:var(--g700);text-decoration:none;border-left:2px solid transparent;margin-left:-1.5px;line-height:1.3}
+.toc a:hover{color:var(--clay);border-left-color:var(--clay);background:var(--g100)}
+.toc-l2 > a{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-top:8px}
+.toc-l3 > a{padding-left:24px;font-size:12.5px}
+.toc-l4 > a{padding-left:36px;font-size:12px;color:var(--g500)}
+.main{min-width:0;max-width:880px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-.015em;margin:0 0 12px}
+h2{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.005em;margin:48px 0 12px;padding-top:8px;border-top:1px solid var(--g300)}
+h3{font-family:var(--serif);font-weight:500;font-size:21px;margin:32px 0 8px}
+h4{font-family:var(--sans);font-weight:600;font-size:16px;margin:24px 0 8px;color:var(--slate)}
+h5{font-family:var(--mono);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--clay);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--g300)}
+h6{font-family:var(--sans);font-weight:600;font-size:14px;margin:16px 0 6px}
+p{margin:8px 0}
+a{color:var(--clay);text-decoration-color:var(--oat);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--clay)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.eyebrow::before{content:"";width:24px;height:1.5px;background:var(--clay)}
+.tldr{background:var(--g100);border:var(--border);border-left:4px solid var(--clay);border-radius:var(--radius-panel);padding:18px 22px;margin:24px 0 40px}
+.tldr p{margin:0}
+.tldr .eyebrow{margin-bottom:8px}
+.card{background:var(--paper);border:var(--border);border-radius:var(--radius-panel);padding:24px;margin:16px 0}
+.view-card{padding:20px 24px;margin:20px 0}
+.view-card h5{margin-top:0}
+code{font-family:var(--mono);font-size:.88em;background:var(--g100);padding:1px 5px;border-radius:3px}
+pre{background:var(--g100);border:var(--border);border-radius:var(--radius-row);padding:14px 16px;overflow-x:auto;font-family:var(--mono);font-size:13px}
+pre code{background:transparent;padding:0;font-size:13px}
+blockquote{border-left:4px solid var(--clay);background:var(--g100);margin:12px 0;padding:8px 16px;border-radius:0 var(--radius-row) var(--radius-row) 0;font-size:14px;color:var(--g700)}
+blockquote p{margin:6px 0}
+blockquote p:first-child{font-style:italic}
+hr.rule{border:none;border-top:1px solid var(--g300);margin:32px 0}
+.table-wrap{overflow-x:auto;margin:14px 0;border:var(--border);border-radius:var(--radius-row)}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--g300);text-align:left;vertical-align:top}
+th{background:var(--g100);font-weight:600;font-family:var(--sans);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--g700)}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--ivory)}
+ul,ol{padding-left:24px;margin:8px 0}
+li{margin:4px 0}
+li > ul, li > ol{margin:4px 0}
+strong{color:var(--slate);font-weight:600}
+.main > .eyebrow{margin-top:0}
+@media (max-width:880px){
+  .layout{grid-template-columns:1fr;gap:24px;padding:24px 16px 80px}
+  .toc{position:static;max-height:none;border:var(--border);border-radius:var(--radius-panel);padding:14px}
+  .toc ul{max-height:200px;overflow-y:auto}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc" aria-label="Table of contents"><div class="eyebrow">Contents</div><ul>
+<li class="toc-l2"><a href="#corpus-summary">Corpus summary</a></li>
+<li class="toc-l2"><a href="#protocol-summary">Protocol summary</a></li>
+<li class="toc-l3"><a href="#research-questions">Research questions</a></li>
+<li class="toc-l3"><a href="#search-string">Search string</a></li>
+<li class="toc-l3"><a href="#screening-pipeline">Screening pipeline</a></li>
+<li class="toc-l2"><a href="#findings-per-rq">Findings per RQ</a></li>
+<li class="toc-l3"><a href="#cross-cutting-view-anchor-rq1">Cross-cutting view (anchor: `RQ1`)</a></li>
+<li class="toc-l3"><a href="#rq1-how-are-agentic-ai-systems-architected-for-resource-management-in-cloud-edge-fog-and-continuum-infrastructures">RQ1 — How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum infrastructures?</a></li>
+<li class="toc-l4"><a href="#rq1-1-architectural-patterns-of-the-perceive-reason-act-loop-single-agent-vs-multi-agent-vs-hierarchical-react-plan-and-execute-reflexion">RQ1.1 — Architectural patterns of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical; ReAct/Plan-and-Execute/Reflexion).</a></li>
+<li class="toc-l4"><a href="#rq1-2-coupling-to-infrastructure-via-tools-apis-mcp-tool-surface-action-grammar-integration-with-kubernetes-orchestrators">RQ1.2 — Coupling to infrastructure via tools/APIs/MCP (tool surface, action grammar, integration with Kubernetes/orchestrators).</a></li>
+<li class="toc-l4"><a href="#rq1-3-safety-and-guardrail-mechanisms-hitl-action-validators-sandboxing-policy-gates-rollback">RQ1.3 — Safety and guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback).</a></li>
+<li class="toc-l3"><a href="#rq2-which-classes-of-resource-management-decisions-are-delegated-to-agentic-ai-systems-and-under-what-operational-conditions">RQ2 — Which classes of resource management decisions are delegated to agentic AI systems, and under what operational conditions?</a></li>
+<li class="toc-l4"><a href="#rq2-1-classes-of-resource-management-decisions-delegated">RQ2.1 — Classes of resource management decisions delegated.</a></li>
+<li class="toc-l4"><a href="#rq2-2-operational-conditions-and-autonomy-level-advisory-supervised-autonomous">RQ2.2 — Operational conditions and autonomy level (advisory/supervised/autonomous).</a></li>
+<li class="toc-l3"><a href="#rq3-what-reasoning-processes-and-grounding-mechanisms-do-agentic-ai-systems-employ-to-translate-observed-system-state-into-resource-management-actions">RQ3 — What reasoning processes and grounding mechanisms do agentic AI systems employ to translate observed system state into resource management actions?</a></li>
+<li class="toc-l4"><a href="#rq3-1-reasoning-processes-cot-tot-react-planning-reflection-debate-self-consistency">RQ3.1 — Reasoning processes (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).</a></li>
+<li class="toc-l4"><a href="#rq3-2-grounding-mechanisms-telemetry-rag-over-runbooks-docs-episodic-memory-vector-dbs-knowledge-graphs">RQ3.2 — Grounding mechanisms (telemetry, RAG over runbooks/docs, episodic memory, vector DBs, knowledge graphs).</a></li>
+<li class="toc-l4"><a href="#rq3-3-domain-knowledge-incorporation-fine-tuning-structured-prompting-few-shot-infrastructure-ontologies">RQ3.3 — Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, infrastructure ontologies).</a></li>
+<li class="toc-l3"><a href="#rq4-how-is-the-behavior-of-agentic-ai-systems-for-resource-management-evaluated">RQ4 — How is the behavior of agentic AI systems for resource management evaluated?</a></li>
+<li class="toc-l4"><a href="#rq4-1-evaluation-methodologies-and-environments-simulation-real-testbed-production-synthetic-benchmarks-real-traces">RQ4.1 — Evaluation methodologies and environments (simulation, real testbed, production, synthetic benchmarks, real traces).</a></li>
+<li class="toc-l4"><a href="#rq4-2-resource-management-performance-metrics-latency-cost-energy-sla-utilization-throughput">RQ4.2 — Resource-management performance metrics (latency, cost, energy, SLA, utilization, throughput).</a></li>
+<li class="toc-l4"><a href="#rq4-3-agent-inference-overhead-metrics-token-usage-inference-latency-monetary-cost-per-decision-model-size-footprint-agent-loop-throughput">RQ4.3 — Agent/inference overhead metrics (token usage, inference latency, monetary cost per decision, model size/footprint, agent-loop throughput).</a></li>
+<li class="toc-l4"><a href="#rq4-4-safety-and-governance-metrics-rate-of-unsafe-invalid-actions-frequency-of-human-intervention-audit-coverage-policy-compliance">RQ4.4 — Safety and governance metrics (rate of unsafe/invalid actions, frequency of human intervention, audit coverage, policy compliance).</a></li>
+<li class="toc-l3"><a href="#rq5-what-open-challenges-unresolved-tensions-and-promising-future-directions-emerge-from-the-synthesis-of-the-included-literature">RQ5 — What open challenges, unresolved tensions, and promising future directions emerge from the synthesis of the included literature?</a></li>
+<li class="toc-l4"><a href="#rq5-1-unresolved-methodological-and-technical-tensions-inference-cost-vs-decision-latency-hallucination-in-critical-environments-transferability-across-infrastructures">RQ5.1 — Unresolved methodological and technical tensions (inference cost vs. decision latency, hallucination in critical environments, transferability across infrastructures).</a></li>
+<li class="toc-l4"><a href="#rq5-2-governance-accountability-and-auditability-gaps-decision-traceability-responsibility-attribution-regulatory-requirements-explainability">RQ5.2 — Governance, accountability, and auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability).</a></li>
+<li class="toc-l2"><a href="#taxonomy-reference">Taxonomy reference</a></li>
+<li class="toc-l2"><a href="#how-to-read-the-spreadsheet">How to read the spreadsheet</a></li>
+<li class="toc-l2"><a href="#reproducibility">Reproducibility</a></li>
+</ul></nav>
+<main class="main">
+<div class="eyebrow">Rapid review · Stage 09 report</div><h1 id="rapid-review-report-agentic-ai-for-resource-management-in-cloud-edge-fog-and-the-edge-cloud-continuum">Rapid Review Report — Agentic AI for Resource Management in Cloud, Edge, Fog, and the Edge-Cloud Continuum</h1><aside class="tldr"><div class="eyebrow">TL;DR</div><p>This report is the navigable entry point to the locked corpus, taxonomy, and analysis views. It is the table of contents for the manuscript-writing phase; the manuscript itself lives outside this plugin.</p></aside>
+<ul>
+<li><strong>Theme:</strong> Agentic AI (LLM-based agents) for resource management decisions in Cloud, Edge, Fog, and the Edge-Cloud continuum.</li>
+<li><strong>Search executed:</strong> 2026-04-26 (Scopus, <code>PUBYEAR &gt; 2016</code>).</li>
+<li><strong>Corpus locked at full-text:</strong> 20 included papers (<code>status.06-full-text-screening == include</code>).</li>
+<li><strong>Taxonomy lock:</strong> 7 axes (faceted, per CLAUDE.md §8).</li>
+<li><strong>Analysis lock:</strong> 16 views (4 cross-cutting + 12 RQ-anchored) — see <code>stages/08-analysis.md</code>.</li>
+</ul>
+<h2 id="corpus-summary">Corpus summary</h2>
+<p>PRISMA-style flow, aggregated from per-paper status frontmatter:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Stage</th><th>Count</th><th>Source of truth</th></tr></thead>
+<tbody>
+<tr><td>Imported (Scopus, dedup-merged)</td><td>2964</td><td><code>papers/paper-*.md</code> frontmatter</td></tr>
+<tr><td>Title screening — include</td><td>572</td><td><code>status.04-title-screening == include</code></td></tr>
+<tr><td>Title screening — exclude</td><td>2377</td><td><code>status.04-title-screening == exclude</code></td></tr>
+<tr><td>Abstract screening — include</td><td>53</td><td><code>status.05-abstract-screening == include</code></td></tr>
+<tr><td>Abstract screening — exclude</td><td>519</td><td><code>status.05-abstract-screening == exclude</code></td></tr>
+<tr><td>Full-text screening — include</td><td>20</td><td><code>status.06-full-text-screening == include</code></td></tr>
+<tr><td>Full-text screening — exclude</td><td>33</td><td><code>status.06-full-text-screening == exclude</code></td></tr>
+<tr><td>Taxonomy classified</td><td>20</td><td><code>status.07-taxonomy-development == classified</code></td></tr>
+<tr><td>Contributing to ≥1 analysis view</td><td>20</td><td><code>status.08-analysis == analyzed</code></td></tr>
+</tbody></table></div>
+<p>Year distribution of the locked corpus: 2024 — 2; 2025 — 14; 2026 — 4 (partial; search window cuts mid-year). The 2024 figure marks the empirical onset of agentic-AI-for-resource-management work in the indexed literature.</p>
+<h2 id="protocol-summary">Protocol summary</h2>
+<p>The locked protocol lives in [<code>protocols/screening.yaml</code>](../protocols/screening.yaml). The Boolean search string (with per-database adaptations) and the typed inclusion criteria are mirrored in [<code>CLAUDE.md §4</code>](../CLAUDE.md) and <a href="../CLAUDE.md">§5</a>. What follows is a prose summary.</p>
+<h3 id="research-questions">Research questions</h3>
+<p>Five top-level RQs decompose thematically into 13 sub-RQs (see [<code>CLAUDE.md §3</code>](../CLAUDE.md) for the authoritative form):</p>
+<ul>
+<li><strong>RQ1</strong> — How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum infrastructures?
+<ul>
+<li>_RQ1.1_ — Architectural patterns of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical; ReAct/Plan-and-Execute/Reflexion).</li>
+<li>_RQ1.2_ — Coupling to infrastructure via tools/APIs/MCP (tool surface, action grammar, integration with Kubernetes/orchestrators).</li>
+<li>_RQ1.3_ — Safety and guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback).</li>
+</ul></li>
+<li><strong>RQ2</strong> — Which classes of resource management decisions are delegated to agentic AI systems, and under what operational conditions?
+<ul>
+<li>_RQ2.1_ — Classes of resource management decisions delegated.</li>
+<li>_RQ2.2_ — Operational conditions and autonomy level (advisory/supervised/autonomous).</li>
+</ul></li>
+<li><strong>RQ3</strong> — What reasoning processes and grounding mechanisms do agentic AI systems employ to translate observed system state into resource management actions?
+<ul>
+<li>_RQ3.1_ — Reasoning processes (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).</li>
+<li>_RQ3.2_ — Grounding mechanisms (telemetry, RAG over runbooks/docs, episodic memory, vector DBs, knowledge graphs).</li>
+<li>_RQ3.3_ — Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, infrastructure ontologies).</li>
+</ul></li>
+<li><strong>RQ4</strong> — How is the behavior of agentic AI systems for resource management evaluated?
+<ul>
+<li>_RQ4.1_ — Evaluation methodologies and environments (simulation, real testbed, production, synthetic benchmarks, real traces).</li>
+<li>_RQ4.2_ — Resource-management performance metrics (latency, cost, energy, SLA, utilization, throughput).</li>
+<li>_RQ4.3_ — Agent/inference overhead metrics (token usage, inference latency, monetary cost per decision, model size/footprint, agent-loop throughput).</li>
+<li>_RQ4.4_ — Safety and governance metrics (rate of unsafe/invalid actions, frequency of human intervention, audit coverage, policy compliance).</li>
+</ul></li>
+<li><strong>RQ5</strong> — What open challenges, unresolved tensions, and promising future directions emerge from the synthesis of the included literature?
+<ul>
+<li>_RQ5.1_ — Unresolved methodological and technical tensions (inference cost vs. decision latency, hallucination in critical environments, transferability across infrastructures).</li>
+<li>_RQ5.2_ — Governance, accountability, and auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability).</li>
+</ul></li>
+</ul>
+<h3 id="search-string">Search string</h3>
+<p>Three Boolean clauses joined by <code>AND</code>: (i) agentic-AI / LLM / autonomous-agent terms; (ii) resource-management decision terms (scheduling, placement, scaling, routing, slicing, orchestration, admission, energy, fault-tolerance, etc.); (iii) infrastructure-scope terms (cloud, edge, fog, continuum, MEC, serverless, FaaS, Kubernetes, datacenter, IaaS/PaaS/SaaS). The Scopus-ready form lives in [<code>CLAUDE.md §4</code>](../CLAUDE.md).</p>
+<p><strong>Per-database adaptation:</strong> Scopus only (Web of Science, IEEE Xplore, ACM DL were explicitly excluded by the user). Scopus field selector: <code>TITLE-ABS-KEY</code>; temporal filter: <code>PUBYEAR &gt; 2016</code> (Transformer-era boundary).</p>
+<h3 id="screening-pipeline">Screening pipeline</h3>
+<p>Two-pass screening at each stage (title, abstract, full-text):</p>
+<ul>
+<li><strong>Pass 1</strong> — deterministic regex classifier (<code>scripts/deterministic_classifier.py</code> + <code>protocols/classifier-config.json</code>) emits <code>Proposed Decision</code>, <code>Proposed Justification</code>, and an <code>Evidence Trail</code> for every paper.</li>
+<li><strong>Pass 2</strong> — single LLM reviewer reads the regex output plus the stage-allowed paper body and fills <code>My Final Decision</code> and <code>My Justification</code> per paper. Per-stage model assignments live in [<code>CLAUDE.md §6</code>](../CLAUDE.md).</li>
+<li><strong>No automated consolidation.</strong> Final decisions are user-finalized in column L of <code>spreadsheet.xlsx</code>. Conservative tiebreak: when in doubt at title or abstract, include — the cost of a false positive is one extra read at the next stage; the cost of a false negative is losing the paper.</li>
+<li><strong>Manual-review rules</strong> (applied as overrides in <code>My Final Decision</code>): exclude surveys, mapping studies, editorials, posters, abstracts-only, tutorials, demos without evaluation, book chapters, non-English papers, and non-peer-reviewed records.</li>
+</ul>
+<p>Full reproducibility material: [<code>protocols/screening.yaml</code>](../protocols/screening.yaml), [<code>protocols/classifier-config.json</code>](../protocols/classifier-config.json), [<code>protocols/classifier-config-fulltext.json</code>](../protocols/classifier-config-fulltext.json).</p>
+<h2 id="findings-per-rq">Findings per RQ</h2>
+<p>Findings are anchored to the locked analysis views from [<code>stages/08-analysis.md</code>](../stages/08-analysis.md). Each sub-section lists the sub-RQ text, the synthesis paragraph, the views, the axes they touch, the contributing papers, and 2–3 representative quotes.</p>
+<h3 id="cross-cutting-view-anchor-rq1">Cross-cutting view (anchor: <code>RQ1</code>)</h3>
+<p><strong>How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum infrastructures?</strong></p>
+<p>The cross-cutting <code>temporal-included</code> view sanity-checks the corpus emergence: agentic-AI-for-resource-management work crosses the screening bar starting in 2024, accelerates through 2025, and continues into the (partial) 2026 window.</p>
+<section class="card view-card"><h5 id="view-temporal-included">View <code>temporal-included</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>temporal</code> · <strong>Anchor:</strong> <code>RQ1</code> · <strong>Shape:</strong> rows: <code>year</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>temporal-included</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>2024</td><td>2</td></tr>
+<tr><td>2025</td><td>14</td></tr>
+<tr><td>2026</td><td>4</td></tr>
+</tbody></table></div>
+<p>2024: 2 · 2025: 14 · 2026: 4. The 2026 count is partial because the search window cuts mid-year. The 2024 figure marks the empirical onset of agentic-AI-for-resource-management work in the indexed literature (the field only crosses the screening bar in 2024).</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>year</code> — Publication year of the paper.</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>_LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence_ — <a href="../papers/paper-2556.md">paper-2556</a> (2026)</p><p>_AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks_ — <a href="../papers/paper-2723.md">paper-2723</a> (2026)</p><p>_Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language_ — <a href="../papers/paper-2779.md">paper-2779</a> (2026)</p></blockquote>
+</section>
+<h3 id="rq1-how-are-agentic-ai-systems-architected-for-resource-management-in-cloud-edge-fog-and-continuum-infrastructures">RQ1 — How are agentic AI systems architected for resource management in cloud, edge, fog, and continuum infrastructures?</h3>
+<h4 id="rq1-1-architectural-patterns-of-the-perceive-reason-act-loop-single-agent-vs-multi-agent-vs-hierarchical-react-plan-and-execute-reflexion">RQ1.1 — Architectural patterns of the perceive-reason-act loop (single-agent vs multi-agent vs hierarchical; ReAct/Plan-and-Execute/Reflexion).</h4>
+<p>The corpus is overwhelmingly single-agent (18/20); the two multi-agent papers (<a href="../papers/paper-1991.md">paper-1991</a>, <a href="../papers/paper-2362.md">paper-2362</a>) both adopt explicit Iterative Reasoning loops — a multi-agent topology in this corpus implies planning/reflection rather than one-shot prompting. The 2×2 of <code>decision_role × coordination_topology</code> shows three populated cells and one empty cell (<code>Pipeline Contributor × Multi-Agent</code>), which is flagged as a research-opportunity observation rather than a taxonomy gap.</p>
+<h5 id="view-agent-coordination-distribution">View <code>agent-coordination-distribution</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ1.1</code> · <strong>Shape:</strong> rows: <code>agentic_configuration.coordination_topology</code> (single-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>agent-coordination-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Single Agent</td><td>18</td></tr>
+<tr><td>Multi-Agent</td><td>2</td></tr>
+</tbody></table></div>
+<p>Single-agent topology dominates (18/20). The two Multi-Agent papers (1991, 2362) both adopt Iterative Reasoning, hinting that multi-agent is currently coupled with explicit planning/reflection loops rather than one-shot prompting.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>agentic_configuration.coordination_topology</code> — How many LLM-agents coordinate inside the loop (<code>Single Agent</code> vs <code>Multi-Agent</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"directly applying LLMs to cloud scheduling poses fundamental challenges" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>agentic_configuration.coordination_topology</code> = <code>Single Agent</code></p></blockquote>
+<blockquote><p>"a hybrid agent-based workflow that synergizes human-agent collaboration and multi-agent coordination" (§I Introduction)</p><p>— <a href="../papers/paper-1991.md">paper-1991</a>, axis <code>agentic_configuration.coordination_topology</code> = <code>Multi-Agent</code></p></blockquote>
+<section class="card view-card"><h5 id="view-agentic-config-cross">View <code>agentic-config-cross</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ1.1</code> · <strong>Shape:</strong> rows: <code>agentic_configuration.decision_role</code> × cols: <code>agentic_configuration.coordination_topology</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>agentic-config-cross</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Single Agent</th><th>Multi-Agent</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>Sole Decider</td><td>12</td><td>2</td><td>14</td></tr>
+<tr><td>Pipeline Contributor</td><td>6</td><td>0</td><td>6</td></tr>
+</tbody></table></div>
+<p>Three of the four cells of the 2×2 are populated; <code>Pipeline Contributor × Multi-Agent</code> is empty in the current corpus. This vacancy is reported as a research-opportunity observation, not a coverage gap of the taxonomy (the two facets remain independently valid). The dominant configuration is <code>Sole Decider × Single Agent</code> (12/20).</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>agentic_configuration.decision_role</code> — Who holds authority over the final RM action (<code>Sole Decider</code> vs <code>Pipeline Contributor</code>).</li>
+<li><code>agentic_configuration.coordination_topology</code> — How many LLM-agents coordinate inside the loop (<code>Single Agent</code> vs <code>Multi-Agent</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"LLM-Guided Candidate Generation employs few-shot and chain-of-thought prompting to produce diverse scheduling candidates" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>agentic_configuration.decision_role</code> = <code>Sole Decider</code></p></blockquote>
+<blockquote><p>"the scheduler assigns scores to the valid machines based on these preferences" (§I Introduction)</p><p>— <a href="../papers/paper-2779.md">paper-2779</a>, axis <code>agentic_configuration.decision_role</code> = <code>Pipeline Contributor</code></p></blockquote>
+<blockquote><p>"LLMs perceive key factors—such as device location, task type, and context—and adjust task allocation parameters dynamically. They then guide agents to use appropriate tools and perform optimized scheduling" (§Abstract)</p><p>— <a href="../papers/paper-1991.md">paper-1991</a>, axis <code>agentic_configuration.decision_role</code> = <code>Sole Decider</code></p></blockquote>
+</section>
+<h4 id="rq1-2-coupling-to-infrastructure-via-tools-apis-mcp-tool-surface-action-grammar-integration-with-kubernetes-orchestrators">RQ1.2 — Coupling to infrastructure via tools/APIs/MCP (tool surface, action grammar, integration with Kubernetes/orchestrators).</h4>
+<p>Both infrastructure tiers are well-represented (Edge-Cloud 11, Cloud-Only 9). Decision classes split cleanly by tier: Placement &amp; Offloading skews Edge-Cloud (6/9), Scheduling skews Cloud-Only (5/7), Remediation appears exclusively in Edge-Cloud (2/2), Routing &amp; Slicing exclusively in Cloud-Only (1/1). No paper in the corpus reports a pure edge-only configuration under the §8.2 code-book.</p>
+<h5 id="view-infrastructure-distribution">View <code>infrastructure-distribution</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ1.2</code> · <strong>Shape:</strong> rows: <code>infrastructure</code> (single-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>infrastructure-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Edge-Cloud</td><td>11</td></tr>
+<tr><td>Cloud-Only</td><td>9</td></tr>
+</tbody></table></div>
+<p>Edge-Cloud (11) and Cloud-Only (9) are close to parity. Every paper that mentions an edge tier also reaches a cloud tier — a pure edge-only configuration is empirically absent under the §8.2 code-book definition.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>infrastructure</code> — Tier of infrastructure controlled by the agent (<code>Cloud-Only</code> vs <code>Edge-Cloud</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"decisions must span heterogeneous domains, including the data plane, Multi-access Edge Computing (MEC), and the 5G core" (§I Introduction)</p><p>— <a href="../papers/paper-2723.md">paper-2723</a>, axis <code>infrastructure</code> = <code>Edge-Cloud</code></p></blockquote>
+<blockquote><p>"Cloud resource scheduling presents a fundamental challenge in modern distributed computing" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>infrastructure</code> = <code>Cloud-Only</code></p></blockquote>
+<section class="card view-card"><h5 id="view-infrastructure-by-decision">View <code>infrastructure-by-decision</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ1.2</code> · <strong>Shape:</strong> rows: <code>decision</code> (multi-select) × cols: <code>infrastructure</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>infrastructure-by-decision</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Edge-Cloud</th><th>Cloud-Only</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>Placement &amp; Offloading</td><td>6</td><td>3</td><td>9</td></tr>
+<tr><td>Scheduling</td><td>2</td><td>5</td><td>7</td></tr>
+<tr><td>Remediation</td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>Scaling</td><td>1</td><td>1</td><td>2</td></tr>
+<tr><td>Routing &amp; Slicing</td><td>1</td><td>0</td><td>1</td></tr>
+</tbody></table></div>
+<p>Placement &amp; Offloading skews Edge-Cloud (6 of 9). Scheduling skews Cloud-Only (5 of 7). Remediation and Routing &amp; Slicing appear only in Edge-Cloud or only in Cloud-Only respectively; Scaling is split 1:1.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>decision</code> — Class(es) of resource-management decision delegated to the agent (<code>Scheduling</code>, <code>Placement &amp; Offloading</code>, <code>Scaling</code>, <code>Routing &amp; Slicing</code>, <code>Remediation</code>).</li>
+<li><code>infrastructure</code> — Tier of infrastructure controlled by the agent (<code>Cloud-Only</code> vs <code>Edge-Cloud</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"Task offloading is a critical EC technique. It transfers tasks from user devices to edge servers" (§Introduction)</p><p>— <a href="../papers/paper-2936.md">paper-2936</a>, axis <code>decision</code> = <code>Placement &amp; Offloading</code></p></blockquote>
+<blockquote><p>"introduces LLMSched, a novel Large Language Model (LLM)-driven adaptive scheduling framework" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>decision</code> = <code>Scheduling</code></p></blockquote>
+<blockquote><p>"The goal is to allocate each workload w j to a..." (§3 Problem Definition)</p><p>— <a href="../papers/paper-1644.md">paper-1644</a>, axis <code>decision</code> = <code>Placement &amp; Offloading</code></p></blockquote>
+</section>
+<h4 id="rq1-3-safety-and-guardrail-mechanisms-hitl-action-validators-sandboxing-policy-gates-rollback">RQ1.3 — Safety and guardrail mechanisms (HITL, action validators, sandboxing, policy gates, rollback).</h4>
+<p>Guardrails are described structurally rather than as a separate axis: the Pipeline Contributor role (6/20) is the structural form of the guardrail boundary — a non-LLM component lands the final action. The same boundary appears, viewed from the metric side, as the <code>Supervised × Agent-Performance</code> cell being empty in <code>metric-by-autonomy</code>: Supervised systems do not surface agent-side overhead/audit metrics, while every Autonomous system does.</p>
+<h5 id="view-decision-role-distribution">View <code>decision-role-distribution</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ1.3</code> · <strong>Shape:</strong> rows: <code>agentic_configuration.decision_role</code> (single-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>decision-role-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Sole Decider</td><td>14</td></tr>
+<tr><td>Pipeline Contributor</td><td>6</td></tr>
+</tbody></table></div>
+<p>Sole Decider outnumbers Pipeline Contributor 14:6. The Pipeline Contributor group is structurally the same set as the Supervised autonomy group plus paper-1563 (GP hyper-heuristic) — the LLM feeds a downstream non-LLM decider that holds the final say.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>agentic_configuration.decision_role</code> — Who holds authority over the final RM action (<code>Sole Decider</code> vs <code>Pipeline Contributor</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"LLM-Guided Candidate Generation employs few-shot and chain-of-thought prompting to produce diverse scheduling candidates" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>agentic_configuration.decision_role</code> = <code>Sole Decider</code></p></blockquote>
+<blockquote><p>"the scheduler assigns scores to the valid machines based on these preferences" (§I Introduction)</p><p>— <a href="../papers/paper-2779.md">paper-2779</a>, axis <code>agentic_configuration.decision_role</code> = <code>Pipeline Contributor</code></p></blockquote>
+<section class="card view-card"><h5 id="view-metric-by-autonomy">View <code>metric-by-autonomy</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ4.4</code> · <strong>Shape:</strong> rows: <code>metric</code> (multi-select) × cols: <code>autonomy_level</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>metric-by-autonomy</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Autonomous</th><th>Supervised</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>RM Performance Metric</td><td>15</td><td>5</td><td>20</td></tr>
+<tr><td>Agent Performance Metric</td><td>15</td><td>0</td><td>15</td></tr>
+</tbody></table></div>
+<p>Strong, near-deterministic pattern: all 15 Autonomous papers report Agent Performance Metric (token cost, inference latency, decision accuracy); 0 of the 5 Supervised papers do. Every paper, regardless of autonomy, reports an RM Performance Metric. The vacancy in the Supervised × Agent-Performance cell is the strongest single signal in the corpus and the central evidence for the RQ4.4 governance-gap discussion.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>metric</code> — Families of metrics reported (<code>RM Performance Metric</code> vs <code>Agent Performance Metric</code>).</li>
+<li><code>autonomy_level</code> — Authority the agent holds over the action that reaches the system (<code>Supervised</code> vs <code>Autonomous</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"23.7% reduction in average job completion time, 18.4% improvement in resource utilization efficiency, and 31.2% decrease in SLA violations" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>metric</code> = <code>RM Performance Metric + Agent Performance Metric</code></p></blockquote>
+<blockquote><p>"Scheduling quality tests across six scenarios showed the prototype achieved superior or equivalent placement compared to standard Kubernetes configurations" (§Abstract)</p><p>— <a href="../papers/paper-2779.md">paper-2779</a>, axis <code>metric</code> = <code>RM Performance Metric</code></p></blockquote>
+</section>
+<h3 id="rq2-which-classes-of-resource-management-decisions-are-delegated-to-agentic-ai-systems-and-under-what-operational-conditions">RQ2 — Which classes of resource management decisions are delegated to agentic AI systems, and under what operational conditions?</h3>
+<h4 id="rq2-1-classes-of-resource-management-decisions-delegated">RQ2.1 — Classes of resource management decisions delegated.</h4>
+<p>Five decision classes are observed: Placement &amp; Offloading (9), Scheduling (7), Scaling (2), Remediation (2), Routing &amp; Slicing (1). The head of the distribution (16 of 20 papers contribute to Placement or Scheduling) reflects the easiest mapping from LLM output to executable action: a placement plan or a schedule is a discrete data structure the agent can emit directly, whereas Remediation and Scaling pipelines additionally need closed-loop telemetry to act on.</p>
+<h5 id="view-decision-distribution">View <code>decision-distribution</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ2.1</code> · <strong>Shape:</strong> rows: <code>decision</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>decision-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Placement &amp; Offloading</td><td>9</td></tr>
+<tr><td>Scheduling</td><td>7</td></tr>
+<tr><td>Remediation</td><td>2</td></tr>
+<tr><td>Scaling</td><td>2</td></tr>
+<tr><td>Routing &amp; Slicing</td><td>1</td></tr>
+</tbody></table></div>
+<p>Placement &amp; Offloading (9) and Scheduling (7) dominate the corpus: 16 of 20 papers contribute to one of these two classes. Scaling (2), Remediation (2), and Routing &amp; Slicing (1) appear in the long tail; Remediation is uniformly tied to root-cause-analysis + repair pipelines, and Routing &amp; Slicing surfaces only in 6G/network-management work.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>decision</code> — Class(es) of resource-management decision delegated to the agent (<code>Scheduling</code>, <code>Placement &amp; Offloading</code>, <code>Scaling</code>, <code>Routing &amp; Slicing</code>, <code>Remediation</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"Task offloading is a critical EC technique. It transfers tasks from user devices to edge servers" (§Introduction)</p><p>— <a href="../papers/paper-2936.md">paper-2936</a>, axis <code>decision</code> = <code>Placement &amp; Offloading</code></p></blockquote>
+<blockquote><p>"introduces LLMSched, a novel Large Language Model (LLM)-driven adaptive scheduling framework" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>decision</code> = <code>Scheduling</code></p></blockquote>
+<blockquote><p>"the agent identifies likely root causes and selects corrective actions—such as pod rescheduling, scaling, or configuration updates" (§Abstract)</p><p>— <a href="../papers/paper-1404.md">paper-1404</a>, axis <code>decision</code> = <code>Remediation</code></p></blockquote>
+<section class="card view-card"><h5 id="view-infrastructure-by-decision">View <code>infrastructure-by-decision</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ1.2</code> · <strong>Shape:</strong> rows: <code>decision</code> (multi-select) × cols: <code>infrastructure</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>infrastructure-by-decision</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Edge-Cloud</th><th>Cloud-Only</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>Placement &amp; Offloading</td><td>6</td><td>3</td><td>9</td></tr>
+<tr><td>Scheduling</td><td>2</td><td>5</td><td>7</td></tr>
+<tr><td>Remediation</td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>Scaling</td><td>1</td><td>1</td><td>2</td></tr>
+<tr><td>Routing &amp; Slicing</td><td>1</td><td>0</td><td>1</td></tr>
+</tbody></table></div>
+<p>Placement &amp; Offloading skews Edge-Cloud (6 of 9). Scheduling skews Cloud-Only (5 of 7). Remediation and Routing &amp; Slicing appear only in Edge-Cloud or only in Cloud-Only respectively; Scaling is split 1:1.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>decision</code> — Class(es) of resource-management decision delegated to the agent (<code>Scheduling</code>, <code>Placement &amp; Offloading</code>, <code>Scaling</code>, <code>Routing &amp; Slicing</code>, <code>Remediation</code>).</li>
+<li><code>infrastructure</code> — Tier of infrastructure controlled by the agent (<code>Cloud-Only</code> vs <code>Edge-Cloud</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"Task offloading is a critical EC technique. It transfers tasks from user devices to edge servers" (§Introduction)</p><p>— <a href="../papers/paper-2936.md">paper-2936</a>, axis <code>decision</code> = <code>Placement &amp; Offloading</code></p></blockquote>
+<blockquote><p>"introduces LLMSched, a novel Large Language Model (LLM)-driven adaptive scheduling framework" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>decision</code> = <code>Scheduling</code></p></blockquote>
+<blockquote><p>"The goal is to allocate each workload w j to a..." (§3 Problem Definition)</p><p>— <a href="../papers/paper-1644.md">paper-1644</a>, axis <code>decision</code> = <code>Placement &amp; Offloading</code></p></blockquote>
+</section>
+<h5 id="view-decision-by-autonomy">View <code>decision-by-autonomy</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ2.2</code> · <strong>Shape:</strong> rows: <code>decision</code> (multi-select) × cols: <code>autonomy_level</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>decision-by-autonomy</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Autonomous</th><th>Supervised</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>Placement &amp; Offloading</td><td>5</td><td>4</td><td>9</td></tr>
+<tr><td>Scheduling</td><td>6</td><td>1</td><td>7</td></tr>
+<tr><td>Remediation</td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>Scaling</td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>Routing &amp; Slicing</td><td>1</td><td>0</td><td>1</td></tr>
+</tbody></table></div>
+<p>Scheduling (6/7), Remediation (2/2), Scaling (2/2), and Routing &amp; Slicing (1/1) are predominantly Autonomous. Placement &amp; Offloading is the only class with substantial Supervised representation (4 of 9), reflecting the intent-/policy-compilation pipelines that emit placement plans for downstream solvers.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>decision</code> — Class(es) of resource-management decision delegated to the agent (<code>Scheduling</code>, <code>Placement &amp; Offloading</code>, <code>Scaling</code>, <code>Routing &amp; Slicing</code>, <code>Remediation</code>).</li>
+<li><code>autonomy_level</code> — Authority the agent holds over the action that reaches the system (<code>Supervised</code> vs <code>Autonomous</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"LLMSched incorporates caching and workload-aware triggering mechanisms that invoke LLM reasoning only when significant state changes occur" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>autonomy_level</code> = <code>Autonomous</code></p></blockquote>
+<blockquote><p>"automating complex architectural and operational decisions, our framework enables adaptive, constraint-aware application deployment" (§I Introduction)</p><p>— <a href="../papers/paper-1420.md">paper-1420</a>, axis <code>autonomy_level</code> = <code>Autonomous</code></p></blockquote>
+<blockquote><p>"We design an intelligent preference-aware retrieval module. It integrates semantic similarity between knowledge entries, contextual queries, and task QoS preferences." (§Introduction (contribution 2))</p><p>— <a href="../papers/paper-2936.md">paper-2936</a>, axis <code>autonomy_level</code> = <code>Supervised</code></p></blockquote>
+<h4 id="rq2-2-operational-conditions-and-autonomy-level-advisory-supervised-autonomous">RQ2.2 — Operational conditions and autonomy level (advisory/supervised/autonomous).</h4>
+<p>Autonomous deployments outnumber Supervised 15:5. Across decision classes, Scheduling, Remediation, Scaling, and Routing &amp; Slicing are predominantly Autonomous; Placement &amp; Offloading is the only class with substantial Supervised representation (4 of 9), and that subset coincides with the intent-/policy-compilation pipelines where the LLM emits a placement plan for a downstream non-LLM solver to land.</p>
+<section class="card view-card"><h5 id="view-autonomy-distribution">View <code>autonomy-distribution</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ2.2</code> · <strong>Shape:</strong> rows: <code>autonomy_level</code> (single-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>autonomy-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Autonomous</td><td>15</td></tr>
+<tr><td>Supervised</td><td>5</td></tr>
+</tbody></table></div>
+<p>Autonomous deployments outnumber Supervised 15:5. The Supervised group concentrates around intent-/policy-translation pipelines (1496, 1680, 2470, 2779, 2936) where a non-LLM component lands the final action; the Autonomous group covers every paper where the LLM emits the executable decision.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>autonomy_level</code> — Authority the agent holds over the action that reaches the system (<code>Supervised</code> vs <code>Autonomous</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"LLMSched incorporates caching and workload-aware triggering mechanisms that invoke LLM reasoning only when significant state changes occur" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>autonomy_level</code> = <code>Autonomous</code></p></blockquote>
+<blockquote><p>"The current prototype is intended as a research artifact to demonstrate the feasibility and is not production-ready." (§I Introduction)</p><p>— <a href="../papers/paper-2779.md">paper-2779</a>, axis <code>autonomy_level</code> = <code>Supervised</code></p></blockquote>
+</section>
+<h5 id="view-decision-by-autonomy">View <code>decision-by-autonomy</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ2.2</code> · <strong>Shape:</strong> rows: <code>decision</code> (multi-select) × cols: <code>autonomy_level</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>decision-by-autonomy</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Autonomous</th><th>Supervised</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>Placement &amp; Offloading</td><td>5</td><td>4</td><td>9</td></tr>
+<tr><td>Scheduling</td><td>6</td><td>1</td><td>7</td></tr>
+<tr><td>Remediation</td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>Scaling</td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>Routing &amp; Slicing</td><td>1</td><td>0</td><td>1</td></tr>
+</tbody></table></div>
+<p>Scheduling (6/7), Remediation (2/2), Scaling (2/2), and Routing &amp; Slicing (1/1) are predominantly Autonomous. Placement &amp; Offloading is the only class with substantial Supervised representation (4 of 9), reflecting the intent-/policy-compilation pipelines that emit placement plans for downstream solvers.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>decision</code> — Class(es) of resource-management decision delegated to the agent (<code>Scheduling</code>, <code>Placement &amp; Offloading</code>, <code>Scaling</code>, <code>Routing &amp; Slicing</code>, <code>Remediation</code>).</li>
+<li><code>autonomy_level</code> — Authority the agent holds over the action that reaches the system (<code>Supervised</code> vs <code>Autonomous</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"LLMSched incorporates caching and workload-aware triggering mechanisms that invoke LLM reasoning only when significant state changes occur" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>autonomy_level</code> = <code>Autonomous</code></p></blockquote>
+<blockquote><p>"automating complex architectural and operational decisions, our framework enables adaptive, constraint-aware application deployment" (§I Introduction)</p><p>— <a href="../papers/paper-1420.md">paper-1420</a>, axis <code>autonomy_level</code> = <code>Autonomous</code></p></blockquote>
+<blockquote><p>"We design an intelligent preference-aware retrieval module. It integrates semantic similarity between knowledge entries, contextual queries, and task QoS preferences." (§Introduction (contribution 2))</p><p>— <a href="../papers/paper-2936.md">paper-2936</a>, axis <code>autonomy_level</code> = <code>Supervised</code></p></blockquote>
+<h3 id="rq3-what-reasoning-processes-and-grounding-mechanisms-do-agentic-ai-systems-employ-to-translate-observed-system-state-into-resource-management-actions">RQ3 — What reasoning processes and grounding mechanisms do agentic AI systems employ to translate observed system state into resource management actions?</h3>
+<h4 id="rq3-1-reasoning-processes-cot-tot-react-planning-reflection-debate-self-consistency">RQ3.1 — Reasoning processes (CoT, ToT, ReAct, planning + reflection, debate, self-consistency).</h4>
+<p>Prompting dominates (15/20). Iterative Reasoning (4) is the only paradigm that spans all five decision classes, suggesting a thin but broad presence across the corpus. The temporal slice shows Prompting carries across 2024–2026 unchanged; the other three paradigms accumulate on top rather than displace it.</p>
+<section class="card view-card"><h5 id="view-reasoning-distribution">View <code>reasoning-distribution</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ3.1 (also answers RQ3.2, RQ3.3)</code> · <strong>Shape:</strong> rows: <code>reasoning_approach</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>reasoning-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Prompting</td><td>15</td></tr>
+<tr><td>Iterative Reasoning</td><td>4</td></tr>
+<tr><td>Knowledge Retrieval</td><td>2</td></tr>
+<tr><td>Model Specialization</td><td>2</td></tr>
+</tbody></table></div>
+<p>Prompting dominates at 15/20. Iterative Reasoning (4), Knowledge Retrieval (2), and Model Specialization (2) appear, often combined with Prompting in the same paper (multi-select). No paper uses Knowledge Retrieval or Model Specialization in isolation without a prompt-driven outer loop.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>reasoning_approach</code> — Reasoning/grounding mechanism (<code>Prompting</code>, <code>Iterative Reasoning</code>, <code>Knowledge Retrieval</code>, <code>Model Specialization</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"few-shot adaptability [23], chain-of-thought reasoning [24], and semantic interpretation of natural language constraints" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>reasoning_approach</code> = <code>Prompting</code></p></blockquote>
+<blockquote><p>"Leveraging an Large Language Model (LLM), the agentic framework can perform reasoning and planning, use tools, manage memory, and collaborate with other agents" (§I Introduction)</p><p>— <a href="../papers/paper-2723.md">paper-2723</a>, axis <code>reasoning_approach</code> = <code>Iterative Reasoning</code></p></blockquote>
+<blockquote><p>"This dataset is then used to fine-tune the LLM via LoRA, enhancing its generalization capability" (§I Introduction)</p><p>— <a href="../papers/paper-2028.md">paper-2028</a>, axis <code>reasoning_approach</code> = <code>Prompting + Model Specialization</code></p></blockquote>
+</section>
+<h5 id="view-reasoning-by-decision">View <code>reasoning-by-decision</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ3.1</code> · <strong>Shape:</strong> rows: <code>reasoning_approach</code> (multi-select) × cols: <code>decision</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>reasoning-by-decision</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Placement &amp; Offloading</th><th>Scheduling</th><th>Remediation</th><th>Scaling</th><th>Routing &amp; Slicing</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>Prompting</td><td>7</td><td>6</td><td>1</td><td>1</td><td>0</td><td>15</td></tr>
+<tr><td>Iterative Reasoning</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>5</td></tr>
+<tr><td>Knowledge Retrieval</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td></tr>
+<tr><td>Model Specialization</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>2</td></tr>
+</tbody></table></div>
+<p>Prompting is used across every decision class except Routing &amp; Slicing (1 paper, Iterative Reasoning). Iterative Reasoning spans all five classes at low count (1 each). Knowledge Retrieval is observed only in Placement &amp; Offloading. Model Specialization appears once each in Placement and Scheduling.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>reasoning_approach</code> — Reasoning/grounding mechanism (<code>Prompting</code>, <code>Iterative Reasoning</code>, <code>Knowledge Retrieval</code>, <code>Model Specialization</code>).</li>
+<li><code>decision</code> — Class(es) of resource-management decision delegated to the agent (<code>Scheduling</code>, <code>Placement &amp; Offloading</code>, <code>Scaling</code>, <code>Routing &amp; Slicing</code>, <code>Remediation</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"Using structured prompts, the LLM considered the context of each service (functional type, performance profile, constraints, tags) and recommended an optimal mapping" (§V Use Case)</p><p>— <a href="../papers/paper-1420.md">paper-1420</a>, axis <code>reasoning_approach</code> = <code>Prompting</code></p></blockquote>
+<blockquote><p>"few-shot adaptability [23], chain-of-thought reasoning [24], and semantic interpretation of natural language constraints" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>reasoning_approach</code> = <code>Prompting</code></p></blockquote>
+<blockquote><p>"Influenced by the React framework [14], which interleaving reasoning and acting in a more interactive manner" (§IV (Agent design))</p><p>— <a href="../papers/paper-1404.md">paper-1404</a>, axis <code>reasoning_approach</code> = <code>Iterative Reasoning</code></p></blockquote>
+<section class="card view-card"><h5 id="view-reasoning-temporal">View <code>reasoning-temporal</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>temporal</code> · <strong>Anchor:</strong> <code>RQ3.1</code> · <strong>Shape:</strong> rows: <code>year</code> × cols: <code>reasoning_approach</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>reasoning-temporal</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Prompting</th><th>Iterative Reasoning</th><th>Knowledge Retrieval</th><th>Model Specialization</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>2024</td><td>2</td><td>0</td><td>0</td><td>0</td><td>2</td></tr>
+<tr><td>2025</td><td>11</td><td>3</td><td>1</td><td>2</td><td>17</td></tr>
+<tr><td>2026</td><td>2</td><td>1</td><td>1</td><td>0</td><td>4</td></tr>
+</tbody></table></div>
+<p>2024 corpus members (2) use Prompting only. 2025 (14) introduces Iterative Reasoning (3), Knowledge Retrieval (1), and Model Specialization (2). 2026 (4) drops one of each into the mix. The Prompting-only baseline persists across years; new reasoning paradigms accumulate on top rather than displace it.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>year</code> — Publication year of the paper.</li>
+<li><code>reasoning_approach</code> — Reasoning/grounding mechanism (<code>Prompting</code>, <code>Iterative Reasoning</code>, <code>Knowledge Retrieval</code>, <code>Model Specialization</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"LLMs elegantly bypass this training bottleneck with their powerful zero-shot and few-shot reasoning capabilities" (§I Introduction)</p><p>— <a href="../papers/paper-1408.md">paper-1408</a>, axis <code>reasoning_approach</code> = <code>Prompting</code></p></blockquote>
+<blockquote><p>"Influenced by the React framework [14], which interleaving reasoning and acting in a more interactive manner" (§IV (Agent design))</p><p>— <a href="../papers/paper-1404.md">paper-1404</a>, axis <code>reasoning_approach</code> = <code>Iterative Reasoning</code></p></blockquote>
+<blockquote><p>"FlowMage sends a comprehensive prompt containing (i) a general introduction... (ii) a section detailing the specific information... (iii) a brief directive specifying the desired response format" (§3.1 Prompt Formulation)</p><p>— <a href="../papers/paper-0930.md">paper-0930</a>, axis <code>reasoning_approach</code> = <code>Prompting</code></p></blockquote>
+</section>
+<h4 id="rq3-2-grounding-mechanisms-telemetry-rag-over-runbooks-docs-episodic-memory-vector-dbs-knowledge-graphs">RQ3.2 — Grounding mechanisms (telemetry, RAG over runbooks/docs, episodic memory, vector DBs, knowledge graphs).</h4>
+<p>Grounding via external retrieval is rare — only 2 papers (<a href="../papers/paper-2936.md">paper-2936</a>, <a href="../papers/paper-2470.md">paper-2470</a> per the taxonomy classification) use Knowledge Retrieval, and both appear in Placement &amp; Offloading. No paper uses Knowledge Retrieval in isolation — it always wraps a Prompting outer loop. This is the sub-RQ with the most concentrated coverage (single axis, multi-select), and the data point is the absence as much as the presence.</p>
+<h5 id="view-reasoning-distribution">View <code>reasoning-distribution</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ3.1 (also answers RQ3.2, RQ3.3)</code> · <strong>Shape:</strong> rows: <code>reasoning_approach</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>reasoning-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Prompting</td><td>15</td></tr>
+<tr><td>Iterative Reasoning</td><td>4</td></tr>
+<tr><td>Knowledge Retrieval</td><td>2</td></tr>
+<tr><td>Model Specialization</td><td>2</td></tr>
+</tbody></table></div>
+<p>Prompting dominates at 15/20. Iterative Reasoning (4), Knowledge Retrieval (2), and Model Specialization (2) appear, often combined with Prompting in the same paper (multi-select). No paper uses Knowledge Retrieval or Model Specialization in isolation without a prompt-driven outer loop.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>reasoning_approach</code> — Reasoning/grounding mechanism (<code>Prompting</code>, <code>Iterative Reasoning</code>, <code>Knowledge Retrieval</code>, <code>Model Specialization</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"few-shot adaptability [23], chain-of-thought reasoning [24], and semantic interpretation of natural language constraints" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>reasoning_approach</code> = <code>Prompting</code></p></blockquote>
+<blockquote><p>"Leveraging an Large Language Model (LLM), the agentic framework can perform reasoning and planning, use tools, manage memory, and collaborate with other agents" (§I Introduction)</p><p>— <a href="../papers/paper-2723.md">paper-2723</a>, axis <code>reasoning_approach</code> = <code>Iterative Reasoning</code></p></blockquote>
+<blockquote><p>"This dataset is then used to fine-tune the LLM via LoRA, enhancing its generalization capability" (§I Introduction)</p><p>— <a href="../papers/paper-2028.md">paper-2028</a>, axis <code>reasoning_approach</code> = <code>Prompting + Model Specialization</code></p></blockquote>
+<h4 id="rq3-3-domain-knowledge-incorporation-fine-tuning-structured-prompting-few-shot-infrastructure-ontologies">RQ3.3 — Domain knowledge incorporation (fine-tuning, structured prompting, few-shot, infrastructure ontologies).</h4>
+<p>Domain knowledge entered via fine-tuning or adapters (Model Specialization) appears in only 2 papers, and only in Placement &amp; Offloading or Scheduling. The dominant route to domain knowledge in this corpus remains structured prompting plus, in two cases, retrieval — no paper combines all three (specialization + retrieval + prompting).</p>
+<section class="card view-card"><h5 id="view-reasoning-distribution">View <code>reasoning-distribution</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ3.1 (also answers RQ3.2, RQ3.3)</code> · <strong>Shape:</strong> rows: <code>reasoning_approach</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>reasoning-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Prompting</td><td>15</td></tr>
+<tr><td>Iterative Reasoning</td><td>4</td></tr>
+<tr><td>Knowledge Retrieval</td><td>2</td></tr>
+<tr><td>Model Specialization</td><td>2</td></tr>
+</tbody></table></div>
+<p>Prompting dominates at 15/20. Iterative Reasoning (4), Knowledge Retrieval (2), and Model Specialization (2) appear, often combined with Prompting in the same paper (multi-select). No paper uses Knowledge Retrieval or Model Specialization in isolation without a prompt-driven outer loop.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>reasoning_approach</code> — Reasoning/grounding mechanism (<code>Prompting</code>, <code>Iterative Reasoning</code>, <code>Knowledge Retrieval</code>, <code>Model Specialization</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"few-shot adaptability [23], chain-of-thought reasoning [24], and semantic interpretation of natural language constraints" (§I Introduction)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>reasoning_approach</code> = <code>Prompting</code></p></blockquote>
+<blockquote><p>"Leveraging an Large Language Model (LLM), the agentic framework can perform reasoning and planning, use tools, manage memory, and collaborate with other agents" (§I Introduction)</p><p>— <a href="../papers/paper-2723.md">paper-2723</a>, axis <code>reasoning_approach</code> = <code>Iterative Reasoning</code></p></blockquote>
+<blockquote><p>"This dataset is then used to fine-tune the LLM via LoRA, enhancing its generalization capability" (§I Introduction)</p><p>— <a href="../papers/paper-2028.md">paper-2028</a>, axis <code>reasoning_approach</code> = <code>Prompting + Model Specialization</code></p></blockquote>
+</section>
+<h3 id="rq4-how-is-the-behavior-of-agentic-ai-systems-for-resource-management-evaluated">RQ4 — How is the behavior of agentic AI systems for resource management evaluated?</h3>
+<h4 id="rq4-1-evaluation-methodologies-and-environments-simulation-real-testbed-production-synthetic-benchmarks-real-traces">RQ4.1 — Evaluation methodologies and environments (simulation, real testbed, production, synthetic benchmarks, real traces).</h4>
+<p>Simulation (13) outnumbers Practical Testbed (7), but the split is not uniform: Scheduling is evaluated exclusively in Simulation (7/7), while Remediation, Scaling, and Routing &amp; Slicing are exclusively Practical Testbed. Placement &amp; Offloading mixes (6 Sim / 3 Testbed). The pattern suggests evaluation venue follows infrastructure tooling maturity (simulators exist for scheduling, less so for remediation pipelines) rather than algorithmic novelty.</p>
+<h5 id="view-evaluation-distribution">View <code>evaluation-distribution</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ4.1</code> · <strong>Shape:</strong> rows: <code>evaluation_method</code> (single-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>evaluation-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>Simulation</td><td>13</td></tr>
+<tr><td>Practical Testbed</td><td>7</td></tr>
+</tbody></table></div>
+<p>Simulation (13) is more common than Practical Testbed (7). The split is not random: Scheduling work uses simulation exclusively, while Remediation, Scaling, and Routing &amp; Slicing use real testbeds exclusively (see <code>evaluation-by-decision</code>).</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>evaluation_method</code> — Empirical environment (<code>Simulation</code> vs <code>Practical Testbed</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"Hardware Configuration: Experiments run on a simulated" (§V-A Experiment Setup)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>evaluation_method</code> = <code>Simulation</code></p></blockquote>
+<blockquote><p>"All experiments were conducted on the FABRIC testbed [40] using an OpenStack-based compute node" (§IV-B Infrastructure and Compute Platform)</p><p>— <a href="../papers/paper-2723.md">paper-2723</a>, axis <code>evaluation_method</code> = <code>Practical Testbed</code></p></blockquote>
+<section class="card view-card"><h5 id="view-evaluation-by-decision">View <code>evaluation-by-decision</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ4.1</code> · <strong>Shape:</strong> rows: <code>decision</code> (multi-select) × cols: <code>evaluation_method</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>evaluation-by-decision</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Simulation</th><th>Practical Testbed</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>Placement &amp; Offloading</td><td>6</td><td>3</td><td>9</td></tr>
+<tr><td>Scheduling</td><td>7</td><td>0</td><td>7</td></tr>
+<tr><td>Remediation</td><td>0</td><td>2</td><td>2</td></tr>
+<tr><td>Scaling</td><td>0</td><td>2</td><td>2</td></tr>
+<tr><td>Routing &amp; Slicing</td><td>0</td><td>1</td><td>1</td></tr>
+</tbody></table></div>
+<p>Sharp axis-aligned split: Scheduling (7/7) is evaluated exclusively in Simulation; Remediation (2/2), Scaling (2/2), and Routing &amp; Slicing (1/1) are exclusively Practical Testbed. Placement &amp; Offloading mixes (6 Sim / 3 Testbed). The pattern suggests that evaluation venue follows the maturity of the underlying infrastructure tooling rather than the algorithmic novelty.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>decision</code> — Class(es) of resource-management decision delegated to the agent (<code>Scheduling</code>, <code>Placement &amp; Offloading</code>, <code>Scaling</code>, <code>Routing &amp; Slicing</code>, <code>Remediation</code>).</li>
+<li><code>evaluation_method</code> — Empirical environment (<code>Simulation</code> vs <code>Practical Testbed</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"Hardware Configuration: Experiments run on a simulated" (§V-A Experiment Setup)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>evaluation_method</code> = <code>Simulation</code></p></blockquote>
+<blockquote><p>"a custom simulation environment is established" (§Performance Evaluation — Experimental Setup)</p><p>— <a href="../papers/paper-2936.md">paper-2936</a>, axis <code>evaluation_method</code> = <code>Simulation</code></p></blockquote>
+<blockquote><p>"the experimental setup of the IBSM system consists of a client, server, and large-scale multi-cloud exchange platform" (§IV-A Experimentation setup)</p><p>— <a href="../papers/paper-2470.md">paper-2470</a>, axis <code>evaluation_method</code> = <code>Practical Testbed</code></p></blockquote>
+</section>
+<h4 id="rq4-2-resource-management-performance-metrics-latency-cost-energy-sla-utilization-throughput">RQ4.2 — Resource-management performance metrics (latency, cost, energy, SLA, utilization, throughput).</h4>
+<p>Every paper (20/20) reports at least one resource-management performance metric (latency, throughput, completion time, utilization, SLA violations, energy, cost). The distribution is uniform — there is no included paper without an RM-side outcome metric, which is structurally guaranteed by Q2 of the quality assessment.</p>
+<h5 id="view-metric-distribution">View <code>metric-distribution</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ4.2 (also answers RQ4.3, RQ4.4)</code> · <strong>Shape:</strong> rows: <code>metric</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>metric-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>RM Performance Metric</td><td>20</td></tr>
+<tr><td>Agent Performance Metric</td><td>15</td></tr>
+</tbody></table></div>
+<p>RM Performance Metric is reported by every paper (20/20). Agent Performance Metric is reported by 15/20 — exactly the Autonomous subset; the 5 Supervised papers do not surface agent-side metrics (token cost, inference latency, decision accuracy) at all (see <code>metric-by-autonomy</code>).</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>metric</code> — Families of metrics reported (<code>RM Performance Metric</code> vs <code>Agent Performance Metric</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"23.7% reduction in average job completion time, 18.4% improvement in resource utilization efficiency, and 31.2% decrease in SLA violations" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>metric</code> = <code>RM Performance Metric + Agent Performance Metric</code></p></blockquote>
+<blockquote><p>"Scheduling quality tests across six scenarios showed the prototype achieved superior or equivalent placement compared to standard Kubernetes configurations" (§Abstract)</p><p>— <a href="../papers/paper-2779.md">paper-2779</a>, axis <code>metric</code> = <code>RM Performance Metric</code></p></blockquote>
+<h4 id="rq4-3-agent-inference-overhead-metrics-token-usage-inference-latency-monetary-cost-per-decision-model-size-footprint-agent-loop-throughput">RQ4.3 — Agent/inference overhead metrics (token usage, inference latency, monetary cost per decision, model size/footprint, agent-loop throughput).</h4>
+<p>Agent-side overhead metrics (token usage, inference latency, decision accuracy, monetary cost per decision) are reported by 15/20 papers — exactly the Autonomous subset. The agent-overhead reporting rate is 100% within Autonomous and 0% within Supervised; the Supervised papers do not surface any agent-side metric, even when the LLM call is the most expensive step of the pipeline.</p>
+<section class="card view-card"><h5 id="view-metric-distribution">View <code>metric-distribution</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ4.2 (also answers RQ4.3, RQ4.4)</code> · <strong>Shape:</strong> rows: <code>metric</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>metric-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>RM Performance Metric</td><td>20</td></tr>
+<tr><td>Agent Performance Metric</td><td>15</td></tr>
+</tbody></table></div>
+<p>RM Performance Metric is reported by every paper (20/20). Agent Performance Metric is reported by 15/20 — exactly the Autonomous subset; the 5 Supervised papers do not surface agent-side metrics (token cost, inference latency, decision accuracy) at all (see <code>metric-by-autonomy</code>).</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>metric</code> — Families of metrics reported (<code>RM Performance Metric</code> vs <code>Agent Performance Metric</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"23.7% reduction in average job completion time, 18.4% improvement in resource utilization efficiency, and 31.2% decrease in SLA violations" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>metric</code> = <code>RM Performance Metric + Agent Performance Metric</code></p></blockquote>
+<blockquote><p>"Scheduling quality tests across six scenarios showed the prototype achieved superior or equivalent placement compared to standard Kubernetes configurations" (§Abstract)</p><p>— <a href="../papers/paper-2779.md">paper-2779</a>, axis <code>metric</code> = <code>RM Performance Metric</code></p></blockquote>
+</section>
+<h4 id="rq4-4-safety-and-governance-metrics-rate-of-unsafe-invalid-actions-frequency-of-human-intervention-audit-coverage-policy-compliance">RQ4.4 — Safety and governance metrics (rate of unsafe/invalid actions, frequency of human intervention, audit coverage, policy compliance).</h4>
+<p>Safety/governance metrics live inside <code>Agent Performance Metric</code> (rate of unsafe actions, audit-trace coverage, policy compliance). The <code>metric-by-autonomy</code> view shows zero Supervised papers report this family, while 15/15 Autonomous papers do. The vacancy is the strongest single signal in the corpus and motivates the stage 09 governance-gap discussion.</p>
+<h5 id="view-metric-distribution">View <code>metric-distribution</code></h5>
+<ul>
+<li><strong>Type:</strong> <code>distribution</code> · <strong>Anchor:</strong> <code>RQ4.2 (also answers RQ4.3, RQ4.4)</code> · <strong>Shape:</strong> rows: <code>metric</code> (multi-select)</li>
+<li><strong>Spreadsheet tab:</strong> [<code>metric-distribution</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>count</th></tr></thead>
+<tbody>
+<tr><td>RM Performance Metric</td><td>20</td></tr>
+<tr><td>Agent Performance Metric</td><td>15</td></tr>
+</tbody></table></div>
+<p>RM Performance Metric is reported by every paper (20/20). Agent Performance Metric is reported by 15/20 — exactly the Autonomous subset; the 5 Supervised papers do not surface agent-side metrics (token cost, inference latency, decision accuracy) at all (see <code>metric-by-autonomy</code>).</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>metric</code> — Families of metrics reported (<code>RM Performance Metric</code> vs <code>Agent Performance Metric</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"23.7% reduction in average job completion time, 18.4% improvement in resource utilization efficiency, and 31.2% decrease in SLA violations" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>metric</code> = <code>RM Performance Metric + Agent Performance Metric</code></p></blockquote>
+<blockquote><p>"Scheduling quality tests across six scenarios showed the prototype achieved superior or equivalent placement compared to standard Kubernetes configurations" (§Abstract)</p><p>— <a href="../papers/paper-2779.md">paper-2779</a>, axis <code>metric</code> = <code>RM Performance Metric</code></p></blockquote>
+<section class="card view-card"><h5 id="view-metric-by-autonomy">View <code>metric-by-autonomy</code></h5>
+
+<ul>
+<li><strong>Type:</strong> <code>pivot</code> · <strong>Anchor:</strong> <code>RQ4.4</code> · <strong>Shape:</strong> rows: <code>metric</code> (multi-select) × cols: <code>autonomy_level</code></li>
+<li><strong>Spreadsheet tab:</strong> [<code>metric-by-autonomy</code>](../spreadsheet.xlsx)</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>value</th><th>Autonomous</th><th>Supervised</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>RM Performance Metric</td><td>15</td><td>5</td><td>20</td></tr>
+<tr><td>Agent Performance Metric</td><td>15</td><td>0</td><td>15</td></tr>
+</tbody></table></div>
+<p>Strong, near-deterministic pattern: all 15 Autonomous papers report Agent Performance Metric (token cost, inference latency, decision accuracy); 0 of the 5 Supervised papers do. Every paper, regardless of autonomy, reports an RM Performance Metric. The vacancy in the Supervised × Agent-Performance cell is the strongest single signal in the corpus and the central evidence for the RQ4.4 governance-gap discussion.</p>
+<p><strong>Axes touched:</strong></p>
+<ul>
+<li><code>metric</code> — Families of metrics reported (<code>RM Performance Metric</code> vs <code>Agent Performance Metric</code>).</li>
+<li><code>autonomy_level</code> — Authority the agent holds over the action that reaches the system (<code>Supervised</code> vs <code>Autonomous</code>).</li>
+</ul>
+<p><strong>Contributing papers:</strong></p>
+<ul>
+<li><a href="../papers/paper-2556.md">paper-2556</a> — 2026 — LLM-Driven Adaptive Cloud Resource Scheduling: Bridging Reasoning Intelligence</li>
+<li><a href="../papers/paper-2723.md">paper-2723</a> — 2026 — AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks</li>
+<li><a href="../papers/paper-2779.md">paper-2779</a> — 2026 — Cluster Workload Allocation: Semantic Soft Affinity Using Natural Language</li>
+<li><a href="../papers/paper-2936.md">paper-2936</a> — 2026 — Adaptive Task Offloading for Edge Computing in Internet of Energy via Retrieval-Augmented</li>
+<li><a href="../papers/paper-1404.md">paper-1404</a> — 2025 — ARM: Autonomous Remediation &amp; Management with LLM Agents for Intent-Driven Control</li>
+<li><a href="../papers/paper-1408.md">paper-1408</a> — 2025 — Intelligent Kubernetes Scheduling with Large Language Models</li>
+<li><a href="../papers/paper-1420.md">paper-1420</a> — 2025 — Generative AI for Optimizing Service Mapping in the Edge-Cloud</li>
+<li><a href="../papers/paper-1496.md">paper-1496</a> — 2025 — Investigating Neurosymbolic AI for Intent-based Service Management</li>
+<li><a href="../papers/paper-1563.md">paper-1563</a> — 2025 — Leveraging LLM in Genetic Programming Hyper-heuristics for Dynamic Microservice</li>
+<li><a href="../papers/paper-1593.md">paper-1593</a> — 2025 — Intelligent Kubernetes Autoscaling Through Generative AI-Driven Workload Predictions</li>
+<li>…and 10 more (full list in <code>spreadsheet.xlsx</code>, tab <code>00-included</code>).</li>
+</ul>
+<p><strong>Representative evidence:</strong></p>
+<blockquote><p>"23.7% reduction in average job completion time, 18.4% improvement in resource utilization efficiency, and 31.2% decrease in SLA violations" (§Abstract)</p><p>— <a href="../papers/paper-2556.md">paper-2556</a>, axis <code>metric</code> = <code>RM Performance Metric + Agent Performance Metric</code></p></blockquote>
+<blockquote><p>"Scheduling quality tests across six scenarios showed the prototype achieved superior or equivalent placement compared to standard Kubernetes configurations" (§Abstract)</p><p>— <a href="../papers/paper-2779.md">paper-2779</a>, axis <code>metric</code> = <code>RM Performance Metric</code></p></blockquote>
+</section>
+<h3 id="rq5-what-open-challenges-unresolved-tensions-and-promising-future-directions-emerge-from-the-synthesis-of-the-included-literature">RQ5 — What open challenges, unresolved tensions, and promising future directions emerge from the synthesis of the included literature?</h3>
+<h4 id="rq5-1-unresolved-methodological-and-technical-tensions-inference-cost-vs-decision-latency-hallucination-in-critical-environments-transferability-across-infrastructures">RQ5.1 — Unresolved methodological and technical tensions (inference cost vs. decision latency, hallucination in critical environments, transferability across infrastructures).</h4>
+<p>Flagged at stage 07 as a corpus-level synthesis question and intentionally not encoded as a per-paper axis (see [<code>CLAUDE.md §8</code>](../CLAUDE.md)). The synthesis below is grounded in the locked views.</p>
+<p><strong>Unresolved tensions surfaced by the views:</strong></p>
+<ul>
+<li><strong>Inference cost vs. decision latency.</strong> Agent Performance Metric is reported by 15/15 Autonomous papers and 0/5 Supervised papers (see [<code>metric-by-autonomy</code>](#view-metric-by-autonomy)). The Autonomous subset reports token usage / inference latency / cost-per-decision — the Supervised subset does not. The tension is therefore visible only in one half of the corpus; cross-paper comparison of agent-side overhead remains structurally hard.</li>
+<li><strong>Hallucination in critical environments.</strong> No paper in the corpus reports a quantitative measure of unsafe-action rate that is comparable across systems. The <code>Pipeline Contributor</code> design (6/20) is the structural workaround — a downstream non-LLM component vetoes hallucinated actions before they reach infrastructure.</li>
+<li><strong>Transferability across infrastructures.</strong> The clean axis-aligned split in [<code>evaluation-by-decision</code>](#view-evaluation-by-decision) — Scheduling exclusively Simulation, Remediation/Scaling/Routing exclusively Practical Testbed — suggests that the choice of evaluation venue (and therefore the transferability claim) is driven by the maturity of the supporting tooling, not by the agent design.</li>
+</ul>
+<h4 id="rq5-2-governance-accountability-and-auditability-gaps-decision-traceability-responsibility-attribution-regulatory-requirements-explainability">RQ5.2 — Governance, accountability, and auditability gaps (decision traceability, responsibility attribution, regulatory requirements, explainability).</h4>
+<p>Flagged at stage 07 as a corpus-level synthesis question and intentionally not encoded as a per-paper axis (see [<code>CLAUDE.md §8</code>](../CLAUDE.md)). The synthesis below is grounded in the locked views.</p>
+<p><strong>Governance, accountability, and auditability gaps surfaced by the views:</strong></p>
+<ul>
+<li>**The <code>Supervised × Agent-Performance</code> vacancy.** All five Supervised papers omit agent-side metrics (see [<code>metric-by-autonomy</code>](#view-metric-by-autonomy)). When a human-in-the-loop or rule-based gate is the safety mechanism, the system as evaluated provides no quantitative trace of the agent's behavior — audit coverage, decision traceability, and policy-compliance rate are not reported.</li>
+<li>**The empty <code>Pipeline Contributor × Multi-Agent</code> cell** in [<code>agentic-config-cross</code>](#view-agentic-config-cross). The combination of a multi-agent reasoning loop with a downstream non-LLM decider is an open design space — the absence is reported as a research opportunity for systems that want auditable multi-agent reasoning without ceding the final action to an LLM.</li>
+<li><strong>Explainability is structurally optional.</strong> Only one paper (<a href="../papers/paper-1947.md">paper-1947</a>) treats explainability as a first-class concern by combining XAI with LLMs for zero-touch network and service management. The rest of the corpus treats it implicitly through Pipeline Contributor designs or omits it.</li>
+</ul>
+<h2 id="taxonomy-reference">Taxonomy reference</h2>
+<p>The full taxonomy — origin, seed axes, value tables, code book, iteration history, and per-axis adversarial-mode flags — lives in [<code>CLAUDE.md §8</code>](../CLAUDE.md). Quick reference:</p>
+<ul>
+<li><code>infrastructure</code> — Tier of infrastructure controlled by the agent (<code>Cloud-Only</code> vs <code>Edge-Cloud</code>).</li>
+<li><code>decision</code> — Class(es) of resource-management decision delegated to the agent (<code>Scheduling</code>, <code>Placement &amp; Offloading</code>, <code>Scaling</code>, <code>Routing &amp; Slicing</code>, <code>Remediation</code>).</li>
+<li><code>agentic_configuration.decision_role</code> — Who holds authority over the final RM action (<code>Sole Decider</code> vs <code>Pipeline Contributor</code>).</li>
+<li><code>agentic_configuration.coordination_topology</code> — How many LLM-agents coordinate inside the loop (<code>Single Agent</code> vs <code>Multi-Agent</code>).</li>
+<li><code>reasoning_approach</code> — Reasoning/grounding mechanism (<code>Prompting</code>, <code>Iterative Reasoning</code>, <code>Knowledge Retrieval</code>, <code>Model Specialization</code>).</li>
+<li><code>autonomy_level</code> — Authority the agent holds over the action that reaches the system (<code>Supervised</code> vs <code>Autonomous</code>).</li>
+<li><code>metric</code> — Families of metrics reported (<code>RM Performance Metric</code> vs <code>Agent Performance Metric</code>).</li>
+<li><code>evaluation_method</code> — Empirical environment (<code>Simulation</code> vs <code>Practical Testbed</code>).</li>
+</ul>
+<p>Notation: ⋆ marks single-select axes (one value per paper); ▲ marks multi-select axes (one or more values per paper). The taxonomy is <strong>faceted</strong> — every included paper classifies on every axis with ≥ MED confidence (no orphan permitted). The full code book with borderline-case definitions is in [<code>CLAUDE.md §8.2</code>](../CLAUDE.md).</p>
+<p>Per-paper classifications (Phase 07b blocks with verbatim evidence and neighbor-not-chosen rationale) live in each [<code>papers/paper-NNNN.md</code> <code>## 07 — Taxonomy</code>](../papers/) block.</p>
+<h2 id="how-to-read-the-spreadsheet">How to read the spreadsheet</h2>
+<p><code>spreadsheet.xlsx</code> is the canonical, sortable, filterable form of the corpus. The tab layout is:</p>
+<ul>
+<li>**<code>00-included</code>** — one row per included paper, with all 8 taxonomy cells, the year, the venue, the DOI, and a clickable link to <code>papers/paper-NNNN.md</code>.</li>
+<li><strong>One tab per analysis view</strong> (16 tabs, named exactly as the <code>view</code> field in <code>stages/08-analysis.md</code>). Each tab is the pivot or distribution table for that view; cells reference the contributing papers.</li>
+<li><strong>Screening tabs</strong> (<code>04-title</code>, <code>05-abstract</code>, <code>06-full-text</code>) — proposed/final decision per paper, with bolded keywords in the rich-text cells and red/green background fill on the ID and Title columns (Excluded rows first, then Included; within each block sorted by sub-agent disagreement descending). The formatting spec lives in [<code>protocols/spreadsheet-formatting.md</code>](../protocols/spreadsheet-formatting.md).</li>
+</ul>
+<p>To trace a finding in this report back to its evidence:</p>
+<ol>
+<li>From the report, click the view name (e.g., [<code>metric-by-autonomy</code>](../spreadsheet.xlsx)) to open the corresponding tab.</li>
+<li>From the tab, follow the per-paper IDs to the relevant <code>papers/paper-NNNN.md</code>.</li>
+<li>In the per-paper file, [<code>## 07 — Taxonomy</code>](#) holds the verbatim quote and <code>§</code> location for every axis cell; [<code>## 08 — Analysis contributions</code>](#) lists exactly which views the paper feeds.</li>
+</ol>
+<h2 id="reproducibility">Reproducibility</h2>
+<p>To regenerate the materialized artifacts of this review from the locked protocol and corpus:</p>
+<pre><code class="lang-bash"># Pass-1 deterministic classifier (per stage)
+uv run scripts/deterministic_classifier.py --stage title
+uv run scripts/deterministic_classifier.py --stage abstract
+uv run scripts/deterministic_classifier.py --stage full-text
+
+# Materialize the spreadsheet from per-paper markdown + view specs
+uv run scripts/build_spreadsheet.py
+
+# Regenerate this report
+# (idempotent — re-runs of /rapid-review:07-report overwrite report/index.md)</code></pre>
+<p>Locked-artifact hashes at report-generation time:</p>
+<ul>
+<li><code>protocols/screening.yaml</code> — <code>sha256:73b4d8ce8fca6ebab639f388dfdc7595ec3728c0249fe556f6bb1231e32d4514</code></li>
+<li><code>protocols/classifier-config.json</code> — <code>sha256:f4d1f37325cb92dfc49c6f010e075eaa8d905b10d540ef21cb18b4a99cc1ffdc</code></li>
+<li><code>protocols/classifier-config-fulltext.json</code> — <code>sha256:9d48689fe2361684b96377c428d92323eb7ec1d11de413596d0b2833e40efe8c</code></li>
+</ul>
+<p>Corpus size at lock: 20 included papers (<code>status.06-full-text-screening == include</code>), all classified along 7 taxonomy axes, all contributing to ≥1 of 16 analysis views.</p>
+<p>Source-of-truth references for downstream manuscript work:</p>
+<ul>
+<li>Protocol: [<code>CLAUDE.md</code>](../CLAUDE.md) and [<code>protocols/screening.yaml</code>](../protocols/screening.yaml).</li>
+<li>Taxonomy: [<code>CLAUDE.md §8</code>](../CLAUDE.md) and [<code>stages/07-taxonomy-development.md</code>](../stages/07-taxonomy-development.md).</li>
+<li>Analysis: [<code>stages/08-analysis.md</code>](../stages/08-analysis.md) and [<code>spreadsheet.xlsx</code>](../spreadsheet.xlsx).</li>
+<li>Per-paper evidence: [<code>papers/paper-NNNN.md</code>](../papers/) (<code>§07</code> for taxonomy quotes, <code>§08</code> for view contributions).</li>
+</ul>
+</main>
+</div>
+</body>
+</html>

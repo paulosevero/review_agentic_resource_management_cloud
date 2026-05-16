@@ -17,7 +17,7 @@ This file is the authoritative protocol for this review. It declares the theme, 
 - **Repo:** `/Users/paulosouza/Documents/Carreira/Pesquisa/Código/review_agentic_resource_management_cloud`
 - **Created:** `2026-04-25`
 - **Migrated to v3.2.0:** `2026-05-09`
-- **Current stage:** `08-analysis (locked); next: 09-report`
+- **Current stage:** `09-report (locked); pipeline complete`
 
 ## 1. Locks (machine-readable)
 
@@ -34,7 +34,7 @@ locks:
   06-full-text-screening: locked
   07-taxonomy-development: locked
   08-analysis: locked
-  09-report: pending
+  09-report: locked
 ```
 
 ## 2. Theme
